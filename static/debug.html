@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Test</title>
+    <style>
+        body { background: white; padding: 20px; font-family: Arial; }
+        .test-container { margin: 20px 0; padding: 10px; border: 2px solid blue; }
+        img { border: 3px solid red; }
+    </style>
+</head>
+<body>
+    <h1>Image Debug Test</h1>
+
+    <div class="test-container">
+        <h2>Test 1: Plain img tag</h2>
+        <img src="/static/images/logos/ssis.svg" alt="SSIS Logo" width="200">
+    </div>
+
+    <div class="test-container">
+        <h2>Test 2: Inside div.img-container (like templates)</h2>
+        <div class="img-container" style="text-align: center;">
+            <img src="/static/images/logos/knime.svg" alt="KNIME Logo" width="200">
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test 3: With template-like CSS</h2>
+        <div style="text-align: center; margin: 2rem 0;">
+            <img src="/static/images/logos/pandas.svg"
+                 alt="Pandas Logo"
+                 style="max-width: 100%; height: auto; border-radius: 16px;">
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test 4: Home architecture image</h2>
+        <img src="/static/images/home/Home-Test Framework Architecture.svg"
+             alt="Architecture"
+             style="width: 500px;">
+    </div>
+
+    <p><strong>If you see 4 images above with RED borders, images work but templates have an issue.</strong></p>
+    <p><strong>If you DON'T see images, check browser console (F12) for errors.</strong></p>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Translation Test</title>
+</head>
+<body>
+    <h1>Translation Test Page</h1>
+
+    <p><strong>Current Language Code:</strong> {{ LANGUAGE_CODE }}</p>
+
+    <h2>Test Translations:</h2>
+    <ul>
+        <li><strong>STEP 1 (Thai):</strong> STEP 1: ติดตั้ง Library เพิ่มเติม</li>
+        <li><strong>STEP 1 (Translated):</strong> {% trans "STEP 1: ติดตั้ง Library เพิ่มเติม" %}</li>
+
+        <li><strong>Phase 0 (Thai):</strong> Phase 0: System Preparation (เตรียมระบบ)</li>
+        <li><strong>Phase 0 (Translated):</strong> {% trans "Phase 0: System Preparation (เตรียมระบบ)" %}</li>
+
+        <li><strong>Home (Translated):</strong> {% trans "Home" %}</li>
+    </ul>
+
+    <h2>Available Languages:</h2>
+    <ul>
+        <li><a href="/th/test-translation/">Thai (ไทย)</a></li>
+        <li><a href="/en/test-translation/">English</a></li>
+        <li><a href="/zh-hans/test-translation/">Chinese (中文)</a></li>
+    </ul>
+</body>
+</html>

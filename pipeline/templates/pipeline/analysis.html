@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "สรุปและวิเคราะห์ผล ETL Tool Comparison: 4 Tools" %} - ETL Pipeline Comparison{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1><i class="fas fa-chart-line"></i> {% trans "สรุปและวิเคราะห์ผล ETL Tool Comparison: 4 Tools สรุปผลการทดสอบ ETL" %}</h1>
+        <p>{% trans "โปรเจคนี้นำเครื่องมือ 4 อย่างมาทดสอบด้วยข้อมูลการตรวจจับการทุจริตบัตรเครดิต (Credit Card Transactions Fraud Detection) โดยแบ่งขนาดข้อมูลออกเป็นสามระดับ คือ 10,000 แถว 100,000 แถว และ 1,000,000 แถว แล้วจับเวลาว่าแต่ละเครื่องมือใช้เวลานานแค่ไหนในแต่ละขั้นตอน เครื่องมือที่ใช้เวลาน้อยกว่าถือว่าดีกว่าในการทดสอบนี้" %}</p>
+    </section>
+
+    <!-- Section 1: ภาพรวม -->
+    <div class="card">
+        <h2>1. {% trans "ภาพรวม: แต่ละเครื่องมือใช้เวลารวมเท่าไร" %}</h2>
+
+        <p>
+            {% trans "กราฟนี้แสดงเวลารวมทั้งหมดของแต่ละเครื่องมือ แกนนอนคือขนาดข้อมูลแบ่งเป็นสามกลุ่ม แต่ละกลุ่มมีแท่งสี่แท่งเรียงกัน แท่งที่สูงกว่าหมายความว่าใช้เวลานานกว่า" %}
+        </p>
+
+        <div class="img-container">
+            <img src="{% static 'images/comparison/comparison4tools_1_grouped_total.png' %}"
+                 alt="Fig 1" loading="lazy" style="max-width: 70%; height: auto;">
+            <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b;">
+                <strong>Fig 1:</strong> {% trans "เวลารวมทั้งหมดของแต่ละเครื่องมือ แยกตามขนาดข้อมูล" %}
+            </p>
+        </div>
+
+        <p>
+            {% blocktrans %}จากตาราง Airflow+Pandas เร็วที่สุดในทุกขนาด โดยที่ข้อมูล 1 ล้านแถวก็ยังใช้เวลาเพียง 131 วินาทีขณะที่ SSIS ใช้ 459 วินาทีKNIME ใช้ 630 วินาทีและ Airflow+PySpark ช้าที่สุดด้วยเวลาถึง 1,014 วินาทีหรือกว่า 16 นาทีสิ่งที่น่าสังเกตคือ Airflow+PySpark ช้าตั้งแต่ข้อมูลขนาดเล็กมาก แม้แต่ข้อมูล 10,000 แถว ก็ยังใช้เวลาถึง 53 วินาทีทั้งที่เครื่องมืออื่นทำเสร็จภายใน 23 วินาทีสาเหตุคือทุกครั้งที่รัน PySpark มันต้องเปิดระบบ Java ขึ้นมาก่อน ซึ่งกินเวลาประมาณ 20-30 วินาทีทุกครั้งโดยไม่ขึ้นกับว่ามีข้อมูลมากหรือน้อยแค่ไหน ทำให้ข้อมูลน้อยๆ เสียเปรียบอย่างชัดเจน{% endblocktrans %}
+        </p>
+    </div>
+
+    <!-- Section 2: สัดส่วนของแต่ละ Phase -->
+    <div class="card">
+        <h2>2. {% trans "สัดส่วนของแต่ละ Phase ต่อเวลารวม - แสดงถึงเวลาหายไปอยู่ในขั้นตอนไหนมากที่สุด" %}</h2>
+
+        <p>
+            {% trans "กราฟนี้แบ่งแต่ละแท่งออกเป็นสามส่วนซ้อนกันตามสีสีน้ำเงินคือขั้นดึงข้อมูล(Extract) สีเขียวคือขั้นแปลงข้อมูล(Transform) สีแดงคือขั้นตอนบันทึกข้อมูล(load) ส่วนที่ใหญ่ที่สุดในแท่งคือขั้นตอนที่กินเวลามากที่สุดของเครื่องมือนั้น ซึ่งสามารถสรุปได้ดังนี้:" %}
+        </p>
+
+        <div class="img-container">
+            <img src="{% static 'images/comparison/comparison4tools_2_stacked_phase.png' %}"
+                 alt="Fig 2" loading="lazy" style="max-width: 70%; height: auto;">
+            <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b;">
+                <strong>Fig 2:</strong> {% trans "สัดส่วนของแต่ละ Phase ต่อเวลารวม - แสดงถึงเวลาหายไปอยู่ในขั้นตอนไหนมากที่สุด" %}
+            </p>
+        </div>
+
+        <h3>{% trans "SSIS : ขั้นตอน Transform กินเวลาไปเกือบทั้งหมด" %}</h3>
+        <p>
+            {% trans "ที่ข้อมูล 1 ล้านแถว SSIS ใช้เวลาแปลงข้อมูล(Transform)ไปถึง 449 วินาทีจากเวลารวมทั้งหมด 459 วินาทีสามารถคิดด้วยวิธีคิดนี้" %}
+        </p>
+        <p style="margin-left: 2rem;">
+            <strong>{% trans "วิธีคิด" %}:</strong> 449 ÷ 459 × 100 = 97.8%
+        </p>
+        <p>
+            {% trans "ดังนั้นคิดเป็น 97.8% ของเวลาทั้งหมด ส่วนที่เหลืออีก 2.2% เป็นการดึงและการโหลดข้อมูลรวมกัน" %}
+        </p>
+
+        <h3>{% trans "KNIME : ขั้นตอน Load ข้อมูลคือจุดที่ช้าที่สุด" %}</h3>
+        <p>
+            {% trans "ที่ข้อมูล 1 ล้านแถว KNIME ใช้เวลาบันทึกข้อมูลไป 470 วินาทีจากเวลารวม 630 วินาทีคิดเป็น 74.6%" %}
+        </p>
+        <p style="margin-left: 2rem;">
+            <strong>{% trans "วิธีคิด" %}:</strong> 470 ÷ 630 × 100 = 74.6%
+        </p>
+        <p>
+            {% trans "สาเหตุคือ KNIME ในขั้นตอนโหลดข้อมูลมีการใช้ DB Writer Node ทำให้ข้อมูลถูกส่งทีละ 1 แถว MySQL ต้องบันทึกและยืนยันทุกคำสั่ง ทำให้เวลา Load พุ่งสูง" %}
+        </p>
+
+        <h3>{% trans "Airflow+PySpark : ขั้นตอน Load ข้อมูลคือจุดที่ช้าที่สุดในทุกเครื่องมือ" %}</h3>
+        <p>
+            {% trans "ที่ข้อมูล 1 ล้านแถว PySpark ใช้เวลาบันทึกข้อมูลไปถึง 955 วินาทีจากเวลารวม 1,014 วินาทีคิดเป็น 94.2%" %}
+        </p>
+        <p style="margin-left: 2rem;">
+            <strong>{% trans "วิธีคิด" %}:</strong> 955 ÷ 1,014 × 100 = 94.2%
+        </p>
+        <p>
+            {% trans "ปัญหาเดียวกับ KNIME คือส่งข้อมูลทีละแถวผ่านช่องทางเดียว แต่รุนแรงกว่าเพราะไม่ได้ตั้งค่าการกระจายงาน ทำให้ข้อมูลทั้งหมดถูกส่งออกผ่าน JDBC เพียงช่องทางเดียว ทำให้เวลาพุ่งสูงกว่าทุกเครื่องมือ" %}
+        </p>
+
+        <h3>{% trans "Airflow+Pandas : สัดส่วนทุกขั้นตอนพอสมดุล" %}</h3>
+        <p>
+            {% trans "ที่ข้อมูล 1 ล้านแถว Pandas ใช้เวลาบันทึกข้อมูลไป 102 วินาทีจากเวลารวม 131 วินาทีคิดเป็น 78.1%" %}
+        </p>
+        <p style="margin-left: 2rem;">
+            <strong>{% trans "วิธีคิด" %}:</strong> 102 ÷ 131 × 100 = 78.1%
+        </p>
+        <p>
+            {% trans "Pandas ส่งข้อมูลเป็นกลุ่มใหญ่ทีเดียวแทนที่จะส่งทีละแถว ทำให้ขั้นบันทึกข้อมูลใช้เวลาน้อยกว่าเครื่องมืออื่นมาก" %}
+        </p>
+
+        <div class="section-nav">
+            <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 3: เมื่อข้อมูลโตขึ้น -->
+    <div class="card">
+        <h2>3. {% trans "เมื่อข้อมูลโตขึ้น จะเวลามากขึ้นแค่ไหน" %}</h2>
+
+        <div class="img-container">
+            <img src="{% static 'images/comparison/comparison4tools_3_line_scalability.png' %}"
+                 alt="Fig 3" loading="lazy" style="max-width: 70%; height: auto;">
+            <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b;">
+                <strong>Fig 3:</strong> {% trans "เมื่อข้อมูลโตขึ้น จะเวลามากขึ้นแค่ไหน" %}
+            </p>
+        </div>
+
+        <p>
+            {% blocktrans %}เส้นของ Airflow+PySpark ชันที่สุดอย่างเห็นได้ชัด จากจุดเริ่มต้นที่ 53 วินาทีที่ข้อมูล 10,000 แถว พุ่งขึ้นไปถึง 1,014 วินาทีที่ข้อมูล 1 ล้านแถว เพิ่มขึ้น 19 เท่า เส้นของ SSIS และ KNIME มีความชันใกล้เคียงกัน ทั้งคู่เริ่มต้นต่ำแต่เวลาก็โตเร็วเมื่อข้อมูลใหญ่ขึ้น เส้นของ Airflow+Pandas ราบเรียบที่สุด โตจาก 2.2 วินาทีเป็น 131 วินาทีคิดเป็น 60 เท่า ซึ่งน้อยที่สุดในบรรดาเครื่องมือที่เริ่มต้นด้วยเวลาต่ำ{% endblocktrans %}
+        </p>
+
+        <h3>{% trans "ตารางเปรียบเทียบ Scalability" %}</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{% trans "ช่วงที่ข้อมูลโต" %}</th>
+                        <th>SSIS</th>
+                        <th>KNIME</th>
+                        <th>PySpark</th>
+                        <th>Pandas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>10k → 100k</strong><br>
+                            <small>({% trans "ข้อมูลโต 10 เท่า" %})</small>
+                        </td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 16 เท่า" %}</td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 16 เท่า" %}</td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 2.5 เท่า" %}</td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 6 เท่า" %}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>100k → 1m</strong><br>
+                            <small>({% trans "ข้อมูลโต 10 เท่า" %})</small>
+                        </td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 10 เท่า" %}</td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 12 เท่า" %}</td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 7.5 เท่า" %}</td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 10 เท่า" %}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>10k → 1m</strong><br>
+                            <small>({% trans "ข้อมูลโต 100 เท่า" %})</small>
+                        </td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 172 เท่า" %}</td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 200 เท่า" %}</td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 19 เท่า" %}</td>
+                        <td>{% trans "ใช้เวลาเพิ่มขึ้น 60 เท่า" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            {% blocktrans %}จากตารางในแถวที่ 10k → 1m เป็นข้อมูลโต 100 เท่าจะสังเกตได้ว่า PySpark ใช้เวลาเพิ่มขึ้น 19 เท่าซึ่งถ้าเทียบกับเครื่องมืออื่นๆ ถือว่าใช้เวลาน้อยที่สุดแต่ต้องคำนึงด้วยว่า PySpark จุดเริ่มต้น คือ 53 วินาทีหากเทียบกับเครื่องมืออื่นๆ ที่มีจุดเริ่มต้นน้อยกว่า เช่นหากเปรียบเทียบกับ Pandas เริ่มที่ 2.2 วินาทีดังนั้น PySpark จึงยังช้ากว่า Pandas ตลอดทุกขนาด แม้อัตราการโตจะดูดีกว่าก็ตาม{% endblocktrans %}
+        </p>
+
+        <div class="section-nav">
+            <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 4: การเปรียบเทียบในสเกลลอการิทึม -->
+    <div class="card">
+        <h2>4. {% trans "การเปรียบเทียบเวลาในการประมวลผล ETL ตามขนาดข้อมูลในสเกลลอการิทึม" %}</h2>
+
+        <p>
+            {% trans "ปัญหาของกราฟที่ 3 คือ เมื่อ PySpark สูงถึง 1,014 วินาทีเส้นของ Pandas ที่ 131 วินาทีจะแทบแนบติดกับแกนล่าง ทำให้มองไม่เห็นรายละเอียด กราฟที่ 4 แก้ปัญหานี้ด้วยการปรับแกน Y ให้แต่ละช่วงกระโดดขึ้น 10 เท่าแทนที่จะเพิ่มขึ้นทีละเท่ากัน" %}
+        </p>
+
+        <div class="img-container">
+            <img src="{% static 'images/comparison/comparison4tools_4_log_scale.png' %}"
+                 alt="Fig 4" loading="lazy" style="max-width: 70%; height: auto;">
+            <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #64748b;">
+                <strong>Fig 4:</strong> {% trans "การเปรียบเทียบเวลาในการประมวลผล ETL ตามขนาดข้อมูลในสเกลลอการิทึม" %}
+            </p>
+        </div>
+
+        <p>
+            {% trans "วิธีอ่านกราฟนี้ต่างจากกราฟที่ 3 ตรงที่ระยะห่างในแนวตั้งไม่ได้วัดว่าต่างกันกี่วินาทีแต่วัดว่าต่างกันกี่เท่า เส้นที่อยู่สูงกว่าในกราฟนี้ยังหมายถึงใช้เวลานานกว่าเสมอ และเส้นที่ชันกว่าหมายถึงโตเร็วกว่าเมื่อข้อมูลเพิ่มขึ้น" %}
+        </p>
+
+        <p>
+            {% trans "ผลที่เห็นได้ชัดจากกราฟนี้คือ เส้นของ Airflow+Pandas อยู่ต่ำสุดตลอดและความชันค่อนข้างคงที่ เส้นของ SSIS และ KNIME เกือบทับกันตลอด แสดงว่าพฤติกรรมการโตของเวลาคล้ายกันมาก และเส้นของ PySpark อยู่สูงสุดตลอดและยิ่งชันขึ้นในช่วง 100k ถึง 1m ซึ่งบอกว่ายิ่งข้อมูลมากขึ้น PySpark ยิ่งช้าขึ้นในอัตราที่เร็วขึ้นด้วย" %}
+        </p>
+
+        <div class="section-nav">
+            <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 5: บทสรุป -->
+    <div class="card">
+        <h2>{% trans "บทสรุป" %}</h2>
+
+        <p>
+            {% blocktrans %}จากการทดสอบทั้งหมด Airflow+Pandas ชนะในทุกขนาดข้อมูล เพราะใช้วิธีเรียบง่ายที่เหมาะกับการทำงานบนเครื่องเดียว คือส่งข้อมูลเป็นกลุ่มใหญ่และไม่ต้องเปิดระบบพิเศษก่อนทำงาน{% endblocktrans %}
+        </p>
+
+        <p>
+            {% blocktrans %}SSIS เร็วในขั้นดึงและบันทึกข้อมูล(Load) แต่ช้าในขั้นแปลงข้อมูล(Transform) เพราะทำทีละแถวและไม่สามารถเขียนทับคอลัมน์เดิมได้โดยตรง ต่างจาก Python และ KNIME ที่มองข้อมูลเป็นตารางทั้งก้อน จึงแก้ไขค่าในคอลัมน์เดิมได้ทันทีในคำสั่งเดียว KNIME ดึงข้อมูลได้เร็วที่สุดในทุกขนาดแต่บันทึกข้อมูล(Load)ช้าเพราะส่งทีละแถวเช่นกัน ทั้งสองเครื่องมือนี้การใช้เวลาใช้การประมวลผลในแต่ละขั้นตอนที่คล้ายกัน{% endblocktrans %}
+        </p>
+
+        <p>
+            {% blocktrans %}Airflow+PySpark ช้าที่สุด เพราะออกแบบมาสำหรับการทำงานบนหลายเครื่องพร้อมกัน เมื่อใช้บนเครื่องเดียวจึงยังไม่แสดงศักยภาพจริง การเปิดระบบ Java และการบันทึกข้อมูล(Load)ทีละแถวรวมกันทำให้ช้ากว่าทุกเครื่องมือในทุกขนาดที่ทดสอบ{% endblocktrans %}
+        </p>
+
+        <h3>{% trans "สมมติฐานกับผลจริง" %}</h3>
+        <p>{% trans "ผลที่ได้จากการทดสอบแตกต่างจากที่คาดไว้เกือบทุกแนวทาง กล่าวคือ" %}</p>
+
+        <ul>
+            <li><strong>SSIS</strong> {% trans "ที่คาดว่าจะเร็วที่สุด ผลจริงได้อันดับที่ 2 เพราะขั้นตอนแปลงข้อมูลใช้เวลานานกว่าที่คาด" %}</li>
+            <li><strong>KNIME</strong> {% trans "ที่คาดว่าจะช้าที่สุด ผลจริงได้อันดับที่ 3 ไม่ใช่ช้าที่สุดอย่างที่คาด" %}</li>
+            <li><strong>{% trans "Airflow ร่วมกับ PySpark" %}</strong> {% trans "ที่คาดว่าจะอยู่ในระดับกลาง ผลจริงกลับช้าที่สุดในทุกขนาดข้อมูล" %}</li>
+            <li><strong>{% trans "Airflow ร่วมกับ pandas" %}</strong> {% trans "ที่คาดว่าจะใกล้เคียงกับ PySpark ผลจริงกลับเร็วที่สุดในทุกขนาดข้อมูล" %}</li>
+        </ul>
+
+        <p>
+            {% blocktrans %}จากผลที่ได้ทำให้กลุ่มนักศึกษาผู้จัดทำได้บทเรียนว่า เครื่องมือที่ดูซับซ้อนหรือทรงพลังที่สุดไม่ได้หมายความว่าจะเร็วที่สุดเสมอไป ขึ้นอยู่กับว่าใช้กับข้อมูลขนาดใดและในสภาพแวดล้อมแบบใดด้วย{% endblocktrans %}
+        </p>
+    </div>
+
+    <!-- Back to Overview -->
+    <div class="card" style="text-align: center;">
+        <h3>{% trans "ดูรายละเอียดแต่ละเครื่องมือ" %}</h3>
+        <div class="grid-2">
+            <a href="{% url 'pipeline:ssis' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">SSIS</a>
+            <a href="{% url 'pipeline:knime' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">KNIME</a>
+            <a href="{% url 'pipeline:airflow_pyspark' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">Airflow + PySpark</a>
+            <a href="{% url 'pipeline:airflow_pandas' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">Airflow + Pandas</a>
+        </div>
+        <div style="margin-top: 1rem;">
+            <a href="{% url 'pipeline:home' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">{% trans "กลับหน้าแรก" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

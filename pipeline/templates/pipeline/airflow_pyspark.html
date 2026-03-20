@@ -1,0 +1,1645 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Airflow + PySpark - ETL Pipeline Comparison{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+<style>
+    .tab-content {
+        text-align: left;
+    }
+
+    .tab-content h2,
+    .tab-content h3,
+    .tab-content h4 {
+        text-align: left;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .tab-content p,
+    .tab-content li {
+        text-align: left;
+        line-height: 1.8;
+    }
+
+    .tab-content ul,
+    .tab-content ol {
+        text-align: left;
+        margin-left: 2rem;
+    }
+
+    .tab-content pre {
+        background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+        color: #f8f8f2;
+        border: 2px solid #4a4a4a;
+        border-radius: 8px;
+        padding: 1.5rem;
+        overflow-x: auto;
+        text-align: left;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .tab-content code {
+        background-color: #2a2a2a;
+        color: #ff6b6b;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.92rem;
+        font-weight: 600;
+        border: 1px solid #444;
+    }
+
+    .tab-content pre code {
+        background-color: transparent;
+        color: #f8f8f2;
+        padding: 0;
+        border: none;
+        font-weight: 400;
+    }
+
+    .img-container {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .img-container img {
+        max-width: 70%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .img-container + p {
+        text-align: center;
+        font-style: italic;
+        color: #666;
+        margin-top: 0.5rem;
+    }
+
+    #benchmark .img-container img {
+        max-width: 70%;
+        height: auto;
+    }
+
+    .alert {
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 8px;
+        border-left: 4px solid;
+    }
+
+    .alert-info {
+        background-color: #e3f2fd;
+        border-left-color: #2196f3;
+        color: #0d47a1;
+    }
+
+    .alert-warning {
+        background-color: #fff3e0;
+        border-left-color: #ff9800;
+        color: #e65100;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+    }
+
+    table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    table tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    /* Code block copy button styles */
+    .copy-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+        transition: all 0.2s ease;
+        z-index: 10;
+    }
+
+    .copy-button:hover {
+        background: #fff;
+        border-color: #3b82f6;
+        color: #3b82f6;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .copy-button.copied {
+        background: #10b981;
+        border-color: #10b981;
+        color: white;
+    }
+
+    .tab-content pre {
+        position: relative;
+        padding-top: 2.5rem !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="{% static 'images/logos/spark.svg' %}" alt="PySpark Logo" style="width: 100px; height: 100px; margin: 0 auto 1.5rem; display: block; filter: none !important; background: white; padding: 8px; border-radius: 8px;">
+        <h1>{% trans "Apache Airflow + PySpark" %}</h1>
+        <p>{% trans "Distributed ETL Processing with Apache Airflow Orchestration" %}</p>
+    </section>
+
+    <!-- Tab Navigation -->
+    <div class="card">
+        <div class="tab-navigation">
+            <button class="tab-button" data-tab="phase0">
+                {% trans "Phase 0" %} <span class="badge">{% trans "System Prep" %}</span>
+            </button>
+            <button class="tab-button" data-tab="phase1">
+                {% trans "Phase 1" %} <span class="badge">{% trans "Network" %}</span>
+            </button>
+            <button class="tab-button" data-tab="phase2">
+                {% trans "Phase 2" %} <span class="badge">{% trans "Target DB" %}</span>
+            </button>
+            <button class="tab-button" data-tab="phase3">
+                {% trans "Phase 3" %} <span class="badge">{% trans "Airflow" %}</span>
+            </button>
+            <button class="tab-button" data-tab="phase4">
+                {% trans "Phase 4" %} <span class="badge">{% trans "Extract" %}</span>
+            </button>
+            <button class="tab-button" data-tab="phase5">
+                {% trans "Phase 5" %} <span class="badge">{% trans "Transform" %}</span>
+            </button>
+            <button class="tab-button" data-tab="phase6">
+                {% trans "Phase 6" %} <span class="badge">{% trans "Load" %}</span>
+            </button>
+            <button class="tab-button" data-tab="phase7">
+                {% trans "Phase 7" %} <span class="badge">{% trans "Log Timing" %}</span>
+            </button>
+            <button class="tab-button" data-tab="benchmark">
+                {% trans "Benchmark" %} <span class="badge">{% trans "Results" %}</span>
+            </button>
+        </div>
+
+        <!-- Tab Contents -->
+
+        <!-- Phase 0 Tab -->
+        <div id="phase0" class="tab-content">
+            <h2>{% trans "Phase 0: System Preparation (เตรียมระบบ)" %}</h2>
+
+            <h3>{% trans "PART 1: ติดตั้ง WSL2 + Ubuntu 22.04" %}</h3>
+            <p>{% trans "เริ่มจากการเตรียม Environment บน Windows ก่อนเลย ทำทีละขั้นตอน" %}</p>
+
+            <h4>{% trans "STEP 1: เปิด PowerShell แบบ Administrator" %}</h4>
+            <ol>
+                <li>{% trans "กด Windows Key แล้วพิมพ์" %} <code>PowerShell</code></li>
+                <li>{% trans "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\"" %}</li>
+                <li>{% trans "ถ้ามี popup UAC ถามให้กด Yes" %}</li>
+            </ol>
+
+            <h4>{% trans "STEP 2: ติดตั้ง WSL2 + Ubuntu 22.04" %}</h4>
+            <p>{% trans "พิมพ์คำสั่งนี้ใน PowerShell แล้วกด Enter" %}:</p>
+            <pre><code>wsl --install -d Ubuntu-22.04</code></pre>
+            <p>{% trans "รอจนติดตั้งเสร็จ (ใช้เวลาสักพักขึ้นอยู่กับ Internet) แล้ว" %} <strong>{% trans "Restart เครื่อง" %}</strong></p>
+
+            <h4>{% trans "STEP 3: ตั้งค่า Ubuntu ครั้งแรก" %}</h4>
+            <p>{% trans "หลัง Restart เครื่อง Ubuntu จะเปิดขึ้นมาอัตโนมัติ (ถ้าไม่เปิด ให้หา Ubuntu 22.04 ใน Start Menu)" %}</p>
+            <p>{% trans "ระบบจะถามให้ตั้ง username และ password" %}:</p>
+            <ul>
+                <li><strong>Enter new UNIX username:</strong> {% trans "ใส่ชื่อที่ต้องการ (เช่น airflow หรือชื่อตัวเอง)" %}</li>
+                <li><strong>New password:</strong> {% trans "ตั้ง password (ตัวอักษรจะไม่แสดงตอนพิมพ์ เป็นเรื่องปกติ)" %}</li>
+                <li><strong>Retype new password:</strong> {% trans "พิมพ์ซ้ำอีกครั้ง" %}</li>
+            </ul>
+            <div class="alert alert-warning">
+                ⚠️ {% trans "จดจำ password นี้ไว้เพราะจะต้องใช้ทุกครั้งที่รันคำสั่ง" %} <code>sudo</code>
+            </div>
+
+            <h4>{% trans "STEP 4: อัปเดต Package ของ Ubuntu" %}</h4>
+            <p>{% trans "หลังตั้ง username เสร็จ พิมพ์คำสั่งนี้" %}:</p>
+            <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
+            <p>{% trans "ระบบจะถาม password → พิมพ์ password ที่ตั้งไว้แล้วรอจนเสร็จ (อาจใช้เวลา 2-5 นาที)" %}</p>
+
+            <h4>{% trans "STEP 5: ตรวจสอบว่า WSL2 ถูกตั้งค่าถูกต้อง" %}</h4>
+            <p>{% trans "เปิด PowerShell ใหม่ (ไม่ต้อง Administrator) แล้วพิมพ์" %}:</p>
+            <pre><code>wsl --list --verbose</code></pre>
+            <p>{% trans "ผลที่ควรเห็น" %}:</p>
+            <pre><code>  NAME            STATE      VERSION
+* Ubuntu-22.04    Running    2</code></pre>
+            <p>{% trans "ตรงช่อง VERSION ต้องเป็น" %} <strong>2</strong> {% trans "ถ้าเป็น 1 แจ้งมาได้เลย จะมีวิธีแก้" %}</p>
+
+            <h3>{% trans "PART 2: ติดตั้ง Java 17 + Python 3.11 + ODBC Driver" %}</h3>
+            <p>{% trans "Part 2 นี้มีเป้าหมายเพื่อติดตั้ง dependencies พื้นฐานที่ระบบทั้งหมดต้องการก่อนที่จะติดตั้ง Airflow และ PySpark ได้ โดยแบ่งเป็น 3 ส่วนหลัก" %}:</p>
+            <ol>
+                <li><strong>Java 17:</strong> {% trans "ติดตั้งเพื่อรัน PySpark" %}</li>
+                <li><strong>Python 3.11:</strong> {% trans "ใช้สำหรับเชื่อมต่อ SQL Server" %}</li>
+                <li><strong>ODBC Driver 17:</strong> {% trans "ตัวเชื่อมระหว่าง Python กับ SQL Server" %}</li>
+            </ol>
+
+            <h4>{% trans "STEP 1: ติดตั้ง Java 17" %}</h4>
+            <p>{% trans "PySpark ต้องการ Java เสมอ ถ้าไม่มีจะ error ทันที" %}:</p>
+            <pre><code>sudo apt install openjdk-17-jdk -y</code></pre>
+            <p>{% trans "ตรวจสอบว่าติดตั้งสำเร็จ" %}:</p>
+            <pre><code>java -version</code></pre>
+            <p>{% trans "ต้องเห็น output ประมาณนี้" %}:</p>
+            <pre><code>openjdk version "17.x.x" ...</code></pre>
+
+            <h4>{% trans "STEP 2: ติดตั้ง Python 3.11" %}</h4>
+            <pre><code>sudo apt install python3.11 python3.11-venv python3.11-dev -y
+sudo apt install python3-pip -y</code></pre>
+            <p>{% trans "ตรวจสอบ" %}:</p>
+            <pre><code>python3.11 --version</code></pre>
+            <p>{% trans "ต้องเห็น" %}: <code>Python 3.11.x</code></p>
+
+            <h4>{% trans "STEP 3: ติดตั้ง ODBC Driver 17 (สำหรับเชื่อม SQL Server)" %}</h4>
+            <p>{% trans "รันทีละบรรทัด" %}:</p>
+            <pre><code>curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+
+curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list \
+  | sudo tee /etc/apt/sources.list.d/mssql-release.list
+
+sudo apt update
+
+sudo ACCEPT_EULA=Y apt install msodbcsql17 -y
+
+sudo apt install unixodbc-dev -y</code></pre>
+            <p>{% trans "ตรวจสอบ" %}:</p>
+            <pre><code>odbcinst -q -d</code></pre>
+            <p>{% trans "ต้องเห็น" %} <code>[ODBC Driver 17 for SQL Server]</code> {% trans "ในรายการ" %}</p>
+
+            <div class="alert alert-info">
+                {% trans "ตั้งแต่ Part 1 - Part 2 เป็นการติดตั้งระดับ system-level ทั้งหมด ใช้ครั้งเดียวและทุกโปรเจคบนเครื่องนี้ใช้ร่วมกันได้เลย" %}
+            </div>
+
+            <h3>{% trans "PART 3: สร้าง folder โปรเจค" %}</h3>
+            <p>{% trans "โปรเจคชื่อว่า" %} <code>airflow_credit_card_fraud_detection</code></p>
+            <pre><code>cd ~
+mkdir -p ~/airflow_credit_card_fraud_detection</code></pre>
+
+            <h3>{% trans "PART 4: สร้าง Virtual Environment" %}</h3>
+            <pre><code>python3.11 -m venv ~/airflow_env
+source ~/airflow_env/bin/activate</code></pre>
+            <p>{% trans "ต้องเห็น" %} <code>(airflow_env)</code> {% trans "นำหน้า prompt" %}</p>
+            <pre><code>which python</code></pre>
+            <p>{% trans "ต้องแสดง" %}: <code>/home/&lt;username&gt;/airflow_env/bin/python</code></p>
+
+            <h3>{% trans "PART 5: ตั้งค่า Environment Variables" %}</h3>
+            <pre><code>echo 'export AIRFLOW_HOME=~/airflow_credit_card_fraud_detection' >> ~/.bashrc
+echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64' >> ~/.bashrc
+echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc</code></pre>
+            <p>{% trans "ตรวจสอบ" %}:</p>
+            <pre><code>echo $AIRFLOW_HOME  # {% trans "ต้องแสดง" %}: /home/&lt;username&gt;/airflow_credit_card_fraud_detection
+echo $JAVA_HOME     # {% trans "ต้องแสดง" %}: /usr/lib/jvm/java-17-openjdk-amd64</code></pre>
+
+            <h3>{% trans "PART 6: ติดตั้ง Airflow 2.8.0" %}</h3>
+            <p>{% trans "ต้องแน่ใจว่า" %} <code>(airflow_env)</code> {% trans "active อยู่ก่อนรัน" %}:</p>
+            <pre><code>pip install "apache-airflow==2.8.0" \
+  --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.8.0/constraints-3.11.txt"</code></pre>
+            <p>{% trans "ตรวจสอบหลังติดตั้งเสร็จ" %}:</p>
+            <pre><code>airflow version</code></pre>
+            <p>{% trans "ต้องเห็น" %}: <code>2.8.0</code></p>
+
+            <h3>{% trans "PART 7: ติดตั้ง Library ที่จำเป็น" %}</h3>
+            <p>{% trans "เช็คก่อนรันว่า activate แล้ว โดยต้องเห็น" %} <code>(airflow_env)</code> {% trans "นำหน้าอยู่" %}:</p>
+            <pre><code>pip install pyodbc pymysql pyspark pyarrow python-dotenv
+pip install pandas sqlalchemy pymysql</code></pre>
+
+            <h3>{% trans "PART 8: สร้าง requirements.txt" %}</h3>
+            <pre><code>pip list --format=freeze | grep -iE 'pyodbc|pyspark|pyarrow|dotenv|pymysql' > airflow_env/requirements.txt</code></pre>
+
+            <h3>{% trans "PART 9: สร้าง folder ที่จำเป็น" %}</h3>
+            <pre><code>mkdir -p ~/airflow_credit_card_fraud_detection/dags
+mkdir -p ~/airflow_credit_card_fraud_detection/jars
+mkdir -p /tmp/fraud_etl</code></pre>
+
+            <p>{% trans "ตรวจสอบ" %}:</p>
+            <pre><code>ls ~/airflow_credit_card_fraud_detection/
+# {% trans "ต้องเห็น" %}: dags/ jars/ logs/</code></pre>
+
+            <h3>{% trans "PART 10: airflow db init" %}</h3>
+            <p>{% trans "ตรวจสอบว่า activate อยู่ก่อน" %}:</p>
+            <pre><code>source ~/airflow_env/bin/activate</code></pre>
+
+            <p>{% trans "แล้วรัน" %}:</p>
+            <pre><code>airflow db init</code></pre>
+
+            <p>{% trans "ต้องเห็น" %}:</p>
+            <pre><code>Initialization done</code></pre>
+
+            <h3>{% trans "PART 11: สร้าง Admin User" %}</h3>
+            <pre><code>airflow users create \
+  --username admin \
+  --password admin \
+  --firstname Admin \
+  --lastname User \
+  --role Admin \
+  --email admin@example.com</code></pre>
+
+            <p>{% trans "ต้องเห็น" %}:</p>
+            <pre><code>User "admin" created with role "Admin"</code></pre>
+
+            <p>{% trans "ตรวจสอบ" %}:</p>
+            <pre><code>ls ~/airflow_credit_card_fraud_detection/
+# {% trans "ต้องเห็น" %}: airflow.cfg airflow.db dags/ jars/ logs/</code></pre>
+
+            <p>{% trans "ถ้าไม่อยากให้มี Example DAGs ที่ Airflow สร้างมาให้ตอนติดตั้ง ให้แก้ config ตามนี้" %}:</p>
+            <pre><code>nano ~/airflow_credit_card_fraud_detection/airflow.cfg
+# {% trans "เปิดไฟล์ airflow.cfg ใน vc code ก็ได้" %}</code></pre>
+
+            <p>{% trans "หาบรรทัด" %}:</p>
+            <pre><code>load_examples = True</code></pre>
+
+            <p>{% trans "แก้เป็น" %}:</p>
+            <pre><code>load_examples = False</code></pre>
+
+            <p>{% trans "บันทึก" %} <strong>Ctrl+O</strong> → <strong>Enter</strong> → <strong>Ctrl+X</strong></p>
+
+            <h3>{% trans "PART 12: ดาวน์โหลด MySQL JDBC Driver" %}</h3>
+            <pre><code>wget -P ~/airflow_credit_card_fraud_detection/jars \
+  https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar</code></pre>
+
+            <p>{% trans "ตรวจสอบ" %}:</p>
+            <pre><code>ls ~/airflow_credit_card_fraud_detection/jars/</code></pre>
+
+            <p>{% trans "ต้องเห็น" %}: <code>mysql-connector-j-8.0.33.jar</code></p>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="window.switchTab('phase1');">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 1 Tab -->
+        <div id="phase1" class="tab-content">
+            <h2>{% trans "Phase 1 — หา Windows Host IP (สำหรับเชื่อม SQL Server + MySQL)" %}</h2>
+
+            <h3>{% trans "STEP 1 : ที่ Terminal WSL2 เพื่อหา Windows Host IP" %}</h3>
+
+            <p><strong>{% trans "วิธีที่ 1 : จาก WSL2:" %}</strong></p>
+            <pre><code>ip route show | grep default | awk '{print $3}'</code></pre>
+
+            <p><strong>{% trans "วิธีที่ 2 : จาก Windows PowerShell:" %}</strong></p>
+            <pre><code>ipconfig | findstr /i "WSL\|172\|192"</code></pre>
+
+            <p><strong>{% trans "วิธีที่ 3 : จาก cmd:" %}</strong></p>
+            <pre><code>ipconfig
+
+# {% trans "ดูที่ IPv4 Address ที่ Ethernet adapter vEthernet (WSL (Hyper-V firewall))" %}</code></pre>
+
+            <h3>{% trans "STEP 2 : ทดสอบต่อ SQL Server Port" %}</h3>
+            <pre><code>nc -zv &lt;{% trans "Windows Host IP_ที่ได้" %}&gt; 1433</code></pre>
+
+            <h3>{% trans "STEP 3 : ทดสอบต่อ MySQL Port" %}</h3>
+            <pre><code>nc -zv &lt;{% trans "Windows Host IP_ที่ได้" %}&gt; 3306</code></pre>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="window.switchTab('phase2');">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 2 Tab -->
+        <div id="phase2" class="tab-content">
+            <h2>{% trans "Phase 2 — สร้าง Target Table ใน MySQL" %}</h2>
+
+            <h3>{% trans "STEP 1 : เพิ่มสิทธิ์ใน MySQL" %}</h3>
+            <p>{% trans "เปิด MySQL Command Line Client หรือ MySQL Workbench บน Windows แล้วรัน" %}:</p>
+            <pre><code>-- {% trans "อนุญาต root จาก WSL2 subnet ทั้งหมด" %}
+CREATE USER 'root'@'172.31.%' IDENTIFIED BY 'your_mysql_password';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.31.%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;</code></pre>
+            <p>{% trans "แทน" %} <code>your_mysql_password</code> {% trans "ด้วย password MySQL จริงของคุณครับ" %}</p>
+
+            <h3>{% trans "STEP 2 : ตรวจสอบว่าเพิ่มสำเร็จ" %}</h3>
+            <pre><code>SELECT host, user FROM mysql.user WHERE user = 'root';</code></pre>
+            <p>{% trans "ต้องเห็น" %} <code>172.31.%</code> {% trans "ในผลลัพธ์" %}:</p>
+            <pre><code>+--------------+------+
+| host         | user |
++--------------+------+
+| 172.31.%     | root |
+| localhost    | root |
++--------------+------+</code></pre>
+
+            <h3>{% trans "STEP 3 : กลับมา WSL2 ทดสอบใหม่" %}</h3>
+            <pre><code>mysql -h &lt;{% trans "Windows Host IP_ที่ได้" %}&gt; -u root -p
+# {% trans "เช่น" %} mysql -h 172.31.128.1 -u root -p</code></pre>
+
+            <h3>{% trans "STEP 4 : สร้าง Target Table ใน MySQL" %}</h3>
+            <p>{% trans "รัน SQL นี้ใน WSL2 MySQL prompt" %}:</p>
+            <pre><code>CREATE DATABASE IF NOT EXISTS fraud_dl
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE fraud_dl;
+
+CREATE TABLE IF NOT EXISTS fraud_clean_airflow (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  trans_datetime DATETIME,
+  cc_num_hash VARCHAR(64),
+  merchant VARCHAR(150),
+  category VARCHAR(50),
+  amt DECIMAL(10,2),
+  first_hash VARCHAR(64),
+  last_hash VARCHAR(64),
+  gender CHAR(50),
+  city VARCHAR(50),
+  state CHAR(50),
+  city_pop INT,
+  job VARCHAR(100),
+  dob_hash VARCHAR(64),
+  trans_num VARCHAR(50),
+  is_fraud TINYINT(1),
+  loaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+SHOW TABLES;
+DESC fraud_clean_airflow;</code></pre>
+
+            <h3>{% trans "STEP 5 : สร้าง .env File (ซ่อน Credentials)" %}</h3>
+            <ol>
+                <li>{% trans "เปิด VS Code" %}</li>
+                <li>{% trans "กด" %} <code>Ctrl+Shift+P</code> {% trans "สำหรับ Windows" %}</li>
+                <li>{% trans "กด Connect to WSL" %}</li>
+                <li>{% trans "เลือก location ของโปรเจค" %}</li>
+                <li>{% trans "สร้างไฟล์" %} <code>.env</code> {% trans "ในโฟลเดอร์ dags" %}:</li>
+            </ol>
+            <pre><code># SQL Server (frauddb)
+MSSQL_SERVER=&lt;WINDOWS_HOST_IP&gt;,&lt;SQL_PORT&gt;
+MSSQL_DATABASE=frauddb
+MSSQL_UID=&lt;SQL_USERNAME&gt;
+MSSQL_PWD=&lt;SQL_PASSWORD&gt;
+
+# MySQL (fraud_dl)
+MYSQL_HOST=&lt;WINDOWS_HOST_IP&gt;
+MYSQL_PORT=3306
+MYSQL_DATABASE=fraud_dl
+MYSQL_USER=&lt;MYSQL_USERNAME&gt;
+MYSQL_PWD=&lt;MYSQL_PASSWORD&gt;</code></pre>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="window.switchTab('phase3');">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 3 Tab -->
+        <div id="phase3" class="tab-content">
+            <h2>{% trans "Phase 3 — ตั้งค่า Airflow Connections ผ่าน Web UI" %}</h2>
+
+            <h3>{% trans "STEP 1 : ติดตั้ง MSSQL Provider และ Mysql Provider" %}</h3>
+            <p>{% trans "รันใน WSL2 Terminal" %}:</p>
+            <pre><code>source ~/airflow_env/bin/activate
+pip install "apache-airflow-providers-microsoft-mssql==3.6.0"
+pip install "apache-airflow-providers-mysql==5.6.1"</code></pre>
+
+            <h3>{% trans "STEP 2 : เริ่ม Airflow Services" %}</h3>
+            <p>{% trans "เปิด 2 WSL2 Terminal แยกกัน" %}:</p>
+
+            <p><strong>{% trans "Terminal 1:" %}</strong></p>
+            <pre><code>source ~/airflow_env/bin/activate
+airflow webserver --port 8080</code></pre>
+
+            <p><strong>{% trans "Terminal 2:" %}</strong></p>
+            <pre><code>source ~/airflow_env/bin/activate
+airflow scheduler</code></pre>
+
+            <p>{% trans "เปิด Browser ไปที่" %} <code>http://localhost:8080</code> {% trans "แล้ว Login ด้วย" %} <code>admin / admin</code></p>
+
+            <h3>{% trans "STEP 3 : Airflow Connections" %}</h3>
+
+            <h4>{% trans "เพิ่ม SQL Server Connection" %}</h4>
+            <ol>
+                <li>{% trans "ไปที่" %} <strong>Admin → Connections</strong></li>
+                <li>{% trans "คลิก + (Add a new record)" %}</li>
+                <li>{% trans "กรอกข้อมูล" %}:</li>
+            </ol>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <table style="margin: 0 auto; border-collapse: collapse; width: 80%; max-width: 700px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Field</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">{% trans "ค่า" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Connection Id</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;"><code>mssql_frauddb</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Connection Type</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Microsoft SQL Server</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Host</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">172.31.128.1 &lt;WINDOWS_HOST_IP&gt;</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Schema</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;"><code>frauddb</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Login</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;"><code>sk</code> &lt;SQL_USERNAME&gt;</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Password</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "ใส่ password SQLServer จริง" %} &lt;SQL_PASSWORD&gt;</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Port</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">1433</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ol start="4">
+                <li>{% trans "คลิก Save" %}</li>
+            </ol>
+
+            <h4>{% trans "เพิ่ม MySQL Connection" %}</h4>
+            <ol>
+                <li>{% trans "คลิก + อีกครั้ง" %}</li>
+                <li>{% trans "กรอกข้อมูล" %}:</li>
+            </ol>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <table style="margin: 0 auto; border-collapse: collapse; width: 80%; max-width: 700px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Field</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">{% trans "ค่า" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Connection Id</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;"><code>mysql_fraud_dl</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Connection Type</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">MySQL</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Host</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">172.31.128.1 &lt;WINDOWS_HOST_IP&gt;</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Schema</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;"><code>fraud_dl</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Login</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;"><code>root</code> &lt;MYSQL_USERNAME&gt;</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Password</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;"><code>Sunis@1915</code> &lt;MYSQL_PASSWORD&gt;</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Port</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">3306</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ol start="4">
+                <li>{% trans "คลิก Save" %}</li>
+            </ol>
+
+            <h3>{% trans "ทำไมต้องกรอกค่าเหล่านี้?" %}</h3>
+            <p>{% trans "Airflow Connections คือการเก็บข้อมูลการเชื่อมต่อไว้ในที่เดียว แทนที่จะ hardcode ใน DAG code โดยตรง" %}</p>
+
+            <h4>{% trans "แต่ละ Field มีหน้าที่อะไร?" %}</h4>
+            <p><strong>Connection Id</strong> — {% trans "ชื่อที่ใช้อ้างอิงใน DAG code เช่น mssql_frauddb เวลาเรียกใช้ใน Python จะเขียนว่า conn_id='mssql_frauddb' Airflow จะไปดึงค่าที่เหลือมาให้เองอัตโนมัติ" %}</p>
+
+            <p><strong>Connection Type</strong> — {% trans "บอก Airflow ว่าเป็น database ประเภทไหน เพื่อใช้ driver ที่ถูกต้อง เช่น mssql ใช้ pymssql, mysql ใช้ mysqlclient" %}</p>
+
+            <p><strong>Host</strong> — {% trans "IP address ของ server ที่ database รันอยู่ ในกรณีนี้คือ Windows Host IP 172.31.128.1 ที่ WSL2 มองเห็น" %}</p>
+
+            <p><strong>Schema</strong> — {% trans "ชื่อ database ที่ต้องการเชื่อมต่อ เช่น frauddb หรือ fraud_dl" %}</p>
+
+            <p><strong>Login / Password</strong> — {% trans "username และ password สำหรับ authenticate เข้า database" %}</p>
+
+            <p><strong>Port</strong> — {% trans "port ที่ database รับการเชื่อมต่อ SQL Server ใช้ 57642 (dynamic port) และ MySQL ใช้ 3306 (default port)" %}</p>
+
+            <h4>{% trans "ภาพรวมการทำงาน" %}</h4>
+            <pre><code>DAG code
+ └── conn_id='mssql_frauddb'
+      └── Airflow {% trans "ดึงค่าจาก" %} Connections
+           └── Host + Port + Login + Password
+                └── {% trans "เชื่อมต่อ SQL Server จริง" %}</code></pre>
+
+            <p>{% trans "พูดง่ายๆ คือแทนที่จะเขียน IP, password ใน code ตรงๆ เก็บไว้ใน Connections แทน ปลอดภัยกว่าและแก้ไขได้ง่ายโดยไม่ต้องแตะ code" %}</p>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="window.switchTab('phase4');">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 4 Tab -->
+        <div id="phase4" class="tab-content">
+            <h2>{% trans "Phase 4 — Extract" %}</h2>
+
+            <h3>{% trans "ภาพรวมของ Extract Task" %}</h3>
+            <p>{% trans "Extract คือการดึงข้อมูลจาก SQL Server แล้วบันทึกเป็น Parquet เพื่อส่งต่อให้ Transform" %}</p>
+
+            <pre><code>SQL Server (fraud_10k / fraud_100k / fraud_1m)
+  ↓ pyodbc
+Python dict / PyArrow Table
+  ↓ pyarrow.parquet
+/tmp/fraud_etl/raw_{key}.parquet</code></pre>
+
+            <p>{% trans "อธิบายง่ายๆ คือ ดึงข้อมูลจาก SQL Server ด้วย pyodbc → บันทึกเป็น Parquet → Push timing ผ่าน XCom" %}</p>
+
+            <div class="alert alert-info" style="color: #1a1a1a; font-weight: 500;">
+                <h4 style="color: #0d47a1; font-weight: 600;">{% trans "Parquet คืออะไร?" %}</h4>
+                <p style="color: #2c3e50;">{% trans "Parquet คือรูปแบบไฟล์สำหรับเก็บข้อมูลตาราง เหมือน CSV แต่เก็บข้อมูลแบบ \"คอลัมน์\" แทนที่จะเป็น \"แถว\" ทำให้ประมวลผลได้เร็วกว่า และไฟล์เล็กกว่ามาก" %}</p>
+                <pre style="color: #1a1a1a;"><code>CSV → {% trans "เก็บทีละแถว" %}
+Alice,30,0
+Bob,25,1
+-----------------------------------
+Parquet → {% trans "เก็บทีละคอลัมน์" %}
+[name] → Alice, Bob
+[age] → 30, 25
+[is_fraud] → 0, 1</code></pre>
+            </div>
+
+            <h3>{% trans "STEP 1 : สร้างโฟลเดอร์สำหรับเก็บ Parquet" %}</h3>
+            <pre><code>mkdir -p /tmp/fraud_etl
+ls /tmp/fraud_etl #{% trans "รันโค้ดบรรทัดนี้แล้วจะไม่เจออะไรเพราะโฟลเดอร์ว่างเปล่า" %}</code></pre>
+
+            <h3>{% trans "STEP 2 : สร้างไฟล์ DAG (เฉพาะส่วน Extract ก่อน)" %}</h3>
+            <p>{% trans "เปิด VS Code สร้างไฟล์" %} <code>fraud_etl.py</code> {% trans "ในโฟลเดอร์ dags ที่โฟลเดอร์โปรเจค" %} <code>airflow_credit_card_fraud_detection</code></p>
+            <pre><code>fraud_etl.py</code></pre>
+            <p><strong>{% trans "หรือรันโค้ดนี้ที่ WSL ก็ได้" %}</strong></p>
+            <pre><code>nano ~/airflow/dags/fraud_etl.py</code></pre>
+
+            <h3>{% trans "STEP 3 : เปิด Airflow Services (ถ้าทำต่อจาก Phase 3 หรือ เปิดไว้อยู่แล้ว ให้ข้ามไปที่ STEP 4 )" %}</h3>
+            <h4>{% trans "Terminal 1:" %}</h4>
+            <pre><code>source ~/airflow_env/bin/activate
+airflow webserver --port 8080</code></pre>
+
+            <h4>{% trans "Terminal 2:" %}</h4>
+            <pre><code>source ~/airflow_env/bin/activate
+airflow scheduler</code></pre>
+
+            <h3>{% trans "STEP 4 : เขียนโค้ด" %}</h3>
+            <p>{% trans "วางโค้ดนี้" %}</p>
+            <pre><code>{% verbatim %}# ============================================================================
+# fraud_etl.py
+# Apache Airflow 2.8.0 + PySpark ETL Pipeline
+# Credit Card Fraud Detection Dataset
+# ============================================================================
+
+import os
+import csv
+import time
+import hashlib
+
+import pyodbc
+import pyarrow as pa
+import pyarrow.parquet as pq
+from datetime import datetime
+from dotenv import load_dotenv
+
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, to_timestamp, udf
+from pyspark.sql.types import StringType
+
+# ============================================================================
+# {% endverbatim %}{% trans "โหลด .env" %}{% verbatim %}
+# ============================================================================
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+
+# {% endverbatim %}{% trans "Force JAVA_HOME สำหรับ PySpark ใน Airflow Task" %}{% verbatim %}
+os.environ['JAVA_HOME'] = '/usr/lib/jvm/java-17-openjdk-amd64'
+os.environ['PATH'] = '/usr/lib/jvm/java-17-openjdk-amd64/bin:' + os.environ.get('PATH', '')
+
+# ============================================================================
+# Config
+# ============================================================================
+MSSQL_CONN = (
+    f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+    f"SERVER={os.getenv('MSSQL_SERVER')};"
+    f"DATABASE={os.getenv('MSSQL_DATABASE')};"
+    f"UID={os.getenv('MSSQL_UID')};"
+    f"PWD={os.getenv('MSSQL_PWD')}"
+)
+
+MYSQL_HOST = os.getenv('MYSQL_HOST')
+MYSQL_PORT = os.getenv('MYSQL_PORT', '3306')
+MYSQL_URL = f"jdbc:mysql://{MYSQL_HOST}:{MYSQL_PORT}/fraud_dl"
+MYSQL_PROP = {
+    "user": os.getenv('MYSQL_USER'),
+    "password": os.getenv('MYSQL_PWD'),
+    "driver": "com.mysql.cj.jdbc.Driver"
+}
+
+JDBC_JAR = os.path.expanduser('~/airflow_credit_card_fraud_detection/jars/mysql-connector-j-8.0.33.jar')
+PARQUET_DIR = "/tmp/fraud_etl"
+CSV_LOG = "/tmp/fraud_etl/timing_log_airflow.csv"
+DATASETS = {"10k": "fraud_10k", "100k": "fraud_100k", "1m": "fraud_1m"}
+
+# ============================================================================
+# TASK 1 — EXTRACT
+# ============================================================================
+def extract(dataset_key: str, **kwargs):
+    ti = kwargs['ti']
+    table = DATASETS[dataset_key]
+    out_path = f'{PARQUET_DIR}/raw_{dataset_key}.parquet'
+
+    # {% endverbatim %}{% trans "--- เริ่มจับเวลา ---" %}{% verbatim %}
+    t_start = time.perf_counter()
+
+    # {% endverbatim %}{% trans "เชื่อม SQL Server ด้วย pyodbc" %}{% verbatim %}
+    conn = pyodbc.connect(MSSQL_CONN)
+    cursor = conn.cursor()
+
+    # {% endverbatim %}{% trans "ดึงข้อมูลจาก Table" %}{% verbatim %}
+    cursor.execute(f'SELECT * FROM {table}')
+    columns = [desc[0] for desc in cursor.description] # {% endverbatim %}{% trans "ชื่อ Column" %}{% verbatim %}
+    rows = cursor.fetchall() # {% endverbatim %}{% trans "ข้อมูลทุกแถว" %}{% verbatim %}
+    conn.close()
+
+    # {% endverbatim %}{% trans "แปลงเป็น dict" %}{% verbatim %}
+    data = {
+        col_name: [row[i] for row in rows]
+        for i, col_name in enumerate(columns)
+    }
+
+    # {% endverbatim %}{% trans "แปลงเป็น PyArrow Table แล้วบันทึกเป็น Parquet" %}{% verbatim %}
+    pq.write_table(pa.table(data), out_path)
+
+    # {% endverbatim %}{% trans "--- หยุดจับเวลา ---" %}{% verbatim %}
+    extract_sec = time.perf_counter() - t_start
+
+    # {% endverbatim %}{% trans "ส่งค่าผ่าน XCom ไปให้ Task ถัดไป" %}{% verbatim %}
+    ti.xcom_push(key=f'extract_sec_{dataset_key}', value=extract_sec)
+    ti.xcom_push(key=f'parquet_raw_{dataset_key}', value=out_path)
+
+    print(f'[Extract] {dataset_key}: {len(rows)} rows | {extract_sec:.3f}s')
+
+# ============================================================================
+# DAG Definition (Extract Only)
+# ============================================================================
+default_args = {'owner': 'airflow', 'retries': 0}
+
+with DAG(
+    dag_id='fraud_etl',
+    default_args=default_args,
+    schedule_interval=None,
+    start_date=datetime(2024, 1, 1),
+    catchup=False
+) as dag:
+
+    for key in ['10k', '100k', '1m']:
+        t_e = PythonOperator(
+            task_id=f'extract_{key}',
+            python_callable=extract,
+            op_kwargs={'dataset_key': key}
+        ){% endverbatim %}</code></pre>
+
+            <p>{% trans "กด Save (" %} <code>Ctrl + S</code> {% trans "หรือ" %} <code>Ctrl+O → Enter → Ctrl+X</code></p>
+
+            <h3>{% trans "STEP 5 : ตรวจว่า Airflow เห็น DAG" %}</h3>
+            <p>{% trans "ดูผ่าน Web UI โดยเปิดเบราว์เซอร์ไปที่" %} <code>http://localhost:8080</code> {% trans "แล้วคลิก" %} <code>fraud_etl</code> {% trans "จากนั้น Unpause DAG ขั้นตอนนี้อาจต้องรอสักครู่" %}</p>
+
+            <h3>{% trans "STEP 6 : ตรวจสอบว่ามีโฟลเดอร์ /tmp/fraud_etl รึยัง" %}</h3>
+            <pre><code>ls -la /tmp/fraud_etl
+#{% trans "ถ้าไม่มีสร้างใหม่เพราะ /tmp จะถูกล้างทุกครั้งที่ restart WSL2" %}
+mkdir -p /tmp/fraud_etl</code></pre>
+
+            <h3>{% trans "STEP 7 : Trigger DAG และ ตรวจสอบผลลัพธ์" %}</h3>
+            <p>{% trans "1. กด Trigger DAG" %}</p>
+            <p>{% trans "2. หลัง Trigger จะเห็น Task แต่ละอันเปลี่ยนสีตามสถานะ" %}</p>
+
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pyspark/phase4-step7.png' %}"
+                     alt="Airflow DAG Graph View - Extract Tasks" loading="lazy">
+            </div>
+
+            <h3>{% trans "STEP 8 : ตรวจสอบผลลัพธ์" %}</h3>
+            <p>{% trans "ดูว่าไฟล์ Parquet ถูกสร้างหรือเปล่า" %}</p>
+            <pre><code>ls -lh /tmp/fraud_etl/</code></pre>
+
+            <p>{% trans "ผลที่ควรได้" %}:</p>
+            <pre><code>raw_10k.parquet
+raw_100k.parquet
+raw_1m.parquet</code></pre>
+
+            <p>{% trans "ดูจำนวนแถวใน Parquet ว่าถูกต้องไหม" %}:</p>
+            <pre><code>python3 - &lt;&lt;'EOF'
+import pyarrow.parquet as pq
+for key in ['10k', '100k', '1m']:
+    table = pq.read_table(f'/tmp/fraud_etl/raw_{key}.parquet')
+    print(f'{key}: {table.num_rows} rows, {table.num_columns} columns')
+EOF</code></pre>
+
+            <p>{% trans "ผลที่ควรได้" %}:</p>
+            <pre><code>10k: 10000 rows, 23 columns
+100k: 100000 rows, 23 columns
+1m: 1000000 rows, 23 columns</code></pre>
+
+            <h3>{% trans "สรุปสิ่งที่ Extract ทำ" %}</h3>
+            <div style="text-align: center; margin: 2rem 0;">
+                <table style="margin: 0 auto; border-collapse: collapse; width: 90%; max-width: 800px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">{% trans "ขั้นตอน" %}</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">{% trans "รายละเอียด" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "เชื่อม SQL Server" %}</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "ผ่าน pyodbc + credentials จาก .env" %}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "ดึงข้อมูล" %}</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">SELECT * FROM fraud_10k / 100k / 1m</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "แปลงเป็น Parquet" %}</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "ผ่าน PyArrow บันทึกที่ /tmp/fraud_etl/" %}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "จับเวลา" %}</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "time.perf_counter() ตั้งแต่ connect จนบันทึกเสร็จ" %}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">XCom Push</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "ส่ง extract_sec และ path ของ Parquet ไปให้ Transform" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="window.switchTab('phase5');">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 5 Tab -->
+        <div id="phase5" class="tab-content">
+            <h2>{% trans "Phase 5 — TRANSFORM" %}</h2>
+
+            <h3>{% trans "ภาพรวมของ Transform Task" %}</h3>
+            <pre><code>/tmp/fraud_etl/raw_{key}.parquet
+  ↓ {% trans "PySpark อ่าน Parquet" %}
+  ↓ Hash SHA-256 (cc_num, first, last, dob) + Rename Columns
+  ↓ {% trans "แปลง DateTime + Rename Columns" %}
+  ↓ Filter amt
+  ↓ Select columns
+/tmp/fraud_etl/clean_{key}.parquet</code></pre>
+
+            <h3>{% trans "STEP 1 : เพิ่ม Transform function ใน DAG" %}</h3>
+            <p>{% blocktrans %}หาบรรทัด <code># =====================</code> ของ DAG Definition แล้วเพิ่ม Transform function <strong>ก่อน</strong> DAG Definition:{% endblocktrans %}</p>
+
+            <pre><code># ============================================================================
+# TASK 2 — TRANSFORM
+# ============================================================================
+def transform(dataset_key: str, **kwargs):
+    ti = kwargs['ti']
+    in_path = ti.xcom_pull(key=f'parquet_raw_{dataset_key}')
+    out_path = f'{PARQUET_DIR}/clean_{dataset_key}.parquet'
+
+    t_start = time.perf_counter()
+
+    {% trans "# สร้าง SparkSession" %}
+    spark = (SparkSession.builder
+        .appName('fraud_etl')
+        .config('spark.jars', JDBC_JAR)
+        .getOrCreate())
+
+    {% trans "# สร้าง SHA-256 UDF" %}
+    hash_udf = udf(
+        lambda x: hashlib.sha256(str(x).encode()).hexdigest()
+                  if x is not None else None,
+        StringType()
+    )
+
+    df = spark.read.parquet(in_path)
+
+    df = (df
+        {% trans "# Step 1: Hash ข้อมูลส่วนตัว + Rename Columns" %}
+        .withColumn('cc_num_hash', hash_udf(col('cc_num')))
+        .withColumn('first_hash', hash_udf(col('first')))
+        .withColumn('last_hash', hash_udf(col('last')))
+        .withColumn('dob_hash', hash_udf(col('dob')))
+
+        {% trans "# Step 2: แปลง DateTime + Rename Columns" %}
+        .withColumn('trans_datetime',
+                    to_timestamp(col('trans_date_trans_time'),
+                                'yyyy-MM-dd HH:mm:ss'))
+
+        {% trans "# Step 3: Filter amt ผิดปกติ" %}
+        .filter(col('amt').isNotNull())
+        .filter(col('amt') > 0)
+
+        {% trans "# Step 4: Select เฉพาะ column ที่ต้องการ Load" %}
+        .select(
+            col('trans_datetime'),
+            col('cc_num_hash'),
+            col('merchant'),
+            col('category'),
+            col('amt').cast('double'),
+            col('first_hash'),
+            col('last_hash'),
+            col('gender'),
+            col('city'),
+            col('state'),
+            col('city_pop').cast('int'),
+            col('job'),
+            col('dob_hash'),
+            col('trans_num'),
+            col('is_fraud').cast('int')
+        )
+    )
+
+    df.write.mode('overwrite').parquet(out_path)
+    spark.stop()
+
+    transform_sec = time.perf_counter() - t_start
+
+    ti.xcom_push(key=f'transform_sec_{dataset_key}', value=transform_sec)
+    ti.xcom_push(key=f'parquet_clean_{dataset_key}', value=out_path)
+
+    print(f'[Transform] {dataset_key}: {transform_sec:.3f}s')</code></pre>
+
+            <p>{% trans "Save" %}</p>
+
+            <h3>{% trans "STEP 2 : แก้ DAG Definition ให้รวม Transform" %}</h3>
+            <p>{% trans "หา DAG Definition แล้วแก้ for loop" %}:</p>
+
+            <pre><code>with DAG(
+    dag_id='fraud_etl',
+    default_args=default_args,
+    schedule_interval=None,
+    start_date=datetime(2024, 1, 1),
+    catchup=False
+) as dag:
+
+    for key in ['10k', '100k', '1m']:
+        extract_task = PythonOperator(
+            task_id=f'extract_{key}',
+            python_callable=extract,
+            op_kwargs={'dataset_key': key}
+        )
+
+        transform_task = PythonOperator(
+            task_id=f'transform_{key}',
+            python_callable=transform,
+            op_kwargs={'dataset_key': key}
+        )
+
+        # Chain: extract → transform
+        extract_task >> transform_task</code></pre>
+
+            <p>{% trans "บันทึก" %}: <code>Ctrl+O → Enter → Ctrl+X</code></p>
+
+            <h3>{% trans "STEP 3 : Trigger DAG" %}</h3>
+            <p>{% trans "เปิดเบราว์เซอร์ไปที่" %} <code>http://localhost:8080</code> {% trans "แล้วคลิก Trigger DAG" %}</p>
+
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pyspark/Phase 5-step3.png' %}"
+                     alt="Airflow DAG Graph View - Extract and Transform Tasks" loading="lazy">
+            </div>
+            <p>{% trans "รูป: Airflow DAG แสดง Extract และ Transform Tasks" %}</p>
+
+            <h3>{% trans "STEP 4 : ตรวจสอบผลลัพธ์" %}</h3>
+            <pre><code>source ~/airflow_env/bin/activate
+watch -n 3 'ls -lh /tmp/fraud_etl/'</code></pre>
+
+            <p>{% trans "ผลที่ควรเห็น" %}:</p>
+            <pre><code>raw_10k.parquet ← Extract output (มีอยู่แล้ว)
+raw_100k.parquet
+raw_1m.parquet
+
+clean_10k.parquet ← Transform output (ใหม่)
+clean_100k.parquet
+clean_1m.parquet</code></pre>
+
+            <p>{% trans "ตรวจ column ว่า Transform ถูกต้องไหม" %}:</p>
+            <pre><code>python3 - &lt;&lt;'EOF'
+import pyarrow.parquet as pq
+for key in ['10k', '100k', '1m']:
+    table = pq.read_table(f'/tmp/fraud_etl/clean_{key}.parquet')
+    print(f'\n{key}: {table.num_rows} rows')
+    print(f'Columns: {table.column_names}')
+EOF</code></pre>
+
+            <p>{% trans "ผลที่ควรได้" %}:</p>
+            <pre><code>10k: 10000 rows
+Columns: ['trans_datetime', 'cc_num_hash', 'merchant', 'category', 'amt',
+'first_hash', 'last_hash', 'gender', 'city', 'state', 'city_pop', 'job',
+'dob_hash', 'trans_num', 'is_fraud']
+
+100k: 100000 rows
+Columns: ['trans_datetime', 'cc_num_hash', 'merchant', 'category', 'amt',
+'first_hash', 'last_hash', 'gender', 'city', 'state', 'city_pop', 'job',
+'dob_hash', 'trans_num', 'is_fraud']
+
+1m: 1000000 rows
+Columns: ['trans_datetime', 'cc_num_hash', 'merchant', 'category', 'amt',
+'first_hash', 'last_hash', 'gender', 'city', 'state', 'city_pop', 'job',
+'dob_hash', 'trans_num', 'is_fraud']</code></pre>
+
+            <h3>{% trans "สรุปสิ่งที่ทำใน TRANSFORM" %}</h3>
+
+            <h4>{% trans "Input" %}</h4>
+            <p>{% trans "รับ path ของ" %} <code>raw_{key}.parquet</code> {% trans "มาจาก Extract ผ่าน XCom" %}</p>
+
+            <h4>{% trans "Step 1 — Hash ข้อมูลส่วนตัว" %}</h4>
+            <p>{% trans "เข้ารหัส SHA-256 ทั้ง 4 column แล้วสร้าง column ใหม่แทน" %}</p>
+            <pre><code>cc_num → cc_num_hash
+first → first_hash
+last → last_hash
+dob → dob_hash</code></pre>
+
+            <h4>{% trans "Step 2 — แปลง DateTime" %}</h4>
+            <pre><code>trans_date_trans_time (String) → trans_datetime (DateTime)</code></pre>
+
+            <h4>{% trans "Step 3 — Filter" %}</h4>
+            <p>{% trans "ตัดแถวที่ข้อมูลผิดปกติออก" %}</p>
+            <pre><code>{% trans "amt เป็น NULL" %} → {% trans "ตัดออก" %}
+amt &lt;= 0 → {% trans "ตัดออก" %}</code></pre>
+
+            <h4>{% trans "Step 4 — Select" %}</h4>
+            <p>{% trans "เลือกเฉพาะ 15 column ที่ตรงกับ Schema ของ MySQL โดยทิ้ง column เก่าอย่าง" %} <code>cc_num</code>, <code>first</code>, <code>last</code>, <code>dob</code>, <code>trans_date_trans_time</code> {% trans "ออก" %}</p>
+
+            <h4>{% trans "Output" %}</h4>
+            <p>{% trans "บันทึกเป็น" %} <code>clean_{key}.parquet</code> {% trans "แล้วส่ง path และเวลาที่ใช้ผ่าน XCom ให้ Task Load ต่อไป" %}</p>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="window.switchTab('phase6');">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 6 Tab -->
+        <div id="phase6" class="tab-content">
+            <h2>{% trans "Phase 6 — LOAD" %}</h2>
+
+            <h3>{% trans "ภาพรวมของ Load Task" %}</h3>
+            <pre><code>/tmp/fraud_etl/clean_{key}.parquet
+  ↓ {% trans "PySpark อ่าน Parquet" %}
+  ↓ {% trans "PySpark JDBC เขียนเข้า MySQL" %}
+MySQL — fraud_dl.fraud_clean_airflow</code></pre>
+
+            <h3>{% trans "STEP 1 : เพิ่ม Load function ใน DAG" %}</h3>
+            <p>{% blocktrans %}เพิ่ม Load function <strong>ก่อน</strong> DAG Definition:{% endblocktrans %}</p>
+
+            <pre><code># ============================================================================
+# TASK 3 — LOAD
+# ============================================================================
+def load(dataset_key: str, **kwargs):
+    ti = kwargs['ti']
+    in_path = ti.xcom_pull(key=f'parquet_clean_{dataset_key}')
+
+    t_start = time.perf_counter()
+
+    spark = (SparkSession.builder
+        .appName('fraud_etl')
+        .config('spark.jars', JDBC_JAR)
+        .getOrCreate())
+
+    df = spark.read.parquet(in_path)
+
+    (df.write
+        .format('jdbc')
+        .option('url', MYSQL_URL)
+        .option('dbtable', 'fraud_dl.fraud_clean_airflow')
+        .option('driver', MYSQL_PROP['driver'])
+        .option('user', MYSQL_PROP['user'])
+        .option('password', MYSQL_PROP['password'])
+        .mode('append')
+        .save())
+
+    spark.stop()
+
+    load_sec = time.perf_counter() - t_start
+
+    ti.xcom_push(key=f'load_sec_{dataset_key}', value=load_sec)
+
+    print(f'[Load] {dataset_key}: {load_sec:.3f}s')</code></pre>
+
+            <h3>{% trans "STEP 2 : แก้ DAG Definition ให้รวม Load" %}</h3>
+            <pre><code>with DAG(
+    dag_id='fraud_etl',
+    default_args=default_args,
+    schedule_interval=None,
+    start_date=datetime(2024, 1, 1),
+    catchup=False
+) as dag:
+
+    for key in ['10k', '100k', '1m']:
+        extract_task = PythonOperator(
+            task_id=f'extract_{key}',
+            python_callable=extract,
+            op_kwargs={'dataset_key': key}
+        )
+
+        transform_task = PythonOperator(
+            task_id=f'transform_{key}',
+            python_callable=transform,
+            op_kwargs={'dataset_key': key}
+        )
+
+        load_task = PythonOperator(
+            task_id=f'load_{key}',
+            python_callable=load,
+            op_kwargs={'dataset_key': key}
+        )
+
+        # Chain: extract → transform → load
+        extract_task >> transform_task >> load_task</code></pre>
+
+            <p>{% trans "Save" %}</p>
+
+            <h3>{% trans "STEP 3 : ตรวจสอบ MySQL ก่อน Trigger" %}</h3>
+            <p>{% trans "รันโค้ดนี้ใน MySQL" %}:</p>
+{% get_current_language as LANG %}
+{% if LANG == 'th' %}
+            <pre><code>USE fraud_dl;
+
+-- นับแถวทั้งหมด
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow;</code></pre>
+{% elif LANG == 'en' %}
+            <pre><code>USE fraud_dl;
+
+-- Count all rows
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow;</code></pre>
+{% else %}
+            <pre><code>USE fraud_dl;
+
+-- 计算所有行
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow;</code></pre>
+{% endif %}
+
+            <p>{% trans "ผลที่ควรได้ (ยังว่างอยู่)" %}:</p>
+            <pre><code>COUNT(*)
+0</code></pre>
+
+            <h3>{% trans "STEP 4 : Trigger DAG" %}</h3>
+            <p>{% trans "เปิดเบราว์เซอร์ไปที่" %} <code>http://localhost:8080</code> {% trans "แล้วคลิก Trigger DAG" %}</p>
+
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pyspark/phase6-STEP 4.png' %}"
+                     alt="Airflow DAG Graph View - Extract, Transform and Load Tasks" loading="lazy">
+            </div>
+            <p>{% trans "รูป: Airflow DAG แสดง Extract, Transform และ Load Tasks ทั้งหมด" %}</p>
+
+            <h3>{% trans "STEP 5 : ตรวจสอบผลลัพธ์หลังรัน" %}</h3>
+{% get_current_language as LANG %}
+{% if LANG == 'th' %}
+            <pre><code>-- นับแถวทั้งหมด
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow;</code></pre>
+{% elif LANG == 'en' %}
+            <pre><code>-- Count all rows
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow;</code></pre>
+{% else %}
+            <pre><code>-- 计算所有行
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow;</code></pre>
+{% endif %}
+
+            <p>{% trans "ผลที่ควรได้" %}:</p>
+            <pre><code>COUNT(*)
+1110000</code></pre>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="window.switchTab('phase7');">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 7 Tab -->
+        <div id="phase7" class="tab-content">
+            <h2>{% trans "Phase 7 — LOG TIMING" %}</h2>
+
+            <h3>{% trans "ภาพรวมของ Log Timing Task" %}</h3>
+            <pre><code>XCom (extract_sec, transform_sec, load_sec)
+  ↓ {% trans "ดึงค่าเวลาจาก XCom" %}
+  ↓ {% trans "บันทึกลง CSV" %}
+/tmp/fraud_etl/timing_log_airflow.csv</code></pre>
+
+            <h3>{% trans "STEP 1 : เพิ่ม Log Timing function" %}</h3>
+            <p>{% trans "เพิ่ม function ก่อน DAG Definition" %}:</p>
+
+            <pre><code># ============================================================================
+# TASK 4 — LOG TIMING
+# ============================================================================
+def log_timing(dataset_key: str, **kwargs):
+    ti = kwargs['ti']
+
+    {% trans "# รับค่าเวลาจาก XCom" %}
+    extract_sec = ti.xcom_pull(key=f'extract_sec_{dataset_key}')
+    transform_sec = ti.xcom_pull(key=f'transform_sec_{dataset_key}')
+    load_sec = ti.xcom_pull(key=f'load_sec_{dataset_key}')
+
+    {% trans "# เขียน CSV" %}
+    write_header = not os.path.exists(CSV_LOG)
+
+    with open(CSV_LOG, 'a', newline='') as f:
+        writer = csv.writer(f)
+        if write_header:
+            writer.writerow(['dataset', 'extract_sec', 'transform_sec', 'load_sec'])
+        writer.writerow([
+            dataset_key,
+            round(extract_sec, 4),
+            round(transform_sec, 4),
+            round(load_sec, 4)
+        ])
+
+    print(f'[Log] {dataset_key}: '
+          f'extract={extract_sec:.3f}s | '
+          f'transform={transform_sec:.3f}s | '
+          f'load={load_sec:.3f}s')</code></pre>
+
+            <h3>{% trans "STEP 2 : แก้ DAG Definition ให้ครบทุก Task" %}</h3>
+            <pre><code>{% verbatim %}with DAG(
+    dag_id='fraud_etl',
+    default_args=default_args,
+    schedule_interval=None,
+    start_date=datetime(2024, 1, 1),
+    catchup=False
+) as dag:
+
+    for key in ['10k', '100k', '1m']:
+        extract_task = PythonOperator(
+            task_id=f'extract_{key}',
+            python_callable=extract,
+            op_kwargs={'dataset_key': key}
+        )
+
+        transform_task = PythonOperator(
+            task_id=f'transform_{key}',
+            python_callable=transform,
+            op_kwargs={'dataset_key': key}
+        )
+
+        load_task = PythonOperator(
+            task_id=f'load_{key}',
+            python_callable=load,
+            op_kwargs={'dataset_key': key}
+        )
+
+        log_timing_task = PythonOperator(
+            task_id=f'log_timing_{key}',
+            python_callable=log_timing,
+            op_kwargs={'dataset_key': key}
+        )
+
+        # Chain: extract → transform → load → log_timing
+        extract_task >> transform_task >> load_task >> log_timing_task{% endverbatim %}</code></pre>
+
+            <h3>{% trans "STEP 3 : ล้างข้อมูล MySQL ก่อน Trigger ใหม่" %}</h3>
+            <p>{% trans "เพราะรันไปแล้ว 1,110,000 แถว ถ้า Trigger อีกครั้งจะรันซ้ำ" %}:</p>
+            <pre><code>USE fraud_dl;
+TRUNCATE TABLE fraud_clean_airflow;</code></pre>
+
+            <h3>{% trans "STEP 4 : Trigger DAG" %}</h3>
+            <p>{% trans "กลับไปที่" %} <code>http://localhost:8080</code> {% trans "แล้ว Trigger DAG" %}</p>
+
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pyspark/phase7-step4.png' %}"
+                     alt="Airflow DAG Graph View - All Tasks including Log Timing" loading="lazy">
+            </div>
+            <p>{% trans "รูป: Airflow DAG แสดงทุก Task รวมถึง Log Timing" %}</p>
+
+            <h3>{% trans "STEP 5 : ตรวจสอบผลลัพธ์หลังรัน" %}</h3>
+            <p>{% trans "รัน SQL ใน MySQL" %}:</p>
+{% get_current_language as LANG %}
+{% if LANG == 'th' %}
+            <pre><code>USE fraud_dl;
+
+-- นับแถวทั้งหมด
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow;
+
+-- ดูตัวอย่างข้อมูล
+SELECT * FROM fraud_clean_airflow LIMIT 5;
+
+-- ตรวจว่า hash ถูกต้อง
+SELECT
+    cc_hash,
+    first_hash,
+    last_hash,
+    dob_hash
+FROM fraud_clean_airflow LIMIT 5;
+
+-- ตรวจ amt ว่าไม่มี NULL หรือ <= 0
+SELECT COUNT(*) AS bad_amt
+FROM fraud_clean_airflow
+WHERE amt IS NULL OR amt <= 0;</code></pre>
+{% elif LANG == 'en' %}
+            <pre><code>USE fraud_dl;
+
+-- Count all rows
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow;
+
+-- View sample data
+SELECT * FROM fraud_clean_airflow LIMIT 5;
+
+-- Check that hash is correct
+SELECT
+    cc_hash,
+    first_hash,
+    last_hash,
+    dob_hash
+FROM fraud_clean_airflow LIMIT 5;
+
+-- Check amt has no NULL or <= 0
+SELECT COUNT(*) AS bad_amt
+FROM fraud_clean_airflow
+WHERE amt IS NULL OR amt <= 0;</code></pre>
+{% else %}
+            <pre><code>USE fraud_dl;
+
+-- 计算所有行
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow;
+
+-- 查看示例数据
+SELECT * FROM fraud_clean_airflow LIMIT 5;
+
+-- 检查哈希是否正确
+SELECT
+    cc_hash,
+    first_hash,
+    last_hash,
+    dob_hash
+FROM fraud_clean_airflow LIMIT 5;
+
+-- 检查 amt 没有 NULL 或 <= 0
+SELECT COUNT(*) AS bad_amt
+FROM fraud_clean_airflow
+WHERE amt IS NULL OR amt <= 0;</code></pre>
+{% endif %}
+
+            <h3>{% trans "STEP 6 : ตรวจสอบผลลัพธ์" %}</h3>
+            <p>{% trans "ดู CSV หลังรันเสร็จ" %}:</p>
+            <pre><code>cat /tmp/fraud_etl/timing_log_airflow.csv</code></pre>
+
+            <p>{% trans "ผลที่ได้" %}:</p>
+            <pre><code>dataset,extract_sec,transform_sec,load_sec
+10k,0.746,20.3738,32.1863
+100k,2.4046,24.1725,108.3891
+1m,19.3615,38.9669,955.3723</code></pre>
+        </div>
+
+        <!-- Benchmark Tab -->
+        <div id="benchmark" class="tab-content">
+            <h2>{% trans "สรุปและวิเคราะห์ผล Airflow + Pyspark ETL Benchmark" %}</h2>
+
+            <h3>{% trans "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้:" %}</h3>
+            <p>{% trans "จากการทดสอบ ETL Pipeline ด้วย Apache Airflow 2.8.0 ร่วมกับ PySpark บน Dataset 3 ขนาด ได้ผลการจับเวลาดังตารางที่ 1 โดยแต่ละแถวแสดงเวลาที่ใช้ในแต่ละขั้นตอน ได้แก่ Extract, Transform และ Load หน่วยเป็นวินาที" %}</p>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <table style="margin: 0 auto; border-collapse: collapse; width: 90%; max-width: 700px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">dataset</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">extract_sec</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">transform_sec</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">load_sec</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">10k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">0.746</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">20.3738</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">32.1863</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">100k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">2.4046</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">24.1725</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">108.3891</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1m</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">19.3615</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">38.9669</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">955.3723</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>{% trans "เพื่อให้เห็นภาพที่ชัดเจนขึ้น ข้อมูลจากตารางได้ถูกนำไปแสดงผลในรูปแบบกราฟ 3 แบบ ดังต่อไปนี้" %}</p>
+
+            <h3>{% trans "1. Airflow + PySpark: การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล" %}</h3>
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pyspark/airflow+pyspark_1_grouped_bar.png' %}"
+                     alt="Airflow+PySpark Grouped Bar Chart" loading="lazy">
+            </div>
+            <p>{% trans "Fig 1 : Airflow + PySpark - การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล" %}</p>
+
+            <p>{% trans "จากกราฟ พบว่าขั้นตอน Load ใช้เวลานานที่สุดในทุกขนาดข้อมูล โดยเมื่อข้อมูลมีขนาด 1 ล้านแถว ขั้นตอน Load ใช้เวลาถึง 955 วินาที ในขณะที่ Extract ใช้เพียง 19 วินาที และ Transform ใช้เพียง 39 วินาที" %}</p>
+            <p><strong>{% trans "สาเหตุที่ Load ใช้เวลามากที่สุดมาจาก:" %}</strong> {% trans "เมื่อ Spark ส่งข้อมูลปริมาณมากไปยังฐานข้อมูลภายนอก ระบบจะใช้ช่องทางเดียวในการส่งข้อมูลทั้งหมด ทำให้ยิ่งข้อมูลมีปริมาณมากเท่าใด กระบวนการนี้ก็ใช้เวลานานมากขึ้นเท่านั้น" %}<sup>[6]</sup></p>
+
+            <h3>{% trans "2. Airflow + PySpark: สัดส่วนของแต่ละ Phase ต่อเวลารวม" %}</h3>
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pyspark/airflow+pyspark_2_stacked_bar.png' %}"
+                     alt="Airflow+PySpark Stacked Bar Chart" loading="lazy">
+            </div>
+            <p>{% trans "Fig 2 : Airflow + PySpark - สัดส่วนของแต่ละ Phase ต่อเวลารวม" %}</p>
+
+            <p>{% trans "จากกราฟพบว่าขั้นตอน Load ครอบครองเวลารวมมากที่สุดในทุกขนาดข้อมูล และสัดส่วนเพิ่มขึ้นเรื่อยๆ ตามปริมาณข้อมูล โดยที่ข้อมูล 1,000,000 แถว ขั้นตอน Load ใช้เวลาถึง 94% ของเวลารวมทั้งหมด" %}</p>
+            <p><strong>{% trans "สาเหตุมาจาก:" %}</strong> {% trans "PySpark JDBC Writer ในโค้ดไม่ได้ตั้งค่าการกระจายงาน ทำให้ข้อมูลทั้งหมดถูกส่งออกผ่าน JDBC เพียงช่องทางเดียว ซึ่งการส่งข้อมูลทั้งหมดผ่านกระบวนการเดียวจะใช้เวลานานมากเมื่อข้อมูลมีปริมาณมาก และทรัพยากรที่เหลืออยู่ในระบบก็ไม่ได้ถูกนำมาใช้งาน ยิ่งข้อมูลมีปริมาณมากขึ้นเท่าใด เวลาของขั้นตอน Load ก็เพิ่มขึ้นในอัตราที่สูงกว่าขั้นตอนอื่นอย่างชัดเจน" %}</p>
+
+            <h3>{% trans "3. Airflow + PySpark: อัตราการขยายตัวของแต่ละ Phase (Scalability)" %}</h3>
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pyspark/airflow+pyspark_3_line_scalability.png' %}"
+                     alt="Airflow+PySpark Line Scalability Chart" loading="lazy">
+            </div>
+            <p>{% trans "Fig 3 : Airflow + PySpark - อัตราการขยายตัวของแต่ละ Phase" %}</p>
+
+            <p>{% trans "จากกราฟพบว่า" %} <strong>{% trans "ขั้นตอน Load มีเส้นชันที่สุด" %}</strong> {% trans "โดยเพิ่มขึ้นประมาณ 30 เท่า (955 ÷ 32.2 = 29.6 เท่า ≈ 30 เท่า) เมื่อข้อมูลเพิ่มขึ้น 100 เท่า" %}</p>
+            <p><strong>{% trans "สาเหตุที่ Load เพิ่มขึ้นเร็วที่สุดนั้น:" %}</strong> {% trans "เมื่อเขียนข้อมูลไปยังฐานข้อมูลผ่าน JDBC นั้น PySpark ใช้จำนวน Partition ที่มีอยู่ในหน่วยความจำเพื่อควบคุมการทำงานพร้อมกัน" %}<sup>[7]</sup> {% trans "เมื่อไม่ได้ตั้งค่าการกระจายงาน ข้อมูลทั้งหมดจึงถูกส่งออกผ่านช่องทางเดียว" %}</p>
+
+            <h3>{% trans "สรุป" %}</h3>
+            <p>{% trans "จากการทดสอบ Airflow + PySpark ETL Pipeline สรุปได้ว่า" %}:</p>
+            <ul>
+                <li><strong>Load Phase</strong> {% trans "ใช้เวลามากที่สุดและมีอัตราการขยายตัวสูงที่สุด" %}</li>
+                <li>{% trans "ที่ข้อมูล 1M แถว Load ใช้เวลา 94% ของเวลารวม (955 วินาที จาก 1,014 วินาที)" %}</li>
+                <li>{% trans "สาเหตุหลักมาจากการส่งข้อมูลผ่าน JDBC เพียงช่องทางเดียว ไม่ได้ใช้การกระจายงาน" %}</li>
+                <li>{% trans "Extract และ Transform มีประสิทธิภาพดี เพิ่มขึ้นในอัตราที่สมเหตุสมผล" %}</li>
+            </ul>
+
+            <h3>{% trans "References" %}</h3>
+            <ol style="padding-left: 2rem; line-height: 1.8;">
+                <li id="ref6">[6] S. Asad, "Spark — Parallelization of Reading Data from JDBC sources," <em>Medium</em>, 16-Apr-2023. [Online]. Available: <a href="https://medium.com/@suffyan.asad1/spark-parallelization-of-reading-data-from-jdbc-sources-e8b35e94cb82" target="_blank" style="color: #3b82f6;">https://medium.com/@suffyan.asad1/spark-parallelization-of-reading-data-from-jdbc-sources-e8b35e94cb82</a></li>
+                <li id="ref7">[7] <em>Databricks.com</em>. [Online]. Available: <a href="https://community.databricks.com/t5/data-engineering/speed-up-jdbc-write-from-databricks-notebook-to-ms-sql-server/td-p/45114" target="_blank" style="color: #3b82f6;">https://community.databricks.com/t5/data-engineering/speed-up-jdbc-write-from-databricks-notebook-to-ms-sql-server/td-p/45114</a></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="card" style="text-align: center;">
+        <h3>{% trans "เปรียบเทียบกับเครื่องมืออื่น" %}</h3>
+        <div class="grid-2">
+            <a href="{% url 'pipeline:ssis' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">SSIS</a>
+            <a href="{% url 'pipeline:knime' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">KNIME</a>
+            <a href="{% url 'pipeline:airflow_pandas' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">Airflow + Pandas</a>
+            <a href="{% url 'pipeline:analysis' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">{% trans "การวิเคราะห์โดยรวม" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/tabs.js' %}"></script>
+<script>
+    // Debug and ensure switchTab function is available
+    console.log('Checking switchTab function:', typeof window.switchTab);
+
+    // Backup/override switchTab to ensure it works
+    if (typeof window.switchTab !== 'function') {
+        console.log('switchTab not found, defining it now');
+        window.switchTab = function(targetId) {
+            console.log('switchTab called with:', targetId);
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            const targetButton = document.querySelector('[data-tab="' + targetId + '"]');
+            const targetContent = document.getElementById(targetId);
+
+            if (targetButton && targetContent) {
+                targetButton.classList.add('active');
+                targetContent.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                console.log('Tab switched to:', targetId);
+            } else {
+                console.error('Target not found:', targetId, 'button:', targetButton, 'content:', targetContent);
+            }
+        };
+    }
+
+    // Add copy buttons to all code blocks
+    document.addEventListener('DOMContentLoaded', function() {
+        const codeBlocks = document.querySelectorAll('pre code');
+
+        codeBlocks.forEach((codeBlock) => {
+            const pre = codeBlock.parentElement;
+
+            // Create copy button
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            // Add click event
+            copyButton.addEventListener('click', async () => {
+                const code = codeBlock.textContent;
+
+                try {
+                    await navigator.clipboard.writeText(code);
+
+                    // Show success feedback
+                    copyButton.textContent = 'Copied!';
+                    copyButton.classList.add('copied');
+
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy';
+                        copyButton.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = code;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+
+                    try {
+                        document.execCommand('copy');
+                        copyButton.textContent = 'Copied!';
+                        copyButton.classList.add('copied');
+
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        copyButton.textContent = 'Failed';
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy';
+                        }, 2000);
+                    }
+
+                    document.body.removeChild(textArea);
+                }
+            });
+
+            // Insert button into pre element
+            pre.style.position = 'relative';
+            pre.insertBefore(copyButton, codeBlock);
+        });
+    });
+</script>
+{% endblock %}

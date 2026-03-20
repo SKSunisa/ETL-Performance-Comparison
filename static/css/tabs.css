@@ -1,0 +1,96 @@
+/* Tab Navigation Styles */
+.tab-navigation {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--gray-200);
+    overflow-x: auto;
+    flex-wrap: wrap;
+    padding: 0 0.5rem;
+    scrollbar-width: thin;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 1.25rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    border-radius: 8px 8px 0 0;
+}
+
+.tab-button:hover {
+    color: var(--primary);
+    background: linear-gradient(to bottom, var(--gray-50), transparent);
+    transform: translateY(-2px);
+}
+
+.tab-button.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background: linear-gradient(to bottom, #eff6ff, transparent);
+    font-weight: 700;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .tab-navigation {
+        gap: 0.5rem;
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    .tab-button {
+        padding: 1rem 1.25rem;
+        font-size: 0.9375rem;
+    }
+}
+
+/* Tab Counter Badge */
+.tab-button .badge {
+    display: inline-block;
+    background: var(--gray-200);
+    color: var(--gray-700);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 16px;
+    margin-left: 0.625rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.tab-button.active .badge {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.05);
+}
+
+.tab-button:hover .badge {
+    transform: scale(1.1);
+}

@@ -1,0 +1,120 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% trans "ETL Pipeline Comparison" %}{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2.6">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="cube cube-1"></div>
+        <div class="cube cube-2"></div>
+        <div class="cube cube-3"></div>
+        <div class="sphere sphere-1"></div>
+        <div class="sphere sphere-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span>ETL Performance<br>Comparison</span>
+            </div>
+
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="{% url 'pipeline:home' %}" class="{% if page == 'home' %}active{% endif %}">
+                    {% trans "Home" %}
+                </a></li>
+                <li><a href="{% url 'pipeline:ssis' %}" class="{% if page == 'ssis' %}active{% endif %}">
+                    SSIS
+                </a></li>
+                <li><a href="{% url 'pipeline:knime' %}" class="{% if page == 'knime' %}active{% endif %}">
+                    KNIME
+                </a></li>
+                <li><a href="{% url 'pipeline:airflow_pyspark' %}" class="{% if page == 'airflow_pyspark' %}active{% endif %}">
+                    Airflow + PySpark
+                </a></li>
+                <li><a href="{% url 'pipeline:airflow_pandas' %}" class="{% if page == 'airflow_pandas' %}active{% endif %}">
+                    Airflow + Pandas
+                </a></li>
+                <li><a href="{% url 'pipeline:analysis' %}" class="{% if page == 'analysis' %}active{% endif %}">
+                    {% trans "Analysis" %}
+                </a></li>
+            </ul>
+
+            <!-- Controls Wrapper -->
+            <div class="nav-controls">
+                <!-- Theme Switcher -->
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+
+                <!-- Language Switcher -->
+                <div class="lang-switcher">
+                    <button class="lang-btn" id="langBtn">
+                        {% if LANGUAGE_CODE == 'th' %}ไทย
+                        {% elif LANGUAGE_CODE == 'zh-hans' %}中文
+                        {% else %}EN{% endif %}
+                    </button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.path }}">
+                            <button type="submit" name="language" value="th" class="lang-option">
+                                ไทย
+                            </button>
+                            <button type="submit" name="language" value="en" class="lang-option">
+                                English
+                            </button>
+                            <button type="submit" name="language" value="zh-hans" class="lang-option">
+                                中文
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>{% trans "พัฒนาโดย วิศวกรผู้พัฒนาระบบ Data Lake ในงานพัฒนาระบบ Data Lake ภายใต้โครงการจัดตั้ง Digital Service ของ Mae Fah Luang University" %}</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="{% trans 'Back to Top' %}">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

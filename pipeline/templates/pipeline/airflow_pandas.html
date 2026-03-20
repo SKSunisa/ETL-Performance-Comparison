@@ -1,0 +1,825 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Airflow + Pandas - ETL Pipeline Comparison{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+<style>
+    .tab-content {
+        text-align: left;
+    }
+
+    .tab-content h2,
+    .tab-content h3,
+    .tab-content h4 {
+        text-align: left;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .tab-content p,
+    .tab-content li {
+        text-align: left;
+        line-height: 1.8;
+    }
+
+    .tab-content ul,
+    .tab-content ol {
+        text-align: left;
+        margin-left: 2rem;
+    }
+
+    .tab-content pre {
+        background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+        color: #f8f8f2;
+        border: 2px solid #4a4a4a;
+        border-radius: 8px;
+        padding: 1.5rem;
+        overflow-x: auto;
+        text-align: left;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .tab-content code {
+        background-color: #2a2a2a;
+        color: #ff6b6b;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.92rem;
+        font-weight: 600;
+        border: 1px solid #444;
+    }
+
+    .tab-content pre code {
+        background-color: transparent;
+        color: #f8f8f2;
+        padding: 0;
+        border: none;
+        font-weight: 400;
+    }
+
+    .img-container {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .img-container img {
+        max-width: 70%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .img-container + p {
+        text-align: center;
+        font-style: italic;
+        color: #666;
+        margin-top: 0.5rem;
+    }
+
+    .alert {
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 8px;
+        border-left: 4px solid;
+    }
+
+    .alert-info {
+        background-color: #e3f2fd;
+        border-left-color: #2196f3;
+        color: #0d47a1;
+    }
+
+    .alert-warning {
+        background-color: #fff3e0;
+        border-left-color: #ff9800;
+        color: #e65100;
+    }
+
+    .alert-success {
+        background-color: #e8f5e9;
+        border-left-color: #4caf50;
+        color: #1b5e20;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+    }
+
+    table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    table tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    /* Code block copy button styles */
+    .copy-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+        transition: all 0.2s ease;
+        z-index: 10;
+    }
+
+    .copy-button:hover {
+        background: #fff;
+        border-color: #3b82f6;
+        color: #3b82f6;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .copy-button.copied {
+        background: #10b981;
+        border-color: #10b981;
+        color: white;
+    }
+
+    .tab-content pre {
+        position: relative;
+        padding-top: 2.5rem !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="{% static 'images/logos/pandas.svg' %}" alt="Pandas Logo" style="width: 100px; height: 100px; margin: 0 auto 1.5rem; display: block; filter: none !important; background: white; padding: 8px; border-radius: 8px;">
+        <h1>{% trans "Apache Airflow + Pandas" %}</h1>
+        <p>{% trans "Lightweight ETL Processing with Apache Airflow Orchestration" %}</p>
+    </section>
+
+    <!-- Tab Navigation -->
+    <div class="card">
+        <div class="tab-navigation">
+            <button class="tab-button" data-tab="implementation">
+                {% trans "Implementation" %} <span class="badge">STEP 1-7</span>
+            </button>
+            <button class="tab-button" data-tab="comparison">
+                {% trans "Comparison" %} <span class="badge">vs PySpark</span>
+            </button>
+        </div>
+
+        <!-- Tab Contents -->
+
+        <!-- Implementation Tab -->
+        <div id="implementation" class="tab-content">
+            <h2>{% trans "การทดสอบ ETL Pipeline ด้วย Apache Airflow และ pandas" %}</h2>
+
+            <p>{% trans "เพื่อให้การเปรียบเทียบมีความเที่ยงตรง การทดสอบ Airflow + pandas ใช้โครงสร้างเดียวกับ Airflow + PySpark ทุกประการ ไม่ว่าจะเป็น Airflow 2.8.0, DAG Structure, ขั้นตอน Transform , Dataset ทั้ง 3 ขนาด และ Source/Target Database เดิม โดยมีสิ่งที่เปลี่ยนแปลงเพียง 3 อย่างเท่านั้น" %}</p>
+
+            <ol>
+                <li>{% trans "Processing Engine : เปลี่ยนจาก PySpark เป็น pandas แทน" %}</li>
+                <li>{% trans "Load Method : เปลี่ยนจาก PySpark JDBC Writer เป็น pymysql" %}</li>
+                <li>{% trans "Target Table : สร้างตาราง fraud_clean_airflow_pandas ใน MySQL (fraud_dl) แยกออกมา โดยใช้ Schema เดียวกับ fraud_clean_airflow ทุกประการ เพื่อให้สามารถเปรียบเทียบผลลัพธ์ระหว่างสอง Engine ได้โดยตรง" %}</li>
+            </ol>
+
+            <h3>{% trans "STEP 1: ติดตั้ง Library เพิ่มเติม" %}</h3>
+            <p>{% trans "เช็คก่อนรันว่า activate แล้ว โดยต้องเห็น" %} <code>(airflow_env)</code> {% trans "นำหน้าอยู่" %}:</p>
+            <pre><code>source ~/airflow_env/bin/activate
+pip install pandas</code></pre>
+
+            <p>{% trans "ตรวจสอบหลังติดตั้งเสร็จ" %}:</p>
+            <pre><code>pip list | grep -E 'pandas'</code></pre>
+
+            <h3>{% trans "STEP 2: เพิ่ม requirements.txt" %}</h3>
+            <pre><code>pip list --format=freeze | grep -E 'pandas' >> airflow_env/requirements.txt</code></pre>
+
+            <h3>{% trans "STEP 3: สร้าง Table ใหม่ใน MySQL" %}</h3>
+            <pre><code>USE fraud_dl;
+
+CREATE TABLE IF NOT EXISTS fraud_clean_airflow_pandas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  trans_datetime DATETIME,
+  cc_num_hash VARCHAR(64),
+  merchant VARCHAR(150),
+  category VARCHAR(50),
+  amt DECIMAL(10,2),
+  first_hash VARCHAR(64),
+  last_hash VARCHAR(64),
+  gender CHAR(50),
+  city VARCHAR(50),
+  state CHAR(50),
+  city_pop INT,
+  job VARCHAR(100),
+  dob_hash VARCHAR(64),
+  trans_num VARCHAR(50),
+  is_fraud TINYINT(1),
+  loaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+            <h3>{% trans "STEP 4: สร้างไฟล์ DAG" %}</h3>
+            <p>{% trans "เปิด VS Code สร้างไฟล์" %} <code>fraud_etl_pandas.py</code> {% trans "ในโฟลเดอร์ dags วางโค้ดนี้" %}:</p>
+
+            <pre><code>{% verbatim %}# ============================================================================
+# fraud_etl_pandas.py
+# Apache Airflow 2.8.0 + pandas ETL Pipeline
+# Credit Card Fraud Detection Dataset
+# ============================================================================
+
+import os
+import csv
+import time
+import hashlib
+
+import pyodbc
+import pandas as pd
+import pymysql
+from datetime import datetime
+from dotenv import load_dotenv
+
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+
+# ============================================================================
+{% endverbatim %}{% trans "# โหลด .env" %}{% verbatim %}
+# ============================================================================
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+
+# ============================================================================
+# Config
+# ============================================================================
+MSSQL_CONN = (
+    f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+    f"SERVER={os.getenv('MSSQL_SERVER')};"
+    f"DATABASE={os.getenv('MSSQL_DATABASE')};"
+    f"UID={os.getenv('MSSQL_UID')};"
+    f"PWD={os.getenv('MSSQL_PWD')}"
+)
+
+PARQUET_DIR = "/tmp/fraud_etl"
+CSV_LOG = "/tmp/fraud_etl/timing_log_airflow_pandas.csv"
+DATASETS = {"10k": "fraud_10k", "100k": "fraud_100k", "1m": "fraud_1m"}
+
+# ============================================================================
+# TASK 1 — EXTRACT
+# ============================================================================
+def extract(dataset_key: str, **kwargs):
+    ti = kwargs['ti']
+    table = DATASETS[dataset_key]
+    out_path = f'{PARQUET_DIR}/pandas_raw_{dataset_key}.parquet'
+
+    t_start = time.perf_counter()
+
+    conn = pyodbc.connect(MSSQL_CONN)
+    df = pd.read_sql(f'SELECT * FROM {table}', conn)
+    conn.close()
+
+    df.to_parquet(out_path, index=False)
+
+    extract_sec = time.perf_counter() - t_start
+
+    ti.xcom_push(key=f'extract_sec_{dataset_key}', value=extract_sec)
+    ti.xcom_push(key=f'parquet_raw_{dataset_key}', value=out_path)
+
+    print(f'[Extract] {dataset_key}: {len(df)} rows | {extract_sec:.3f}s')
+
+# ============================================================================
+# TASK 2 — TRANSFORM
+# ============================================================================
+def transform(dataset_key: str, **kwargs):
+    ti = kwargs['ti']
+    in_path = ti.xcom_pull(key=f'parquet_raw_{dataset_key}')
+    out_path = f'{PARQUET_DIR}/pandas_clean_{dataset_key}.parquet'
+
+    t_start = time.perf_counter()
+
+    df = pd.read_parquet(in_path)
+
+    {% endverbatim %}{% trans "# Step 1: Hash ข้อมูลส่วนตัว" %}{% verbatim %}
+    def sha256(x):
+        return hashlib.sha256(str(x).encode()).hexdigest() if pd.notna(x) else None
+
+    df['cc_num_hash'] = df['cc_num'].apply(sha256)
+    df['first_hash'] = df['first'].apply(sha256)
+    df['last_hash'] = df['last'].apply(sha256)
+    df['dob_hash'] = df['dob'].apply(sha256)
+
+    {% endverbatim %}{% trans "# Step 2: แปลง DateTime" %}{% verbatim %}
+    df['trans_datetime'] = pd.to_datetime(df['trans_date_trans_time'])
+
+    # Step 3: Filter
+    df = df[df['amt'].notna()]
+    df = df[df['amt'] > 0]
+
+    {% endverbatim %}{% trans "# Step 4: Select เฉพาะ column ที่ต้องการ" %}{% verbatim %}
+    df = df[[
+        'trans_datetime', 'cc_num_hash', 'merchant', 'category',
+        'amt', 'first_hash', 'last_hash', 'gender', 'city', 'state',
+        'city_pop', 'job', 'dob_hash', 'trans_num', 'is_fraud'
+    ]]
+
+    df.to_parquet(out_path, index=False)
+
+    transform_sec = time.perf_counter() - t_start
+
+    ti.xcom_push(key=f'transform_sec_{dataset_key}', value=transform_sec)
+    ti.xcom_push(key=f'parquet_clean_{dataset_key}', value=out_path)
+
+    print(f'[Transform] {dataset_key}: {transform_sec:.3f}s')
+
+# ============================================================================
+# TASK 3 — LOAD
+# ============================================================================
+def load(dataset_key: str, **kwargs):
+    ti = kwargs['ti']
+    in_path = ti.xcom_pull(key=f'parquet_clean_{dataset_key}')
+
+    t_start = time.perf_counter()
+
+    df = pd.read_parquet(in_path)
+
+    conn = pymysql.connect(
+        host=os.getenv('MYSQL_HOST'),
+        port=int(os.getenv('MYSQL_PORT', '3306')),
+        user=os.getenv('MYSQL_USER'),
+        password=os.getenv('MYSQL_PWD'),
+        database='fraud_dl'
+    )
+    cursor = conn.cursor()
+
+    cols = ','.join(df.columns)
+    placeholders = ','.join(['%s'] * len(df.columns))
+    sql = f"INSERT INTO fraud_clean_airflow_pandas ({cols}) VALUES ({placeholders})"
+
+    batch_size = 1000
+    rows = [tuple(row) for row in df.itertuples(index=False, name=None)]
+
+    for i in range(0, len(rows), batch_size):
+        cursor.executemany(sql, rows[i:i+batch_size])
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    load_sec = time.perf_counter() - t_start
+
+    ti.xcom_push(key=f'load_sec_{dataset_key}', value=load_sec)
+
+    print(f'[Load] {dataset_key}: {load_sec:.3f}s')
+
+# ============================================================================
+# TASK 4 — LOG TIMING
+# ============================================================================
+def log_timing(dataset_key: str, **kwargs):
+    ti = kwargs['ti']
+
+    extract_sec = ti.xcom_pull(key=f'extract_sec_{dataset_key}')
+    transform_sec = ti.xcom_pull(key=f'transform_sec_{dataset_key}')
+    load_sec = ti.xcom_pull(key=f'load_sec_{dataset_key}')
+
+    write_header = not os.path.exists(CSV_LOG)
+
+    with open(CSV_LOG, 'a', newline='') as f:
+        writer = csv.writer(f)
+        if write_header:
+            writer.writerow(['dataset', 'extract_sec', 'transform_sec', 'load_sec'])
+        writer.writerow([dataset_key,
+                        round(extract_sec, 4),
+                        round(transform_sec, 4),
+                        round(load_sec, 4)])
+
+    print(f'[Log] {dataset_key}: extract={extract_sec:.3f}s | '
+          f'transform={transform_sec:.3f}s | load={load_sec:.3f}s')
+
+# ============================================================================
+# DAG Definition
+# ============================================================================
+default_args = {'owner': 'airflow', 'retries': 0}
+
+with DAG(
+    dag_id='fraud_etl_pandas',
+    default_args=default_args,
+    schedule_interval=None,
+    start_date=datetime(2024, 1, 1),
+    catchup=False
+) as dag:
+
+    for key in ['10k', '100k', '1m']:
+        extract_task = PythonOperator(
+            task_id=f'extract_{key}',
+            python_callable=extract,
+            op_kwargs={'dataset_key': key}
+        )
+
+        transform_task = PythonOperator(
+            task_id=f'transform_{key}',
+            python_callable=transform,
+            op_kwargs={'dataset_key': key}
+        )
+
+        load_task = PythonOperator(
+            task_id=f'load_{key}',
+            python_callable=load,
+            op_kwargs={'dataset_key': key}
+        )
+
+        log_timing_task = PythonOperator(
+            task_id=f'log_timing_{key}',
+            python_callable=log_timing,
+            op_kwargs={'dataset_key': key}
+        )
+
+        extract_task >> transform_task >> load_task >> log_timing_task{% endverbatim %}</code></pre>
+
+            <h3>{% trans "STEP 5: Trigger DAG" %}</h3>
+            <p>{% trans "กลับไปที่" %} <code>http://localhost:8080</code> {% trans "แล้ว Trigger DAG" %}</p>
+
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pandas/pandas-STEP 5.png' %}"
+                     alt="Airflow DAG Graph View - Pandas Pipeline" loading="lazy">
+            </div>
+            <p>{% trans "รูป: Airflow DAG แสดง fraud_etl_pandas ทั้งหมด" %}</p>
+
+            <h3>{% trans "STEP 6: ตรวจสอบข้อมูลใน MySQL" %}</h3>
+            <p>{% trans "รัน SQL ใน MySQL:" %}</p>
+            <pre><code>USE fraud_dl;
+
+{% trans "-- นับแถวทั้งหมด" %}
+SELECT COUNT(*) AS total_rows FROM fraud_clean_airflow_pandas;
+
+{% trans "-- ดูตัวอย่างข้อมูล" %}
+SELECT * FROM fraud_clean_airflow_pandas LIMIT 5;
+
+{% trans "-- ตรวจว่า hash ถูกต้อง" %}
+SELECT
+    cc_num_hash,
+    first_hash,
+    last_hash,
+    dob_hash
+FROM fraud_clean_airflow_pandas LIMIT 5;
+
+{% trans "-- ตรวจ amt ว่าไม่มี NULL หรือ <= 0" %}
+SELECT COUNT(*) AS bad_amt
+FROM fraud_clean_airflow_pandas
+WHERE amt IS NULL OR amt <= 0;</code></pre>
+
+            <h3>{% trans "STEP 7: ตรวจสอบผลลัพธ์" %}</h3>
+            <p>{% trans "ดู CSV หลังรันเสร็จ:" %}</p>
+            <pre><code>cat /tmp/fraud_etl/timing_log_airflow_pandas.csv</code></pre>
+
+            <div class="alert alert-success">
+                <strong>{% trans "สรุป:" %}</strong> {% trans "การทดสอบนี้แสดงให้เห็นว่า pandas สามารถใช้เป็น alternative ที่เรียบง่ายและมีประสิทธิภาพสูงสำหรับข้อมูลขนาดเล็กถึงกลาง โดยไม่ต้องการโครงสร้างพื้นฐานที่ซับซ้อนเหมือน PySpark" %}
+            </div>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('comparison')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Comparison Tab -->
+        <div id="comparison" class="tab-content">
+            <h2>{% trans "สรุปผลการเปรียบเทียบ Airflow + PySpark vs Airflow + Pandas" %}</h2>
+
+            <p>{% trans "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้" %}:</p>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <table style="margin: 0 auto; border-collapse: collapse; width: 95%; max-width: 900px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Dataset Size</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Engine</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Extract (s)</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Transform (s)</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Load (s)</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Total (s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;" rowspan="2">10k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">0.85</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">0.22</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1.1</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">2.17</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">PySpark</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">0.75</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">20.37</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">32.19</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">53.31</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;" rowspan="2">100k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">2.36</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1.36</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">9.8</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">13.51</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">PySpark</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">2.4</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">24.17</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">108.39</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">134.97</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;" rowspan="2">1m</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">19.04</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">9.53</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">102.11</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">130.68</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">PySpark</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">19.36</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">38.97</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">955.37</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1,013.70</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>{% trans "จากตัวเลขข้างต้น เมื่อข้อมูลโตจาก 10k เป็น 1m แถว เวลาในการประมวลผลแต่ละเฟสจึงมีการเปลี่ยนแปลง เพื่อคำนวณว่าเวลาเพิ่มขึ้นหรือลดลงกี่เท่าจึงนำไปสู่ตารางด้านล่างเพื่อคำนวณอัตราการขยายตัวของแต่ละเฟส" %}</p>
+
+            <h3>{% trans "ตารางวิเคราะห์เปรียบเทียบประสิทธิภาพและอัตราการขยายตัว" %}</h3>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <table style="margin: 0 auto; border-collapse: collapse; width: 95%; max-width: 1000px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Phase</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Dataset</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">PySpark (s)</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Pandas (s)</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Faster</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Speedup</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f4f4f4;">Ratio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Extract</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">10k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">0.7460s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">0.8470s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">PySpark</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "PySpark เร็วกว่า" %} 12%</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1.1x</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Extract</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">100k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">2.405s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">2.359s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "Pandas เร็วกว่า" %} 2%</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1.0x</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Extract</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1m</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">19.362s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">19.041s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "Pandas เร็วกว่า" %} 2%</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1.0x</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Transform</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">10k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">20.374s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">0.2230s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "Pandas เร็วกว่า" %} 99%</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">91.4x</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Transform</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">100k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">24.173s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1.356s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "Pandas เร็วกว่า" %} 94%</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">17.8x</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Transform</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1m</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">38.967s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">9.534s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "Pandas เร็วกว่า" %} 76%</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">4.1x</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Load</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">10k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">32.186s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1.104s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "Pandas เร็วกว่า" %} 97%</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">29.2x</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Load</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">100k</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">108s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">9.798s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "Pandas เร็วกว่า" %} 91%</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">11.1x</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Load</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">1m</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">955s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">102s</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">Pandas</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{% trans "Pandas เร็วกว่า" %} 89%</td>
+                            <td style="border: 1px solid #ddd; padding: 12px; text-align: center;">9.4x</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>{% trans "จากตารางจะเห็นตัวเลขที่ผ่านการคำนวณมาแล้วแต่ความแตกต่างนี้เห็นได้ชัดยิ่งขึ้นในกราฟด้านล่าง ดังต่อไปนี้" %}</p>
+
+            <h3>{% trans "การเปรียบเทียบเวลาประมวลผล ETL แต่ละ Phase ระหว่าง Airflow+PySpark และ Airflow+Pandas" %}</h3>
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pandas/PySpark vs Pandas_grouped_bar.png' %}"
+                     alt="PySpark vs Pandas ETL Time Comparison"
+                     loading="lazy">
+            </div>
+            <p>{% trans "Fig 1: การเปรียบเทียบเวลาประมวลผล ETL แต่ละ Phase ระหว่าง Airflow+PySpark และ Airflow+Pandas" %}</p>
+
+            <h3>{% trans "อัตราการขยายตัวของแต่ละ Phase ระหว่าง Airflow+PySpark และ Airflow+Pandas" %}</h3>
+            <div class="img-container">
+                <img src="{% static 'images/airflow_pandas/PySpark vs Pandas_line_scalability.png' %}"
+                     alt="PySpark vs Pandas Scalability Comparison"
+                     loading="lazy">
+            </div>
+            <p>{% trans "Fig 2: อัตราการขยายตัวของแต่ละ Phase ระหว่าง Airflow+PySpark และ Airflow+Pandas" %}</p>
+
+            <p>{% trans "จากกราฟจะขอแบ่งการอธิบายเป็นแต่ละเฟส ดังนี้" %}</p>
+
+            <h4>Extract:</h4>
+            <p>{% trans "ผลที่ได้คือ PySpark ใช้ 0.746s / 2.405s / 19.362s และ Pandas ใช้ 0.847s / 2.359s / 19.041s ต่างกันไม่เกิน 0.3 วินาที" %}</p>
+            <p>{% trans "เหตุผลมาจากโค้ดของทั้งสอง DAG ใช้ pyodbc เป็น Connector เดียวกันในการดึงข้อมูลจาก SQL Server โดย PySpark ใช้ cursor.fetchall() และ Pandas ใช้ pd.read_sql() ซึ่งภายในก็เรียก pyodbc เช่นกัน เมื่ออ่านข้อมูลผ่าน pyodbc ตัว Driver จะจัดการ Buffer และ Format ผลลัพธ์เป็น Python Object โดยความแตกต่างด้านประสิทธิภาพระหว่างวิธีการ Fetch ต่างๆ นั้นแทบไม่มีนัยสำคัญ<sup><a href=\"#ref8\">[8]</a></sup> ดังนั้นเวลาที่ใช้จึงถูกกำหนดโดยปริมาณข้อมูลที่ต้องรับจาก SQL Server เป็นหลัก ไม่ใช่ตัว Engine ที่ใช้ประมวลผล" %}</p>
+
+            <h4>Transform:</h4>
+            <p>{% trans "PySpark เป็นเครื่องมือที่ให้ Python ไปควบคุม Apache Spark ซึ่งเป็นระบบที่ทำงานบน JVM (Java Virtual Machine) โดยมีชั้นกลางที่ชื่อว่า Py4J ทำหน้าที่เป็นสะพานรับส่งคำสั่งระหว่าง Python กับ JVM พูดง่ายๆ คือทุกครั้งที่รัน PySpark มันต้องเปิดระบบ Java ขึ้นมาก่อนเสมอ<sup><a href=\"#ref9\">[9]</a></sup>" %}</p>
+            <p>{% trans "ผลที่ได้คือ PySpark ใช้ 20.374s / 24.173s / 38.967s ส่วน Pandas ใช้ 0.223s / 1.356s / 9.534s ต่างกันสูงสุดถึง 91 เท่า ที่ Dataset 10k สาเหตุหลักคือ ทุกครั้งที่รัน PySpark มันจะเริ่มต้นเป็น Python Process ก่อน แล้วค่อยเปิด JVM Instance ขึ้นมา ทำให้แม้ Dataset จะมีแค่ 10,000 แถว เวลา Transform ก็ยังสูงถึง 20 วินาที" %}</p>
+
+            <h4>Load:</h4>
+            <p>{% trans "ผลที่ได้คือ PySpark ใช้ 32.186s / 108.389s / 955.372s ส่วน Pandas ใช้ 1.104s / 9.798s / 102.108s Load Phase นี้คือจุดที่มองเห็นได้ชัดในกราฟ" %}</p>
+            <p>{% trans "สาเหตุที่ Pandas เร็วกว่าเพราะส่งข้อมูลหลายรายการพร้อมกันในครั้งเดียว ทำให้ใช้เวลารวมน้อยกว่ามาก<sup><a href=\"#ref10\">[10]</a></sup> ส่วน PySpark ช้ากว่านั้นยังไม่สามารถระบุได้อย่างชัดเจนมากนัก แต่จากการวิเคราะห์คิดว่าเป็นเพราะวิธีที่มันส่งข้อมูลเข้าฐานข้อมูลนั้นมาจาก JDBC ที่ไม่ได้ตั้งค่าแบบส่งข้อมูลหลายรายการพร้อมกันในครั้งเดียวซึ่งส่งผลให้มีการส่งข้อมูลทีละแถว เมื่อข้อมูลมี 1,000,000 แถว PySpark จะส่งข้อมูลทีละแถวและทุกรอบต้องรอให้ MySQL ตอบรับก่อนจึงจะส่งรอบถัดไปได้ทำให้เวลารวมพุ่งสูงถึง 955 วินาที" %}</p>
+
+            <h3>References</h3>
+            <ol style="padding-left: 2rem; line-height: 1.8;">
+                <li id="ref8">[8] "pyodbc Cursor object," <em>Google.com</em>. [Online]. Available: <a href="https://groups.google.com/g/pyodbc/c/7gTAU3Mlxto?pli=1" target="_blank" style="color: #3b82f6;">https://groups.google.com/g/pyodbc/c/7gTAU3Mlxto?pli=1</a></li>
+                <li id="ref9">[9] B. Steadman, "Python, spark and the JVM: An overview of the PySpark runtime architecture," <em>DEV Community</em>, 03-May-2020. [Online]. Available: <a href="https://dev.to/steadbytes/python-spark-and-the-jvm-an-overview-of-the-pyspark-runtime-architecture-21gg" target="_blank" style="color: #3b82f6;">https://dev.to/steadbytes/python-spark-and-the-jvm-an-overview-of-the-pyspark-runtime-architecture-21gg</a></li>
+                <li id="ref10">[10] <em>Mysql.com</em>. [Online]. Available: <a href="https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-executemany.html" target="_blank" style="color: #3b82f6;">https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlcursor-executemany.html</a></li>
+            </ol>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <a href="{% url 'pipeline:analysis' %}" class="section-nav-btn next-phase" style="text-decoration: none;">
+                    {% trans "Next Page" %} <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="card" style="text-align: center;">
+        <h3>{% trans "เปรียบเทียบกับเครื่องมืออื่น" %}</h3>
+        <div class="grid-2">
+            <a href="{% url 'pipeline:ssis' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">SSIS</a>
+            <a href="{% url 'pipeline:knime' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">KNIME</a>
+            <a href="{% url 'pipeline:airflow_pyspark' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">Airflow + PySpark</a>
+            <a href="{% url 'pipeline:analysis' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">{% trans "การวิเคราะห์โดยรวม" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/tabs.js' %}"></script>
+<script>
+    // Add copy buttons to all code blocks
+    document.addEventListener('DOMContentLoaded', function() {
+        const codeBlocks = document.querySelectorAll('pre code');
+
+        codeBlocks.forEach((codeBlock) => {
+            const pre = codeBlock.parentElement;
+
+            // Create copy button
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            // Add click event
+            copyButton.addEventListener('click', async () => {
+                const code = codeBlock.textContent;
+
+                try {
+                    await navigator.clipboard.writeText(code);
+
+                    // Show success feedback
+                    copyButton.textContent = 'Copied!';
+                    copyButton.classList.add('copied');
+
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy';
+                        copyButton.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = code;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+
+                    try {
+                        document.execCommand('copy');
+                        copyButton.textContent = 'Copied!';
+                        copyButton.classList.add('copied');
+
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        copyButton.textContent = 'Failed';
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy';
+                        }, 2000);
+                    }
+
+                    document.body.removeChild(textArea);
+                }
+            });
+
+            // Insert button into pre element
+            pre.style.position = 'relative';
+            pre.insertBefore(copyButton, codeBlock);
+        });
+    });
+
+    // Function to switch between tabs
+    function switchTab(tabId) {
+        // Get all tab buttons and contents
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Remove active class from all tabs
+        tabButtons.forEach(button => button.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        // Add active class to selected tab
+        const targetButton = document.querySelector(`[data-tab="${tabId}"]`);
+        const targetContent = document.getElementById(tabId);
+
+        if (targetButton && targetContent) {
+            targetButton.classList.add('active');
+            targetContent.classList.add('active');
+
+            // Scroll to top of content
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    }
+</script>
+{% endblock %}

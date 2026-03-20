@@ -1,0 +1,3933 @@
+# English translations for ETL Pipeline Comparison Project
+# Copyright (C) 2026
+# This file is distributed under the same license as the ETL Pipeline Comparison package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-19 20:53+0700\n"
+"PO-Revision-Date: 2026-03-09 21:00+0700\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Apache Airflow + Pandas"
+msgstr "Apache Airflow + Pandas"
+
+msgid "Lightweight ETL Processing with Apache Airflow Orchestration"
+msgstr "Lightweight ETL Processing with Apache Airflow Orchestration"
+
+msgid "Implementation"
+msgstr "Implementation"
+
+msgid "Comparison"
+msgstr "Comparison"
+
+msgid "การทดสอบ ETL Pipeline ด้วย Apache Airflow และ pandas"
+msgstr "ETL Pipeline Testing with Apache Airflow and pandas"
+
+msgid ""
+"เพื่อให้การเปรียบเทียบมีความเที่ยงตรง การทดสอบ Airflow + pandas ใช้โครงสร้างเดียวกับ "
+"Airflow + PySpark ทุกประการ ไม่ว่าจะเป็น Airflow 2.8.0, DAG Structure, ขั้นตอน "
+"Transform , Dataset ทั้ง 3 ขนาด และ Source/Target Database เดิม "
+"โดยมีสิ่งที่เปลี่ยนแปลงเพียง 3 อย่างเท่านั้น"
+msgstr ""
+"To ensure fair comparison, Airflow + pandas testing uses identical structure "
+"to Airflow + PySpark in every aspect, including Airflow 2.8.0, DAG "
+"Structure, Transform steps, all 3 dataset sizes, and the same Source/Target "
+"Database. Only 3 things have changed"
+
+msgid "Processing Engine : เปลี่ยนจาก PySpark เป็น pandas แทน"
+msgstr "Processing Engine : Changed from PySpark to pandas"
+
+msgid "Load Method : เปลี่ยนจาก PySpark JDBC Writer เป็น pymysql"
+msgstr "Load Method : Changed from PySpark JDBC Writer to pymysql"
+
+msgid ""
+"Target Table : สร้างตาราง fraud_clean_airflow_pandas ใน MySQL (fraud_dl) "
+"แยกออกมา โดยใช้ Schema เดียวกับ fraud_clean_airflow ทุกประการ "
+"เพื่อให้สามารถเปรียบเทียบผลลัพธ์ระหว่างสอง Engine ได้โดยตรง"
+msgstr ""
+"Target Table : Create table fraud_clean_airflow_pandas in MySQL (fraud_dl) "
+"separated out, using the same Schema as fraud_clean_airflow in all aspects "
+"to directly compare results between the two engines"
+
+# ===== Airflow + Pandas and Airflow + PySpark Translations =====
+msgid "STEP 1: ติดตั้ง Library เพิ่มเติม"
+msgstr "STEP 1: Install Additional Libraries"
+
+msgid "เช็คก่อนรันว่า activate แล้ว โดยต้องเห็น"
+msgstr "Check that environment is activated, you should see"
+
+msgid "นำหน้าอยู่"
+msgstr "at the beginning"
+
+msgid "ตรวจสอบหลังติดตั้งเสร็จ"
+msgstr "Verify after installation"
+
+msgid "STEP 2: เพิ่ม requirements.txt"
+msgstr "STEP 2: Add requirements.txt"
+
+msgid "STEP 3: สร้าง Table ใหม่ใน MySQL"
+msgstr "STEP 3: Create New Table in MySQL"
+
+msgid "STEP 4: สร้างไฟล์ DAG"
+msgstr "STEP 4: Create DAG File"
+
+msgid "เปิด VS Code สร้างไฟล์"
+msgstr "Open VS Code and create file"
+
+msgid "ในโฟลเดอร์ dags วางโค้ดนี้"
+msgstr "in the dags folder and paste this code"
+
+msgid "# โหลด .env"
+msgstr "# Load .env"
+
+msgid "# Step 1: Hash ข้อมูลส่วนตัว"
+msgstr "# Step 1: Hash personal data"
+
+msgid "# Step 2: แปลง DateTime"
+msgstr "# Step 2: Convert DateTime"
+
+msgid "# Step 4: Select เฉพาะ column ที่ต้องการ"
+msgstr "# Step 4: Select only required columns"
+
+msgid "STEP 5: Trigger DAG"
+msgstr "STEP 5: Trigger DAG"
+
+msgid "กลับไปที่"
+msgstr "Return to"
+
+msgid "แล้ว Trigger DAG"
+msgstr "and Trigger DAG"
+
+msgid "รูป: Airflow DAG แสดง fraud_etl_pandas ทั้งหมด"
+msgstr "Figure: Airflow DAG showing all fraud_etl_pandas"
+
+msgid "STEP 6: ตรวจสอบข้อมูลใน MySQL"
+msgstr "STEP 6: Verify Data in MySQL"
+
+msgid "รัน SQL ใน MySQL:"
+msgstr "Run SQL in MySQL:"
+
+msgid "-- นับแถวทั้งหมด"
+msgstr "-- Count all rows"
+
+msgid "-- ดูตัวอย่างข้อมูล"
+msgstr "-- View sample data"
+
+msgid "-- ตรวจว่า hash ถูกต้อง"
+msgstr "-- Check that hash is correct"
+
+msgid "-- ตรวจ amt ว่าไม่มี NULL หรือ <= 0"
+msgstr "-- Check amt has no NULL or <= 0"
+
+msgid "STEP 7: ตรวจสอบผลลัพธ์"
+msgstr "STEP 7: Verify Results"
+
+msgid "ดู CSV หลังรันเสร็จ:"
+msgstr "View CSV after run:"
+
+msgid "สรุป:"
+msgstr "Summary"
+
+msgid ""
+"การทดสอบนี้แสดงให้เห็นว่า pandas สามารถใช้เป็น alternative "
+"ที่เรียบง่ายและมีประสิทธิภาพสูงสำหรับข้อมูลขนาดเล็กถึงกลาง "
+"โดยไม่ต้องการโครงสร้างพื้นฐานที่ซับซ้อนเหมือน PySpark"
+msgstr ""
+"This architecture shows the system design for actual university use, which "
+"differs from the test system in terms of complexity and completeness. The "
+"main components are:"
+
+msgid "Back to Top"
+msgstr "Back to Top"
+
+msgid "Next Phase"
+msgstr "Next Phase"
+
+msgid "สรุปผลการเปรียบเทียบ Airflow + PySpark vs Airflow + Pandas"
+msgstr "Summary of Airflow + PySpark vs Airflow + Pandas Comparison"
+
+msgid "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้"
+msgstr ""
+"From testing and timing, the file can be summarized in the following table"
+
+msgid ""
+"จากตัวเลขข้างต้น เมื่อข้อมูลโตจาก 10k เป็น 1m แถว "
+"เวลาในการประมวลผลแต่ละเฟสจึงมีการเปลี่ยนแปลง "
+"เพื่อคำนวณว่าเวลาเพิ่มขึ้นหรือลดลงกี่เท่าจึงนำไปสู่ตารางด้านล่างเพื่อคำนวณอัตราการขยายตัวของแต่ละเฟส"
+msgstr ""
+"Same problem as KNIME - sending data row by row through a single channel. "
+"But worse because distributed processing wasn't configured. All data is sent "
+"out through a single JDBC connection, causing time to spike higher than all "
+"other tools."
+
+msgid "ตารางวิเคราะห์เปรียบเทียบประสิทธิภาพและอัตราการขยายตัว"
+msgstr "View detailed testing and comparison results for each tool"
+
+msgid "PySpark เร็วกว่า"
+msgstr "PySpark faster by"
+
+msgid "Pandas เร็วกว่า"
+msgstr "Pandas faster by"
+
+msgid ""
+"จากตารางจะเห็นตัวเลขที่ผ่านการคำนวณมาแล้วแต่ความแตกต่างนี้เห็นได้ชัดยิ่งขึ้นในกราฟด้านล่าง "
+"ดังต่อไปนี้"
+msgstr ""
+"From the table, you can see the calculated numbers, but this difference is "
+"even more visible in the graphs below, as followsAnalyze the timing results "
+"from all phases of all 4 approaches and display them in graph format to "
+"compare ETL Pipeline performance."
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+msgid ""
+"การเปรียบเทียบเวลาประมวลผล ETL แต่ละ Phase ระหว่าง Airflow+PySpark และ "
+"Airflow+Pandas"
+msgstr "Fig 1: Comparison of Time per Phase Separated by Data Size"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+msgid ""
+"Fig 1: การเปรียบเทียบเวลาประมวลผล ETL แต่ละ Phase ระหว่าง Airflow+PySpark และ "
+"Airflow+Pandas"
+msgstr "Fig 1: Comparison of Time per Phase Separated by Data Size"
+
+msgid "อัตราการขยายตัวของแต่ละ Phase ระหว่าง Airflow+PySpark และ Airflow+Pandas"
+msgstr "Fig 3: Scalability of Each Phase"
+
+msgid ""
+"Fig 2: อัตราการขยายตัวของแต่ละ Phase ระหว่าง Airflow+PySpark และ Airflow+Pandas"
+msgstr "Fig 3: Scalability of Each Phase"
+
+msgid "จากกราฟจะขอแบ่งการอธิบายเป็นแต่ละเฟส ดังนี้"
+msgstr "From the above figures, each step can be explained as follows:"
+
+msgid ""
+"ผลที่ได้คือ PySpark ใช้ 0.746s / 2.405s / 19.362s และ Pandas ใช้ 0.847s / 2.359s / "
+"19.041s ต่างกันไม่เกิน 0.3 วินาที"
+msgstr ""
+"Results show PySpark used 0.746s / 2.405s / 19.362s and Pandas used 0.847s / "
+"2.359s / 19.041s"
+
+#, fuzzy
+#| msgid ""
+#| "เหตุผลมาจากโค้ดของทั้งสอง DAG ใช้ pyodbc เป็น Connector เดียวกันในการดึงข้อมูลจาก "
+#| "SQL Server โดย PySpark ใช้ cursor.fetchall() และ Pandas ใช้ pd.read_sql() "
+#| "ซึ่งภายในก็เรียก pyodbc เช่นกัน เมื่ออ่านข้อมูลผ่าน pyodbc ตัว Driver จะจัดการ Buffer "
+#| "และ Format ผลลัพธ์เป็น Python Object โดยความแตกต่างด้านประสิทธิภาพระหว่างวิธีการ "
+#| "Fetch ต่างๆ นั้นแทบไม่มีนัยสำคัญ<sup><a href=\"#ref8\">[8]</a></sup> "
+#| "ดังนั้นเวลาที่ใช้จึงถูกกำหนดโดยปริมาณข้อมูลที่ต้องรับจาก SQL Server เป็นหลัก ไม่ใช่ตัว Engine "
+#| "ที่ใช้ประมวลผล"
+msgid ""
+"เหตุผลมาจากโค้ดของทั้งสอง DAG ใช้ pyodbc เป็น Connector เดียวกันในการดึงข้อมูลจาก SQL "
+"Server โดย PySpark ใช้ cursor.fetchall() และ Pandas ใช้ pd.read_sql() "
+"ซึ่งภายในก็เรียก pyodbc เช่นกัน เมื่ออ่านข้อมูลผ่าน pyodbc ตัว Driver จะจัดการ Buffer และ "
+"Format ผลลัพธ์เป็น Python Object โดยความแตกต่างด้านประสิทธิภาพระหว่างวิธีการ Fetch "
+"ต่างๆ นั้นแทบไม่มีนัยสำคัญ<sup><a href=\\"
+msgstr ""
+"The reason is that both DAGs use pyodbc as the same Connector to extract "
+"data from SQL Server. PySpark uses cursor.fetchall() and Pandas uses "
+"pd.read_sql(), which internally calls pyodbc as well. When reading data "
+"through pyodbc, the Driver handles Buffer and Format results as Python "
+"Objects. The performance difference between different Fetch methods is "
+"negligible<sup><a href=\"#ref8\">[8]</a></sup>. Therefore, the time used is "
+"mainly determined by the amount of data to be received from SQL Server, not "
+"by the Engine used for processing"
+
+#, fuzzy
+#| msgid ""
+#| "PySpark เป็นเครื่องมือที่ให้ Python ไปควบคุม Apache Spark ซึ่งเป็นระบบที่ทำงานบน JVM "
+#| "(Java Virtual Machine) โดยมีชั้นกลางที่ชื่อว่า Py4J ทำหน้าที่เป็นสะพานรับส่งคำสั่งระหว่าง "
+#| "Python กับ JVM พูดง่ายๆ คือทุกครั้งที่รัน PySpark มันต้องเปิดระบบ Java "
+#| "ขึ้นมาก่อนเสมอ<sup><a href=\"#ref9\">[9]</a></sup>"
+msgid ""
+"PySpark เป็นเครื่องมือที่ให้ Python ไปควบคุม Apache Spark ซึ่งเป็นระบบที่ทำงานบน JVM "
+"(Java Virtual Machine) โดยมีชั้นกลางที่ชื่อว่า Py4J ทำหน้าที่เป็นสะพานรับส่งคำสั่งระหว่าง "
+"Python กับ JVM พูดง่ายๆ คือทุกครั้งที่รัน PySpark มันต้องเปิดระบบ Java ขึ้นมาก่อนเสมอ<sup><a "
+"href=\\"
+msgstr ""
+"PySpark is a tool that allows Python to control Apache Spark, which is a "
+"system running on JVM (Java Virtual Machine). It has a middleware layer "
+"called Py4J that acts as a bridge for commands between Python and JVM. "
+"Simply put, every time PySpark runs, it must start the Java system "
+"first<sup><a href=\"#ref9\">[9]</a></sup>"
+
+msgid ""
+"ผลที่ได้คือ PySpark ใช้ 20.374s / 24.173s / 38.967s ส่วน Pandas ใช้ 0.223s / "
+"1.356s / 9.534s ต่างกันสูงสุดถึง 91 เท่า ที่ Dataset 10k สาเหตุหลักคือ ทุกครั้งที่รัน PySpark "
+"มันจะเริ่มต้นเป็น Python Process ก่อน แล้วค่อยเปิด JVM Instance ขึ้นมา ทำให้แม้ Dataset "
+"จะมีแค่ 10,000 แถว เวลา Transform ก็ยังสูงถึง 20 วินาที"
+msgstr ""
+"The results show that PySpark took 20.374s / 24.173s / 38.967s while Pandas "
+"took 0.223s / 1.356s / 9.534s, a maximum difference of 91 times for the 10k "
+"dataset. The main reason is that every time PySpark runs, it starts as a "
+"Python Process first, then opens a JVM Instance. This means that even with "
+"only 10,000 rows in the dataset, the Transform time is still as high as 20 "
+"seconds"
+
+msgid ""
+"ผลที่ได้คือ PySpark ใช้ 32.186s / 108.389s / 955.372s ส่วน Pandas ใช้ 1.104s / "
+"9.798s / 102.108s Load Phase นี้คือจุดที่มองเห็นได้ชัดในกราฟ"
+msgstr ""
+"Results show PySpark used 32.186s / 108.389s / 955.372s while Pandas used "
+"1.104s / 9.798s / 102.108s"
+
+#, fuzzy
+#| msgid "สาเหตุหลักมาจากการส่งข้อมูลผ่าน JDBC เพียงช่องทางเดียว ไม่ได้ใช้การกระจายงาน"
+msgid ""
+"สาเหตุที่ Pandas เร็วกว่าเพราะส่งข้อมูลหลายรายการพร้อมกันในครั้งเดียว "
+"ทำให้ใช้เวลารวมน้อยกว่ามาก<sup><a href=\\"
+msgstr ""
+"From testing and timing, got file that can be summarized in table as follows:"
+
+msgid "Next Page"
+msgstr "Next Phase"
+
+msgid "เปรียบเทียบกับเครื่องมืออื่น"
+msgstr "Compare with Other Tools"
+
+msgid "การวิเคราะห์โดยรวม"
+msgstr "Overall Analysis"
+
+msgid "Apache Airflow + PySpark"
+msgstr "Apache Airflow + PySpark"
+
+msgid "Distributed ETL Processing with Apache Airflow Orchestration"
+msgstr "Distributed ETL Processing with Apache Airflow Orchestration"
+
+msgid "Phase 0"
+msgstr "Phase 0"
+
+msgid "System Prep"
+msgstr "System Prep"
+
+msgid "Phase 1"
+msgstr "Phase 1"
+
+msgid "Network"
+msgstr "Network"
+
+msgid "Phase 2"
+msgstr "Phase 2"
+
+msgid "Target DB"
+msgstr "Target DB"
+
+msgid "Phase 3"
+msgstr "Phase 3"
+
+msgid "Airflow"
+msgstr "Airflow"
+
+msgid "Phase 4"
+msgstr "Phase 4"
+
+msgid "Extract"
+msgstr "Extract"
+
+msgid "Phase 5"
+msgstr "Phase 5"
+
+msgid "Transform"
+msgstr "Transform"
+
+msgid "Phase 6"
+msgstr "Phase 6"
+
+msgid "Load"
+msgstr "Load"
+
+msgid "Phase 7"
+msgstr "Phase 7"
+
+msgid "Log Timing"
+msgstr "Log Timing"
+
+msgid "Benchmark"
+msgstr "Benchmark"
+
+msgid "Results"
+msgstr "Results"
+
+msgid "Phase 0: System Preparation (เตรียมระบบ)"
+msgstr "Phase 0: System Preparation"
+
+msgid "PART 1: ติดตั้ง WSL2 + Ubuntu 22.04"
+msgstr "PART 1: Install WSL2 + Ubuntu 22.04"
+
+msgid "เริ่มจากการเตรียม Environment บน Windows ก่อนเลย ทำทีละขั้นตอน"
+msgstr ""
+"Start by preparing the Environment on Windows first, do it step by step"
+
+msgid "STEP 1: เปิด PowerShell แบบ Administrator"
+msgstr "STEP 1: Open PowerShell as Administrator"
+
+msgid "กด Windows Key แล้วพิมพ์"
+msgstr "Click the Add button and configure:"
+
+#, fuzzy
+#| msgid "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""
+msgid "คลิกขวาที่ Windows PowerShell → เลือก \\"
+msgstr "Right-click on Windows PowerShell → Select \"Run as administrator\""
+
+msgid "ถ้ามี popup UAC ถามให้กด Yes"
+msgstr "If UAC popup appears, click Yes"
+
+msgid "STEP 2: ติดตั้ง WSL2 + Ubuntu 22.04"
+msgstr "STEP 2: Install WSL2 + Ubuntu 22.04"
+
+msgid "พิมพ์คำสั่งนี้ใน PowerShell แล้วกด Enter"
+msgstr "Type this command in PowerShell and press Enter"
+
+msgid "รอจนติดตั้งเสร็จ (ใช้เวลาสักพักขึ้นอยู่กับ Internet) แล้ว"
+msgstr ""
+"Wait until installation completes (takes a while depending on Internet) then"
+
+msgid "Restart เครื่อง"
+msgstr "Restart computer"
+
+msgid "STEP 3: ตั้งค่า Ubuntu ครั้งแรก"
+msgstr "STEP 3: Initial Ubuntu Setup"
+
+msgid ""
+"หลัง Restart เครื่อง Ubuntu จะเปิดขึ้นมาอัตโนมัติ (ถ้าไม่เปิด ให้หา Ubuntu 22.04 ใน Start "
+"Menu)"
+msgstr ""
+"After Restart, Ubuntu will open automatically (if not, find Ubuntu 22.04 in "
+"Start Menu)"
+
+msgid "ระบบจะถามให้ตั้ง username และ password"
+msgstr "System will ask to set username and password"
+
+msgid "ใส่ชื่อที่ต้องการ (เช่น airflow หรือชื่อตัวเอง)"
+msgstr "Fill in the Server information to connect:"
+
+msgid "ตั้ง password (ตัวอักษรจะไม่แสดงตอนพิมพ์ เป็นเรื่องปกติ)"
+msgstr "Set password (characters won't show when typing, this is normal)"
+
+msgid "พิมพ์ซ้ำอีกครั้ง"
+msgstr "Click Add button in the Input section 4 times:"
+
+msgid "จดจำ password นี้ไว้เพราะจะต้องใช้ทุกครั้งที่รันคำสั่ง"
+msgstr "Remember this password because you'll need it every time you run"
+
+msgid "STEP 4: อัปเดต Package ของ Ubuntu"
+msgstr "STEP 4: Update Ubuntu Packages"
+
+msgid "หลังตั้ง username เสร็จ พิมพ์คำสั่งนี้"
+msgstr "After setting username, type this command"
+
+msgid "ระบบจะถาม password → พิมพ์ password ที่ตั้งไว้แล้วรอจนเสร็จ (อาจใช้เวลา 2-5 นาที)"
+msgstr ""
+"System will ask for password → type the password you set and wait until "
+"complete (may take 2-5 minutes)"
+
+msgid "STEP 5: ตรวจสอบว่า WSL2 ถูกตั้งค่าถูกต้อง"
+msgstr "STEP 5: Verify WSL2 Configuration"
+
+msgid "เปิด PowerShell ใหม่ (ไม่ต้อง Administrator) แล้วพิมพ์"
+msgstr "Open new PowerShell (no need for Administrator) and type"
+
+msgid "ผลที่ควรเห็น"
+msgstr "Expected result is to see file"
+
+msgid "ตรงช่อง VERSION ต้องเป็น"
+msgstr "Name the table as"
+
+msgid "ถ้าเป็น 1 แจ้งมาได้เลย จะมีวิธีแก้"
+msgstr "If it's 1, let me know, there's a fix"
+
+msgid "PART 2: ติดตั้ง Java 17 + Python 3.11 + ODBC Driver"
+msgstr "PART 2: Install Java 17 + Python 3.11 + ODBC Driver"
+
+msgid ""
+"Part 2 นี้มีเป้าหมายเพื่อติดตั้ง dependencies พื้นฐานที่ระบบทั้งหมดต้องการก่อนที่จะติดตั้ง Airflow "
+"และ PySpark ได้ โดยแบ่งเป็น 3 ส่วนหลัก"
+msgstr ""
+"Part 2 aims to install basic dependencies that the entire system requires "
+"before Airflow and PySpark can be installed, divided into 3 main parts"
+
+# ===== Airflow + Pandas and Airflow + PySpark Translations =====
+msgid "ติดตั้งเพื่อรัน PySpark"
+msgstr "STEP 1: Install Additional Libraries"
+
+msgid "ใช้สำหรับเชื่อมต่อ SQL Server"
+msgstr "STEP 3: Install ODBC Driver 17 (for SQL Server Connection)"
+
+msgid "ตัวเชื่อมระหว่าง Python กับ SQL Server"
+msgstr "Connector between Python and SQL Server"
+
+msgid "STEP 1: ติดตั้ง Java 17"
+msgstr "STEP 1: Install Java 17"
+
+msgid "PySpark ต้องการ Java เสมอ ถ้าไม่มีจะ error ทันที"
+msgstr "KNIME requires JDBC Driver to connect to both Databases"
+
+msgid "ตรวจสอบว่าติดตั้งสำเร็จ"
+msgstr "Verify successful installation"
+
+msgid "ต้องเห็น output ประมาณนี้"
+msgstr "Should see output approximately like this"
+
+msgid "STEP 2: ติดตั้ง Python 3.11"
+msgstr "STEP 2: Install Python 3.11"
+
+msgid "ตรวจสอบ"
+msgstr "Verify"
+
+msgid "ต้องเห็น"
+msgstr "Should see"
+
+msgid "STEP 3: ติดตั้ง ODBC Driver 17 (สำหรับเชื่อม SQL Server)"
+msgstr "STEP 3: Install ODBC Driver 17 (for SQL Server Connection)"
+
+msgid "รันทีละบรรทัด"
+msgstr "Run line by line"
+
+msgid "ในรายการ"
+msgstr "in the list"
+
+msgid ""
+"ตั้งแต่ Part 1 - Part 2 เป็นการติดตั้งระดับ system-level ทั้งหมด "
+"ใช้ครั้งเดียวและทุกโปรเจคบนเครื่องนี้ใช้ร่วมกันได้เลย"
+msgstr ""
+"From Part 1 - Part 2 are all system-level installations, used once and all "
+"projects on this machine can share them"
+
+msgid "PART 3: สร้าง folder โปรเจค"
+msgstr "PART 3: Create Project Folder"
+
+msgid "โปรเจคชื่อว่า"
+msgstr "Rename columns"
+
+msgid "PART 4: สร้าง Virtual Environment"
+msgstr "PART 4: Create Virtual Environment"
+
+msgid "นำหน้า prompt"
+msgstr "Previous"
+
+msgid "ต้องแสดง"
+msgstr "Should display"
+
+msgid "PART 5: ตั้งค่า Environment Variables"
+msgstr "PART 5: Set Environment Variables"
+
+msgid "PART 6: ติดตั้ง Airflow 2.8.0"
+msgstr "PART 6: Install Airflow 2.8.0"
+
+msgid "ต้องแน่ใจว่า"
+msgstr "Should pass"
+
+msgid "active อยู่ก่อนรัน"
+msgstr "must be active before running"
+
+msgid "PART 7: ติดตั้ง Library ที่จำเป็น"
+msgstr "PART 7: Install Required Libraries"
+
+msgid "PART 8: สร้าง requirements.txt"
+msgstr "PART 8: Create requirements.txt"
+
+msgid "PART 9: สร้าง folder ที่จำเป็น"
+msgstr "PART 9: Create necessary folders"
+
+msgid "PART 10: airflow db init"
+msgstr "PART 10: airflow db init"
+
+msgid "ตรวจสอบว่า activate อยู่ก่อน"
+msgstr "Verify activation first"
+
+msgid "แล้วรัน"
+msgstr "Then run"
+
+msgid "PART 11: สร้าง Admin User"
+msgstr "PART 11: Create Admin User"
+
+msgid "ถ้าไม่อยากให้มี Example DAGs ที่ Airflow สร้างมาให้ตอนติดตั้ง ให้แก้ config ตามนี้"
+msgstr ""
+"If you don't want Airflow to create Example DAGs during installation, edit "
+"the config as follows"
+
+msgid "เปิดไฟล์ airflow.cfg ใน vc code ก็ได้"
+msgstr "You can open airflow.cfg in VS Code as well"
+
+msgid "หาบรรทัด"
+msgstr "Find the line"
+
+msgid "แก้เป็น"
+msgstr "Change to"
+
+msgid "บันทึก"
+msgstr "Save"
+
+msgid "PART 12: ดาวน์โหลด MySQL JDBC Driver"
+msgstr "PART 12: Download MySQL JDBC Driver"
+
+msgid "Phase 1 — หา Windows Host IP (สำหรับเชื่อม SQL Server + MySQL)"
+msgstr "Phase 1 — Find Windows Host IP (for SQL Server + MySQL Connection)"
+
+# ===== Airflow + Pandas and Airflow + PySpark Translations =====
+# ===== ALL Phase and STEP Translations =====
+msgid "STEP 1 : ที่ Terminal WSL2 เพื่อหา Windows Host IP"
+msgstr "STEP 1 : At Terminal WSL2 to Find Windows Host IP"
+
+msgid "วิธีที่ 1 : จาก WSL2:"
+msgstr "Method 1 : From WSL2:"
+
+msgid "วิธีที่ 2 : จาก Windows PowerShell:"
+msgstr "Method 2 : From Windows PowerShell:"
+
+msgid "วิธีที่ 3 : จาก cmd:"
+msgstr "Method 3 : From cmd:"
+
+msgid "ดูที่ IPv4 Address ที่ Ethernet adapter vEthernet (WSL (Hyper-V firewall))"
+msgstr ""
+"Look at IPv4 Address at Ethernet adapter vEthernet (WSL (Hyper-V firewall))"
+
+msgid "STEP 2 : ทดสอบต่อ SQL Server Port"
+msgstr "STEP 2 : Test SQL Server Port Connection"
+
+msgid "Windows Host IP_ที่ได้"
+msgstr "Windows_Host_IP_obtained"
+
+msgid "STEP 3 : ทดสอบต่อ MySQL Port"
+msgstr "STEP 3 : Test MySQL Port Connection"
+
+msgid "Phase 2 — สร้าง Target Table ใน MySQL"
+msgstr "Phase 2 — Create Target Table in MySQL"
+
+msgid "STEP 1 : เพิ่มสิทธิ์ใน MySQL"
+msgstr "STEP 1 : Grant Permissions in MySQL"
+
+msgid "เปิด MySQL Command Line Client หรือ MySQL Workbench บน Windows แล้วรัน"
+msgstr "Open MySQL Command Line Client or MySQL Workbench on Windows and run"
+
+msgid "อนุญาต root จาก WSL2 subnet ทั้งหมด"
+msgstr "Allow root from all WSL2 subnet"
+
+msgid "แทน"
+msgstr "In"
+
+msgid "ด้วย password MySQL จริงของคุณครับ"
+msgstr "with your actual MySQL password"
+
+msgid "STEP 2 : ตรวจสอบว่าเพิ่มสำเร็จ"
+msgstr "STEP 2 : Verify Success"
+
+msgid "ในผลลัพธ์"
+msgstr "Result:"
+
+msgid "STEP 3 : กลับมา WSL2 ทดสอบใหม่"
+msgstr "STEP 3 : Return to WSL2 and Test Again"
+
+msgid "เช่น"
+msgstr "e.g."
+
+msgid "STEP 4 : สร้าง Target Table ใน MySQL"
+msgstr "STEP 4 : Create Target Table in MySQL"
+
+msgid "รัน SQL นี้ใน WSL2 MySQL prompt"
+msgstr "Run this SQL in WSL2 MySQL prompt"
+
+msgid "STEP 5 : สร้าง .env File (ซ่อน Credentials)"
+msgstr "STEP 5 : Create .env File (Hide Credentials)"
+
+msgid "เปิด VS Code"
+msgstr "Open Visual Studio"
+
+msgid "กด"
+msgstr "Click"
+
+msgid "สำหรับ Windows"
+msgstr "For Windows"
+
+msgid "กด Connect to WSL"
+msgstr "Click Connect to WSL"
+
+msgid "เลือก location ของโปรเจค"
+msgstr "Select the location where you want the csv file to appear"
+
+msgid "สร้างไฟล์"
+msgstr "STEP 4: Create DAG File"
+
+msgid "ในโฟลเดอร์ dags"
+msgstr "Create folder"
+
+msgid "Phase 3 — ตั้งค่า Airflow Connections ผ่าน Web UI"
+msgstr "Phase 3 — Configure Airflow Connections via Web UI"
+
+msgid "STEP 1 : ติดตั้ง MSSQL Provider และ Mysql Provider"
+msgstr "STEP 1 : Install MSSQL Provider and Mysql Provider"
+
+msgid "รันใน WSL2 Terminal"
+msgstr "Run in WSL2 Terminal"
+
+msgid "STEP 2 : เริ่ม Airflow Services"
+msgstr "STEP 2 : Start Airflow Services"
+
+msgid "เปิด 2 WSL2 Terminal แยกกัน"
+msgstr "Open 2 separate WSL2 Terminals"
+
+msgid "Terminal 1:"
+msgstr "Terminal 1:"
+
+msgid "Terminal 2:"
+msgstr "Terminal 2:"
+
+msgid "เปิด Browser ไปที่"
+msgstr "Return to"
+
+msgid "แล้ว Login ด้วย"
+msgstr "And place file"
+
+msgid "STEP 3 : Airflow Connections"
+msgstr "STEP 3 : Airflow Connections"
+
+msgid "เพิ่ม SQL Server Connection"
+msgstr "STEP 1: Add Log Timing Function"
+
+msgid "ไปที่"
+msgstr "Go to"
+
+msgid "คลิก + (Add a new record)"
+msgstr "Click + (Add a new record)"
+
+msgid "กรอกข้อมูล"
+msgstr "Fill in the information"
+
+msgid "ค่า"
+msgstr "Value"
+
+msgid "ใส่ password SQLServer จริง"
+msgstr "Enter actual SQLServer password"
+
+msgid "คลิก Save"
+msgstr "Click Save"
+
+msgid "เพิ่ม MySQL Connection"
+msgstr "STEP 1: Add Log Timing Function"
+
+msgid "คลิก + อีกครั้ง"
+msgstr "Click + again"
+
+msgid "ทำไมต้องกรอกค่าเหล่านี้?"
+msgstr "Why do we need to fill in these values?"
+
+msgid ""
+"Airflow Connections คือการเก็บข้อมูลการเชื่อมต่อไว้ในที่เดียว แทนที่จะ hardcode ใน DAG "
+"code โดยตรง"
+msgstr ""
+"Airflow Connections is a way to store connection information in one place, "
+"instead of hardcoding it directly in the DAG code"
+
+msgid "แต่ละ Field มีหน้าที่อะไร?"
+msgstr "What is the function of each field?"
+
+msgid ""
+"ชื่อที่ใช้อ้างอิงใน DAG code เช่น mssql_frauddb เวลาเรียกใช้ใน Python จะเขียนว่า "
+"conn_id='mssql_frauddb' Airflow จะไปดึงค่าที่เหลือมาให้เองอัตโนมัติ"
+msgstr ""
+"Name used to reference in DAG code, for example mssql_frauddb. When calling "
+"in Python, write conn_id='mssql_frauddb' and Airflow will automatically "
+"retrieve the remaining values"
+
+msgid ""
+"บอก Airflow ว่าเป็น database ประเภทไหน เพื่อใช้ driver ที่ถูกต้อง เช่น mssql ใช้ "
+"pymssql, mysql ใช้ mysqlclient"
+msgstr ""
+"Tells Airflow what type of database it is, to use the correct driver. For "
+"example, mssql uses pymssql, mysql uses mysqlclient"
+
+msgid ""
+"IP address ของ server ที่ database รันอยู่ ในกรณีนี้คือ Windows Host IP 172.31.128.1 "
+"ที่ WSL2 มองเห็น"
+msgstr ""
+"IP address of the server where the database is running. In this case, it's "
+"Windows Host IP 172.31.128.1 that WSL2 can see"
+
+msgid "ชื่อ database ที่ต้องการเชื่อมต่อ เช่น frauddb หรือ fraud_dl"
+msgstr "Name of the database to connect to, such as frauddb or fraud_dl"
+
+msgid "username และ password สำหรับ authenticate เข้า database"
+msgstr "username and password for database authentication"
+
+msgid ""
+"port ที่ database รับการเชื่อมต่อ SQL Server ใช้ 57642 (dynamic port) และ MySQL ใช้ "
+"3306 (default port)"
+msgstr ""
+"Port that the database accepts connections on. SQL Server uses 57642 "
+"(dynamic port) and MySQL uses 3306 (default port)"
+
+msgid "ภาพรวมการทำงาน"
+msgstr "Overall workflow"
+
+msgid "ดึงค่าจาก"
+msgstr "retrieves values from"
+
+msgid "เชื่อมต่อ SQL Server จริง"
+msgstr "connects to SQL Server"
+
+msgid ""
+"พูดง่ายๆ คือแทนที่จะเขียน IP, password ใน code ตรงๆ เก็บไว้ใน Connections แทน "
+"ปลอดภัยกว่าและแก้ไขได้ง่ายโดยไม่ต้องแตะ code"
+msgstr ""
+"Simply put, instead of writing IP and password directly in code, store them "
+"in Connections instead. It's safer and easier to edit without touching the "
+"code"
+
+msgid "Phase 4 — Extract"
+msgstr "Phase 4 — Extract"
+
+msgid "ภาพรวมของ Extract Task"
+msgstr "Extract Task Overview"
+
+msgid ""
+"Extract คือการดึงข้อมูลจาก SQL Server แล้วบันทึกเป็น Parquet เพื่อส่งต่อให้ Transform"
+msgstr ""
+"Extract is pulling data from SQL Server and saving as Parquet to pass to "
+"Transform"
+
+msgid ""
+"อธิบายง่ายๆ คือ ดึงข้อมูลจาก SQL Server ด้วย pyodbc → บันทึกเป็น Parquet → Push timing "
+"ผ่าน XCom"
+msgstr ""
+"Simply explained: pull data from SQL Server with pyodbc → save as Parquet → "
+"Push timing via XCom"
+
+msgid "Parquet คืออะไร?"
+msgstr "What is KNIME?"
+
+msgid "Parquet คือรูปแบบไฟล์สำหรับเก็บข้อมูลตาราง เหมือน CSV แต่เก็บข้อมูลแบบ \\"
+msgstr ""
+"Parquet is a file format for storing tabular data, similar to CSV but stores "
+"data in \"columnar\" format instead of \"rows\", making it faster to process "
+"and resulting in much smaller file sizes"
+
+msgid "เก็บทีละแถว"
+msgstr "Stored row by row"
+
+msgid "เก็บทีละคอลัมน์"
+msgstr "Stored column by column"
+
+msgid "STEP 1 : สร้างโฟลเดอร์สำหรับเก็บ Parquet"
+msgstr "STEP 1: Create Folder for Parquet Files"
+
+msgid "รันโค้ดบรรทัดนี้แล้วจะไม่เจออะไรเพราะโฟลเดอร์ว่างเปล่า"
+msgstr "Run this line and you won't find anything because the folder is empty"
+
+msgid "STEP 2 : สร้างไฟล์ DAG (เฉพาะส่วน Extract ก่อน)"
+msgstr "STEP 2: Create DAG File (Extract Part Only)"
+
+msgid "ในโฟลเดอร์ dags ที่โฟลเดอร์โปรเจค"
+msgstr "in the dags folder and paste this code:"
+
+msgid "หรือรันโค้ดนี้ที่ WSL ก็ได้"
+msgstr "Paste this code at"
+
+msgid ""
+"STEP 3 : เปิด Airflow Services (ถ้าทำต่อจาก Phase 3 หรือ เปิดไว้อยู่แล้ว ให้ข้ามไปที่ "
+"STEP 4 )"
+msgstr ""
+"STEP 3: Open Airflow Services (if continuing from Phase 3 or already open, "
+"skip to STEP 4)"
+
+msgid "STEP 4 : เขียนโค้ด"
+msgstr "STEP 4: Write Code"
+
+msgid "วางโค้ดนี้"
+msgstr "Paste this code:"
+
+msgid "โหลด .env"
+msgstr "Load .env"
+
+msgid "Force JAVA_HOME สำหรับ PySpark ใน Airflow Task"
+msgstr "Force JAVA_HOME for PySpark in Airflow Task"
+
+msgid "--- เริ่มจับเวลา ---"
+msgstr "--- Start timing ---"
+
+msgid "เชื่อม SQL Server ด้วย pyodbc"
+msgstr "Connect to SQL Server with pyodbc"
+
+msgid "ดึงข้อมูลจาก Table"
+msgstr "Fetch data from Table"
+
+msgid "ชื่อ Column"
+msgstr "Column names"
+
+msgid "ข้อมูลทุกแถว"
+msgstr "All rows data"
+
+msgid "แปลงเป็น dict"
+msgstr "Convert to dict"
+
+msgid "แปลงเป็น PyArrow Table แล้วบันทึกเป็น Parquet"
+msgstr "Convert to PyArrow Table and save as Parquet"
+
+msgid "--- หยุดจับเวลา ---"
+msgstr "--- Stop timing ---"
+
+msgid "ส่งค่าผ่าน XCom ไปให้ Task ถัดไป"
+msgstr "Pass value via XCom to next Task"
+
+msgid "กด Save ("
+msgstr "Click Start"
+
+msgid "หรือ"
+msgstr "or"
+
+msgid "STEP 5 : ตรวจว่า Airflow เห็น DAG"
+msgstr "STEP 5: Verify Airflow Sees DAG"
+
+msgid "ดูผ่าน Web UI โดยเปิดเบราว์เซอร์ไปที่"
+msgstr "View via Web UI by opening browser to"
+
+msgid "แล้วคลิก"
+msgstr "And place file"
+
+msgid "จากนั้น Unpause DAG ขั้นตอนนี้อาจต้องรอสักครู่"
+msgstr "Before Phase 1, must complete all these items first"
+
+msgid "STEP 6 : ตรวจสอบว่ามีโฟลเดอร์ /tmp/fraud_etl รึยัง"
+msgstr "STEP 6: Check if /tmp/fraud_etl folder exists"
+
+msgid "ถ้าไม่มีสร้างใหม่เพราะ /tmp จะถูกล้างทุกครั้งที่ restart WSL2"
+msgstr ""
+"If it doesn't exist, create it because /tmp is cleared every time WSL2 "
+"restarts"
+
+msgid "STEP 7 : Trigger DAG และ ตรวจสอบผลลัพธ์"
+msgstr "STEP 7: Trigger DAG and Check Results"
+
+msgid "1. กด Trigger DAG"
+msgstr "1. Click Trigger DAG"
+
+msgid "2. หลัง Trigger จะเห็น Task แต่ละอันเปลี่ยนสีตามสถานะ"
+msgstr ""
+"2. After Trigger, you'll see each Task change color according to status"
+
+msgid "STEP 8 : ตรวจสอบผลลัพธ์"
+msgstr "STEP 8: Verify Results"
+
+msgid "ดูว่าไฟล์ Parquet ถูกสร้างหรือเปล่า"
+msgstr "Verify creation success with:"
+
+msgid "ผลที่ควรได้"
+msgstr "Expected result is to see file"
+
+msgid "ดูจำนวนแถวใน Parquet ว่าถูกต้องไหม"
+msgstr "Verify result in MySQL that data is correct"
+
+msgid "สรุปสิ่งที่ Extract ทำ"
+msgstr "Summary of Extract Process"
+
+msgid "ขั้นตอน"
+msgstr "Step"
+
+msgid "รายละเอียด"
+msgstr "Details"
+
+msgid "เชื่อม SQL Server"
+msgstr "Connect SQL Server"
+
+msgid "ผ่าน pyodbc + credentials จาก .env"
+msgstr "Via pyodbc + credentials from .env"
+
+msgid "ดึงข้อมูล"
+msgstr "Extract data"
+
+msgid "แปลงเป็น Parquet"
+msgstr "Convert to Parquet"
+
+msgid "ผ่าน PyArrow บันทึกที่ /tmp/fraud_etl/"
+msgstr "Via PyArrow, save to /tmp/fraud_etl/"
+
+msgid "จับเวลา"
+msgstr "Timing"
+
+msgid "time.perf_counter() ตั้งแต่ connect จนบันทึกเสร็จ"
+msgstr "time.perf_counter() from connect until save complete"
+
+msgid "ส่ง extract_sec และ path ของ Parquet ไปให้ Transform"
+msgstr "Send extract_sec and Parquet path to Transform"
+
+msgid "Phase 5 — TRANSFORM"
+msgstr "Phase 5 — TRANSFORM"
+
+msgid "ภาพรวมของ Transform Task"
+msgstr "Extract Task Overview"
+
+msgid "PySpark อ่าน Parquet"
+msgstr "PySpark reads Parquet"
+
+msgid "แปลง DateTime + Rename Columns"
+msgstr "Convert DateTime + Rename Columns"
+
+msgid "STEP 1 : เพิ่ม Transform function ใน DAG"
+msgstr "STEP 1: Add Transform Function to DAG"
+
+msgid ""
+"หาบรรทัด <code># =====================</code> ของ DAG Definition แล้วเพิ่ม "
+"Transform function <strong>ก่อน</strong> DAG Definition:"
+msgstr ""
+"Find the line <code># =====================</code> of DAG Definition and add "
+"Transform function <strong>before</strong> DAG Definition:"
+
+msgid "# สร้าง SparkSession"
+msgstr "# Create SparkSession"
+
+msgid "# สร้าง SHA-256 UDF"
+msgstr "# Create SHA-256 UDF"
+
+msgid "# Step 1: Hash ข้อมูลส่วนตัว + Rename Columns"
+msgstr "# Step 1: Hash personal data + Rename Columns"
+
+msgid "# Step 2: แปลง DateTime + Rename Columns"
+msgstr "# Step 2: Convert DateTime + Rename Columns"
+
+msgid "# Step 3: Filter amt ผิดปกติ"
+msgstr "# Step 3: Filter abnormal amt"
+
+msgid "# Step 4: Select เฉพาะ column ที่ต้องการ Load"
+msgstr "# Step 4: Select only columns needed for Load"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "STEP 2 : แก้ DAG Definition ให้รวม Transform"
+msgstr "STEP 2: Update DAG Definition to Include Transform"
+
+msgid "หา DAG Definition แล้วแก้ for loop"
+msgstr "Find DAG Definition and update for loop"
+
+msgid "STEP 3 : Trigger DAG"
+msgstr "STEP 3: Trigger DAG"
+
+msgid "เปิดเบราว์เซอร์ไปที่"
+msgstr "Open browser to"
+
+msgid "แล้วคลิก Trigger DAG"
+msgstr "and Trigger DAG"
+
+msgid "รูป: Airflow DAG แสดง Extract และ Transform Tasks"
+msgstr "Figure: Airflow DAG showing Extract and Transform Tasks"
+
+msgid "STEP 4 : ตรวจสอบผลลัพธ์"
+msgstr "STEP 4: Verify Results"
+
+msgid "ตรวจ column ว่า Transform ถูกต้องไหม"
+msgstr "Verify successful installation"
+
+msgid "สรุปสิ่งที่ทำใน TRANSFORM"
+msgstr "Summary of Extract Process"
+
+msgid "Input"
+msgstr "Input"
+
+msgid "รับ path ของ"
+msgstr "Get path of"
+
+msgid "มาจาก Extract ผ่าน XCom"
+msgstr "Password"
+
+msgid "Step 1 — Hash ข้อมูลส่วนตัว"
+msgstr "Step 1 — Hash personal data"
+
+msgid "เข้ารหัส SHA-256 ทั้ง 4 column แล้วสร้าง column ใหม่แทน"
+msgstr "Encrypt SHA-256 all 4 columns and create new columns to replace"
+
+msgid "Step 2 — แปลง DateTime"
+msgstr "Step 2 — Convert DateTime"
+
+msgid "Step 3 — Filter"
+msgstr "Step 3 — Filter"
+
+msgid "ตัดแถวที่ข้อมูลผิดปกติออก"
+msgstr "Fill in the information field by field:"
+
+msgid "amt เป็น NULL"
+msgstr "amt is NULL"
+
+msgid "ตัดออก"
+msgstr "Remove"
+
+msgid "Step 4 — Select"
+msgstr "Step 4 — Select"
+
+msgid "เลือกเฉพาะ 15 column ที่ตรงกับ Schema ของ MySQL โดยทิ้ง column เก่าอย่าง"
+msgstr ""
+"Select only 15 columns that match MySQL Schema by dropping old columns like"
+
+msgid "ออก"
+msgstr "Drag"
+
+msgid "Output"
+msgstr "Output"
+
+msgid "บันทึกเป็น"
+msgstr "Name the table as"
+
+msgid "แล้วส่ง path และเวลาที่ใช้ผ่าน XCom ให้ Task Load ต่อไป"
+msgstr "This Node calculates the total time used in the Transform Phase"
+
+msgid "Phase 6 — LOAD"
+msgstr "Phase 6 — LOAD"
+
+msgid "ภาพรวมของ Load Task"
+msgstr "Extract Task Overview"
+
+msgid "PySpark JDBC เขียนเข้า MySQL"
+msgstr "PySpark JDBC writes to MySQL"
+
+msgid "STEP 1 : เพิ่ม Load function ใน DAG"
+msgstr "STEP 1: Add Load Function to DAG"
+
+msgid "เพิ่ม Load function <strong>ก่อน</strong> DAG Definition:"
+msgstr "Add Load function <strong>before</strong> DAG Definition:"
+
+msgid "STEP 2 : แก้ DAG Definition ให้รวม Load"
+msgstr "STEP 2: Update DAG Definition to Include Load"
+
+msgid "STEP 3 : ตรวจสอบ MySQL ก่อน Trigger"
+msgstr "STEP 3: Verify MySQL Before Trigger"
+
+msgid "รันโค้ดนี้ใน MySQL"
+msgstr "Paste this code in"
+
+msgid "ผลที่ควรได้ (ยังว่างอยู่)"
+msgstr "Expected result is to see file"
+
+msgid "STEP 4 : Trigger DAG"
+msgstr "STEP 4: Trigger DAG"
+
+msgid "รูป: Airflow DAG แสดง Extract, Transform และ Load Tasks ทั้งหมด"
+msgstr "Figure: Airflow DAG showing all Extract, Transform and Load Tasks"
+
+msgid "STEP 5 : ตรวจสอบผลลัพธ์หลังรัน"
+msgstr "STEP 5: Verify Results After Running"
+
+msgid "Phase 7 — LOG TIMING"
+msgstr "Phase 7 — LOG TIMING"
+
+msgid "ภาพรวมของ Log Timing Task"
+msgstr "Extract Task Overview"
+
+msgid "ดึงค่าเวลาจาก XCom"
+msgstr "Pull time values from XCom"
+
+msgid "บันทึกลง CSV"
+msgstr "Save to CSV"
+
+msgid "STEP 1 : เพิ่ม Log Timing function"
+msgstr "STEP 1: Add Log Timing Function"
+
+msgid "เพิ่ม function ก่อน DAG Definition"
+msgstr "STEP 1: Add Load Function to DAG"
+
+msgid "# รับค่าเวลาจาก XCom"
+msgstr "# Get time values from XCom"
+
+msgid "# เขียน CSV"
+msgstr "# Write to CSV"
+
+msgid "STEP 2 : แก้ DAG Definition ให้ครบทุก Task"
+msgstr "STEP 2: Update DAG Definition with All Tasks"
+
+msgid "STEP 3 : ล้างข้อมูล MySQL ก่อน Trigger ใหม่"
+msgstr "STEP 3: Clear MySQL Data Before Triggering Again"
+
+msgid "เพราะรันไปแล้ว 1,110,000 แถว ถ้า Trigger อีกครั้งจะรันซ้ำ"
+msgstr ""
+"Because we already ran 1,110,000 rows, if we trigger again, it will create "
+"duplicates"
+
+msgid "รูป: Airflow DAG แสดงทุก Task รวมถึง Log Timing"
+msgstr "Figure: Airflow DAG showing all Tasks including Log Timing"
+
+msgid "รัน SQL ใน MySQL"
+msgstr "Run SQL in MySQL"
+
+msgid "STEP 6 : ตรวจสอบผลลัพธ์"
+msgstr "STEP 6: Verify Results"
+
+msgid "ดู CSV หลังรันเสร็จ"
+msgstr "View CSV after run"
+
+msgid "ผลที่ได้"
+msgstr "Result obtained"
+
+msgid "สรุปและวิเคราะห์ผล Airflow + Pyspark ETL Benchmark"
+msgstr "Summary and Analysis of Airflow + PySpark ETL Benchmark"
+
+msgid "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้:"
+msgstr ""
+"From testing and timing, the results can be summarized in table as follows:"
+
+msgid ""
+"จากการทดสอบ ETL Pipeline ด้วย Apache Airflow 2.8.0 ร่วมกับ PySpark บน Dataset 3 "
+"ขนาด ได้ผลการจับเวลาดังตารางที่ 1 โดยแต่ละแถวแสดงเวลาที่ใช้ในแต่ละขั้นตอน ได้แก่ Extract, "
+"Transform และ Load หน่วยเป็นวินาที"
+msgstr ""
+"From testing ETL Pipeline with Apache Airflow 2.8.0 and PySpark on 3 Dataset "
+"sizes, got timing results as shown in Table 1, where each row shows time "
+"used in each phase: Extract, Transform and Load, in seconds"
+
+msgid "เพื่อให้เห็นภาพที่ชัดเจนขึ้น ข้อมูลจากตารางได้ถูกนำไปแสดงผลในรูปแบบกราฟ 3 แบบ ดังต่อไปนี้"
+msgstr ""
+"Analyze the timing results from all phases of all 4 approaches and display "
+"them in graph format to compare ETL Pipeline performance."
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+msgid "1. Airflow + PySpark: การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "Fig 1: Comparison of Time per Phase Separated by Data Size"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+msgid "Fig 1 : Airflow + PySpark - การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "Fig 1: Comparison of Time per Phase Separated by Data Size"
+
+msgid ""
+"จากกราฟ พบว่าขั้นตอน Load ใช้เวลานานที่สุดในทุกขนาดข้อมูล โดยเมื่อข้อมูลมีขนาด 1 ล้านแถว "
+"ขั้นตอน Load ใช้เวลาถึง 955 วินาที ในขณะที่ Extract ใช้เพียง 19 วินาที และ Transform "
+"ใช้เพียง 39 วินาที"
+msgstr ""
+"In this project, we need to time each of the 3 Phases separately, so we must "
+"separate into one Task per Phase. This allows us to measure how many seconds "
+"Extract takes, how many seconds Transform takes, and how many seconds Load "
+"takes."
+
+msgid "สาเหตุที่ Load ใช้เวลามากที่สุดมาจาก:"
+msgstr "Step 3: Execute (don't connect wire yet)"
+
+msgid ""
+"เมื่อ Spark ส่งข้อมูลปริมาณมากไปยังฐานข้อมูลภายนอก ระบบจะใช้ช่องทางเดียวในการส่งข้อมูลทั้งหมด "
+"ทำให้ยิ่งข้อมูลมีปริมาณมากเท่าใด กระบวนการนี้ก็ใช้เวลานานมากขึ้นเท่านั้น"
+msgstr ""
+"Distribute processed data to MySQL of each department in the university, and "
+"display results through Power BI to support decision-making by executives "
+"and personnel in the university."
+
+msgid "2. Airflow + PySpark: สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "Fig 2: Proportion of Each Phase to Total Time"
+
+msgid "Fig 2 : Airflow + PySpark - สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "Fig 2: Proportion of Each Phase to Total Time"
+
+#, python-format
+msgid ""
+"จากกราฟพบว่าขั้นตอน Load ครอบครองเวลารวมมากที่สุดในทุกขนาดข้อมูล และสัดส่วนเพิ่มขึ้นเรื่อยๆ "
+"ตามปริมาณข้อมูล โดยที่ข้อมูล 1,000,000 แถว ขั้นตอน Load ใช้เวลาถึง 94%% ของเวลารวมทั้งหมด"
+msgstr ""
+"Airflow + PySpark: Test results showed that Airflow with PySpark provides "
+"the best performance for handling large data volumes, especially as data "
+"size increases. It also offers high flexibility and easy scalability."
+
+msgid "สาเหตุมาจาก:"
+msgstr "Reason:"
+
+msgid ""
+"PySpark JDBC Writer ในโค้ดไม่ได้ตั้งค่าการกระจายงาน ทำให้ข้อมูลทั้งหมดถูกส่งออกผ่าน JDBC "
+"เพียงช่องทางเดียว "
+"ซึ่งการส่งข้อมูลทั้งหมดผ่านกระบวนการเดียวจะใช้เวลานานมากเมื่อข้อมูลมีปริมาณมาก "
+"และทรัพยากรที่เหลืออยู่ในระบบก็ไม่ได้ถูกนำมาใช้งาน ยิ่งข้อมูลมีปริมาณมากขึ้นเท่าใด เวลาของขั้นตอน "
+"Load ก็เพิ่มขึ้นในอัตราที่สูงกว่าขั้นตอนอื่นอย่างชัดเจน"
+msgstr ""
+"<strong>Package.dtsx</strong> is a file that stores all the workflow steps. "
+"It is a document that tells what needs to be done and in what order. SSIS "
+"reads this file and performs tasks as specified. The reason for creating 3 "
+"separate files is that each file works with different data sizes. Separating "
+"files eliminates the need to change values every time you run, and reduces "
+"the chance of running the wrong size without realizing it."
+
+msgid "3. Airflow + PySpark: อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "3. Scalability of Each Phase"
+
+msgid "Fig 3 : Airflow + PySpark - อัตราการขยายตัวของแต่ละ Phase"
+msgstr "Fig 3: Scalability of Each Phase"
+
+msgid "จากกราฟพบว่า"
+msgstr "From the graph, found that"
+
+msgid "ขั้นตอน Load มีเส้นชันที่สุด"
+msgstr "Step 3: Configure"
+
+msgid ""
+"โดยเพิ่มขึ้นประมาณ 30 เท่า (955 ÷ 32.2 = 29.6 เท่า ≈ 30 เท่า) เมื่อข้อมูลเพิ่มขึ้น 100 เท่า"
+msgstr ""
+"Increasing about 30 times (955 ÷ 32.2 = 29.6 times ≈ 30 times) when data "
+"increases 100 times"
+
+msgid "สาเหตุที่ Load เพิ่มขึ้นเร็วที่สุดนั้น:"
+msgstr "Step 3: Execute (don't connect wire yet)"
+
+msgid ""
+"เมื่อเขียนข้อมูลไปยังฐานข้อมูลผ่าน JDBC นั้น PySpark ใช้จำนวน Partition "
+"ที่มีอยู่ในหน่วยความจำเพื่อควบคุมการทำงานพร้อมกัน"
+msgstr ""
+"Analyze the timing results from all phases of all 4 approaches and display "
+"them in graph format to compare ETL Pipeline performance."
+
+msgid "เมื่อไม่ได้ตั้งค่าการกระจายงาน ข้อมูลทั้งหมดจึงถูกส่งออกผ่านช่องทางเดียว"
+msgstr ""
+"Use the selected ETL Tool from test results to extract data from Staging "
+"Area for processing."
+
+msgid "สรุป"
+msgstr "Summary"
+
+# ===== SSIS PAGE =====
+msgid "จากการทดสอบ Airflow + PySpark ETL Pipeline สรุปได้ว่า"
+msgstr "ETL Pipeline Testing with SSIS"
+
+msgid "ใช้เวลามากที่สุดและมีอัตราการขยายตัวสูงที่สุด"
+msgstr "From Figure 3, calculate the Scaling Ratio using the formula:"
+
+#, python-format
+msgid "ที่ข้อมูล 1M แถว Load ใช้เวลา 94%% ของเวลารวม (955 วินาที จาก 1,014 วินาที)"
+msgstr ""
+"At 1M rows data, Load takes 94%% of total time (955 seconds out of 1,014 "
+"seconds)"
+
+msgid "สาเหตุหลักมาจากการส่งข้อมูลผ่าน JDBC เพียงช่องทางเดียว ไม่ได้ใช้การกระจายงาน"
+msgstr ""
+"From testing and timing, got file that can be summarized in table as follows:"
+
+msgid "Extract และ Transform มีประสิทธิภาพดี เพิ่มขึ้นในอัตราที่สมเหตุสมผล"
+msgstr "Extract and Transform perform well, increasing at reasonable rates"
+
+msgid "References"
+msgstr "References"
+
+# ===== Analysis Page Translations =====
+msgid "สรุปและวิเคราะห์ผล ETL Tool Comparison: 4 Tools"
+msgstr "Summary and Analysis of ETL Tool Comparison: 4 Tools"
+
+msgid "สรุปและวิเคราะห์ผล ETL Tool Comparison: 4 Tools สรุปผลการทดสอบ ETL"
+msgstr ""
+"Summary and Analysis of ETL Tool Comparison: 4 Tools - ETL Testing Results"
+
+msgid ""
+"โปรเจคนี้นำเครื่องมือ 4 อย่างมาทดสอบด้วยข้อมูลการตรวจจับการทุจริตบัตรเครดิต (Credit Card "
+"Transactions Fraud Detection) โดยแบ่งขนาดข้อมูลออกเป็นสามระดับ คือ 10,000 แถว "
+"100,000 แถว และ 1,000,000 แถว "
+"แล้วจับเวลาว่าแต่ละเครื่องมือใช้เวลานานแค่ไหนในแต่ละขั้นตอน "
+"เครื่องมือที่ใช้เวลาน้อยกว่าถือว่าดีกว่าในการทดสอบนี้"
+msgstr ""
+"This project tests 4 tools with Credit Card Transactions Fraud Detection "
+"data. The data is divided into three sizes: 10,000 rows, 100,000 rows, and "
+"1,000,000 rows. We measure how long each tool takes for each step. Tools "
+"that take less time are considered better in this test."
+
+msgid "ภาพรวม: แต่ละเครื่องมือใช้เวลารวมเท่าไร"
+msgstr "Overview: Total Time Used by Each Tool"
+
+msgid ""
+"กราฟนี้แสดงเวลารวมทั้งหมดของแต่ละเครื่องมือ แกนนอนคือขนาดข้อมูลแบ่งเป็นสามกลุ่ม "
+"แต่ละกลุ่มมีแท่งสี่แท่งเรียงกัน แท่งที่สูงกว่าหมายความว่าใช้เวลานานกว่า"
+msgstr ""
+"This graph shows the total time for each tool. The horizontal axis "
+"represents data sizes divided into three groups. Each group has four bars "
+"lined up. Taller bars mean longer execution time."
+
+msgid "เวลารวมทั้งหมดของแต่ละเครื่องมือ แยกตามขนาดข้อมูล"
+msgstr "Total time for each tool, separated by data size"
+
+msgid ""
+"จากตาราง Airflow+Pandas เร็วที่สุดในทุกขนาด โดยที่ข้อมูล 1 ล้านแถวก็ยังใช้เวลาเพียง 131 "
+"วินาทีขณะที่ SSIS ใช้ 459 วินาทีKNIME ใช้ 630 วินาทีและ Airflow+PySpark ช้าที่สุดด้วยเวลาถึง "
+"1,014 วินาทีหรือกว่า 16 นาทีสิ่งที่น่าสังเกตคือ Airflow+PySpark ช้าตั้งแต่ข้อมูลขนาดเล็กมาก "
+"แม้แต่ข้อมูล 10,000 แถว ก็ยังใช้เวลาถึง 53 วินาทีทั้งที่เครื่องมืออื่นทำเสร็จภายใน 23 "
+"วินาทีสาเหตุคือทุกครั้งที่รัน PySpark มันต้องเปิดระบบ Java ขึ้นมาก่อน ซึ่งกินเวลาประมาณ 20-30 "
+"วินาทีทุกครั้งโดยไม่ขึ้นกับว่ามีข้อมูลมากหรือน้อยแค่ไหน ทำให้ข้อมูลน้อยๆ เสียเปรียบอย่างชัดเจน"
+msgstr ""
+"From the chart, Airflow+Pandas is the fastest across all sizes. For 1 "
+"million rows, it only took 131 seconds, while SSIS took 459 seconds, KNIME "
+"took 630 seconds, and Airflow+PySpark was the slowest at 1,014 seconds or "
+"over 16 minutes. Notably, Airflow+PySpark is slow even with small data. Even "
+"with 10,000 rows, it took 53 seconds while other tools finished within 23 "
+"seconds. This is because every time PySpark runs, it must start the Java "
+"system first, which takes about 20-30 seconds regardless of data size. This "
+"puts small datasets at a clear disadvantage."
+
+msgid "สัดส่วนของแต่ละ Phase ต่อเวลารวม - แสดงถึงเวลาหายไปอยู่ในขั้นตอนไหนมากที่สุด"
+msgstr ""
+"Proportion of Each Phase to Total Time - Shows Which Step Takes the Most Time"
+
+msgid ""
+"กราฟนี้แบ่งแต่ละแท่งออกเป็นสามส่วนซ้อนกันตามสีสีน้ำเงินคือขั้นดึงข้อมูล(Extract) "
+"สีเขียวคือขั้นแปลงข้อมูล(Transform) สีแดงคือขั้นตอนบันทึกข้อมูล(load) "
+"ส่วนที่ใหญ่ที่สุดในแท่งคือขั้นตอนที่กินเวลามากที่สุดของเครื่องมือนั้น ซึ่งสามารถสรุปได้ดังนี้:"
+msgstr ""
+"This graph divides each bar into three stacked sections by color: blue is "
+"the Extract phase, green is the Transform phase, and red is the Load phase. "
+"The largest section in each bar represents the most time-consuming step for "
+"that tool. Summary as follows:"
+
+msgid "SSIS : ขั้นตอน Transform กินเวลาไปเกือบทั้งหมด"
+msgstr "SSIS: Transform Step Takes Almost All the Time"
+
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว SSIS ใช้เวลาแปลงข้อมูล(Transform)ไปถึง 449 วินาทีจากเวลารวมทั้งหมด "
+"459 วินาทีสามารถคิดด้วยวิธีคิดนี้"
+msgstr ""
+"For 1 million rows, SSIS took 449 seconds for Transform out of a total of "
+"459 seconds. This can be calculated as follows:"
+
+msgid "วิธีคิด"
+msgstr "Calculation Method:"
+
+#, python-format
+msgid ""
+"ดังนั้นคิดเป็น 97.8%% ของเวลาทั้งหมด ส่วนที่เหลืออีก 2.2%% เป็นการดึงและการโหลดข้อมูลรวมกัน"
+msgstr ""
+"Therefore, it accounts for 97.8%% of the total time. The remaining 2.2%% is "
+"for Extract and Load combined."
+
+msgid "KNIME : ขั้นตอน Load ข้อมูลคือจุดที่ช้าที่สุด"
+msgstr "KNIME: Load Step is the Slowest Point"
+
+#, python-format
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว KNIME ใช้เวลาบันทึกข้อมูลไป 470 วินาทีจากเวลารวม 630 วินาทีคิดเป็น 74.6%%"
+msgstr ""
+"For 1 million rows, KNIME took 470 seconds for Load out of a total of 630 "
+"seconds, accounting for 74.6%%."
+
+msgid ""
+"สาเหตุคือ KNIME ในขั้นตอนโหลดข้อมูลมีการใช้ DB Writer Node ทำให้ข้อมูลถูกส่งทีละ 1 แถว "
+"MySQL ต้องบันทึกและยืนยันทุกคำสั่ง ทำให้เวลา Load พุ่งสูง"
+msgstr ""
+"This is because KNIME uses DB Writer Node in the Load step, which sends data "
+"one row at a time. MySQL must save and commit each command, causing Load "
+"time to spike."
+
+msgid "Airflow+PySpark : ขั้นตอน Load ข้อมูลคือจุดที่ช้าที่สุดในทุกเครื่องมือ"
+msgstr "Airflow+PySpark: Load Step is the Slowest Point Across All Tools"
+
+#, python-format
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว PySpark ใช้เวลาบันทึกข้อมูลไปถึง 955 วินาทีจากเวลารวม 1,014 วินาทีคิดเป็น "
+"94.2%%"
+msgstr ""
+"For 1 million rows, PySpark took 955 seconds for Load out of a total of "
+"1,014 seconds, accounting for 94.2%%."
+
+msgid ""
+"ปัญหาเดียวกับ KNIME คือส่งข้อมูลทีละแถวผ่านช่องทางเดียว "
+"แต่รุนแรงกว่าเพราะไม่ได้ตั้งค่าการกระจายงาน ทำให้ข้อมูลทั้งหมดถูกส่งออกผ่าน JDBC "
+"เพียงช่องทางเดียว ทำให้เวลาพุ่งสูงกว่าทุกเครื่องมือ"
+msgstr ""
+"Same problem as KNIME - sending data row by row through a single channel. "
+"But worse because distributed processing wasn't configured. All data is sent "
+"out through a single JDBC connection, causing time to spike higher than all "
+"other tools."
+
+msgid "Airflow+Pandas : สัดส่วนทุกขั้นตอนพอสมดุล"
+msgstr "Airflow+Pandas: Balanced Proportions Across All Steps"
+
+#, python-format
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว Pandas ใช้เวลาบันทึกข้อมูลไป 102 วินาทีจากเวลารวม 131 วินาทีคิดเป็น "
+"78.1%%"
+msgstr ""
+"For 1 million rows, Pandas took 102 seconds for Load out of a total of 131 "
+"seconds, accounting for 78.1%%."
+
+msgid ""
+"Pandas ส่งข้อมูลเป็นกลุ่มใหญ่ทีเดียวแทนที่จะส่งทีละแถว "
+"ทำให้ขั้นบันทึกข้อมูลใช้เวลาน้อยกว่าเครื่องมืออื่นมาก"
+msgstr ""
+"Pandas sends data in large batches all at once instead of row by row, making "
+"the Load step much faster than other tools."
+
+msgid "เมื่อข้อมูลโตขึ้น จะเวลามากขึ้นแค่ไหน"
+msgstr "When Data Grows, How Much Does Time Increase?"
+
+msgid ""
+"เส้นของ Airflow+PySpark ชันที่สุดอย่างเห็นได้ชัด จากจุดเริ่มต้นที่ 53 วินาทีที่ข้อมูล 10,000 แถว "
+"พุ่งขึ้นไปถึง 1,014 วินาทีที่ข้อมูล 1 ล้านแถว เพิ่มขึ้น 19 เท่า เส้นของ SSIS และ KNIME "
+"มีความชันใกล้เคียงกัน ทั้งคู่เริ่มต้นต่ำแต่เวลาก็โตเร็วเมื่อข้อมูลใหญ่ขึ้น เส้นของ Airflow+Pandas "
+"ราบเรียบที่สุด โตจาก 2.2 วินาทีเป็น 131 วินาทีคิดเป็น 60 เท่า "
+"ซึ่งน้อยที่สุดในบรรดาเครื่องมือที่เริ่มต้นด้วยเวลาต่ำ"
+msgstr ""
+"The Airflow+PySpark line is visibly the steepest, starting at 53 seconds for "
+"10,000 rows and jumping to 1,014 seconds for 1 million rows - a 19x "
+"increase. The SSIS and KNIME lines have similar slopes. Both start low but "
+"time grows quickly as data size increases. The Airflow+Pandas line is the "
+"smoothest, growing from 2.2 seconds to 131 seconds - a 60x increase, which "
+"is the smallest among tools that start with low time."
+
+msgid "ตารางเปรียบเทียบ Scalability"
+msgstr "Scalability Comparison Table"
+
+msgid "ช่วงที่ข้อมูลโต"
+msgstr "Data Growth Range"
+
+msgid "ข้อมูลโต 10 เท่า"
+msgstr "Data grows 10x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 16 เท่า"
+msgstr "Time increased 16x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 2.5 เท่า"
+msgstr "Time increased 2.5x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 6 เท่า"
+msgstr "Time increased 6x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 10 เท่า"
+msgstr "Time increased 10x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 12 เท่า"
+msgstr "Time increased 12x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 7.5 เท่า"
+msgstr "Time increased 7.5x"
+
+msgid "ข้อมูลโต 100 เท่า"
+msgstr "Data grows 100x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 172 เท่า"
+msgstr "Time increased 172x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 200 เท่า"
+msgstr "Time increased 200x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 19 เท่า"
+msgstr "Time increased 19x"
+
+msgid "ใช้เวลาเพิ่มขึ้น 60 เท่า"
+msgstr "Time increased 60x"
+
+msgid ""
+"จากตารางในแถวที่ 10k → 1m เป็นข้อมูลโต 100 เท่าจะสังเกตได้ว่า PySpark ใช้เวลาเพิ่มขึ้น 19 "
+"เท่าซึ่งถ้าเทียบกับเครื่องมืออื่นๆ ถือว่าใช้เวลาน้อยที่สุดแต่ต้องคำนึงด้วยว่า PySpark จุดเริ่มต้น คือ 53 "
+"วินาทีหากเทียบกับเครื่องมืออื่นๆ ที่มีจุดเริ่มต้นน้อยกว่า เช่นหากเปรียบเทียบกับ Pandas เริ่มที่ 2.2 "
+"วินาทีดังนั้น PySpark จึงยังช้ากว่า Pandas ตลอดทุกขนาด แม้อัตราการโตจะดูดีกว่าก็ตาม"
+msgstr ""
+"From the table row 10k → 1m where data grows 100x, we can see that PySpark's "
+"time increased only 19x, which is the smallest compared to other tools. "
+"However, we must consider that PySpark's starting point is 53 seconds, "
+"compared to other tools with lower starting points. For example, Pandas "
+"starts at 2.2 seconds. Therefore, PySpark is still slower than Pandas across "
+"all sizes, even though its growth rate looks better."
+
+msgid "การเปรียบเทียบเวลาในการประมวลผล ETL ตามขนาดข้อมูลในสเกลลอการิทึม"
+msgstr "Comparison of ETL Processing Time by Data Size on Logarithmic Scale"
+
+msgid ""
+"ปัญหาของกราฟที่ 3 คือ เมื่อ PySpark สูงถึง 1,014 วินาทีเส้นของ Pandas ที่ 131 "
+"วินาทีจะแทบแนบติดกับแกนล่าง ทำให้มองไม่เห็นรายละเอียด กราฟที่ 4 แก้ปัญหานี้ด้วยการปรับแกน Y "
+"ให้แต่ละช่วงกระโดดขึ้น 10 เท่าแทนที่จะเพิ่มขึ้นทีละเท่ากัน"
+msgstr ""
+"The problem with Graph 3 is that when PySpark reaches 1,014 seconds, the "
+"Pandas line at 131 seconds is almost stuck to the bottom axis, making "
+"details invisible. Graph 4 solves this by adjusting the Y axis so each "
+"interval jumps by 10x instead of increasing by equal amounts."
+
+msgid ""
+"วิธีอ่านกราฟนี้ต่างจากกราฟที่ 3 ตรงที่ระยะห่างในแนวตั้งไม่ได้วัดว่าต่างกันกี่วินาทีแต่วัดว่าต่างกันกี่เท่า "
+"เส้นที่อยู่สูงกว่าในกราฟนี้ยังหมายถึงใช้เวลานานกว่าเสมอ "
+"และเส้นที่ชันกว่าหมายถึงโตเร็วกว่าเมื่อข้อมูลเพิ่มขึ้น"
+msgstr ""
+"Reading this graph differs from Graph 3 in that vertical distance doesn't "
+"measure the difference in seconds, but rather how many times different. "
+"Lines that are higher still mean longer execution time. Steeper lines mean "
+"faster growth when data increases."
+
+msgid ""
+"ผลที่เห็นได้ชัดจากกราฟนี้คือ เส้นของ Airflow+Pandas อยู่ต่ำสุดตลอดและความชันค่อนข้างคงที่ "
+"เส้นของ SSIS และ KNIME เกือบทับกันตลอด แสดงว่าพฤติกรรมการโตของเวลาคล้ายกันมาก "
+"และเส้นของ PySpark อยู่สูงสุดตลอดและยิ่งชันขึ้นในช่วง 100k ถึง 1m ซึ่งบอกว่ายิ่งข้อมูลมากขึ้น "
+"PySpark ยิ่งช้าขึ้นในอัตราที่เร็วขึ้นด้วย"
+msgstr ""
+"Clear results from this graph: The Airflow+Pandas line is lowest throughout "
+"with fairly constant slope. The SSIS and KNIME lines almost overlap "
+"throughout, showing very similar time growth behavior. The PySpark line is "
+"highest throughout and gets steeper in the 100k to 1m range, indicating that "
+"as data increases, PySpark gets slower at an accelerating rate."
+
+msgid "บทสรุป"
+msgstr "Summary"
+
+msgid ""
+"จากการทดสอบทั้งหมด Airflow+Pandas ชนะในทุกขนาดข้อมูล "
+"เพราะใช้วิธีเรียบง่ายที่เหมาะกับการทำงานบนเครื่องเดียว "
+"คือส่งข้อมูลเป็นกลุ่มใหญ่และไม่ต้องเปิดระบบพิเศษก่อนทำงาน"
+msgstr ""
+"From all tests, Airflow+Pandas wins across all data sizes because it uses a "
+"simple method suitable for single-machine operation: sending data in large "
+"batches without needing to start special systems before running."
+
+msgid ""
+"SSIS เร็วในขั้นดึงและบันทึกข้อมูล(Load) แต่ช้าในขั้นแปลงข้อมูล(Transform) "
+"เพราะทำทีละแถวและไม่สามารถเขียนทับคอลัมน์เดิมได้โดยตรง ต่างจาก Python และ KNIME "
+"ที่มองข้อมูลเป็นตารางทั้งก้อน จึงแก้ไขค่าในคอลัมน์เดิมได้ทันทีในคำสั่งเดียว KNIME "
+"ดึงข้อมูลได้เร็วที่สุดในทุกขนาดแต่บันทึกข้อมูล(Load)ช้าเพราะส่งทีละแถวเช่นกัน "
+"ทั้งสองเครื่องมือนี้การใช้เวลาใช้การประมวลผลในแต่ละขั้นตอนที่คล้ายกัน"
+msgstr ""
+"SSIS is fast in Extract and Load but slow in Transform because it processes "
+"row by row and cannot directly overwrite existing columns. Unlike Python and "
+"KNIME which view data as whole tables, allowing them to modify column values "
+"immediately in a single command. KNIME extracts data fastest across all "
+"sizes but Load is slow because it also sends row by row. Both tools have "
+"similar processing time patterns across steps."
+
+msgid ""
+"Airflow+PySpark ช้าที่สุด เพราะออกแบบมาสำหรับการทำงานบนหลายเครื่องพร้อมกัน "
+"เมื่อใช้บนเครื่องเดียวจึงยังไม่แสดงศักยภาพจริง การเปิดระบบ Java "
+"และการบันทึกข้อมูล(Load)ทีละแถวรวมกันทำให้ช้ากว่าทุกเครื่องมือในทุกขนาดที่ทดสอบ"
+msgstr ""
+"Airflow+PySpark is the slowest because it's designed for multi-machine "
+"operation. When used on a single machine, it doesn't show its true "
+"potential. Starting the Java system and loading data row by row combined "
+"make it slower than all tools across all tested sizes."
+
+msgid "สมมติฐานกับผลจริง"
+msgstr "Hypotheses vs. Actual Results"
+
+msgid "ผลที่ได้จากการทดสอบแตกต่างจากที่คาดไว้เกือบทุกแนวทาง กล่าวคือ"
+msgstr "Test results differ from expectations in almost every aspect, namely:"
+
+msgid "ที่คาดว่าจะเร็วที่สุด ผลจริงได้อันดับที่ 2 เพราะขั้นตอนแปลงข้อมูลใช้เวลานานกว่าที่คาด"
+msgstr ""
+"Expected to be fastest, actually ranked 2nd because the Transform step took "
+"longer than expected"
+
+msgid "ที่คาดว่าจะช้าที่สุด ผลจริงได้อันดับที่ 3 ไม่ใช่ช้าที่สุดอย่างที่คาด"
+msgstr ""
+"Expected to be slowest, actually ranked 3rd - not the slowest as expected"
+
+msgid "Airflow ร่วมกับ PySpark"
+msgstr "Airflow with PySpark"
+
+msgid "ที่คาดว่าจะอยู่ในระดับกลาง ผลจริงกลับช้าที่สุดในทุกขนาดข้อมูล"
+msgstr ""
+"Expected to be mid-level, actually turned out slowest across all data sizes"
+
+msgid "Airflow ร่วมกับ pandas"
+msgstr "Airflow with pandas"
+
+msgid "ที่คาดว่าจะใกล้เคียงกับ PySpark ผลจริงกลับเร็วที่สุดในทุกขนาดข้อมูล"
+msgstr ""
+"Expected to be similar to PySpark, actually turned out fastest across all "
+"data sizes"
+
+msgid ""
+"จากผลที่ได้ทำให้กลุ่มนักศึกษาผู้จัดทำได้บทเรียนว่า "
+"เครื่องมือที่ดูซับซ้อนหรือทรงพลังที่สุดไม่ได้หมายความว่าจะเร็วที่สุดเสมอไป "
+"ขึ้นอยู่กับว่าใช้กับข้อมูลขนาดใดและในสภาพแวดล้อมแบบใดด้วย"
+msgstr ""
+"From these results, the student team learned that the most complex or "
+"powerful-looking tool doesn't always mean the fastest. It depends on what "
+"data size it's used with and in what environment."
+
+msgid "ดูรายละเอียดแต่ละเครื่องมือ"
+msgstr "View Individual Tool Details"
+
+msgid "กลับหน้าแรก"
+msgstr "Back to Home"
+
+# Navigation and Common
+msgid "Home"
+msgstr "Home"
+
+# ===== HOME PAGE =====
+msgid ""
+"การเปรียบเทียบประสิทธิภาพ ETL Pipeline 4 แนวทาง ด้วย SSIS, KNIME, Airflow ร่วมกับ "
+"PySpark และ Airflow ร่วมกับ Pandas"
+msgstr ""
+"Comparing Performance of 4 ETL Pipeline Approaches using SSIS, KNIME, "
+"Airflow with PySpark, and Airflow with Pandas"
+
+msgid "บทนำ"
+msgstr "Introduction"
+
+msgid ""
+"โครงการนี้เกิดขึ้นจากความต้องการจัดการข้อมูลปริมาณมากที่เกิดขึ้นภายในมหาวิทยาลัย "
+"โดยเป็นส่วนหนึ่งของ Senior Project อย่างไรก็ตาม การนำเสนอในครั้งนี้ไม่ได้ครอบคลุมทุกด้านของ "
+"Senior Project แต่มุ่งเน้นนำเสนอเฉพาะมุมมองด้าน Processing Performance "
+"เพียงด้านเดียวเท่านั้น"
+msgstr ""
+"This project emerged from the need to manage large volumes of data within "
+"the university as part of a Senior Project. However, this presentation does "
+"not cover all aspects of the Senior Project, but focuses solely on the "
+"Processing Performance perspective."
+
+msgid ""
+"การเลือก 4 แนวทางในการทดสอบครั้งนี้มีที่มาจากบริบทการทำงานจริง โดย SSIS "
+"ถูกเลือกเนื่องจากมหาวิทยาลัยมี Microsoft License อยู่แล้ว KNIME ถูกเลือกเนื่องจากเป็น Low-"
+"code Tool ที่ไม่จำเป็นต้องอาศัยความเชี่ยวชาญด้านการเขียนโค้ด และ Airflow "
+"ถูกเลือกโดยกลุ่มนักศึกษาผู้จัดทำซึ่งมีความถนัดด้าน Python มากกว่า C# โดย Airflow "
+"ได้ทดสอบร่วมกับ 2 Processing Engine คือ PySpark และ pandas เพื่อเปรียบเทียบว่า Engine "
+"ที่ออกแบบมาสำหรับ Big Data โดยเฉพาะอย่าง PySpark จะให้ผลลัพธ์ที่ดีกว่า pandas หรือไม่"
+msgstr ""
+"The selection of these 4 testing approaches originated from real-world "
+"working contexts. SSIS was chosen because the university already has a "
+"Microsoft License. KNIME was selected as it is a Low-code Tool that does not "
+"require coding expertise. Airflow was chosen by the student project team who "
+"are more proficient in Python than C#. Airflow was tested with 2 Processing "
+"Engines: PySpark and pandas, to compare whether the engine specifically "
+"designed for Big Data like PySpark would perform better than pandas."
+
+msgid ""
+"การทดสอบทั้งหมดดำเนินการบนเครื่องคอมพิวเตอร์ส่วนบุคคล โดยเครื่องมือทุกตัวได้รับการติดตั้งบน "
+"Server ของมหาวิทยาลัย ซึ่งกลุ่มนักศึกษาผู้จัดทำสามารถเข้าถึงและดำเนินการทดสอบได้จากระยะไกล "
+"ทำให้สามารถรันงานได้เสมือนการใช้งานจริงในสภาพแวดล้อมขององค์กร โดยใช้ชุดข้อมูล Credit "
+"Card Fraud Detection จาก Kaggle ทดสอบใน 3 ขนาด ได้แก่ 10,000 100,000 และ "
+"1,000,000 แถว วัดผลผ่านเวลาที่ใช้จริงในแต่ละขั้นตอน ได้แก่ Extract, Transform และ Load "
+"เพื่อให้ได้ข้อสรุปที่เป็นประโยชน์สำหรับการตัดสินใจเลือกใช้แนวทางที่เหมาะสมกับบริบทขององค์กร"
+msgstr ""
+"All tests were conducted on personal computers, with all tools installed on "
+"the university's server, which the student project team could access and "
+"test remotely, allowing them to run jobs as if in a real organizational "
+"environment. Using the Credit Card Fraud Detection dataset from Kaggle, "
+"tests were performed on 3 sizes: 10,000, 100,000, and 1,000,000 rows, "
+"measuring actual time spent in each phase: Extract, Transform, and Load, to "
+"derive useful conclusions for deciding on an approach suitable for the "
+"organizational context."
+
+msgid "สถาปัตยกรรมระบบ"
+msgstr "System Architecture"
+
+msgid ""
+"โครงการนี้มีสถาปัตยกรรม 2 รูปแบบ ได้แก่ สถาปัตยกรรมสำหรับการทดสอบที่ใช้จริงในโครงการนี้ "
+"และสถาปัตยกรรมระบบสำหรับการใช้งานจริงในมหาวิทยาลัยที่ออกแบบไว้เป็นเป้าหมายปลายทาง "
+"โดยผลที่ได้จากการทดสอบในโครงการนี้จะเป็นข้อมูลประกอบการตัดสินใจเลือก ETL Tool "
+"ที่เหมาะสมสำหรับนำไปใช้ในระบบจริงต่อไป"
+msgstr ""
+"This project has 2 architectural designs: the testing architecture actually "
+"used in this project, and the production system architecture designed for "
+"real university use as the target destination. The results from testing in "
+"this project will serve as information to support the decision on selecting "
+"an appropriate ETL Tool for implementation in the actual system."
+
+msgid "1. สถาปัตยกรรมสำหรับการทดสอบ (Test Framework Architecture)"
+msgstr "1. Test Framework Architecture"
+
+msgid "จากภาพสามารถอธิบายได้ดังนี้"
+msgstr "The diagram can be explained as follows:"
+
+# ===== ADDITIONAL HOME PAGE TRANSLATIONS =====
+msgid "1. Ingest :"
+msgstr "1. Ingest:"
+
+msgid ""
+"นำเข้าข้อมูลจากไฟล์ fraudTrain.csv เข้าสู่ SQL Server เพื่อใช้เป็น Staging Area "
+"โดยแบ่งข้อมูลออกเป็น 3 ขนาด ได้แก่ fraud_10k, fraud_100k และ fraud_1m"
+msgstr ""
+"Import data from fraudTrain.csv file into SQL Server to use as Staging Area, "
+"dividing data into 3 sizes: fraud_10k, fraud_100k, and fraud_1m"
+
+msgid "2. Extract :"
+msgstr "2. Extract:"
+
+msgid ""
+"ดึงข้อมูลจาก SQL Server (Staging Area) เพื่อนำไปประมวลผลในแต่ละ ETL Tool "
+"ในขั้นตอนถัดไป"
+msgstr ""
+"Extract data from SQL Server (Staging Area) to process in each ETL Tool in "
+"the next step"
+
+msgid "3. Transform :"
+msgstr "3. Transform:"
+
+msgid ""
+"ประมวลผลข้อมูลด้วย 4 แนวทาง ได้แก่ SSIS, KNIME, Airflow ร่วมกับ PySpark และ Airflow "
+"ร่วมกับ pandas "
+"โดยการแปลงข้อมูลจะทำเหมือนกันทุกแนวทางเพื่อให้เกิดความเป็นมาตรฐานเดียวกันของข้อมูล ได้แก่"
+msgstr ""
+"Process data using 4 approaches: SSIS, KNIME, Airflow with PySpark, and "
+"Airflow with pandas. Data transformation is done identically across all "
+"approaches to ensure data standardization, including:"
+
+msgid "ทำการเข้ารหัสข้อมูลส่วนตัวด้วย SHA-256"
+msgstr "Hash personal data with SHA-256"
+
+msgid "แปลง Data Type"
+msgstr "Convert Data Type"
+
+msgid "กรองข้อมูลที่ไม่สมบูรณ์ออก"
+msgstr "Filter out incomplete data"
+
+msgid "เปลี่ยนชื่อคอลัมน์"
+msgstr "Rename columns"
+
+msgid "4. Load :"
+msgstr "4. Load:"
+
+msgid ""
+"บันทึกข้อมูลที่ผ่านการ Transform แล้วลงใน MySQL "
+"พร้อมจับเวลาในทุกขั้นตอนเพื่อนำไปวิเคราะห์เปรียบเทียบด้วย MATLAB"
+msgstr ""
+"Save transformed data to MySQL while timing all phases for comparative "
+"analysis with MATLAB."
+
+msgid "5. Matlab :"
+msgstr "5. Matlab:"
+
+msgid ""
+"นำผลเวลาที่จับได้จากทุกขั้นตอนของทั้ง 4 "
+"แนวทางมาวิเคราะห์และแสดงผลในรูปแบบกราฟเพื่อเปรียบเทียบประสิทธิภาพ ETL Pipeline"
+msgstr ""
+"Analyze the timing results from all phases of all 4 approaches and display "
+"them in graph format to compare ETL Pipeline performance."
+
+msgid "2. สถาปัตยกรรมระบบสำหรับการใช้งานจริง (Production System Architecture)"
+msgstr "2. Production System Architecture"
+
+msgid ""
+"จากภาพเป็นเพียงแนวคิดเท่านั้น "
+"ผลที่ได้จากการทดสอบในโครงการนี้จะเป็นข้อมูลประกอบการตัดสินใจเลือก ETL Tool "
+"ที่เหมาะสมสำหรับนำไปใช้ในระบบจริงต่อไป "
+"อย่างไรก็ตามการตัดสินใจดังกล่าวต้องอาศัยความเห็นจากบุคลากรหลายฝ่ายที่มีส่วนร่วมในการพัฒนาระบบประกอบด้วย"
+msgstr ""
+"The diagram is only a concept. The results from testing in this project will "
+"serve as information to support the decision on selecting an appropriate ETL "
+"Tool for implementation in the actual system. However, such decisions must "
+"rely on input from various personnel involved in system development."
+
+msgid ""
+"รับข้อมูลจากแหล่งข้อมูลหลากหลายรูปแบบที่เกิดขึ้นจริงในมหาวิทยาลัย ได้แก่ CSV, API, JSON และ "
+"XLS เข้าสู่ SQL Server เพื่อใช้เป็น Staging Area "
+"และได้มีการออกแบบเพื่อเตรียมการรับข้อมูลประเภทข้อมูลที่ไม่มีโครงสร้าง (unstructured data) "
+"ในอนาคตอีกด้วย"
+msgstr ""
+"Receive data from various sources actually occurring in the university, "
+"including CSV, API, JSON, and XLS, into SQL Server to use as Staging Area, "
+"and designed to prepare for receiving unstructured data in the future as "
+"well."
+
+msgid ""
+"ใช้ ETL Tool ที่ได้รับการคัดเลือกจากผลการทดสอบ ดึงข้อมูลจาก Staging Area "
+"เพื่อนำไปประมวลผล"
+msgstr ""
+"Use the selected ETL Tool from test results to extract data from Staging "
+"Area for processing."
+
+msgid ""
+"ประมวลผลและทำความสะอาดข้อมูลด้วย ETL Tool ที่คัดเลือกแล้ว ทั้งนี้ขั้นตอน Transform "
+"จะครอบคลุมการทำความสะอาดข้อมูล การเข้ารหัสข้อมูลส่วนตัว "
+"และการแปลงรูปแบบข้อมูลให้พร้อมใช้งาน โดย Tool "
+"ที่จะใช้ยังอยู่ระหว่างการพิจารณาจากผลการทดสอบของโครงการนี้"
+msgstr ""
+"Process and clean data with the selected ETL Tool. The Transform phase will "
+"cover data cleaning, personal data encryption, and data format conversion "
+"for use. The tool to be used is still under consideration based on the test "
+"results of this project."
+
+msgid ""
+"กระจายข้อมูลที่ผ่านการประมวลผลแล้วไปยัง MySQL ของแต่ละหน่วยงานในมหาวิทยาลัย "
+"และแสดงผลผ่าน Power BI เพื่อเป็นการประกอบการตัดสินใจของผู้บริหารและบุคลากรในมหาวิทยาลัย"
+msgstr ""
+"Distribute processed data to MySQL of each department in the university, and "
+"display results through Power BI to support decision-making by executives "
+"and personnel in the university."
+
+msgid "สมมติฐาน"
+msgstr "Hypothesis"
+
+msgid ""
+"ก่อนเริ่มการทดสอบ กลุ่มนักศึกษาผู้จัดทำได้ตั้งสมมติฐานเกี่ยวกับประสิทธิภาพของแต่ละแนวทางไว้ดังนี้"
+msgstr ""
+"Before starting the tests, the student project team established the "
+"following hypotheses about the performance of each approach:"
+
+msgid "1. SSIS :"
+msgstr "1. SSIS:"
+
+msgid ""
+"คาดว่าจะมีประสิทธิภาพสูงสุด เนื่องจาก SSIS ใช้ภาษา C# ในการประมวลผล "
+"ซึ่งอยู่ในตระกูลเดียวกับภาษา C++ ที่ขึ้นชื่อด้านความเร็วในการประมวลผล "
+"จึงคาดว่าจะได้เปรียบด้านความเร็วเหนือแนวทางอื่น"
+msgstr ""
+"Expected to have the highest performance, as SSIS uses C# for processing, "
+"which belongs to the same family as C++, known for processing speed, thus "
+"expected to have a speed advantage over other approaches."
+
+msgid "2. KNIME :"
+msgstr "2. KNIME:"
+
+msgid ""
+"คาดว่าจะมีประสิทธิภาพต่ำที่สุด เนื่องจากเป็น Low-code Tool "
+"ที่เน้นความง่ายในการใช้งานมากกว่าประสิทธิภาพ การทำงานผ่านแบบ Low-code "
+"อาจมีประสิทธิภาพต่ำกว่าการเขียนโค้ดโดยตรง"
+msgstr ""
+"Expected to have the lowest performance, as it is a Low-code Tool that "
+"emphasizes ease of use over performance. Low-code operations may have lower "
+"performance than direct coding."
+
+msgid "3. Airflow ร่วมกับ PySpark :"
+msgstr "3. Airflow with PySpark:"
+
+msgid ""
+"คาดว่าจะมีประสิทธิภาพอยู่ในระดับปานกลาง เนื่องจาก PySpark ถูกออกแบบมาสำหรับข้อมูลระดับ "
+"Terabyte ขึ้นไป ในขณะที่ข้อมูลที่ใช้ทดสอบมีขนาดสูงสุดเพียง 1 ล้านแถว จึงคาดว่า PySpark "
+"จะไม่ได้แสดงศักยภาพเต็มที่ แต่ก็ไม่ช้าเกินไป"
+msgstr ""
+"Expected to have moderate performance, as PySpark is designed for terabyte-"
+"scale data and above, while the test data has a maximum size of only 1 "
+"million rows, so PySpark is expected not to show its full potential, but not "
+"too slow either."
+
+msgid "4. Airflow ร่วมกับ pandas :"
+msgstr "4. Airflow with pandas:"
+
+msgid ""
+"คาดว่าจะมีประสิทธิภาพใกล้เคียงกับ Airflow ร่วมกับ PySpark เนื่องจากใช้ Orchestrator "
+"ตัวเดียวกัน แตกต่างกันเพียง Processing Engine เท่านั้น"
+msgstr ""
+"Expected to have similar performance to Airflow with PySpark, as it uses the "
+"same Orchestrator, differing only in the Processing Engine."
+
+msgid "สเปกคอมพิวเตอร์ในการทดสอบ"
+msgstr "Computer Specifications for Testing"
+
+msgid "การทดสอบทั้งหมดในโครงการนี้ดำเนินการบนเครื่องคอมพิวเตอร์ที่มีสเปกดังนี้"
+msgstr ""
+"All tests in this project were conducted on a computer with the following "
+"specifications:"
+
+msgid "รายการ"
+msgstr "Item"
+
+msgid "ระบบปฏิบัติการ"
+msgstr "Operating System"
+
+msgid ""
+"การทดลองในครั้งนี้ดำเนินการทดสอบทั้ง 4 แนวทางบนชุดข้อมูลและเงื่อนไขเดียวกันทุกประการ "
+"โดยแต่ละแนวทางจะถูกทดสอบกับข้อมูล 3 ขนาด ได้แก่ 10,000 100,000 และ 1,000,000 แถว "
+"พร้อมจับเวลาแยกในแต่ละขั้นตอน ได้แก่ Extract Transform และ Load "
+"เพื่อให้ผลการเปรียบเทียบมีความเที่ยงตรงและสามารถนำไปอ้างอิงได้โดยจะนำเสนอผลการทดลองของ "
+"SSIS, KNIME, Airflow ร่วมกับ PySpark และ Airflow ร่วมกับ pandas ตามลำดับ"
+msgstr ""
+"This experiment tested all 4 approaches on the same dataset and conditions. "
+"Each approach was tested with 3 data sizes: 10,000, 100,000, and 1,000,000 "
+"rows, with separate timing for each phase: Extract, Transform, and Load, to "
+"ensure accurate and reliable comparison results. The experimental results "
+"for SSIS, KNIME, Airflow with PySpark, and Airflow with pandas will be "
+"presented in order."
+
+msgid "เรียนรู้เพิ่มเติมเกี่ยวกับแต่ละเครื่องมือ"
+msgstr "Learn More About Each Tool"
+
+msgid "เลือกเครื่องมือเพื่อดูรายละเอียดการทดลองและผลการวิเคราะห์:"
+msgstr "Select a tool to view detailed experiments and analysis results:"
+
+msgid "ดูการวิเคราะห์และสรุปผลโดยรวม"
+msgstr "View Overall Analysis and Summary"
+
+msgid "Phase 0 — เตรียมระบบ KNIME (Step-by-Step)"
+msgstr "Phase 0 — Prepare KNIME System (Step-by-Step)"
+
+msgid "KNIME คืออะไร?"
+msgstr "What is KNIME?"
+
+msgid ""
+"KNIME คือโปรแกรมสำหรับจัดการและประมวลผลข้อมูล ทำงานด้วยการลากและวางลงบนพื้นที่ทำงาน "
+"แล้วลากเส้นเชื่อมเข้าหากัน แต่ละจุด(Node) ทำหน้าที่อย่างใดอย่างหนึ่ง"
+msgstr ""
+"KNIME is a program for data management and processing. It works by dragging "
+"and dropping onto the workspace, then drawing lines to connect them. Each "
+"point (Node) performs a specific function."
+
+msgid "Step 1: ติดตั้ง KNIME Analytics Platform"
+msgstr "Step 1: Install KNIME Analytics Platform"
+
+msgid "เลือก KNIME Analytics Platform (ฟรีไม่ต้องซื้อ)"
+msgstr "Select KNIME Analytics Platform (free, no purchase required)"
+
+msgid "เลือก OS ของเครื่องตัวเอง (Windows / Mac / Linux)"
+msgstr "Select your OS (Windows / Mac / Linux)"
+
+msgid "ดาวน์โหลดแล้ว Install ตามปกติ"
+msgstr "Download and Install normally"
+
+msgid "เปิดโปรแกรมขึ้นมา จะเห็นหน้า Workbench"
+msgstr "Open the program, you will see the Workbench"
+
+msgid ""
+"<strong>หน้าตาที่จะเห็น:</strong> มีช่อง Node Repository ด้านซ้าย, พื้นที่ว่างกลางจอ "
+"(Workflow Editor), และ Node Description ด้านขวา"
+msgstr ""
+"<strong>What you'll see:</strong> Node Repository on the left, blank space "
+"in the center (Workflow Editor), and Node Description on the right"
+
+msgid "Step 2: ติดตั้ง Extension: KNIME Database"
+msgstr "Step 2: Install Extension: KNIME Database"
+
+msgid "KNIME ต้องติดตั้ง Extension เพิ่มก่อน ถึงจะใช้ DB Node ได้"
+msgstr ""
+"KNIME requires installing additional Extensions before DB Nodes can be used"
+
+msgid "ที่ Menu Bar บนสุด → Install Extensions"
+msgstr "At the top Menu Bar → Install Extensions"
+
+msgid "ในช่อง Search พิมพ์ว่า <code>SQL Server</code>"
+msgstr "In the Search box, type <code>SQL Server</code>"
+
+msgid "ติ๊กถูกที่: <strong>KNIME Microsoft JDBC Driver For SQL Server</strong>"
+msgstr "Check: <strong>KNIME Microsoft JDBC Driver For SQL Server</strong>"
+
+msgid "กด Install (หรือ Next)"
+msgstr "Click Install (or Next)"
+
+msgid "รอติดตั้ง แล้ว Restart KNIME"
+msgstr "Wait for installation, then Restart KNIME"
+
+msgid "Step 3: ดาวน์โหลด JDBC Driver (สำคัญมาก)"
+msgstr "Step 3: Download JDBC Driver (Very Important)"
+
+msgid "KNIME ต้องการ JDBC Driver เพื่อเชื่อมต่อกับ Database ทั้งสอง"
+msgstr "KNIME requires JDBC Driver to connect to both Databases"
+
+msgid "ดาวน์โหลด MySQL Connector/J"
+msgstr "Download MySQL Connector/J"
+
+msgid "ที่ช่อง Select Operating System เลือก <strong>Platform Independent</strong>"
+msgstr ""
+"In the Select Operating System box, choose <strong>Platform Independent</"
+"strong>"
+
+msgid "จะเห็นไฟล์ 2 แบบ ดาวน์โหลดแบบ <strong>ZIP Archive</strong>"
+msgstr "You'll see 2 file types, download the <strong>ZIP Archive</strong>"
+
+msgid ""
+"กด Download → จะมีหน้าให้ Login → กด <strong>No thanks, just start my download</"
+"strong> ได้เลย ไม่ต้องสมัคร"
+msgstr ""
+"Click Download → a Login page will appear → click <strong>No thanks, just "
+"start my download</strong>, no registration needed"
+
+msgid "แตกไฟล์ ZIP ที่ดาวน์โหลดมา"
+msgstr "Extract the downloaded ZIP file"
+
+msgid ""
+"ข้างในจะมีไฟล์ชื่อประมาณ <code>mysql-connector-j-9.x.x.jar</code> → "
+"เอาไฟล์นี้ไว้ที่ไหนก็ได้ที่จำได้ เช่น <code>C:\\jdbc\\mysql-connector-j-9.x.x.jar</code>"
+msgstr ""
+"Inside you'll find a file named approximately <code>mysql-connector-"
+"j-9.x.x.jar</code> → save this file anywhere you can remember, e.g., <code>C:"
+"\\jdbc\\mysql-connector-j-9.x.x.jar</code>"
+
+msgid "Step 4: เพิ่ม JDBC Driver ใน KNIME"
+msgstr "Step 4: Add JDBC Driver in KNIME"
+
+msgid "เปิด KNIME ขึ้นมา"
+msgstr "Open KNIME"
+
+msgid "คลิก Preferences ⚙️ มุมขวาบน"
+msgstr "Click Preferences ⚙️ in the top right corner"
+
+msgid "ด้านซ้าย ขยาย KNIME → คลิก Databases"
+msgstr "On the left, expand KNIME → click Databases"
+
+msgid "กดปุ่ม Add ด้านขวา"
+msgstr "Click the Add button on the right"
+
+msgid "กรอกข้อมูลทีละช่อง:"
+msgstr "Fill in the information field by field:"
+
+msgid ""
+"URL template: ลบของเดิมออก แล้วพิมพ์ <code>jdbc:mysql://"
+"&lt;host&gt;:&lt;port&gt;/&lt;database&gt;</code>"
+msgstr ""
+"URL template: delete the original, then type <code>jdbc:mysql://"
+"&lt;host&gt;:&lt;port&gt;/&lt;database&gt;</code>"
+
+msgid "Database type: ปล่อยเป็น default ไว้ก่อน"
+msgstr "Database type: leave as default for now"
+
+msgid "กด Add file"
+msgstr "Click Add file"
+
+msgid ""
+"ไปที่โฟลเดอร์ที่ดาวน์โหลด <code>mysql-connector-j-9.x.x.jar</code> มาจาก Step 3"
+msgstr ""
+"Go to the folder where you downloaded <code>mysql-connector-j-9.x.x.jar</"
+"code> from Step 3"
+
+msgid "เลือกไฟล์ <code>mysql-connector-j-9.x.x.jar</code>"
+msgstr "Select the file <code>mysql-connector-j-9.x.x.jar</code>"
+
+msgid "กด Open"
+msgstr "Click Open"
+
+msgid ""
+"กด Find driver classes → จะเด้งให้เลือก → เลือก <code>com.mysql.cj.jdbc.Driver</"
+"code>"
+msgstr ""
+"Click Find driver classes → a selection will pop up → select "
+"<code>com.mysql.cj.jdbc.Driver</code>"
+
+msgid "Step 5: สร้างตาราง fraud_clean_knime ใน MySQL"
+msgstr "Step 5: Create fraud_clean_knime table in MySQL"
+
+msgid "เปิด MySQL Workbench แล้วรัน SQL นี้"
+msgstr "Open MySQL Workbench and run this SQL"
+
+msgid "ตรวจสอบว่าสร้างสำเร็จด้วย:"
+msgstr "Verify creation success with:"
+
+msgid "Step 6: สร้าง KNIME Workflow ใหม่"
+msgstr "Step 6: Create new KNIME Workflow"
+
+msgid "ใน KNIME คลิกขวาที่ LOCAL (Local Workspace) ด้านซ้าย"
+msgstr "In KNIME, right-click on LOCAL (Local Workspace) on the left"
+
+msgid "เลือก New KNIME Workflow..."
+msgstr "Select New KNIME Workflow..."
+
+msgid "ตั้งชื่อ เช่น <code>ETL_FraudDetection_KNIME</code>"
+msgstr "Name it, e.g., <code>ETL_FraudDetection_KNIME</code>"
+
+msgid "กด Finish → จะได้พื้นที่ว่างสำหรับสร้าง Workflow"
+msgstr "Click Finish → you'll get a blank area to create Workflow"
+
+msgid "ก่อนไป Phase 1 ต้องผ่านทุกข้อนี้ก่อน"
+msgstr "Before Phase 1, must complete all these items first"
+
+msgid "ข้อ"
+msgstr "No."
+
+msgid "งาน"
+msgstr "Task"
+
+msgid "ติดตั้ง KNIME สำเร็จ เปิดได้"
+msgstr "KNIME installed successfully and can be opened"
+
+msgid "ติดตั้ง KNIME Database Extension"
+msgstr "Install KNIME Database Extension"
+
+msgid "มีไฟล์ .jar ทั้ง SQL Server และ MySQL"
+msgstr "Have .jar files for both SQL Server and MySQL"
+
+msgid "ลงทะเบียน JDBC Driver ใน KNIME Preferences"
+msgstr "Register JDBC Driver in KNIME Preferences"
+
+msgid "สร้างตาราง fraud_clean_knime ใน MySQL สำเร็จ"
+msgstr "Successfully created fraud_clean_knime table in MySQL"
+
+msgid "สร้าง Workflow ใหม่ใน KNIME แล้ว"
+msgstr "Created new Workflow in KNIME"
+
+msgid "Phase 1 — Extract: ดึงข้อมูลจาก SQL Server + จับเวลา"
+msgstr "Phase 1 — Extract: Pull data from SQL Server + Time tracking"
+
+msgid "วัตถุประสงค์ของ Phase 1"
+msgstr "Objective of Phase 1"
+
+msgid ""
+"ใน Phase 1 มีเป้าหมายเพื่อเชื่อมต่อกับ SQL Server (frauddb) และดึงข้อมูลจากตาราง "
+"fraud_10k, fraud_100k และ fraud_1m พร้อมเริ่มจับเวลา Extract โดยใช้ Java Snippet "
+"Node"
+msgstr ""
+"In Phase 1, the goal is to connect to SQL Server (frauddb) and pull data "
+"from tables fraud_10k, fraud_100k, and fraud_1m, while starting Extract "
+"timing using Java Snippet Node"
+
+msgid "Phase 1 มี 3 Node หลัก ทำตามลำดับนี้ได้เลย"
+msgstr "Phase 1 has 3 main Nodes, follow this order"
+
+msgid ""
+"เราเริ่มต้นด้วยการสร้าง Connection ระหว่าง KNIME กับ Microsoft SQL Server โดยใช้ "
+"Node Microsoft SQL Server Connector สำหรับเชื่อมต่อระหว่าง KNIME กับ Microsoft SQL "
+"Server"
+msgstr ""
+"We start by creating a Connection between KNIME and Microsoft SQL Server "
+"using the Microsoft SQL Server Connector Node to connect KNIME with "
+"Microsoft SQL Server"
+
+msgid "วิธีเพิ่ม Node:"
+msgstr "How to add Node:"
+
+msgid ""
+"ที่ช่อง Search Node (มุมซ้ายล่าง) พิมพ์ว่า <code>Microsoft SQL Server Connector</code>"
+msgstr ""
+"In the Search Node box (bottom left corner), type <code>Microsoft SQL Server "
+"Connector</code>"
+
+msgid "ลาก Node มาวางใน Workflow Editor"
+msgstr "Drag the Node and drop it in the Workflow Editor"
+
+msgid "วิธีตั้งค่า (คลิกขวาที่ Node กด configure):"
+msgstr "How to configure (right-click Node and select configure):"
+
+msgid "ค่าที่ใส่"
+msgstr "Value to enter"
+
+msgid "localhost หรือ IP ของ SQL Server"
+msgstr "localhost or IP of SQL Server"
+
+msgid "ชื่อ user SQL Server ของคุณ"
+msgstr "Your SQL Server username"
+
+msgid "รหัสผ่าน"
+msgstr "Password"
+
+msgid ""
+"<strong>หมายเหตุ:</strong> ถ้ายังไม่ได้ติดตั้ง JDBC Driver ของ SQL Server ให้ไปที่ "
+"Preferences → Databases แล้วเพิ่ม .jar ไฟล์ของ Microsoft JDBC Driver ก่อน"
+msgstr ""
+"<strong>Note:</strong> If you haven't installed SQL Server JDBC Driver yet, "
+"go to Preferences → Databases and add the .jar file of Microsoft JDBC Driver "
+"first"
+
+msgid ""
+"กด OK แล้วกด Execute (คลิกขวา → Execute) เพื่อทดสอบ Connection ถ้าสำเร็จ Node "
+"จะเป็นสีเขียว ✅"
+msgstr ""
+"Click OK then Execute (right-click → Execute) to test Connection. If "
+"successful, Node will turn green ✅"
+
+msgid ""
+"เนื่องจาก Node Microsoft SQL Server Connector (Node 1) ทำได้แค่ เปิด Connection "
+"เท่านั้น ยังไม่ได้ดึงข้อมูลออกมา เราจึงต้องมีNode ที่ทำหน้าที่ ดึงข้อมูลจาก Database มาเป็น Table "
+"ใน KNIME โดยรับจาก SQL Server Connector (Node 1) แล้วรัน SQL Query "
+"ที่กำหนดไว้ผลลัพธ์ที่ได้คือตารางข้อมูลที่พร้อมส่งต่อให้Node ถัดไป ถ้าไม่มี Node นี้ KNIME "
+"จะไม่รู้ว่าต้องการข้อมูลตารางไหน และจำนวนเท่าไหร่ นอกจากนี้ ยังได้เพิ่ม SYSDATETIME() "
+"เข้ามาด้วย เพื่อบันทึกเวลาที่ SQL Server เริ่มต้น Query ณ ขณะนั้น โดยเก็บไว้เป็น Column ชื่อ "
+"extract_start_time เพื่อที่จะได้นำไปคำนวณเวลาที่ใช้ในการ Extract ใน Node ถัดไป"
+msgstr ""
+"Since the Microsoft SQL Server Connector Node (Node 1) can only open a "
+"Connection, it doesn't pull data yet. We need a Node that pulls data from "
+"the Database as a Table in KNIME by receiving from SQL Server Connector "
+"(Node 1) and running the specified SQL Query. The result is a data table "
+"ready to pass to the next Node. Without this Node, KNIME won't know which "
+"table data is needed and how much. Additionally, SYSDATETIME() is added to "
+"record the time when SQL Server starts the Query, stored as a Column named "
+"extract_start_time to calculate the time used for Extract in the next Node."
+
+msgid "ขั้นตอนที่ 1: เพิ่ม Node"
+msgstr "Step 1: Add Node"
+
+msgid "ไปที่ช่อง Search Node ด้านซ้าย"
+msgstr "Go to the Search Node box on the left"
+
+msgid "พิมพ์ <code>DB Query Reader</code>"
+msgstr "Type <code>DB Query Reader</code>"
+
+msgid "ลาก Node มาวาง ทางขวาของ Node 1"
+msgstr "Drag the Node and place it to the right of Node 1"
+
+msgid "ขั้นตอนที่ 2: ต่อสาย"
+msgstr "Step 2: Connect wire"
+
+msgid ""
+"ลากเส้นจาก Output Port ของ Node 1 (สี่เหลี่ยมเล็กด้านขวา) ไปที่ Input Port ของ Node 2 "
+"(ด้านซ้าย)"
+msgstr ""
+"Drag a line from the Output Port of Node 1 (small square on the right) to "
+"the Input Port of Node 2 (on the left)"
+
+msgid "ขั้นตอนที่ 3: ตั้งค่า"
+msgstr "Step 3: Configure"
+
+msgid "คลิกขวาที่ Node กด configure แล้วใส่ SQL Query:"
+msgstr "Right-click the Node, select configure, and enter SQL Query:"
+
+msgid "กด OK"
+msgstr "Click OK"
+
+msgid "ขั้นตอนที่ 4: Execute"
+msgstr "Step 4: Execute"
+
+msgid "คลิกขวา Node 2 → Execute"
+msgstr "Right-click Node 2 → Execute"
+
+msgid ""
+"ถ้าสำเร็จ Node จะเป็นสีเขียว ซึ่งจะมีข้อมูล 10,000 แถวและจะเห็น Column "
+"<code>extract_start_time</code> เพิ่มขึ้นมาในทุก Row โดยผลลัพธ์จะเห็นเป็นตัวเลขยาวๆ "
+"เช่น <code>2026-02-26T21:09:10.639728500</code> นั้นคือค่าปกติ"
+msgstr ""
+"If successful, the Node will turn green, showing 10,000 rows of data, and "
+"you'll see the <code>extract_start_time</code> Column added to every Row. "
+"The result will show as a long number like "
+"<code>2026-02-26T21:09:10.639728500</code>, which is normal."
+
+msgid ""
+"Node นี้ทำหน้าที่รับค่าจาก <code>extract_start_time</code> ที่ติดมากับข้อมูลจาก Node 2 "
+"ซึ่งเป็นเวลาที่ SQL Server บันทึกไว้ตอนเริ่มต้น Query จากนั้นนำมาคำนวณหาเวลาที่ใช้ในการ "
+"Extract โดยใช้คำสั่ง Java System.currentTimeMillis() ซึ่งจะคืนค่าเวลาปัจจุบันในหน่วย "
+"Milliseconds"
+msgstr ""
+"This Node receives the value from <code>extract_start_time</code> that comes "
+"with the data from Node 2, which is the time SQL Server recorded when "
+"starting the Query. Then it calculates the time used for Extract using the "
+"Java command System.currentTimeMillis(), which returns the current time in "
+"Milliseconds."
+
+msgid ""
+"การใช้ Java Snippet Node เป็นการที่เปิดให้เรา เขียน Java Code เอง ได้โดยตรงภายใน "
+"KNIME ซึ่งส่วนใหญ่ใช้กับงานที่มีความต้องการเฉพาะเจาะจงที่ Node สำเร็จรูปทั่วไปไม่รองรับ"
+msgstr ""
+"Using Java Snippet Node allows us to write Java Code ourselves directly "
+"within KNIME, mostly used for tasks with specific requirements that general "
+"ready-made Nodes don't support."
+
+msgid "พิมพ์ <code>Java Snippet</code> ใน Search Node"
+msgstr "Type <code>Java Snippet</code> in Search Node"
+
+msgid "ลาก Node มาวาง ทางขวาของ Node 2"
+msgstr "Drag Node and place to the right of Node 2"
+
+msgid "ส่วนที่ 1: เพิ่ม Input Column"
+msgstr "Part 1: Add Input Column"
+
+msgid "กดปุ่ม Add แล้วตั้งค่า:"
+msgstr "Click the Add button and configure:"
+
+msgid "ส่วนที่ 2: เพิ่ม Output Column"
+msgstr "Part 2: Add Output Column"
+
+msgid "ส่วนที่ 3: ใส่ Code"
+msgstr "Part 3: Insert Code"
+
+msgid "คลิกขวา Node 3 → Execute"
+msgstr "Right-click Node 3 → Execute"
+
+msgid "ถ้าสำเร็จจะเห็น Column <code>extract_sec</code> เพิ่มขึ้นมาในทุก Row"
+msgstr ""
+"If successful, you'll see the <code>extract_sec</code> Column added to every "
+"Row"
+
+msgid "ภาพรวม Phase 1 ที่ได้"
+msgstr "Overview of Phase 1"
+
+msgid "Checklist ก่อนไป Phase 2"
+msgstr "Checklist before Phase 2"
+
+msgid "Node 1 Execute แล้วเป็นสีเขียว (Connection สำเร็จ)"
+msgstr "Node 1 Execute and turned green (Connection successful)"
+
+msgid "Node 2 Execute แล้วเห็นข้อมูล 10,000 แถว"
+msgstr "Node 2 Execute and see 10,000 rows of data"
+
+msgid "Node 3 Execute แล้วเห็น Column <code>extract_start_time</code> เพิ่มขึ้นมา"
+msgstr "Node 3 Execute and see Column <code>extract_start_time</code> added"
+
+msgid "วัตถุประสงค์ของ Phase 2"
+msgstr "Objective of Phase 2"
+
+msgid ""
+"ในเฟสนี้เราจะแปลงข้อมูลดิบจาก SQL Server ที่ Extract มาแล้วให้อยู่ในรูปแบบที่ถูกต้อง สะอาด "
+"และพร้อมสำหรับการ Load ลง MySQL ซึ่งในเฟสนี้มีการ:"
+msgstr ""
+"In this phase, we will transform the raw data from SQL Server that has been "
+"Extracted into a correct, clean format ready for Loading into MySQL. This "
+"phase includes:"
+
+msgid "Hash ข้อมูลส่วนตัว"
+msgstr "Hash personal data"
+
+msgid "แปลง Data Type ใน คอลัมน์ trans_date_trans_time"
+msgstr "Convert Data Type in trans_date_trans_time column"
+
+msgid "กรองข้อมูลที่ amt <= 0 หรือ NULL ออก"
+msgstr "Filter out data where amt <= 0 or NULL"
+
+msgid "Rename columns"
+msgstr "Rename columns"
+
+msgid "Phase นี้มี 5 Node (Node 4-8) ทำตามลำดับเลย"
+msgstr "This Phase has 5 Nodes (Node 4-8), follow in order"
+
+msgid "ลากมาวางต่อจาก Node 3"
+msgstr "Drag and place after Node 3"
+
+msgid "ขั้นตอนที่ 3: ตั้งค่า Output Columns"
+msgstr "Step 3: Set Output Columns"
+
+msgid "ส่วนที่ 1: เพิ่ม Output Column"
+msgstr "Part 1: Add Output Column"
+
+msgid "กดปุ่ม Add ในส่วน Output 4 ครั้ง สำหรับ column ที่ต้อง Hash:"
+msgstr ""
+"Click Add button in the Output section 4 times for columns that need Hash:"
+
+msgid ""
+"<strong>สังเกต:</strong> ครั้งนี้เลือก Replace ไม่ใช่ Append เพราะต้องการทับค่าเดิมด้วยค่า "
+"Hash"
+msgstr ""
+"<strong>Note:</strong> This time select Replace, not Append, because we want "
+"to overwrite the original value with the Hash value"
+
+msgid "ส่วนที่ 2: เพิ่ม Input Column"
+msgstr "Part 2: Add Input Column"
+
+msgid "กดปุ่ม Add ในส่วน Input 4 ครั้ง:"
+msgstr "Click Add button in the Input section 4 times:"
+
+msgid "ขั้นตอนที่ 5: ใส่ Code ใน Snippet"
+msgstr "Step 5: Insert Code in Snippet"
+
+msgid "บรรทัด 13 (Your custom imports):"
+msgstr "Line 13 (Your custom imports):"
+
+msgid "บรรทัด 37 (Your custom variables):"
+msgstr "Line 37 (Your custom variables):"
+
+msgid "บรรทัด 42-45 (แทนที่ที่มีอยู่):"
+msgstr "Lines 42-45 (replace existing):"
+
+msgid "ขั้นตอนที่ 6: Execute"
+msgstr "Step 6: Execute"
+
+msgid ""
+"คลิกขวา → Execute ถ้าสำเร็จแล้วเช็คว่า column cc_num, first, last, dob เปลี่ยนเป็น "
+"Hash แล้ว"
+msgstr ""
+"Right-click → Execute. If successful, check that columns cc_num, first, "
+"last, dob have changed to Hash"
+
+msgid ""
+"Node นี้แปลง trans_date_trans_time จาก String เป็น DateTime จริงๆตอน Extract "
+"โปรแกรม Knime ได้แปลง datatype จากString เป็น DateTime ให้แล้วอัตโนมัติ "
+"แต่เพื่อให้มั่นใจว่า Format ถูกต้องตามที่ต้องการ และ ให้ขั้นตอนการ Transform "
+"มีความชัดเจนและสามารถตรวจสอบได้ในทุก Step จึงยังคงใส่ Node นี้ไว้"
+msgstr ""
+"This Node converts trans_date_trans_time from String to DateTime. Actually, "
+"during Extract, KNIME automatically converts the datatype from String to "
+"DateTime. However, to ensure the Format is correct as desired and to make "
+"the Transform process clear and verifiable in every Step, this Node is still "
+"included."
+
+msgid "พิมพ์ <code>String to Date&Time</code> ใน Search Node"
+msgstr "Type <code>String to Date&Time</code> in Search Node"
+
+msgid "ลากมาวางต่อจาก Node 4"
+msgstr "Drag and place after Node 4"
+
+msgid "ส่วนที่ 1: เอา column ที่ไม่ต้องการออก"
+msgstr "Part 1: Remove unwanted columns"
+
+msgid "กดปุ่ม << เพื่อย้ายทุก column ไปฝั่ง Excludes ก่อน"
+msgstr "Click << button to move all columns to the Excludes side first"
+
+msgid "ส่วนที่ 2: เลือกเฉพาะ trans_date_trans_time"
+msgstr "Part 2: Select only trans_date_trans_time"
+
+msgid "คลิกที่ trans_date_trans_time ในฝั่ง Excludes แล้วกด > เพื่อย้ายมาฝั่ง Includes"
+msgstr ""
+"Click on trans_date_trans_time in the Excludes side and click > to move to "
+"the Includes side"
+
+msgid "ส่วนที่ 3: เลื่อนลงไปดู Input format"
+msgstr "Part 3: Scroll down to see Input format"
+
+msgid "คลิกที่ Date & time"
+msgstr "Click on Date & time"
+
+msgid "Input format จะเปลี่ยนเป็น: <code>yyyy-MM-dd\\'T\\'HH:mm[:ss[.SSS]]</code>"
+msgstr ""
+"Input format จะเปลี่ยนเป็น: <code>yyyy-MM-dd\\'T\\'HH:mm[:ss[.SSS]]</code>Input "
+"format will change to: <code>yyyy-MM-dd\\'T\\'HH:mm[:ss[.SSS]]</code>"
+
+msgid ""
+"Output columns เลือก Replace ได้เลย เพราะเราต้องการแทนที่ trans_date_trans_time "
+"ด้วย DateTime"
+msgstr ""
+"For Output columns, select Replace because we want to replace "
+"trans_date_trans_time with DateTime"
+
+msgid "คลิกขวา → Execute แล้วเช็ค column trans_date_trans_time"
+msgstr "Right-click → Execute and check the trans_date_trans_time column"
+
+msgid "Node นี้กรองทิ้ง Row ที่ amt <= 0 หรือ amt เป็น NULL"
+msgstr "This Node filters out Rows where amt <= 0 or amt is NULL"
+
+msgid "พิมพ์ <code>Rule-based Row Filter</code> ใน Search Node"
+msgstr "Type <code>Rule-based Row Filter</code> in Search Node"
+
+msgid "ลากมาวางต่อจาก Node 5"
+msgstr "Drag and place after Node 5"
+
+msgid "คลิกขวา Node 6 กด configure แล้วใส่ Rule ในช่อง:"
+msgstr "Right-click Node 6, select configure, and enter Rule in the box:"
+
+msgid "อธิบาย:"
+msgstr "Explanation:"
+
+msgid "<code>$amt$ <= 0 => FALSE</code> = ถ้า amt น้อยกว่าหรือเท่ากับ 0 → ลบทิ้ง"
+msgstr ""
+"<code>$amt$ <= 0 => FALSE</code> = if amt is less than or equal to 0 → delete"
+
+msgid "<code>MISSING $amt$ => FALSE</code> = ถ้า amt เป็น NULL → ลบทิ้ง"
+msgstr "<code>MISSING $amt$ => FALSE</code> = if amt is NULL → delete"
+
+msgid "<code>TRUE => TRUE</code> = นอกนั้นเก็บไว้ทั้งหมด"
+msgstr "<code>TRUE => TRUE</code> = keep everything else"
+
+msgid "คลิกขวา → Execute แล้วเช็คจำนวน Row ที่เหลือ"
+msgstr "Right-click → Execute and check the remaining number of Rows"
+
+msgid "Node นี้เราจะเปลี่ยนชื่อคอลัมน์ 5 คอลัมน์:"
+msgstr "In this Node, we will rename 5 columns:"
+
+msgid "ชื่อเดิม"
+msgstr "Original name"
+
+msgid "ชื่อใหม่"
+msgstr "New name"
+
+msgid "พิมพ์ <code>Column Rename</code> ใน Search Node"
+msgstr "Type <code>Column Rename</code> in Search Node"
+
+msgid "ลากมาวางต่อจาก Node 6"
+msgstr "Drag and place after Node 6"
+
+msgid "ดับเบิลคลิก แล้วเปลี่ยนชื่อดังนี้ (ตามตารางข้างบน)"
+msgstr "Double-click and rename as follows (according to the table above)"
+
+msgid "คลิกขวา → Execute แล้วเช็คคอลัมน์ว่าเปลี่ยนชื่อตามที่ตั้งไว้หรือไม่"
+msgstr "Right-click → Execute and check if columns are renamed as set"
+
+msgid "Node นี้คำนวณเวลาที่ใช้ใน Transform Phase ทั้งหมด"
+msgstr "This Node calculates the total time used in the Transform Phase"
+
+msgid "ลากมาวางต่อจาก Node 7"
+msgstr "Drag and place after Node 7"
+
+msgid "ขั้นตอนที่ 3: ตั้งค่า Input Columns"
+msgstr "Step 3: Set Input Columns"
+
+msgid "กด Add ในส่วน Input 1 ครั้ง:"
+msgstr "Click Add in the Input section 1 time:"
+
+msgid "ส่วนที่ 2: เพิ่ม Output Columns"
+msgstr "Part 2: Add Output Columns"
+
+msgid "กด Add ในส่วน Output 1 ครั้ง:"
+msgstr "Click Add in the Output section 1 time:"
+
+msgid "ขั้นตอนที่ 5: ใส่ Code"
+msgstr "Step 5: Insert Code"
+
+msgid "บรรทัด 34-45 (แทนที่ที่มีอยู่):"
+msgstr "Lines 34-45 (replace existing):"
+
+msgid "คลิกขวา → Execute แล้วเช็คว่า column transform_sec มีค่าเป็นวินาที"
+msgstr ""
+"Right-click → Execute and check that column transform_sec has value in "
+"seconds"
+
+msgid "วัตถุประสงค์ของ Phase 3"
+msgstr "Objective of Phase 3"
+
+msgid "Phase 3 มีวัตถุประสงค์หลัก 2 ประการ คือ"
+msgstr "Phase 3 has 2 main objectives:"
+
+msgid "เพื่อโหลดข้อมูลที่ผ่านการ Transform แล้วเข้าสู่ตาราง fraud_clean_knime บน MySQL"
+msgstr "To load the transformed data into the fraud_clean_knime table on MySQL"
+
+msgid "เพื่อจับเวลาขั้นตอน Load แยกตามขนาด 10K, 100K และ 1M แถว และบันทึกผล"
+msgstr ""
+"To time the Load phase separately for 10K, 100K and 1M rows and record the "
+"results"
+
+msgid "Phase นี้มี 6 Node (Node 9-14) ทำตามลำดับเลย"
+msgstr "This Phase has 6 Nodes (Node 9-14), follow in order"
+
+msgid ""
+"MySQL Connector Node ทำหน้าที่เป็น ตัวสร้างการเชื่อมต่อ (Connection Object) ระหว่าง "
+"KNIME กับ MySQL Database โดยเฉพาะ โดยตัว Node เองไม่ได้ดึงหรือเขียนข้อมูลใดๆ "
+"เพียงแค่ทำหน้าที่การเชื่อมต่อ เท่านั้น ซึ่ง MySQL Connector Node จะส่งการเชื่อมต่อไปให้Node "
+"ถัดไปใช้งาน"
+msgstr ""
+"MySQL Connector Node acts as a Connection Object creator between KNIME and "
+"MySQL Database specifically. The Node itself does not pull or write any "
+"data, it only acts as a connector. The MySQL Connector Node passes the "
+"connection to the next Node to use"
+
+msgid "พิมพ์ <code>MySQL Connector</code> ใน Search Node"
+msgstr "Type <code>MySQL Connector</code> in Search Node"
+
+msgid "ลากมาวางใต้ Workflow (แยกออกมา ยังไม่ต้องต่อสาย)"
+msgstr "Drag and drop below Workflow (separate, don't connect yet)"
+
+msgid "ขั้นตอนที่ 2: ตั้งค่า"
+msgstr "Step 2: Configure"
+
+msgid "คลิกขวากด configure แล้วตั้งค่า:"
+msgstr "Right-click configure and set:"
+
+msgid "ชื่อ user MySQL"
+msgstr "MySQL username"
+
+msgid "ขั้นตอนที่ 3: Execute ก่อนยังไม่ต้องต่อสาย"
+msgstr "Step 3: Execute (don't connect wire yet)"
+
+msgid "คลิกขวา → Execute ถ้าสำเร็จ Node จะเป็นสีเขียว ✅"
+msgstr "Right-click → Execute. If successful, Node will turn green ✅"
+
+msgid ""
+"DB Writer Node ทำหน้าที่ เขียนข้อมูลจาก KNIME ลงสู่ตารางใน Database โดยรับข้อมูลที่ผ่านการ "
+"Transform มาแล้วจาก Node ก่อนหน้า และรับการเชื่อมต่อจาก MySQL Connector "
+"เพื่อรู้ว่าต้องเขียนลง Database ไหน"
+msgstr ""
+"DB Writer Node writes data from KNIME to a table in the Database by "
+"receiving transformed data from the previous Node and receiving the "
+"connection from MySQL Connector to know which Database to write to"
+
+msgid "พิมพ์ <code>DB Writer</code> ใน Search Node"
+msgstr "Type <code>DB Writer</code> in Search Node"
+
+msgid "ลากมาวางต่อจาก Node 8"
+msgstr "Drag and drop to connect from Node 8"
+
+msgid "ขั้นตอนที่ 3: ตั้งค่า DB Writer"
+msgstr "Step 3: Configure DB Writer"
+
+msgid "<strong>If table exists:</strong> เลือก Append rows"
+msgstr "<strong>If table exists:</strong> select Append rows"
+
+msgid "ต้องย้าย column ที่ไม่มีใน MySQL ออกไปฝั่ง Excludes:"
+msgstr "Must move columns that don't exist in MySQL to the Excludes side:"
+
+msgid "เลื่อนดู Includes ทั้งหมดแล้วเทียบกับ Schema MySQL ที่สร้างไว้:"
+msgstr "Scroll through all Includes and compare with the created MySQL Schema:"
+
+msgid "<strong>ส่วน Output: เอาติ๊ก ✅ ออก</strong>"
+msgstr "<strong>Output section: Remove checkmarks ✅</strong>"
+
+msgid "ติ๊ก ✅ Append status column ออก"
+msgstr "Uncheck ✅ Append status column"
+
+msgid "ติ๊ก ✅ Append error column ออก"
+msgstr "Uncheck ✅ Append error column"
+
+msgid ""
+"Node นี้ทำหน้าที่ หยุดจับเวลาของ Phase Load และคำนวณเวลาที่ใช้ในแต่ละ Phase ทั้งหมด "
+"เพื่อเตรียมบันทึกลง CSV"
+msgstr ""
+"This Node stops the Load Phase timer and calculates the time used in each "
+"Phase to prepare for recording to CSV"
+
+msgid "ลากมาวางต่อจาก Node 10 (DB Writer)"
+msgstr "Drag and drop to connect from Node 10 (DB Writer)"
+
+msgid "กด Add ในส่วน Input 2 ครั้ง:"
+msgstr "Click Add in the Input section 2 times:"
+
+msgid "ขั้นตอนที่ 4: ใส่ Code"
+msgstr "Step 4: Insert Code"
+
+msgid "ขั้นตอนที่ 5: Execute"
+msgstr "Step 5: Execute"
+
+msgid "กด Reset all → Execute all"
+msgstr "Click Reset all → Execute all"
+
+msgid ""
+"คลิกขวา → Execute แล้วเช็คว่ามี column load_sec มีค่าเป็นวินาทีและ column dataset "
+"ปรากฏขึ้นมา"
+msgstr ""
+"Right click → Execute and check that column load_sec has value in seconds "
+"and column dataset appears"
+
+msgid ""
+"Node นี้ทำหน้าที่แปลงข้อมูลในแถวแรกของ Table ให้กลายเป็น Flow Variable (ตัวแปรที่อยู่นอก "
+"Table) สรุปง่ายๆคือ ทำให้ข้อมุลแถวแรกในตารางกลายเป็นตัวแปรที่อยู่นอกตารางเพื่อให้Node "
+"ที่อยู่ถัดไปในทุกจุดของ Workflow สามารถดึงตัวแปรนั้นไปใช้ได้เลย ในโปรเจคนี้แปลงค่า "
+"extract_sec, transform_sec, load_sec และ dataset จาก Row แรกเป็น Flow Variable"
+msgstr ""
+"This Node converts the data in the first row of the Table into Flow "
+"Variables (variables outside the Table). Simply put, it makes the first row "
+"data in the table become variables outside the table so that Nodes anywhere "
+"in the Workflow can use those variables. In this project, it converts "
+"extract_sec, transform_sec, load_sec and dataset values from the first Row "
+"into Flow Variables"
+
+msgid "พิมพ์ <code>Table Row to Variable</code> ใน Search Node"
+msgstr "Type <code>Table Row to Variable</code> in Search Node"
+
+msgid "ลากมาวางต่อจาก Load Timer Stop"
+msgstr "Drag and drop to connect from Load Timer Stop"
+
+msgid "ย้ายไปฝั่ง Excludes ให้เหลือแค่ 4 ตัวใน Includes"
+msgstr "Move to Excludes side, leaving only 4 in Includes"
+
+msgid "กดปุ่ม << เพื่อย้ายทุกอย่างไป Excludes ก่อน แล้วค่อยย้ายกลับมาแค่ 4 ตัวนี้:"
+msgstr ""
+"Click << button to move everything to Excludes first, then move back only "
+"these 4:"
+
+msgid "กด Apply หรือ Apply and Execute"
+msgstr "Click Apply or Apply and Execute"
+
+msgid ""
+"Node นี้ทำหน้าที่ ตรงข้ามกับ Table Row to Variable เลยคือแปลง Flow Variable "
+"ที่ลอยอยู่นอก Table ให้กลับมาเป็น แถวข้อมูลใน Table แทนในโปรเจคนี้ Node นี้จะรับค่า "
+"extract_sec, transform_sec, load_sec และ dataset จาก Node 12 : Table Row to "
+"Variable กลับมาเป็นแถวข้อมูลในตารางอีกครั้ง ทั้งหมดนี้เพื่อให้CSV Writer ที่รับได้แค่ Table "
+"ธรรมดาสามารถบันทึกค่า Timing ทั้ง 3 Phase ลงไฟล์ได้"
+msgstr ""
+"This Node does the opposite of Table Row to Variable - it converts Flow "
+"Variables floating outside the Table back into Table rows. In this project, "
+"this Node receives extract_sec, transform_sec, load_sec and dataset values "
+"from Node 12: Table Row to Variable back into table rows again. All this is "
+"so that CSV Writer, which only accepts regular Tables, can record the Timing "
+"values for all 3 Phases to a file"
+
+msgid "พิมพ์ <code>Variable to Table Row</code> ใน Search Node"
+msgstr "Type <code>Variable to Table Row</code> in Search Node"
+
+msgid "ลากมาวางต่อจาก Table Row to Variable"
+msgstr "Drag and drop to connect from Table Row to Variable"
+
+msgid "ย้าย 4 ตัวนี้จาก Excludes → Includes:"
+msgstr "Move these 4 from Excludes → Includes:"
+
+msgid "CSV Writer Node ทำหน้าที่ เขียนข้อมูลจาก Table ออกมาเป็นไฟล์ .csv บนเครื่องของเรา"
+msgstr ""
+"CSV Writer Node writes data from Table out as a .csv file on our machine"
+
+msgid "พิมพ์ <code>CSV Writer</code> ใน Search Node"
+msgstr "Type <code>CSV Writer</code> in Search Node"
+
+msgid "ลากมาวางต่อจาก Variable to Table Row"
+msgstr "Drag and drop to connect from Variable to Table Row"
+
+msgid "เลือก location ที่อยากให้ไฟล์ csv แสดง"
+msgstr "Select the location where you want the csv file to appear"
+
+msgid "ใส่ชื่อไฟล์ในช่อง Name: <code>knime_10k_timing_log.csv</code>"
+msgstr "Enter file name in Name field: <code>knime_10k_timing_log.csv</code>"
+
+msgid "กด Choose file"
+msgstr "Click Choose file"
+
+msgid "ตรวจสอบผลใน MySQL Workbench:"
+msgstr "Verify results in MySQL Workbench:"
+
+msgid "รันโค้ดนี้:"
+msgstr "Run this code:"
+
+msgid ""
+"และเปิด timing_log_knime.csv ในโฟลเดอร์ที่กำหนด location "
+"ในโปรเจคนี้กำหนดไว้ที่โฟลเดอร์ data"
+msgstr ""
+"and open timing_log_knime.csv in the folder specified in location, in this "
+"project it's set to the data folder"
+
+msgid "ก่อนรัน 100K หรือ 1M:"
+msgstr "Before running 100K or 1M:"
+
+msgid "ใน MySQL รัน TRUNCATE TABLE ก่อน โดยรันโค้ดนี้:"
+msgstr "In MySQL, run TRUNCATE TABLE first by running this code:"
+
+msgid "เปลี่ยน Node 2, Node 11 และ Node 14 เป็น \"100k\" หรือ \"1m\""
+msgstr "Change Node 2, Node 11 and Node 14 to \"100k\" or \"1m\""
+
+msgid "ภาพประกอบการทดสอบ ETL Pipeline ด้วย KNIME"
+msgstr "Image illustrating ETL Pipeline testing with KNIME"
+
+msgid "สรุปและวิเคราะห์ผล KNIME ETL Benchmark"
+msgstr "KNIME ETL Benchmark Summary and Analysis"
+
+msgid "ผลการทดสอบ"
+msgstr "Test Results"
+
+msgid "1. KNIME: การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "1. KNIME: Comparison of Each Phase Time by Data Size"
+
+msgid "2. KNIME: สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "2. KNIME: Proportion of Each Phase to Total Time"
+
+msgid "3. KNIME: อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "3. KNIME: Growth Rate of Each Phase (Scalability)"
+
+# ===== SSIS PAGE =====
+msgid "การทดสอบ ETL Pipeline ด้วย SSIS"
+msgstr "ETL Pipeline Testing with SSIS"
+
+msgid "ภาพรวม ETL Pipeline"
+msgstr "ETL Pipeline Overview"
+
+msgid ""
+"การทดสอบ ETL Pipeline ด้วย SSIS แบ่งออกเป็น 3 Phase หลัก คือ Extract, Transform "
+"และ Load โดยใช้ Visual Studio สร้าง SSIS Package ที่ดึงข้อมูลจาก SQL Server, ทำการ "
+"Transform ด้วย Script Component (SHA256 Hashing) และโหลดเข้า MySQL Database"
+msgstr ""
+"ETL Pipeline testing with SSIS is divided into 3 main phases: Extract, "
+"Transform, and Load. Using Visual Studio to create SSIS Package that "
+"extracts data from SQL Server, transforms with Script Component (SHA256 "
+"Hashing), and loads into MySQL Database"
+
+msgid "Prerequisites (สิ่งที่ต้องติดตั้งก่อนเริ่ม)"
+msgstr "Prerequisites"
+
+msgid "SSIS คืออะไร? (What is SSIS?)"
+msgstr "What is SSIS?"
+
+msgid ""
+"SQL Server Integration Services (SSIS) คือ platform สำหรับสร้าง data "
+"integration และ ETL (Extract, Transform, Load) workflow ของ Microsoft "
+"มันเป็นส่วนหนึ่งของ SQL Server และทำงานผ่าน Visual Studio โดยใช้วิธีการลาก-วาง "
+"ก่อนที่จะเริ่มการทดลองได้ต้องติดตั้ง Software ที่ใช้ก่อน ดังหัวข้อถัดไป"
+msgstr ""
+"SQL Server Integration Services (SSIS) is Microsoft's platform for building "
+"data integration and ETL (Extract, Transform, Load) workflows. It is part of "
+"SQL Server and works through Visual Studio using drag-and-drop methods. "
+"Before starting the experiment, required software must be installed first, "
+"as described in the next section."
+
+msgid "รายการ Software ที่ต้องติดตั้ง"
+msgstr "Required Software List"
+
+msgid ""
+"ทั้งหมดนี้เป็นรายการที่ต้องติดตั้งและตั้งค่าก่อนเริ่มต้นทำโปรเจคนี้โดยใช้ SSIS "
+"ซึ่งสามารถหาวิธีการติดตั้งได้ตามอินเทอร์เน็ตหรือแหล่งความรู้ทั่วไป "
+"ถ้าหากมีการติดตั้งและตั้งค่าแล้วสามารถข้ามไปทำ Phase 1 การเตรียม Dataset และ SQL Server "
+"ได้เลย"
+msgstr ""
+"These are the items that need to be installed and configured before starting "
+"this SSIS project. Installation guides can be found on the internet or "
+"general knowledge sources. If already installed and configured, you can skip "
+"to Phase 1: Preparing Dataset and SQL Server."
+
+msgid "Phase 1: การเตรียม Dataset และ SQL Server"
+msgstr "Phase 1: Preparing Dataset and SQL Server"
+
+# ===== SSIS PAGE TRANSLATIONS =====
+msgid "STEP 1: Download Dataset จาก Kaggle"
+msgstr "STEP 1: Download Dataset from Kaggle"
+
+msgid "ไปที่ kaggle.com → สมัครสมาชิกถ้ายังไม่มีบัญชี"
+msgstr "Go to kaggle.com → Register if you don't have an account"
+
+msgid "ค้นหา"
+msgstr "Search for"
+
+msgid "หรือเข้าลิงก์นี้เลย"
+msgstr "Or visit this link directly"
+
+msgid "กด Download → ได้ไฟล์"
+msgstr "Click Download → Get file"
+
+msgid "สร้างโฟลเดอร์"
+msgstr "Create folder"
+
+msgid "แล้ววางไฟล์"
+msgstr "And place file"
+
+msgid "ไว้"
+msgstr "There"
+
+msgid "STEP 2: สร้าง Database ใน SQL Server"
+msgstr "STEP 2: Create Database in SQL Server"
+
+msgid ""
+"เปิด SSMS (SQL Server Management Studio) ในโปรเจคนี้ใช้ SQL Server Authentication"
+msgstr ""
+"Open SSMS (SQL Server Management Studio). This project uses SQL Server "
+"Authentication"
+
+msgid "Database frauddb ถูกสร้างสำเร็จ"
+msgstr "Database frauddb created successfully"
+
+msgid "เชื่อมต่อ SQL Server → กด New Query"
+msgstr "Connect to SQL Server → Click New Query"
+
+msgid "วาง SQL นี้แล้วกด Execute (F5)"
+msgstr "Paste this SQL and press Execute (F5)"
+
+msgid "ผลลัพธ์:"
+msgstr "Result:"
+
+msgid "STEP 3: วิธี Import CSV ด้วย SSMS Import Flat File Wizard"
+msgstr "STEP 3: How to Import CSV using SSMS Import Flat File Wizard"
+
+msgid ""
+"ใน SSMS → Object Explorer → คลิกขวาที่ FraudDB → Tasks → Import Flat File..."
+msgstr ""
+"In SSMS → Object Explorer → Right-click on FraudDB → Tasks → Import Flat "
+"File..."
+
+msgid "กด Next → Browse เลือกไฟล์"
+msgstr "Click Next → Browse and select file"
+
+msgid "ตั้งชื่อตารางเป็น"
+msgstr "Name the table as"
+
+msgid "กด Next"
+msgstr "Click Next"
+
+msgid "หน้า Preview Data → กด Next"
+msgstr "Preview Data page → Click Next"
+
+msgid "หน้า Modify Columns → แก้ Data Type ดังนี้:"
+msgstr "Modify Columns page → Change Data Type as follows:"
+
+msgid ""
+"ติ๊ก Allow Nulls ทุก column เพราะข้อมูลจริงอาจมีบาง column ที่ว่างเปล่า ถ้าไม่ติ๊กไว้จะ "
+"Error ตอน Import → กด Next → Finish"
+msgstr ""
+"Check Allow Nulls for all columns because actual data may have some empty "
+"columns. If not checked, it will error during Import → Click Next → Finish"
+
+msgid "ข้อดีของวิธีนี้"
+msgstr "Advantages of this method"
+
+msgid ""
+"คือ Wizard จัดการ quoted fields เช่น \"fraud_Rippin, Kub and Mann\" "
+"ให้อัตโนมัติไม่ต้องแก้ไขอะไรเพิ่ม"
+msgstr ""
+"The Wizard automatically handles quoted fields like \"fraud_Rippin, Kub and "
+"Mann\" without additional editing"
+
+msgid "ขั้นตอนต่อไปคือตรวจนับแถวใน SSMS ก่อน รันได้เลย:"
+msgstr "The next step is to count rows in SSMS first. Run directly:"
+
+msgid "การ Import CSV ด้วย SSMS Import Flat File Wizard"
+msgstr "Importing CSV with SSMS Import Flat File Wizard"
+
+msgid "ผลลัพธ์ที่ได้:"
+msgstr "Result obtained:"
+
+msgid "STEP 4: สร้างตาราง 3 ขนาดสำหรับ Benchmark"
+msgstr "STEP 4: Create 3 Sized Tables for Benchmark"
+
+msgid "รัน SQL นี้ใน SSMS ได้เลย:"
+msgstr "Run this SQL in SSMS directly:"
+
+msgid "Count all tables"
+msgstr "Count all tables"
+
+msgid "สร้างตาราง 3 ขนาดสำหรับ Benchmark สำเร็จ"
+msgstr "Successfully created 3 sized tables for Benchmark"
+
+msgid "STEP 5: ดูว่ามีคอลัมน์อะไรบ้างใน dataset"
+msgstr "STEP 5: See what columns are in the dataset"
+
+msgid "รัน SQL นี้ใน SSMS:"
+msgstr "Run this SQL in SSMS:"
+
+msgid "View all columns of fraud_staging"
+msgstr "View all columns of fraud_staging"
+
+msgid "STEP 6: เปลี่ยนชื่อคอลัมน์ long เป็น long_col"
+msgstr "STEP 6: Rename column long to long_col"
+
+msgid "เพราะ"
+msgstr "Because"
+
+msgid "เป็น keyword ของ C# ทำให้ BufferWrapper.cs Build ไม่ผ่าน"
+msgstr "Is a C# keyword causing BufferWrapper.cs to fail Build"
+
+msgid "Phase 1 เสร็จสมบูรณ์แล้ว! 🎊"
+msgstr "Phase 1 completed successfully! 🎊"
+
+msgid "Phase 2: สร้าง Target Database ใน MySQL"
+msgstr "Phase 2: Creating Target Database in MySQL"
+
+msgid "STEP 1: สร้าง Database และ Table ใน MySQL"
+msgstr "STEP 1: Create Database and Table in MySQL"
+
+msgid "เปิด MySQL Workbench → เชื่อมต่อ → เปิด New Query แล้วรัน SQL นี้:"
+msgstr "Open MySQL Workbench → Connect → Open New Query and run this SQL:"
+
+msgid "สร้าง Database และ Table ใน MySQL สำเร็จ"
+msgstr "Successfully created Database and Table in MySQL"
+
+msgid "STEP 2: ตั้งค่า MySQL ODBC DSN"
+msgstr "STEP 2: Configure MySQL ODBC DSN"
+
+msgid "กด Windows Search → พิมพ์ \\"
+msgstr "Click the Add button and configure:"
+
+msgid "ไปที่ tab System DSN (ไม่ใช่ User DSN!)"
+msgstr "Go to System DSN tab (not User DSN!)"
+
+msgid "กด Add → เลือก MySQL ODBC 9.6 Unicode Driver → กด Finish"
+msgstr "Click Add → Select MySQL ODBC 9.6 Unicode Driver → Click Finish"
+
+msgid "กรอกข้อมูลดังนี้:"
+msgstr "Fill in the information as follows:"
+
+msgid "ค่าที่กรอก"
+msgstr "Values to fill in"
+
+msgid "ตามที่ตั้งตอนติดตั้ง MySQL"
+msgstr "As set during MySQL installation"
+
+msgid "password ที่ตั้งตอนติดตั้ง MySQL"
+msgstr "Password set during MySQL installation"
+
+msgid "กด Test → ต้องได้"
+msgstr "Click Test → Should pass"
+
+msgid "วิธีเช็ค MySQL User"
+msgstr "How to Check MySQL User"
+
+msgid "วิธีที่ 1 — ดูใน MySQL Workbench"
+msgstr "Method 1 — View in MySQL Workbench"
+
+msgid ""
+"เปิด MySQL Workbench → ดูที่หน้า Home จะเห็น Connection ที่มีอยู่ ใต้ชื่อ Connection จะเห็น "
+"username เช่น root หรือชื่ออื่น"
+msgstr ""
+"Open MySQL Workbench → Look at Home page to see existing Connections. Under "
+"Connection name, you'll see username like root or other names"
+
+msgid "วิธีที่ 2 — รัน SQL ใน MySQL Workbench"
+msgstr "Method 2 — Run SQL in MySQL Workbench"
+
+msgid "จะแสดง User ที่ Login อยู่ตอนนี้เลย"
+msgstr "Shows the currently logged in User"
+
+msgid "ส่วนใหญ่ถ้าติดตั้ง MySQL แบบ Default จะใช้ User root และ Password ที่ตั้งตอนติดตั้ง"
+msgstr ""
+"Usually if MySQL is installed with Default settings, it uses User root and "
+"the Password set during installation"
+
+msgid "Phase 2 เสร็จสมบูรณ์แล้ว! 🎊"
+msgstr "Phase 2 completed successfully! 🎊"
+
+msgid "Phase 3: สร้าง SSIS Project ใน Visual Studio"
+msgstr "Phase 3: Creating SSIS Project in Visual Studio"
+
+msgid "STEP 1: สร้าง Project ใหม่"
+msgstr "STEP 1: Create New Project"
+
+msgid "เปิด Visual Studio"
+msgstr "Open Visual Studio"
+
+msgid "กด Create a new project"
+msgstr "Click Create a new project"
+
+msgid "ในช่อง Search"
+msgstr "In the Search field"
+
+msgid "เลือก Integration Services Project → กด Next"
+msgstr "Select Integration Services Project → Click Next"
+
+msgid "ตั้งชื่อ Project:"
+msgstr "Name the Project:"
+
+msgid "เลือก Location ที่ต้องการเก็บไฟล์ เช่น"
+msgstr "Select Location where you want to save files, e.g."
+
+msgid "กด Create"
+msgstr "Click Create"
+
+msgid "ผลที่ควรได้คือเห็นไฟล์"
+msgstr "Expected result is to see file"
+
+msgid "ถูกสร้างอัตโนมัติใน Solution Explorer ✅"
+msgstr "Automatically created in Solution Explorer ✅"
+
+msgid "STEP 2: Rename Package และสร้าง Package เพิ่ม"
+msgstr "STEP 2: Rename Package and Create Additional Packages"
+
+msgid "ใน Solution Explorer → คลิกขวาที่"
+msgstr "In Solution Explorer → Right-click on"
+
+msgid "→ Rename → เปลี่ยนเป็น"
+msgstr "→ Rename → Change to"
+
+msgid "คลิกขวาที่โฟลเดอร์ SSIS Packages → New SSIS Package → Rename เป็น"
+msgstr "Right-click on SSIS Packages folder → New SSIS Package → Rename to"
+
+msgid "ทำซ้ำอีกครั้ง → Rename เป็น"
+msgstr "Repeat again → Rename to"
+
+msgid "ผลที่ควรได้คือเห็น 3 Package ใน Solution Explorer ✅"
+msgstr "The result should be 3 Packages visible in Solution Explorer ✅"
+
+msgid ""
+"<strong>Package.dtsx</strong> คือไฟล์ที่เก็บขั้นตอนการทำงานทั้งหมด "
+"ก็คือเอกสารที่ข้างในบอกว่าต้องทำอะไรบ้าง เรียงลำดับยังไง SSIS "
+"จะอ่านไฟล์นี้แล้วทำงานตามที่กำหนดไว้ เหตุที่ต้องสร้างแยกเป็น 3 "
+"ไฟล์เพราะแต่ละไฟล์จะทำงานกับข้อมูลคนละขนาดกัน การแยกไฟล์ทำให้ไม่ต้องกลับมาแก้ค่าทุกครั้งที่รัน "
+"และลดโอกาสรันผิดขนาดโดยไม่รู้ตัว"
+msgstr ""
+"<strong>Package.dtsx</strong> is a file that stores all the workflow steps. "
+"It is a document that tells what needs to be done and in what order. SSIS "
+"reads this file and performs tasks as specified. The reason for creating 3 "
+"separate files is that each file works with different data sizes. Separating "
+"files eliminates the need to change values every time you run, and reduces "
+"the chance of running the wrong size without realizing it."
+
+msgid "STEP 3: สร้าง Variables สำหรับ Timing"
+msgstr "STEP 3: Create Variables for Timing"
+
+msgid "เริ่มที่"
+msgstr "Start at"
+
+msgid "ก่อน → Double-click เพื่อเปิด"
+msgstr "Before → Double-click to open"
+
+msgid ""
+"แล้วไปที่ <strong>Control Flow</strong> (พื้นที่ว่างๆ) → คลิกขวา → <strong>Variables</"
+"strong> จะเห็นหน้าต่าง Variables ขึ้นมา → กด <strong>+</strong> เพิ่ม Variables ดังนี้:"
+msgstr ""
+"Then go to <strong>Control Flow</strong> (empty area) → Right-click → "
+"<strong>Variables</strong> to see Variables window → Click <strong>+</"
+"strong> to add Variables as follows:"
+
+msgid ""
+"เราต้องสร้าง Variables ไว้ก่อนเสมอ เพราะถ้า Task พยายามเรียกใช้ Variable ที่ยังไม่มี "
+"SSIS จะ Error ทันที Type ของ Variable ต้องเลือกให้ตรงกับชนิดของข้อมูลที่จะเก็บ เช่น "
+"เวลาใช้ DateTime วินาทีที่มีทศนิยมใช้ Double และข้อความใช้ String"
+msgstr ""
+"We must always create Variables first because if a Task tries to use a "
+"Variable that doesn't exist yet, SSIS will Error immediately. The Type of "
+"the Variable must match the type of data it will store, such as DateTime for "
+"time, Double for seconds with decimals, and String for text."
+
+msgid "หมายเหตุ (Value)"
+msgstr "Note (Value)"
+
+msgid "10k หรือ 100k หรือ 1m"
+msgstr "10k or 100k or 1m"
+
+msgid "STEP 4: สร้าง Connection Manager"
+msgstr "STEP 4: Create Connection Manager"
+
+msgid ""
+"Connection Manager คือการบอก SSIS ว่าจะเชื่อมต่อ Database ไหนบ้าง ต้องสร้าง 2 อัน คือ "
+"SQL Server และ MySQL ที่ต้องสร้าง 2 อัน เพราะข้อมูลในโปรเจคนี้ต้องวิ่งข้ามฐานข้อมูล 2 "
+"ตัวที่ต่างกัน คือ SQL Server (ต้นทาง) และ MySQL (ปลายทาง) SSIS "
+"จึงต้องรู้จักทั้งสองก่อนถึงจะส่งข้อมูลจากที่หนึ่งไปอีกที่หนึ่งได้"
+msgstr ""
+"Connection Manager tells SSIS which Databases to connect to. We need to "
+"create 2: SQL Server and MySQL. We need 2 because data in this project must "
+"flow across 2 different databases: SQL Server (source) and MySQL "
+"(destination). SSIS must know both before it can transfer data from one to "
+"the other."
+
+msgid "STEP 4.1: Connection ที่ 1 (SQL Server)"
+msgstr "STEP 4.1: Connection 1 (SQL Server)"
+
+msgid ""
+"ใน Solution Explorer → คลิกขวาที่ Connection Managers → New Connection Managers"
+msgstr ""
+"In Solution Explorer → Right-click on Connection Managers → New Connection "
+"Managers"
+
+msgid "เลือก"
+msgstr "Select"
+
+msgid "ไปที่ Providers เลือก"
+msgstr "Go to Providers and select"
+
+msgid "กรอกข้อมูล Server ที่ต้องการเชื่อมต่อ:"
+msgstr "Fill in the Server information to connect:"
+
+msgid "รหัสผ่านของ sk"
+msgstr "Password of sk"
+
+msgid "ต้องได้"
+msgstr "Should pass"
+
+msgid ""
+"<strong>ADO.NET</strong> คือชุดเครื่องมือที่ใช้สำหรับเชื่อมต่อฐานข้อมูลใน .NET ส่วน "
+"<strong>SqlClient Data Provider</strong> คือตัวที่ ADO.NET ใช้คุยกับ SQL Server "
+"โดยเฉพาะ เปรียบได้ว่า ADO.NET คือช่องทางเชื่อมต่อฐานข้อมูลทั่วไป และ SqlClient "
+"คือปลั๊กที่เสียบเข้ากับ SQL Server โดยเฉพาะ"
+msgstr ""
+"<strong>ADO.NET</strong> is a toolkit for database connections in .NET, "
+"while <strong>SqlClient Data Provider</strong> is what ADO.NET uses to "
+"communicate specifically with SQL Server. Think of ADO.NET as a general "
+"database connection channel, and SqlClient as a plug specifically designed "
+"for SQL Server."
+
+msgid "STEP 4.2: Connection ที่ 2 (MySQL)"
+msgstr "STEP 4.2: Connection 2 (MySQL)"
+
+msgid "เลือก DSN ="
+msgstr "Select DSN ="
+
+msgid "จากที่เราได้ตั้งค่า MySQL ODBC DSN มาแล้ว"
+msgstr "Since we've already configured MySQL ODBC DSN"
+
+msgid ""
+"MySQL เป็นฐานข้อมูลของบริษัทอื่นที่ไม่ใช่ Microsoft ADO.NET "
+"ถูกออกแบบมาให้ทำงานกับฐานข้อมูลของ Microsoft ได้ดีที่สุด ส่วน ODBC "
+"คือมาตรฐานกลางที่ใช้เชื่อมต่อฐานข้อมูลได้หลายยี่ห้อรวมถึง MySQL ด้วย นั่นคือเหตุผลที่ใน "
+"Prerequisites ต้องติดตั้ง MySQL ODBC Driver ก่อน เพราะถ้าไม่มี Driver นี้ SSIS "
+"จะมองไม่เห็น MySQL เลย"
+msgstr ""
+"MySQL is a database from a company other than Microsoft. ADO.NET is designed "
+"to work best with Microsoft databases. ODBC is a universal standard that can "
+"connect to many database brands including MySQL. That's why in Prerequisites "
+"we must install MySQL ODBC Driver first, because without this Driver, SSIS "
+"won't be able to see MySQL at all."
+
+msgid "Phase 3 เสร็จสมบูรณ์แล้ว! 🎊"
+msgstr "Phase 3 completed successfully! 🎊"
+
+msgid "Phase 4: สร้าง SSIS Control Flow"
+msgstr "Phase 4: Creating SSIS Control Flow"
+
+msgid "Phase นี้เป็นหัวใจหลักของโปรเจคเลย เราจะเริ่มที่ ETL_10k.dtsx ก่อน"
+msgstr ""
+"This Phase is the core of the project. We'll start with ETL_10k.dtsx first"
+
+msgid "ภาพรวม Task ทั้งหมดที่จะสร้าง"
+msgstr "Overview of All Tasks to Create"
+
+msgid "Task 1: Script Task: Start Timer"
+msgstr "Task 1: Script Task: Start Timer"
+
+msgid ""
+"Script Task คือ Task ที่เปิดให้เราเขียนโค้ด C# เองได้ ใช้ในกรณีที่สิ่งที่เราต้องการทำไม่มี Task "
+"สำเร็จรูปใน SSIS รองรับ เช่น การจับเวลา การคำนวณ หรือการเขียนไฟล์ CSV ซึ่งทั้งหมดนี้ SSIS "
+"ไม่มี Task สำเร็จรูปให้ใช้"
+msgstr ""
+"Script Task is a Task that allows us to write C# code ourselves. It's used "
+"when what we want to do doesn't have a ready-made Task in SSIS, such as "
+"timing, calculations, or writing CSV files - all of which SSIS doesn't have "
+"ready-made Tasks for."
+
+msgid ""
+"ในโปรเจคนี้ใช้ Script Task ทั้งหมด 4 จุด คือ Task 1 บันทึกเวลาเริ่มต้น Task 3 "
+"คำนวณเวลาที่ใช้ใน Extract Task 5 คำนวณเวลาที่ใช้ใน Transform และ Task 7 "
+"คำนวณเวลาที่ใช้ใน Load แล้วเขียนผลทั้งหมดลงไฟล์ CSV"
+msgstr ""
+"In this project, Script Task is used in 4 places: Task 1 records start time, "
+"Task 3 calculates time used in Extract, Task 5 calculates time used in "
+"Transform, and Task 7 calculates time used in Load and writes all results to "
+"CSV file."
+
+msgid "เริ่มจาก Task แรกก่อนเลย:"
+msgstr "Start with the first Task:"
+
+msgid "เพื่อเปิด"
+msgstr "To open"
+
+msgid "ดูที่ SSIS Toolbox ด้านซ้าย → หา"
+msgstr "Look at SSIS Toolbox on the left → Find"
+
+msgid "ลาก Script Task ลงมาวางใน Control Flow Design Surface"
+msgstr "Drag Script Task and drop into Control Flow Design Surface"
+
+msgid "คลิกขวาที่ Script Task → เปลี่ยนชื่อเป็น"
+msgstr "Right-click on Script Task → Rename to"
+
+msgid "Double-click แล้วตั้งค่าดังนี้:"
+msgstr "Double-click and configure as follows:"
+
+msgid ""
+"<strong>User::</strong> คือ prefix ที่ SSIS ใส่ให้อัตโนมัติเพื่อบอกว่า Variable "
+"ตัวนี้เป็นตัวที่เราสร้างเองใน STEP 3 ไม่ใช่ Variable ที่ SSIS สร้างไว้ให้ในระบบ การใส่ "
+"User:: ไว้ข้างหน้าทำให้ SSIS รู้ว่าต้องไปหา Variable ตัวนี้จากที่ที่เราสร้างไว้"
+msgstr ""
+"<strong>User::</strong> is a prefix that SSIS adds automatically to indicate "
+"that this Variable was created by us in STEP 3, not a built-in Variable "
+"created by SSIS. Adding User:: prefix tells SSIS to look for this Variable "
+"from where we created it."
+
+msgid ""
+"<strong>ReadWriteVariables</strong> คือการบอก Script Task ว่าจะขอสิทธิ์เข้าถึง "
+"Variable ตัวไหนบ้าง SSIS บังคับให้ต้องระบุไว้ก่อนเสมอ ถ้าไม่ระบุแล้ว Script "
+"พยายามเขียนค่าลง Variable ตัวนั้น SSIS จะ Error ทันที"
+msgstr ""
+"<strong>ReadWriteVariables</strong> tells the Script Task which Variables it "
+"needs access to. SSIS requires this to be specified beforehand. If not "
+"specified and the Script tries to write to that Variable, SSIS will throw an "
+"Error immediately."
+
+msgid "หาโค้ด"
+msgstr "Find code"
+
+msgid "วางโค้ดนี้:"
+msgstr "Paste this code:"
+
+msgid "ปิด Script Editor → กด"
+msgstr "Close Script Editor → Click"
+
+msgid "Task 2: Data Flow Task - Extract (Extract from SQL Server)"
+msgstr "Task 2: Data Flow Task - Extract (Extract from SQL Server)"
+
+msgid ""
+"Data Flow Task คือ Task ที่ใช้สำหรับเคลื่อนย้ายข้อมูล "
+"ข้างในจะมีพื้นที่แยกสำหรับกำหนดว่าข้อมูลจะไหลจากที่ไหน ผ่านอะไรบ้าง และไปลงที่ไหน ต่างจาก "
+"Script Task ตรงที่ Script Task ใช้เขียนโค้ดเพื่อทำงานทั่วไป แต่ Data Flow Task "
+"ออกแบบมาเพื่อจัดการข้อมูลโดยเฉพาะ"
+msgstr ""
+"Data Flow Task is a Task used for moving data. Inside, there's a separate "
+"area to define where data flows from, what it passes through, and where it "
+"lands. Unlike Script Task which is used to write code for general tasks, "
+"Data Flow Task is specifically designed for data management."
+
+msgid ""
+"ในโปรเจคนี้ต้องการจับเวลาแยกกันเป็น 3 Phase ดังนั้นเราต้องแยกเป็น Task ละ Phase "
+"ทำให้จับเวลาได้ว่า Extract ใช้เวลากี่วินาทีTransform ใช้เวลากี่วินาทีและ Load ใช้เวลากี่วินาที"
+msgstr ""
+"In this project, we need to time each of the 3 Phases separately, so we must "
+"separate into one Task per Phase. This allows us to measure how many seconds "
+"Extract takes, how many seconds Transform takes, and how many seconds Load "
+"takes."
+
+msgid "ลาก"
+msgstr "Drag"
+
+msgid "จาก SSIS Toolbox ลงใน Control Flow"
+msgstr "From SSIS Toolbox to Control Flow"
+
+msgid "เปลี่ยนชื่อเป็น"
+msgstr "Rename columns"
+
+msgid ""
+"เชื่อมลูกศร (Precedence Constraint) โดยคลิกที่ Start Timer แล้วลากลูกศรไปที่ Extract "
+"from SQL Server"
+msgstr ""
+"Connect arrow (Precedence Constraint) by clicking on Start Timer and "
+"dragging arrow to Extract from SQL Server"
+
+msgid "Double-click เข้าไปข้างใน Data Flow Task"
+msgstr "Double-click into Data Flow Task"
+
+msgid "จาก SSIS Toolbox ตรง other sources ลงมาใน Data Flow"
+msgstr "From SSIS Toolbox at other sources down to Data Flow"
+
+msgid ""
+"ADO NET Source คือ Component ที่ทำหน้าที่ดึงข้อมูลจากฐานข้อมูลเข้ามาใน Data Flow ที่ใช้ ADO "
+"NET Source เพราะเราสร้าง Connection Manager ของ SQL Server ไว้แบบ ADO.NET ใน "
+"STEP 4.1 ใน phase 3 แล้ว ADO NET Source จึงสามารถใช้ Connection Manager "
+"ตัวนั้นเชื่อมต่อและดึงข้อมูลจากตาราง fraud_10k ได้"
+msgstr ""
+"ADO NET Source is a Component that pulls data from the database into the "
+"Data Flow. We use ADO NET Source because we created the SQL Server "
+"Connection Manager as ADO.NET in STEP 4.1 in phase 3. So ADO NET Source can "
+"use that Connection Manager to connect and pull data from the fraud_10k "
+"table."
+
+msgid "ที่ ADO NET Source → ตั้งค่า:"
+msgstr "At ADO NET Source → Configure:"
+
+msgid "เพื่อตรวจสอบว่าดึงข้อมูลได้ → กด"
+msgstr "To verify data extraction → Click"
+
+msgid "Task 3: Script Task - Log Extract Time"
+msgstr "Task 3: Script Task - Log Extract Time"
+
+msgid "คลิก tab Control Flow ด้านบน"
+msgstr "Click Control Flow tab at the top"
+
+msgid "ลงมาใน Control Flow"
+msgstr "Down to Control Flow"
+
+msgid "เชื่อมลูกศรจาก Extract from SQL Server → Log Extract Time"
+msgstr "Connect arrow from Extract from SQL Server → Log Extract Time"
+
+msgid "ตั้งค่า:"
+msgstr "Configure:"
+
+msgid ""
+"Task 3 ต้องทำงาน 3 อย่างพร้อมกัน คือ อ่านค่าจาก ExtractStart เพื่อรู้ว่า Extract "
+"เริ่มเมื่อกี่โมง เขียนผลลัพธ์ที่คำนวณได้ลง ExtractSec ว่าใช้เวลากี่วินาทีและเริ่มจับเวลา "
+"Transform ทันทีโดยบันทึกเวลาปัจจุบันลง TransformStart"
+msgstr ""
+"Task 3 must do 3 things simultaneously: read the value from ExtractStart to "
+"know when Extract started, write the calculated result to ExtractSec showing "
+"how many seconds it took, and immediately start timing Transform by "
+"recording the current time to TransformStart."
+
+msgid "วางโค้ดนี้ที่"
+msgstr "Paste this code at"
+
+msgid ""
+"💡 Task นี้คำนวณว่า Extract ใช้เวลากี่วินาทีแล้วเริ่มจับเวลา Transform ต่อทันที ถ้ารอบันทึกใน "
+"Task 4 เวลาที่ได้จะไม่แม่นยำ Task 3 และ Task 4 SSIS ต้องใช้เวลาเตรียมตัวก่อนที่ Data "
+"Flow Task จะเริ่มทำงานจริง ถ้าบันทึกเวลาไว้ตรงท้าย Task 3 พอดีก่อนที่จะส่งต่อให้ Task 4 "
+"เวลาที่จับได้จะแม่นยำกว่า"
+msgstr ""
+"💡 This Task calculates how many seconds Extract took and immediately starts "
+"timing Transform. If we wait to record in Task 4, the time won't be "
+"accurate. Between Task 3 and Task 4, SSIS needs preparation time before the "
+"Data Flow Task actually starts working. If we record the time right at the "
+"end of Task 3 before passing to Task 4, the captured time will be more "
+"accurate."
+
+msgid "Task 4: Data Flow Task: Transform"
+msgstr "Task 4: Data Flow Task: Transform"
+
+msgid "ลงใน Control Flow"
+msgstr "Place into Control Flow"
+
+msgid "เชื่อมลูกศรจาก Log Extract Time → Transform"
+msgstr "Connect arrow from Log Extract Time → Transform"
+
+msgid ""
+"ลงมา → Double-click → ตั้งค่าเลือก Table = fraud_10k, fraud_100k, เหมือน Task 2"
+msgstr ""
+"Place down → Double-click → Configure and select Table = fraud_10k, "
+"fraud_100k, same as Task 2"
+
+msgid ""
+"ทำไม Task 4 ต้องดึงข้อมูลจาก SQL Server อีกครั้ง ทั้งที่ Task 2 ก็ดึงมาแล้ว? "
+"เพราะข้อมูลที่ดึงมาใน Task 2 ลอยอยู่ใน Memory ชั่วคราวและหายไปแล้วตั้งแต่ Task 2 จบลง "
+"แต่ละ Data Flow Task จะดึงข้อมูลของตัวเองขึ้นมาใหม่ทุกครั้ง Task 2 ดึงมาเพื่อนับเวลา "
+"Extract อย่างเดียว ส่วน Task 4 ดึงมาเพื่อ Transform และ Load เข้า MySQL"
+msgstr ""
+"Why does Task 4 need to pull data from SQL Server again when Task 2 already "
+"pulled it? Because the data pulled in Task 2 floats in Memory temporarily "
+"and disappeared when Task 2 ended. Each Data Flow Task pulls its own data "
+"fresh every time. Task 2 pulled only to time Extract, while Task 4 pulls to "
+"Transform and Load into MySQL."
+
+msgid "Task 4.1: ตั้งค่า Script Component (เพิ่ม Script Component (Transformation))"
+msgstr ""
+"Task 4.1: Configure Script Component (Add Script Component (Transformation))"
+
+msgid "ยังอยู่ใน Data Flow ของ Transform:"
+msgstr "Still in Data Flow of Transform:"
+
+msgid "ลงมาต่อ → เลือก Type ="
+msgstr "Continue down → Select Type ="
+
+msgid ""
+"เชื่อมลูกศรจาก ADO NET Source → จะเห็นลูกศรสีน้ำเงินโผล่ออกมา → ลากลูกศรไปวางที่ Script "
+"Component"
+msgstr ""
+"Connect arrow from ADO NET Source → You'll see a blue arrow appear → Drag "
+"arrow to Script Component"
+
+msgid "Task 4.2: ตั้งค่า Script Component"
+msgstr "Task 4.2: Configure Script Component"
+
+msgid ""
+"Double-click ที่ Script Component จะเห็นหน้าต่าง Script Transformation Editor"
+msgstr ""
+"Double-click on Script Component to see Script Transformation Editor window"
+
+msgid "การตั้งค่า Script Component จะมีอยู่ 3 ขั้นตอนหลัก ดังนี้:"
+msgstr "Script Component configuration has 3 main steps as follows:"
+
+msgid "Task 4.2.1: ตั้งค่า Tab Input Columns (ซ้ายมือ)"
+msgstr "Task 4.2.1: Configure Tab Input Columns (left side)"
+
+msgid ""
+"ติ๊กถูกทุก column ที่ต้องการ <strong>ยกเว้น column1</strong> เพราะ column1 คือ "
+"Unnamed: 0 จาก CSV ซึ่งเป็นแค่ index ลำดับแถว ไม่มีความหมายทางธุรกิจเลย "
+"เราไม่ต้องการนำไปใช้ใน Transform หรือเก็บลง MySQL"
+msgstr ""
+"Check all desired columns <strong>except column1</strong> because column1 is "
+"Unnamed: 0 from CSV which is just row index, has no business meaning. We "
+"don't want to use it in Transform or save to MySQL"
+
+msgid ""
+"Task 4.2.2: เพิ่ม Output Columns ใน Script Component ไปที่ Tab Inputs and "
+"Outputs (ซ้ายมือ)"
+msgstr ""
+"Task 4.2.2: Add Output Columns in Script Component to Tab Inputs and Outputs "
+"(left side)"
+
+msgid ""
+"Output Columns คือ Column ใหม่ที่ Script Component สร้างขึ้นมาเพื่อเก็บผลลัพธ์หลังจาก "
+"Transform แล้ว SSIS จะไม่ยอมให้เขียนทับ Column ที่รับมาจาก Input "
+"โดยตรงดังนั้นเราจึงต้องสร้าง Column ใหม่ขึ้นมา"
+msgstr ""
+"Output Columns are new Columns that Script Component creates to store "
+"results after Transform. SSIS won't allow overwriting Columns received "
+"directly from Input, so we must create new Columns."
+
+msgid "ขยาย"
+msgstr "Expand"
+
+msgid "คลิก"
+msgstr "Click"
+
+msgid "กด Add Column → แก้ชื่อเป็น"
+msgstr "Click Add Column → Rename to"
+
+msgid "Length ไม่ต้องใส่"
+msgstr "No need to enter Length"
+
+msgid "Task 4.2.3: Edit Script ใน Script Component ใน Tab Scripts (ซ้ายมือ)"
+msgstr ""
+"Task 4.2.3: Edit Script ใน Script Component ใน Tab Scripts (ซ้ายมือ)Task "
+"4.2.3: Edit Script in Script Component in Tab Scripts (left side)"
+
+msgid "คลิก Tab"
+msgstr "Click Tab"
+
+msgid "วางโค้ดนี้ข้างบน"
+msgstr "Paste this code above"
+
+msgid "วางโค้ดนี้ใน"
+msgstr "Paste this code in"
+
+msgid "เพิ่ม using ด้านบนที่"
+msgstr "Add using at the top at"
+
+msgid "ถ้า Build ไม่สำเร็จ ลองเปลี่ยนตามวิธีนี้ดู:"
+msgstr "If Build fails, try these steps:"
+
+msgid ""
+"1. ไปที่ Build → Configuration Manager → ไปที่ Active solution platform → New → "
+"เปลี่ยน Platform เป็น x64 → OK → Close"
+msgstr ""
+"1. Go to Build → Configuration Manager → Active solution platform → New → "
+"Change Platform to x64 → OK → Close"
+
+msgid ""
+"2. ไปที่ Solution Explorer ด้านขวา → จะเห็นตัวหนาที่แสดง Assembly name → คลิกขวา → "
+"Properties"
+msgstr ""
+"2. Go to Solution Explorer on the right → You'll see bold text showing "
+"Assembly name → Right-click → Properties"
+
+msgid "3. เปลี่ยน Target Framework เป็น .NET Framework 4.7.2"
+msgstr "3. Change Target Framework to .NET Framework 4.7.2"
+
+msgid "4. กด Build ใหม่อีกครั้ง → Build SC_..."
+msgstr "4. Click Build again → Build SC_..."
+
+msgid "5. ปิด Script Editor → กด OK"
+msgstr "5. Close Script Editor → Click OK"
+
+msgid "Task 4.3: เพิ่ม Conditional Split (กรอง amt <= 0)"
+msgstr "Task 4.3: Add Conditional Split (filter amt <= 0)"
+
+msgid "ลงใน Data Flow"
+msgstr "Place into Data Flow"
+
+msgid ""
+"Conditional Split คือ Component ที่ทำหน้าที่แยกแถวข้อมูลออกเป็น 2 ทางตามเงื่อนไขที่กำหนด "
+"ในโปรเจคนี้กำหนดเงื่อนไขว่าถ้า amt <= 0 หรือ amt เป็น NULL ให้แยกออกไปเป็น Invalid "
+"เนื่องจากธุรกรรมที่มียอดเงิน 0 หรือติดลบไม่มีความหมายในเชิงการวิเคราะห์การฉ้อโกง "
+"เพราะการฉ้อโกงจะต้องมีการใช้เงินจริงๆ "
+"ถ้าเอาแถวพวกนี้เข้าไปด้วยจะทำให้ผลการวิเคราะห์คลาดเคลื่อน ส่วนแถวที่ผ่านเงื่อนไขจะไหลต่อไปเป็น "
+"Valid"
+msgstr ""
+"Conditional Split is a Component that splits data rows into 2 paths based on "
+"specified conditions. In this project, the condition is set so that if amt "
+"<= 0 or amt is NULL, it splits to Invalid because transactions with zero or "
+"negative amounts have no meaning for fraud analysis. Fraud requires actual "
+"money usage. Including these rows would distort the analysis results. Rows "
+"that pass the condition flow on as Valid."
+
+msgid "เชื่อมลูกศรจาก Script Component → Conditional Split"
+msgstr "Connect arrow from Script Component → Conditional Split"
+
+msgid ""
+"💡 Conditional Split ทำหน้าที่เหมือน if-else คือแถวที่ amt <= 0 จะถูกแยกออกไปเป็น "
+"Invalid ส่วนแถวปกติจะผ่านไปเป็น Valid"
+msgstr ""
+"💡 Conditional Split works like if-else: rows where amt <= 0 are split to "
+"Invalid, while normal rows pass through as Valid"
+
+msgid "Task 4.4: เพิ่ม ODBC Destination (Load เข้า MySQL)"
+msgstr "Task 4.4: Add ODBC Destination (Load to MySQL)"
+
+msgid ""
+"ODBC Destination คือ Component ที่ทำหน้าที่รับข้อมูลปลายทางและส่งเข้าฐานข้อมูล "
+"ในที่นี้ใช้ส่งข้อมูลเข้า MySQL โดยใช้ Connection Manager ที่สร้างไว้ใน STEP 4.2 ของ Phase "
+"3 ที่ต้องเชื่อมจาก Valid เพราะเราต้องการเฉพาะแถวที่ผ่านการกรองแล้วเท่านั้น ส่วน Invalid "
+"คือแถวที่ถูกคัดออกซึ่งไม่ต้องการเก็บไว้"
+msgstr ""
+"ODBC Destination is a Component that receives destination data and sends it "
+"to the database. Here it's used to send data to MySQL using the Connection "
+"Manager created in STEP 4.2 of Phase 3. It must connect from Valid because "
+"we only want rows that passed filtering. Invalid are rows that were filtered "
+"out which we don't want to keep."
+
+msgid "จาก Toolbox ลงใน Data Flow"
+msgstr "From Toolbox to Data Flow"
+
+msgid "เชื่อมลูกศรจาก Conditional Split → ODBC Destination โดยเลือก Output ="
+msgstr ""
+"เชื่อมลูกศรจาก Conditional Split → ODBC Destination โดยเลือก Output =Connect "
+"arrow from Conditional Split → ODBC Destination by selecting Output ="
+
+msgid "ที่ ODBC Destination → ตั้งค่า:"
+msgstr "At ODBC Destination → Configure:"
+
+msgid "Map column ให้ตรงกัน:"
+msgstr "Map columns to match:"
+
+msgid ""
+"Mapping คือการบอก SSIS ว่า Column ที่ไหลมาจาก Data Flow ตัวไหนควรเอาไปเก็บใน "
+"Column ไหนของตาราง MySQL ต้องทำเพราะชื่อ Column ใน Data Flow กับชื่อ Column ใน "
+"MySQL อาจไม่ตรงกันทุกตัว เช่น trans_dt_clean ใน Data Flow ต้องจับคู่กับ trans_datetime "
+"ใน MySQL ถ้าไม่ทำ Mapping SSIS จะไม่รู้ว่าต้องเอาข้อมูลไปใส่ Column ไหน"
+msgstr ""
+"Mapping tells SSIS which Column from Data Flow should be stored in which "
+"Column of the MySQL table. This is necessary because Column names in Data "
+"Flow and Column names in MySQL may not all match, such as trans_dt_clean in "
+"Data Flow must pair with trans_datetime in MySQL. Without Mapping, SSIS "
+"won't know which Column to put the data in."
+
+msgid "Task 5: Script Task: Log Transform Time"
+msgstr "Task 5: Script Task: Log Transform Time"
+
+msgid "เชื่อมลูกศรจาก Transform → Log Transform Time"
+msgstr "Connect arrow from Transform → Log Transform Time"
+
+msgid "อ่านค่าจาก TransformStart แล้วเขียนผลลงใน TransformSec และเริ่มจับเวลา Load"
+msgstr ""
+"Read value from TransformStart, write result to TransformSec, and start "
+"timing Load"
+
+msgid ""
+"Task 5 ทำงานเหมือน Task 3 ทุกอย่างแต่เปลี่ยนจากการคำนวณเวลา Extract "
+"มาเป็นการคำนวณเวลา Transform แทน และบันทึกเวลาเริ่ม Load ไว้ทันทีก่อนส่งต่อให้ Task 6 "
+"เพื่อให้เวลาที่จับได้แม่นยำที่สุด"
+msgstr ""
+"Task 5 works exactly like Task 3 but changes from calculating Extract time "
+"to calculating Transform time instead, and records Load start time "
+"immediately before passing to Task 6 to get the most accurate timing."
+
+msgid "Task 6: Data Flow Task: Load เข้า MySQL"
+msgstr "Task 6: Data Flow Task: Load to MySQL"
+
+msgid "เชื่อมลูกศรจาก Log Transform Time → Load to MySQL"
+msgstr "Connect arrow from Log Transform Time → Load to MySQL"
+
+msgid ""
+"💡 <strong>สังเกต:</strong> Task 6 นี้ไม่ต้องทำอะไรเพิ่มแล้ว เพราะเราได้ Load ข้อมูลเข้า "
+"MySQL ไปแล้วใน Task 4 (ODBC Destination) ดังนั้น Task 6 "
+"เราจะทำแค่นี้ในโปรเจคนี้จะข้ามไปทำ Task 7 — Log Load + Write CSV เลย"
+msgstr ""
+"💡 <strong>Note:</strong> Task 6 requires no additional work because we "
+"already loaded data into MySQL in Task 4 (ODBC Destination). So for Task 6, "
+"we'll just skip ahead to Task 7 — Log Load + Write CSV in this project."
+
+msgid "<strong>ถ้าไม่ต้องทำอะไร แล้วทำไมต้องสร้าง Task นี้ขึ้นมาด้วย?</strong>"
+msgstr ""
+"<strong>If we don't need to do anything, why create this Task at all?</"
+"strong>"
+
+msgid ""
+"เพราะเราต้องการวัดเวลาครบทั้ง 3 Phase คือ Extract Transform และ Load ถ้าไม่มี Task 6 "
+"Task 5 จะบันทึกเวลาเริ่ม Load ลง LoadStart แต่ไม่มี Task ที่เป็นจุดสิ้นสุดของ Load ให้ Task "
+"7 ใช้คำนวณว่า Load ใช้เวลากี่วินาที การแยก Task 6 "
+"ออกมาจึงเป็นแค่การสร้างจุดสิ้นสุดให้ครบโครงสร้างมากกว่า"
+msgstr ""
+"Because we need to measure all 3 phases: Extract, Transform, and Load. "
+"Without Task 6, Task 5 would record the Load start time to LoadStart, but "
+"there would be no Task marking the end of Load for Task 7 to calculate how "
+"many seconds Load took. Separating Task 6 is just about creating a proper "
+"end point to complete the structure."
+
+msgid "Task 7: Script Task: Log Load + Write CSV"
+msgstr "Task 7: Script Task: Log Load + Write CSV"
+
+msgid "เชื่อมลูกศรจาก Load to MySQL → Log Load + Write CSV"
+msgstr "Connect arrow from Load to MySQL → Log Load + Write CSV"
+
+msgid "ที่ Log Load + Write CSV"
+msgstr "At Log Load + Write CSV"
+
+msgid "ตั้งค่า"
+msgstr "Configure"
+
+msgid ""
+"เพราะ Task 7 ต้องทำงาน 2 อย่างพร้อมกัน อย่างแรกคือคำนวณเวลา Load เหมือนที่ Task 3 และ "
+"Task 5 ทำ จึงต้องการ LoadStart และ LoadSec อย่างที่สองคือเขียนผลรวมทั้งหมดลงไฟล์ CSV "
+"จึงต้องดึง ExtractSec และ TransformSec ที่คำนวณไว้แล้วตั้งแต่ Task 3 และ Task 5 "
+"มาใช้ด้วย ส่วน DatasetSize ใช้เพื่อบอกว่าแถวที่กำลังเขียนลง CSV นี้เป็นผลของการรันขนาดไหน"
+msgstr ""
+"Because Task 7 must do 2 things simultaneously. First is to calculate Load "
+"time like Task 3 and Task 5 did, so it needs LoadStart and LoadSec. Second "
+"is to write all totals to CSV file, so it must pull ExtractSec and "
+"TransformSec that were already calculated in Task 3 and Task 5. DatasetSize "
+"is used to indicate which size run this row being written to CSV is from."
+
+msgid "ใน"
+msgstr "In"
+
+msgid "🎉🎉🎉 ETL_10k สำเร็จ! ไปต่อที่ Phase 5 เลย"
+msgstr "🎉🎉🎉 ETL_10k successful! Continue to Phase 5"
+
+msgid "Phase 5: รัน Package"
+msgstr "Phase 5: Running Package"
+
+msgid "การรัน ETL_10k.dtsx"
+msgstr "Running ETL_10k.dtsx"
+
+msgid "เปิด Package ETL_10k.dtsx"
+msgstr "Open Package ETL_10k.dtsx"
+
+msgid "กด Start (หรือกด F5)"
+msgstr "Click Start (or press F5)"
+
+msgid "ผลการรัน Package:"
+msgstr "Package execution result:"
+
+msgid "Package ทำงานสำเร็จ - ทุก Task เป็นสีเขียว"
+msgstr "Package executed successfully - All Tasks are green"
+
+msgid "รอ Task ทุกอันเปลี่ยนเป็นสีเขียว (หมายถึงสำเร็จ)"
+msgstr "Wait for all Tasks to turn green (meaning success)"
+
+msgid "ตรวจสอบผลใน MySQL Workbench"
+msgstr "Verify result in MySQL Workbench"
+
+msgid "เปิดไฟล์ timing_log.csv เพื่อดูผลการจับเวลา"
+msgstr "Open timing_log.csv file to view timing results"
+
+msgid "Check row count (should be 10000)"
+msgstr "Check row count (should be 10000)"
+
+msgid "Check hash"
+msgstr "Check hash"
+
+msgid "Check no negative amt"
+msgstr "Check no negative amt"
+
+msgid "การรัน ETL_100k.dtsx และ ETL_1m.dtsx"
+msgstr "Running ETL_100k.dtsx and ETL_1m.dtsx"
+
+msgid "รัน"
+msgstr "Run"
+
+msgid "ใน MySQL"
+msgstr "In MySQL"
+
+msgid "เปลี่ยน Variable DatasetSize เป็น \\"
+msgstr "Change Variable DatasetSize to \"100k\" or \"1m\""
+
+msgid "เปลี่ยน Table ใน ADO NET Source เป็น fraud_100k หรือ fraud_1m"
+msgstr "Change Table in ADO NET Source to fraud_100k or fraud_1m"
+
+msgid "กด Start"
+msgstr "Click Start"
+
+msgid "เนื้อหาสำคัญ:"
+msgstr "Important content:"
+
+msgid "ต้อง TRUNCATE TABLE ก่อนรัน Package ใหม่"
+msgstr "Must TRUNCATE TABLE before running Package again"
+
+msgid "ตรวจสอบผลใน MySQL ว่าข้อมูลถูกต้อง"
+msgstr "Verify result in MySQL that data is correct"
+
+msgid "ไฟล์ timing_log.csv จะมีผลการจับเวลาทั้ง 3 ขนาด"
+msgstr "File timing_log.csv will have timing results for all 3 sizes"
+
+msgid "สรุปและวิเคราะห์ผล SSIS ETL Benchmark"
+msgstr "SSIS ETL Benchmark Summary and Analysis"
+
+msgid ""
+"เมื่อนำข้อมูลดังกล่าวมาวิเคราะห์และสร้างภาพด้วย MATLAB เพื่อให้เห็นภาพได้ชัดเจน ได้นำเสนอกราฟ "
+"3 รูปแบบ ได้แก่ Grouped Bar Chart, Stacked Bar Chart และ Line Chart ตามลำดับ "
+"ดังแสดงในรูปที่ 1-3"
+msgstr ""
+"When analyzing this data and creating visualizations with MATLAB for "
+"clarity, 3 types of graphs are presented: Grouped Bar Chart, Stacked Bar "
+"Chart, and Line Chart in order, as shown in Figures 1-3"
+
+msgid "1. การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล (Grouped Bar Chart)"
+msgstr ""
+"1. Comparison of Time for Each Phase Separated by Data Size (Grouped Bar "
+"Chart)"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+msgid "การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "Fig 1: Comparison of Time per Phase Separated by Data Size"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+msgid "Fig 1 : การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "Fig 1: Comparison of Time per Phase Separated by Data Size"
+
+msgid ""
+"จากภาพ Fig 1 : การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล "
+"เป็นภาพที่แสดงการเปรียบเทียบเวลาแต่ละ Phase (Extract / Transform / Load) แยกตาม "
+"Dataset Size จากกราฟพบว่า Transform Phase ใช้เวลามากที่สุดในทุก Dataset Size "
+"อย่างเห็นได้ชัด โดย Extract และ Load แทบมองไม่เห็นในสเกลเดียวกับ Transform "
+"เมื่อข้อมูลขนาดใหญ่ขึ้น สังเกตได้ว่า Transform ที่ 1m rows ใช้เวลา 449.14 วินาทีในขณะที่ "
+"Extract และ Load รวมกันใช้เพียง 10.02 วินาทีเท่านั้น"
+msgstr ""
+"From Fig 1: Comparison of Time per Phase Separated by Data Size, this graph "
+"shows the comparison of time for each Phase (Extract / Transform / Load) "
+"separated by Dataset Size. The graph clearly shows that the Transform Phase "
+"takes the most time across all Dataset Sizes. Extract and Load are barely "
+"visible on the same scale as Transform when data size increases. It can be "
+"observed that Transform at 1m rows takes 449.14 seconds while Extract and "
+"Load combined take only 10.02 seconds."
+
+msgid ""
+"จากการวิเคราะห์ใน Transform Phase สาเหตุมาจากการใช้ Script Component เป็นการรันแบบ "
+"Synchronous (ต้องรอคำสั่งก่อนหน้าทำงานเสร็จก่อนถึงจะรันคำสั่งต่อไปได้) ในเอกสารของ "
+"Microsoft ระบุว่า <code>ProcessInputRow()</code> ถูกเรียกหนึ่งครั้งต่อหนึ่ง row "
+"<sup>[1]</sup> ทำให้การ Hash จำนวน 4 columns สำหรับ 1m rows คือการคำนวณ hash "
+"รวม <strong>4,000,000 ครั้ง</strong> ด้วยสาเหตุใน Transform Phase จึงใช้เวลานานกว่า "
+"Extract และ Load ดังนั้น"
+msgstr ""
+"From the analysis of the Transform Phase, the cause comes from using the "
+"Script Component in Synchronous mode (must wait for the previous command to "
+"finish before running the next command). Microsoft documentation states that "
+"<code>ProcessInputRow()</code> is called once per row <sup>[1]</sup>, making "
+"the Hash calculation for 4 columns with 1m rows equal to a total of "
+"<strong>4,000,000 hash calculations</strong>. Therefore, the Transform Phase "
+"takes longer than Extract and Load."
+
+msgid "2. สัดส่วนของแต่ละ Phase ต่อเวลารวม (Stacked Bar Chart)"
+msgstr "2. Proportion of Each Phase to Total Time (Stacked Bar Chart)"
+
+msgid "สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "Fig 2: Proportion of Each Phase to Total Time"
+
+msgid "Fig 2 : สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "Fig 2: Proportion of Each Phase to Total Time"
+
+msgid ""
+"จากภาพ Fig 2 สะท้อนให้เห็นว่า Transform Phase เป็น Bottleneck(คอขวด หรือ ข้อจำกัด) "
+"แม้ใน Dataset Size ที่ 10k จะไม่แสดงใน bar เพราะ bar "
+"เล็กเกินไปแต่เราสามารถคำนวณได้โดยใช้"
+msgstr ""
+"From Fig 2, it reflects that the Transform Phase is a Bottleneck (constraint "
+"or limitation). Even though the Dataset Size of 10k is not shown in the bar "
+"because the bar is too small, we can calculate it using:"
+
+msgid "วิธีคิด:"
+msgstr "Calculation Method:"
+
+msgid "ทำให้เมื่อคำนวณสำหรับ Transform Phase สามารถคำนวณได้ดังนี้"
+msgstr ""
+"Therefore, when calculating for the Transform Phase, it can be calculated as "
+"follows:"
+
+msgid "10k rows"
+msgstr "1m rows"
+
+msgid "1m rows"
+msgstr "1m rows"
+
+#, python-format
+msgid ""
+"จากการคำนวณเห็นได้ว่า 97.8%%%% ของเวลาทั้งหมดหายไปกับ Transform Phase เพียง Phase "
+"เดียว โดยที่ Dataset Size ที่ 10k ใช้เวลา Transform ไปถึง 93%%%% ของเวลา , 100k "
+"ใช้เวลา Transform ไปถึง 98.2%%%% ของเวลา และที่ 1m ใช้เวลา Transform ไปถึง 97.8%%"
+"%% ของเวลา จึงสรุปได้ว่า Transform Phase เป็น "
+"<strong>ขั้นตอนที่ใช้เวลามากที่สุดและส่งผลโดยตรงต่อเวลารวมทั้งหมด</strong>"
+msgstr ""
+"From the calculations, it can be seen that 97.8%%%% of the total time is "
+"spent on the Transform Phase alone. For Dataset Size of 10k, Transform took "
+"93%%%% of the time, 100k took 98.2%%%% of the time, and 1m took 97.8%%%% of "
+"the time. Therefore, it can be concluded that the Transform Phase is "
+"<strong>the most time-consuming step and directly affects the total time</"
+"strong>."
+
+msgid "3. อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "3. Scalability of Each Phase"
+
+msgid "อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "3. Scalability of Each Phase"
+
+msgid "Fig 3 : อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "Fig 3: Scalability of Each Phase"
+
+msgid "จากรูปที่ 3 คำนวณ Scaling Ratio (อัตราส่วนการปรับขนาด) ด้วยสูตร"
+msgstr "From Figure 3, calculate the Scaling Ratio using the formula:"
+
+msgid "ได้ผลดังนี้"
+msgstr "The results are as follows:"
+
+msgid "Extract Scaling:"
+msgstr "Extract Scaling:"
+
+msgid "Transform Scaling:"
+msgstr "Transform Scaling:"
+
+msgid "Load Scaling:"
+msgstr "Load Scaling:"
+
+msgid "Total Scaling:"
+msgstr "Total Scaling:"
+
+msgid "จากตัวเลขข้างต้น สามารถอธิบายแต่ละขั้นตอนได้ดังนี้"
+msgstr "From the above figures, each step can be explained as follows:"
+
+msgid ""
+"<strong>ขั้นตอนดึงข้อมูล (Extract)</strong> ช่วง 10k→100k ใช้เวลาเพิ่มขึ้น 4.34 เท่า ช่วง "
+"100k→1m เวลาเพิ่มขึ้นถึง 14.13 เท่า ซึ่ง Microsoft ระบุว่า disk "
+"เป็นการดำเนินการที่ใช้ทรัพยากรมากและใช้เวลานานกว่าการอ่านจาก Memory <sup>[2]</sup> "
+"ดังนั้นเมื่อข้อมูลมีขนาดใหญ่ขึ้นมาก การอ่านข้อมูลจาก Disk จึงส่งผลให้เวลา Extract "
+"เพิ่มขึ้นอย่างชัดเจน"
+msgstr ""
+"<strong>Extract Phase:</strong> In the 10k→100k range, time increased by "
+"4.34x. In the 100k→1m range, time increased to 14.13x. Microsoft states that "
+"disk is a resource-intensive operation that takes longer than reading from "
+"Memory <sup>[2]</sup>. Therefore, when data becomes much larger, reading "
+"data from Disk clearly results in increased Extract time."
+
+msgid ""
+"<strong>ขั้นตอนแปลงข้อมูล (Transform)</strong> ช่วง 10k→100k เวลาเพิ่มขึ้นถึง 17.40 "
+"เท่า เนื่องจากการเรียกใช้ SHA256 CryptoService ใน .NET ครั้งแรก ต้องใช้เวลาในการโหลด "
+"Library เข้าสู่หน่วยความจำก่อน แต่ช่วง 100k→1m ลดลงเหลือ 10.39 เท่า เพราะระบบโหลด "
+"Library เสร็จแล้ว การ Hash จึงทำงานได้สม่ำเสมอมากขึ้น ซึ่งสอดคล้องกับการทำงานของ "
+"Synchronous Script Component ที่เรียก ProcessInputRow() ทีละหนึ่งแถวอย่างต่อเนื่อง "
+"<sup>[1]</sup>"
+msgstr ""
+"<strong>Transform Phase:</strong> In the 10k→100k range, time increased to "
+"17.40x because the first call to SHA256 CryptoService in .NET requires time "
+"to load the Library into memory first. However, in the 100k→1m range, it "
+"decreased to 10.39x because the system has already loaded the Library, "
+"making Hash operations more consistent. This aligns with the Synchronous "
+"Script Component behavior that calls ProcessInputRow() one row at a time "
+"continuously <sup>[1]</sup>."
+
+msgid ""
+"<strong>ขั้นตอนโหลดข้อมูล (Load)</strong> ช่วง 10k→100k เวลาเพิ่มขึ้น 5.92 เท่า แต่ช่วง "
+"100k→1m เวลากลับลดลงเหลือเพียง 0.38 เท่า กล่าวคือที่ 1 ล้านแถวใช้เวลาน้อยกว่า 100,000 "
+"แถว จากการวิเคราะห์พบว่าอาจมีสาเหตุมาจากการตั้งค่า Batch Size = 5,000 แถวใน ODBC "
+"Destination ทำให้ส่งผลให้การโหลดข้อมูลขนาดใหญ่มีประสิทธิภาพสูงกว่าขนาดเล็ก "
+"อย่างไรก็ตามการระบุสาเหตุที่แน่ชัดต้องการการทดสอบและข้อมูลรองรับเพิ่มเติม"
+msgstr ""
+"<strong>Load Phase:</strong> In the 10k→100k range, time increased by 5.92x. "
+"However, in the 100k→1m range, time decreased to only 0.38x, meaning that 1 "
+"million rows took less time than 100,000 rows. Analysis suggests this may be "
+"due to the Batch Size = 5,000 rows setting in ODBC Destination, resulting in "
+"larger data loads being more efficient than smaller ones. However, "
+"identifying the exact cause requires additional testing and supporting data."
+
+msgid ""
+"<strong>ภาพรวม (Total)</strong> เวลารวมเพิ่มขึ้น 16.54 เท่าในช่วงแรก และลดลงเหลือ "
+"10.44 เท่าในช่วงหลัง ซึ่งสอดคล้องกับพฤติกรรมของ Transform เพราะ Transform "
+"เป็นขั้นตอนที่กำหนดเวลารวมทั้งหมด ดังที่เห็นในรูปที่ 3 ว่าเส้น Transform และเส้น Total "
+"แทบทับกันตลอด"
+msgstr ""
+"<strong>Overall (Total):</strong> Total time increased by 16.54x in the "
+"first period and decreased to 10.44x in the later period, which aligns with "
+"the Transform behavior because Transform is the step that determines the "
+"total overall time. As seen in Figure 3, the Transform line and Total line "
+"almost overlap throughout."
+
+msgid "ดูวิธีการทดสอบและผลการเปรียบเทียบกับเครื่องมือ ETL อื่นๆ"
+msgstr "View testing methods and comparison results with other ETL tools"
+
+msgid "Analysis and Conclusion"
+msgstr "Analysis and Conclusion"
+
+msgid "ETL Pipeline Comparison"
+msgstr "Comparison"
+
+msgid "Analysis"
+msgstr "Overall Analysis"
+
+msgid ""
+"พัฒนาโดย วิศวกรผู้พัฒนาระบบ Data Lake ในงานพัฒนาระบบ Data Lake ภายใต้โครงการจัดตั้ง "
+"Digital Service ของ Mae Fah Luang University"
+msgstr "Developed by Data Lake System Development Engineers in the Data Lake System Development project under the Digital Service Establishment Project of Mae Fah Luang University"
+
+#~ msgid ""
+#~ "สาเหตุที่ Pandas เร็วกว่าเพราะส่งข้อมูลหลายรายการพร้อมกันในครั้งเดียว "
+#~ "ทำให้ใช้เวลารวมน้อยกว่ามาก<sup><a href=\"#ref10\">[10]</a></sup> ส่วน PySpark "
+#~ "ช้ากว่านั้นยังไม่สามารถระบุได้อย่างชัดเจนมากนัก "
+#~ "แต่จากการวิเคราะห์คิดว่าเป็นเพราะวิธีที่มันส่งข้อมูลเข้าฐานข้อมูลนั้นมาจาก JDBC "
+#~ "ที่ไม่ได้ตั้งค่าแบบส่งข้อมูลหลายรายการพร้อมกันในครั้งเดียวซึ่งส่งผลให้มีการส่งข้อมูลทีละแถว "
+#~ "เมื่อข้อมูลมี 1,000,000 แถว PySpark จะส่งข้อมูลทีละแถวและทุกรอบต้องรอให้ MySQL "
+#~ "ตอบรับก่อนจึงจะส่งรอบถัดไปได้ทำให้เวลารวมพุ่งสูงถึง 955 วินาที"
+#~ msgstr ""
+#~ "The reason Pandas is faster is because it sends multiple records at once, "
+#~ "resulting in much less total time<sup><a href=\"#ref10\">[10]</a></sup>. "
+#~ "As for why PySpark is slower, it cannot be specified very clearly, but "
+#~ "from analysis, it is thought to be because the way it sends data to the "
+#~ "database comes from JDBC that is not configured to send multiple records "
+#~ "at once, which results in sending data row by row. When there are "
+#~ "1,000,000 rows, PySpark sends data row by row and must wait for MySQL to "
+#~ "acknowledge before sending the next round, causing the total time to soar "
+#~ "to 955 seconds"
+
+#~ msgid "All rights reserved."
+#~ msgstr "All rights reserved."

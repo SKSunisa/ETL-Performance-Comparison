@@ -1,0 +1,4812 @@
+# Chinese (Simplified) translations for ETL Pipeline Comparison Project
+# Copyright (C) 2026
+# This file is distributed under the same license as the ETL Pipeline Comparison package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-18 15:54+0700\n"
+"PO-Revision-Date: 2026-03-09 21:00+0700\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (Simplified)\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:174
+msgid "Apache Airflow + Pandas"
+msgstr "Apache Airflow + Pandas"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:175
+msgid "Lightweight ETL Processing with Apache Airflow Orchestration"
+msgstr "使用 Apache Airflow 编排的轻量级 ETL 处理"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:182
+msgid "Implementation"
+msgstr "实现"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:185
+msgid "Comparison"
+msgstr "比较"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:193
+msgid "การทดสอบ ETL Pipeline ด้วย Apache Airflow และ pandas"
+msgstr "使用 Apache Airflow 和 pandas 进行 ETL Pipeline 测试"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:196
+msgid ""
+"เพื่อให้การเปรียบเทียบมีความเที่ยงตรง การทดสอบ Airflow + pandas "
+"ใช้โครงสร้างเดียวกับ Airflow + PySpark ทุกประการ ไม่ว่าจะเป็น Airflow 2.8.0,"
+" DAG Structure, ขั้นตอน Transform , Dataset ทั้ง 3 ขนาด และ Source/Target "
+"Database เดิม โดยมีสิ่งที่เปลี่ยนแปลงเพียง 3 อย่างเท่านั้น"
+msgstr ""
+"为确保公平比较，Airflow + pandas 测试使用与 Airflow + PySpark 完全相同的结构，包括 Airflow "
+"2.8.0、DAG 结构、转换步骤、所有 3 种数据集大小以及相同的源/目标数据库。仅有 3 项变更"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:199
+msgid "Processing Engine : เปลี่ยนจาก PySpark เป็น pandas แทน"
+msgstr "Processing Engine : 从 PySpark 更改为 pandas"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:200
+msgid "Load Method : เปลี่ยนจาก PySpark JDBC Writer เป็น pymysql"
+msgstr "Load Method : 从 PySpark JDBC Writer 改为 pymysql"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:201
+msgid ""
+"Target Table : สร้างตาราง fraud_clean_airflow_pandas ใน MySQL (fraud_dl) "
+"แยกออกมา โดยใช้ Schema เดียวกับ fraud_clean_airflow ทุกประการ "
+"เพื่อให้สามารถเปรียบเทียบผลลัพธ์ระหว่างสอง Engine ได้โดยตรง"
+msgstr ""
+"Target Table : 在 MySQL (fraud_dl) 中创建表 fraud_clean_airflow_pandas，"
+"与 fraud_clean_airflow 使用完全相同的 Schema，"
+"以便直接比较两个引擎的结果"
+
+# ===== Airflow + Pandas and Airflow + PySpark Translations =====
+#: .\pipeline\templates\pipeline\airflow_pandas.html:206
+#: .\pipeline\templates\pipeline\test_translation.html:16
+#: .\pipeline\views.py:41 .\test_translation_live.py:18
+#: .\test_translation_live.py:24 .\test_translation_live.py:30
+msgid "STEP 1: ติดตั้ง Library เพิ่มเติม"
+msgstr "步骤 1：安装附加库"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:207
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:328
+msgid "เช็คก่อนรันว่า activate แล้ว โดยต้องเห็น"
+msgstr "检查环境是否已激活，您应该看到"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:207
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:328
+msgid "นำหน้าอยู่"
+msgstr "在开头："
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:211
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:323
+msgid "ตรวจสอบหลังติดตั้งเสร็จ"
+msgstr "安装后验证"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:214
+msgid "STEP 2: เพิ่ม requirements.txt"
+msgstr "步骤 2：添加 requirements.txt"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:217
+msgid "STEP 3: สร้าง Table ใหม่ใน MySQL"
+msgstr "步骤 3：在 MySQL 中创建新表"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:240
+msgid "STEP 4: สร้างไฟล์ DAG"
+msgstr "步骤 4：创建 DAG 文件"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:241
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:717
+msgid "เปิด VS Code สร้างไฟล์"
+msgstr "打开 VS Code 并创建文件"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:241
+msgid "ในโฟลเดอร์ dags วางโค้ดนี้"
+msgstr "在 dags 文件夹中粘贴此代码"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:261
+msgid "# โหลด .env"
+msgstr "# 加载 .env"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:315
+msgid "# Step 1: Hash ข้อมูลส่วนตัว"
+msgstr "# 步骤 1：哈希个人数据"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:324
+msgid "# Step 2: แปลง DateTime"
+msgstr "# 步骤 2：转换日期时间"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:331
+msgid "# Step 4: Select เฉพาะ column ที่ต้องการ"
+msgstr "# 步骤 4：仅选择所需列"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:454
+msgid "STEP 5: Trigger DAG"
+msgstr "步骤 5：触发 DAG"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:455
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1339
+#: .\pipeline\templates\pipeline\ssis.html:653
+#: .\pipeline\templates\pipeline\ssis.html:915
+msgid "กลับไปที่"
+msgstr "返回到"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:455
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1339
+msgid "แล้ว Trigger DAG"
+msgstr "然后触发 DAG"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:461
+msgid "รูป: Airflow DAG แสดง fraud_etl_pandas ทั้งหมด"
+msgstr "图：Airflow DAG 显示所有 fraud_etl_pandas"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:463
+msgid "STEP 6: ตรวจสอบข้อมูลใน MySQL"
+msgstr "步骤 6：验证 MySQL 中的数据"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:464
+msgid "รัน SQL ใน MySQL:"
+msgstr "在 MySQL 中运行 SQL："
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:486
+msgid "STEP 7: ตรวจสอบผลลัพธ์"
+msgstr "步骤 7：验证结果"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:487
+msgid "ดู CSV หลังรันเสร็จ:"
+msgstr "运行后查看 CSV："
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:491
+msgid "สรุป:"
+msgstr "总结"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:491
+msgid ""
+"การทดสอบนี้แสดงให้เห็นว่า pandas สามารถใช้เป็น alternative "
+"ที่เรียบง่ายและมีประสิทธิภาพสูงสำหรับข้อมูลขนาดเล็กถึงกลาง "
+"โดยไม่ต้องการโครงสร้างพื้นฐานที่ซับซ้อนเหมือน PySpark"
+msgstr "此架构展示了实际大学使用的系统设计，在复杂性和完整性方面与测试系统不同。主要组件包括："
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:496
+#: .\pipeline\templates\pipeline\airflow_pandas.html:733
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:393
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:426
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:513
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:676
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:926
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1127
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1245
+#: .\pipeline\templates\pipeline\analysis.html:98
+#: .\pipeline\templates\pipeline\analysis.html:172
+#: .\pipeline\templates\pipeline\analysis.html:203
+#: .\pipeline\templates\pipeline\knime.html:231
+#: .\pipeline\templates\pipeline\knime.html:422
+#: .\pipeline\templates\pipeline\knime.html:781
+#: .\pipeline\templates\pipeline\knime.html:1182
+#: .\pipeline\templates\pipeline\knime.html:1337
+#: .\pipeline\templates\pipeline\ssis.html:116
+#: .\pipeline\templates\pipeline\ssis.html:255
+#: .\pipeline\templates\pipeline\ssis.html:346
+#: .\pipeline\templates\pipeline\ssis.html:480
+#: .\pipeline\templates\pipeline\ssis.html:1090
+#: .\pipeline\templates\pipeline\ssis.html:1162
+#: .\pipeline\templates\pipeline\ssis.html:1354 .\templates\base.html:109
+msgid "Back to Top"
+msgstr "返回顶部"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:499
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:396
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:429
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:516
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:679
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:929
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1130
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1248
+#: .\pipeline\templates\pipeline\knime.html:234
+#: .\pipeline\templates\pipeline\knime.html:425
+#: .\pipeline\templates\pipeline\knime.html:784
+#: .\pipeline\templates\pipeline\knime.html:1185
+#: .\pipeline\templates\pipeline\ssis.html:119
+#: .\pipeline\templates\pipeline\ssis.html:258
+#: .\pipeline\templates\pipeline\ssis.html:349
+#: .\pipeline\templates\pipeline\ssis.html:483
+#: .\pipeline\templates\pipeline\ssis.html:1093
+#: .\pipeline\templates\pipeline\ssis.html:1165
+msgid "Next Phase"
+msgstr "下一阶段"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:506
+msgid "สรุปผลการเปรียบเทียบ Airflow + PySpark vs Airflow + Pandas"
+msgstr "Airflow + PySpark 与 Airflow + Pandas 比较总结"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:508
+msgid "ตารางผลการทดสอบ"
+msgstr "测试结果"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:509
+msgid "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้"
+msgstr "从测试和计时中，可以将文件总结成以下表格"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:573
+msgid "ตารางวิเคราะห์เปรียบเทียบประสิทธิภาพและอัตราการขยายตัว"
+msgstr "查看每个工具的详细测试和比较结果"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:593
+msgid "PySpark เร็วกว่า"
+msgstr "PySpark快"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:629
+#: .\pipeline\templates\pipeline\airflow_pandas.html:638
+#: .\pipeline\templates\pipeline\airflow_pandas.html:647
+#: .\pipeline\templates\pipeline\airflow_pandas.html:656
+#: .\pipeline\templates\pipeline\airflow_pandas.html:665
+msgid "Pandas เร็วกว่า"
+msgstr "Pandas快"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:672
+msgid ""
+"จากตารางจะเห็นตัวเลขที่ผ่านการคำนวณมาแล้วแต่ความแตกต่างนี้เห็นได้ชัดยิ่งขึ้นในกราฟด้านล่าง "
+"ดังต่อไปนี้"
+msgstr "从表中可以看到已经计算过的数字，但这种差异在下面的图表中更加明显，如下所示"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+#: .\pipeline\templates\pipeline\airflow_pandas.html:674
+msgid "การเปรียบเทียบเวลาประมวลผล ETL แต่ละ Phase"
+msgstr "图1：按数据大小分隔的各阶段时间比较"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+#: .\pipeline\templates\pipeline\airflow_pandas.html:680
+msgid ""
+"Fig 1: การเปรียบเทียบเวลาประมวลผล ETL แต่ละ Phase ระหว่าง Airflow+PySpark "
+"และ Airflow+Pandas"
+msgstr "图1：按数据大小分隔的各阶段时间比较"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:682
+#: .\pipeline\templates\pipeline\ssis.html:1268
+msgid "อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "3. 各阶段的可扩展性"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:688
+msgid ""
+"Fig 2: อัตราการขยายตัวของแต่ละ Phase ระหว่าง Airflow+PySpark และ "
+"Airflow+Pandas"
+msgstr "图3：各阶段的可扩展性"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:690
+msgid "วิเคราะห์เปรียบเทียบแต่ละ Phase"
+msgstr "3. 各阶段的可扩展性"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:693
+msgid ""
+"ผลที่ได้คือ PySpark ใช้ 0.746s / 2.405s / 19.362s และ Pandas ใช้ 0.847s / "
+"2.359s / 19.041s"
+msgstr ""
+"结果显示 PySpark 使用 0.746s / 2.405s / 19.362s，Pandas 使用 0.847s / 2.359s / "
+"19.041s"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:693
+msgid "ต่างกันไม่เกิน 0.3 วินาที"
+msgstr "差异不超过 0.3 秒"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:694
+#: .\pipeline\templates\pipeline\airflow_pandas.html:698
+#: .\pipeline\templates\pipeline\airflow_pandas.html:702
+msgid "เหตุผล:"
+msgstr "原因："
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:694
+msgid ""
+"เหตุผลมาจากโค้ดของทั้งสอง DAG ใช้ pyodbc เป็น Connector เดียวกันในการดึงข้อมูลจาก "
+"SQL Server โดย PySpark ใช้ cursor.fetchall() และ Pandas ใช้ pd.read_sql() "
+"ซึ่งภายในก็เรียก pyodbc เช่นกัน เมื่ออ่านข้อมูลผ่าน pyodbc ตัว Driver จะจัดการ Buffer "
+"และ Format ผลลัพธ์เป็น Python Object โดยความแตกต่างด้านประสิทธิภาพระหว่างวิธีการ "
+"Fetch ต่างๆ นั้นแทบไม่มีนัยสำคัญ<sup><a href=\"#ref8\">[8]</a></sup> "
+"ดังนั้นเวลาที่ใช้จึงถูกกำหนดโดยปริมาณข้อมูลที่ต้องรับจาก SQL Server เป็นหลัก ไม่ใช่ตัว Engine "
+"ที่ใช้ประมวลผล"
+msgstr ""
+"原因是两个DAG都使用pyodbc作为相同的连接器从SQL Server提取数据。PySpark使用cursor.fetchall()，"
+"Pandas使用pd.read_sql()，内部也调用pyodbc。通过pyodbc读取数据时，驱动程序将缓冲区和格式结果处理为"
+"Python对象。不同Fetch方法之间的性能差异可以忽略不计<sup><a href=\"#ref8\">[8]</a></sup>。"
+"因此，所用时间主要由需要从SQL Server接收的数据量决定，而不是用于处理的引擎"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:697
+msgid ""
+"PySpark เป็นเครื่องมือที่ให้ Python ไปควบคุม Apache Spark ซึ่งเป็นระบบที่ทำงานบน JVM "
+"(Java Virtual Machine) โดยมีชั้นกลางที่ชื่อว่า Py4J ทำหน้าที่เป็นสะพานรับส่งคำสั่งระหว่าง "
+"Python กับ JVM พูดง่ายๆ คือทุกครั้งที่รัน PySpark มันต้องเปิดระบบ Java ขึ้นมาก่อนเสมอ<sup><a "
+"href=\"#ref9\">[9]</a></sup>"
+msgstr ""
+"PySpark是一个允许Python控制Apache Spark的工具，Apache Spark是一个运行在JVM（Java虚拟机）上的系统。它有一个名为Py4J的中间件层，充当Python和JVM之间命令的桥梁。简单来说，每次运行PySpark时，它都必须先启动Java系统<sup><a href=\"#ref9\">[9]</a></sup>"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:698
+msgid ""
+"ผลที่ได้คือ PySpark ใช้ 20.374s / 24.173s / 38.967s ส่วน Pandas ใช้ 0.223s / "
+"1.356s / 9.534s ต่างกันสูงสุดถึง 91 เท่า ที่ Dataset 10k สาเหตุหลักคือ ทุกครั้งที่รัน PySpark "
+"มันจะเริ่มต้นเป็น Python Process ก่อน แล้วค่อยเปิด JVM Instance ขึ้นมา ทำให้แม้ Dataset "
+"จะมีแค่ 10,000 แถว เวลา Transform ก็ยังสูงถึง 20 วินาที"
+msgstr ""
+"结果显示PySpark用了20.374s / 24.173s / 38.967s，而Pandas用了0.223s / 1.356s / 9.534s，在10k数据集上最大相差91倍。主要原因是每次运行PySpark时，它都会先作为Python进程启动，然后打开JVM实例。这意味着即使数据集只有10,000行，Transform时间仍然高达20秒"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:701
+msgid ""
+"ผลที่ได้คือ PySpark ใช้ 32.186s / 108.389s / 955.372s ส่วน Pandas ใช้ 1.104s"
+" / 9.798s / 102.108s"
+msgstr ""
+"结果显示 PySpark 使用 32.186s / 108.389s / 955.372s，而 Pandas 使用 1.104s / 9.798s / "
+"102.108s"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:702
+msgid ""
+"สาเหตุที่ Pandas เร็วกว่าเพราะส่งข้อมูลหลายรายการพร้อมกันในครั้งเดียว "
+"ทำให้ใช้เวลารวมน้อยกว่ามาก<sup><a href=\"#ref10\">[10]</a></sup> ส่วน PySpark "
+"ช้ากว่านั้นยังไม่สามารถระบุได้อย่างชัดเจนมากนัก "
+"แต่จากการวิเคราะห์คิดว่าเป็นเพราะวิธีที่มันส่งข้อมูลเข้าฐานข้อมูลนั้นมาจาก JDBC "
+"ที่ไม่ได้ตั้งค่าแบบส่งข้อมูลหลายรายการพร้อมกันในครั้งเดียวซึ่งส่งผลให้มีการส่งข้อมูลทีละแถว "
+"เมื่อข้อมูลมี 1,000,000 แถว PySpark จะส่งข้อมูลทีละแถวและทุกรอบต้องรอให้ MySQL "
+"ตอบรับก่อนจึงจะส่งรอบถัดไปได้ทำให้เวลารวมพุ่งสูงถึง 955 วินาที"
+msgstr ""
+"Pandas更快的原因是它一次发送多条记录，导致总时间少得多<sup><a href=\"#ref10\">[10]</a></sup>。"
+"至于PySpark为什么更慢，无法非常明确地指出，但从分析来看，认为是因为它向数据库发送数据的方式来自JDBC，"
+"该JDBC未配置为一次发送多条记录，这导致逐行发送数据。当有1,000,000行时，PySpark逐行发送数据，"
+"每轮都必须等待MySQL确认后才能发送下一轮，导致总时间飙升至955秒"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:704
+msgid "เมื่อไหร่ควรเลือก Pandas"
+msgstr "什么时候应该选择 Pandas"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:706
+msgid "ชุดข้อมูลพอดีกับ RAM (โดยทั่วไป < 10GB)"
+msgstr "筛选出不完整的数据"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:707
+msgid "ต้องการโครงสร้างพื้นฐานที่เรียบง่าย"
+msgstr "验证创建成功："
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:708
+msgid "พัฒนาและ prototype ได้เร็วกว่า"
+msgstr "开发和原型更快"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:709
+msgid "ทีมคุ้นเคยกับ Python แต่ไม่คุ้นเคยกับ Spark"
+msgstr "筛选出不完整的数据"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:710
+msgid "ต้องการ Resource Overhead ที่ต่ำ"
+msgstr "需要低资源开销"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:711
+msgid "ต้องการประสิทธิภาพสูงสำหรับข้อมูลขนาดเล็กถึงกลาง"
+msgstr "筛选出amt（金额）为NULL或小于等于0的数据"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:714
+msgid "เมื่อไหร่ควรเลือก PySpark"
+msgstr "继续下拉 → 选择Type ="
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:716
+msgid "ชุดข้อมูลใหญ่เกินกว่า RAM ที่มี"
+msgstr "筛选出不完整的数据"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:717
+msgid "ต้องการ Horizontal Scalability"
+msgstr "需要横向可扩展性"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:718
+msgid "การแปลงข้อมูลแบบกระจาย (Distributed) ที่ซับซ้อน"
+msgstr "筛选出不完整的数据"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:719
+msgid "มี Spark Infrastructure อยู่แล้ว"
+msgstr "Spark 基础设施已存在"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:720
+msgid "คาดว่าข้อมูลจะเติบโตในอนาคต"
+msgstr "筛选出不完整的数据"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:721
+msgid "ต้องการทำ Real-time Streaming"
+msgstr "需要进行实时流处理"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:736
+#: .\pipeline\templates\pipeline\knime.html:1340
+#: .\pipeline\templates\pipeline\ssis.html:1357
+msgid "Next Page"
+msgstr "下一阶段"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:744
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1472
+#: .\pipeline\templates\pipeline\knime.html:1348
+#: .\pipeline\templates\pipeline\ssis.html:1365
+msgid "เปรียบเทียบกับเครื่องมืออื่น"
+msgstr "与其他工具比较"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:749
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1477
+#: .\pipeline\templates\pipeline\knime.html:1353
+#: .\pipeline\templates\pipeline\ssis.html:1373
+msgid "การวิเคราะห์โดยรวม"
+msgstr "综合分析"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:173
+msgid "Apache Airflow + PySpark"
+msgstr "Apache Airflow + PySpark"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:174
+msgid "Distributed ETL Processing with Apache Airflow Orchestration"
+msgstr "使用 Apache Airflow 编排的分布式 ETL 处理"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:181
+msgid "Phase 0"
+msgstr "阶段 0"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:181
+msgid "System Prep"
+msgstr "系统准备"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:184
+msgid "Phase 1"
+msgstr "阶段 1"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:184
+msgid "Network"
+msgstr "网络"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:187
+msgid "Phase 2"
+msgstr "阶段 2"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:187
+msgid "Target DB"
+msgstr "目标数据库"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:190
+msgid "Phase 3"
+msgstr "阶段 3"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:190
+msgid "Airflow"
+msgstr "Airflow"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:193
+msgid "Phase 4"
+msgstr "阶段 4"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:193
+msgid "Extract"
+msgstr "提取"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:196
+msgid "Phase 5"
+msgstr "阶段 5"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:196
+msgid "Transform"
+msgstr "转换"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:199
+msgid "Phase 6"
+msgstr "阶段 6"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:199
+msgid "Load"
+msgstr "加载"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:202
+msgid "Phase 7"
+msgstr "阶段 7"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:202
+msgid "Log Timing"
+msgstr "记录时间"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:205
+msgid "Benchmark"
+msgstr "基准测试"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:205
+msgid "Results"
+msgstr "结果"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:213
+#: .\pipeline\templates\pipeline\test_translation.html:19
+#: .\test_translation_live.py:36 .\test_translation_live.py:40
+msgid "Phase 0: System Preparation (เตรียมระบบ)"
+msgstr "阶段 0：系统准备"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:215
+msgid "PART 1: ติดตั้ง WSL2 + Ubuntu 22.04"
+msgstr "第 1 部分：安装 WSL2 + Ubuntu 22.04"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:216
+msgid "เริ่มจากการเตรียม Environment บน Windows ก่อนเลย ทำทีละขั้นตอน"
+msgstr "首先在 Windows 上准备环境，逐步进行"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:218
+msgid "STEP 1: เปิด PowerShell แบบ Administrator"
+msgstr "步骤 1：以管理员身份打开 PowerShell"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:220
+msgid "กด Windows Key แล้วพิมพ์"
+msgstr "点击添加按钮并配置："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:221
+msgid "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""
+msgstr "右键单击 Windows PowerShell → 选择 \"以管理员身份运行\""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:222
+msgid "ถ้ามี popup UAC ถามให้กด Yes"
+msgstr "如果出现 UAC 弹出窗口，请点击是"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:225
+msgid "STEP 2: ติดตั้ง WSL2 + Ubuntu 22.04"
+msgstr "步骤 2：安装 WSL2 + Ubuntu 22.04"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:226
+msgid "พิมพ์คำสั่งนี้ใน PowerShell แล้วกด Enter"
+msgstr "在 PowerShell 中输入此命令并按 Enter"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:228
+msgid "รอจนติดตั้งเสร็จ (ใช้เวลาสักพักขึ้นอยู่กับ Internet) แล้ว"
+msgstr "等待安装完成（需要一段时间，取决于互联网速度）然后"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:228
+msgid "Restart เครื่อง"
+msgstr "重启计算机"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:230
+msgid "STEP 3: ตั้งค่า Ubuntu ครั้งแรก"
+msgstr "步骤 3：Ubuntu 初始设置"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:231
+msgid ""
+"หลัง Restart เครื่อง Ubuntu จะเปิดขึ้นมาอัตโนมัติ (ถ้าไม่เปิด ให้หา Ubuntu "
+"22.04 ใน Start Menu)"
+msgstr "重启后，Ubuntu 将自动打开（如果没有，请在开始菜单中查找 Ubuntu 22.04）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:232
+msgid "ระบบจะถามให้ตั้ง username และ password"
+msgstr "系统将要求设置用户名和密码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:234
+msgid "ใส่ชื่อที่ต้องการ (เช่น airflow หรือชื่อตัวเอง)"
+msgstr "填写要连接的服务器信息："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:235
+msgid "ตั้ง password (ตัวอักษรจะไม่แสดงตอนพิมพ์ เป็นเรื่องปกติ)"
+msgstr "设置密码（输入时字符不会显示，这是正常的）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:236
+msgid "พิมพ์ซ้ำอีกครั้ง"
+msgstr "在输入部分点击添加按钮4次："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:239
+msgid "จดจำ password นี้ไว้เพราะจะต้องใช้ทุกครั้งที่รันคำสั่ง"
+msgstr "记住此密码，因为每次运行"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:242
+msgid "STEP 4: อัปเดต Package ของ Ubuntu"
+msgstr "步骤 4：更新 Ubuntu 软件包"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:243
+msgid "หลังตั้ง username เสร็จ พิมพ์คำสั่งนี้"
+msgstr "该图可以解释如下："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:245
+msgid ""
+"ระบบจะถาม password → พิมพ์ password ที่ตั้งไว้แล้วรอจนเสร็จ (อาจใช้เวลา 2-5 "
+"นาที)"
+msgstr "系统将要求输入密码 → 输入您设置的密码并等待完成（可能需要 2-5 分钟）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:247
+msgid "STEP 5: ตรวจสอบว่า WSL2 ถูกตั้งค่าถูกต้อง"
+msgstr "步骤 5：验证 WSL2 配置"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:248
+msgid "เปิด PowerShell ใหม่ (ไม่ต้อง Administrator) แล้วพิมพ์"
+msgstr "打开新的 PowerShell（无需管理员权限）并输入"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:250
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1065
+msgid "ผลที่ควรเห็น"
+msgstr "预期结果是看到文件"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:253
+msgid "ตรงช่อง VERSION ต้องเป็น"
+msgstr "将表命名为"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:253
+msgid "ถ้าเป็น 1 แจ้งมาได้เลย จะมีวิธีแก้"
+msgstr "如果是 1，请告诉我，有解决方法"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:255
+msgid "PART 2: ติดตั้ง Java 17 + Python 3.11 + ODBC Driver"
+msgstr "第 2 部分：安装 Java 17 + Python 3.11 + ODBC 驱动"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:256
+msgid ""
+"Part 2 นี้มีเป้าหมายเพื่อติดตั้ง dependencies "
+"พื้นฐานที่ระบบทั้งหมดต้องการก่อนที่จะติดตั้ง Airflow และ PySpark ได้ "
+"โดยแบ่งเป็น 3 ส่วนหลัก"
+msgstr "第 2 部分旨在安装整个系统在安装 Airflow 和 PySpark 之前所需的基本依赖项，分为 3 个主要部分"
+
+# ===== Airflow + Pandas and Airflow + PySpark Translations =====
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:258
+msgid "ติดตั้งเพื่อรัน PySpark"
+msgstr "步骤 1：安装附加库"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:259
+msgid "ใช้สำหรับเชื่อมต่อ SQL Server"
+msgstr "步骤 3：安装 ODBC Driver 17（用于 SQL Server 连接）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:260
+msgid "ตัวเชื่อมระหว่าง Python กับ SQL Server"
+msgstr "Python 和 SQL Server 之间的连接器"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:263
+msgid "STEP 1: ติดตั้ง Java 17"
+msgstr "步骤 1：安装 Java 17"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:264
+msgid "PySpark ต้องการ Java เสมอ ถ้าไม่มีจะ error ทันที"
+msgstr "KNIME需要JDBC驱动程序来连接两个数据库"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:266
+msgid "ตรวจสอบว่าติดตั้งสำเร็จ"
+msgstr "验证安装成功"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:268
+msgid "ต้องเห็น output ประมาณนี้"
+msgstr "应该看到大致这样的输出"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:271
+msgid "STEP 2: ติดตั้ง Python 3.11"
+msgstr "步骤 2：安装 Python 3.11"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:274
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:290
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:315
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:340
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:366
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:386
+msgid "ตรวจสอบ"
+msgstr "验证"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:276
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:292
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:306
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:325
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:342
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:351
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:363
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:368
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:389
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:448
+msgid "ต้องเห็น"
+msgstr "应该看到"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:278
+msgid "STEP 3: ติดตั้ง ODBC Driver 17 (สำหรับเชื่อม SQL Server)"
+msgstr "步骤 3：安装 ODBC Driver 17（用于 SQL Server 连接）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:279
+msgid "รันทีละบรรทัด"
+msgstr "逐行运行"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:292
+msgid "ในรายการ"
+msgstr "在列表中"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:295
+msgid ""
+"ตั้งแต่ Part 1 - Part 2 เป็นการติดตั้งระดับ system-level ทั้งหมด "
+"ใช้ครั้งเดียวและทุกโปรเจคบนเครื่องนี้ใช้ร่วมกันได้เลย"
+msgstr "从第 1 部分 - 第 2 部分都是系统级安装，使用一次后本机上的所有项目都可以共享它们"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:298
+msgid "PART 3: สร้าง folder โปรเจค"
+msgstr "第 3 部分：创建项目文件夹"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:299
+msgid "โปรเจคชื่อว่า"
+msgstr "重命名列"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:303
+msgid "PART 4: สร้าง Virtual Environment"
+msgstr "第 4 部分：创建虚拟环境"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:306
+msgid "นำหน้า prompt"
+msgstr "上一页"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:308
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:316
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:317
+msgid "ต้องแสดง"
+msgstr "应显示"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:310
+msgid "PART 5: ตั้งค่า Environment Variables"
+msgstr "第 5 部分：设置环境变量"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:319
+msgid "PART 6: ติดตั้ง Airflow 2.8.0"
+msgstr "第 6 部分：安装 Airflow 2.8.0"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:320
+msgid "ต้องแน่ใจว่า"
+msgstr "应该通过"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:320
+msgid "active อยู่ก่อนรัน"
+msgstr "运行前必须处于活动状态"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:327
+msgid "PART 7: ติดตั้ง Library ที่จำเป็น"
+msgstr "第 7 部分：安装必需的库"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:332
+msgid "PART 8: สร้าง requirements.txt"
+msgstr "PART 8：创建 requirements.txt"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:335
+msgid "PART 9: สร้าง folder ที่จำเป็น"
+msgstr "PART 9：创建必要的文件夹"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:344
+msgid "PART 10: airflow db init"
+msgstr "PART 10：airflow db init"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:345
+msgid "ตรวจสอบว่า activate อยู่ก่อน"
+msgstr "首先验证是否已激活"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:348
+msgid "แล้วรัน"
+msgstr "然后运行"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:354
+msgid "PART 11: สร้าง Admin User"
+msgstr "PART 11：创建管理员用户"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:370
+msgid ""
+"ถ้าไม่อยากให้มี Example DAGs ที่ Airflow สร้างมาให้ตอนติดตั้ง ให้แก้ config "
+"ตามนี้"
+msgstr "如果不想让 Airflow 在安装时创建示例 DAG，请按以下方式编辑配置"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:372
+msgid "เปิดไฟล์ airflow.cfg ใน vc code ก็ได้"
+msgstr "也可以在 VS Code 中打开 airflow.cfg"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:374
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:948
+msgid "หาบรรทัด"
+msgstr "找到行"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:377
+#: .\pipeline\templates\pipeline\ssis.html:173
+msgid "แก้เป็น"
+msgstr "更改为"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:380
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1050
+msgid "บันทึก"
+msgstr "保存"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:382
+msgid "PART 12: ดาวน์โหลด MySQL JDBC Driver"
+msgstr "PART 12：下载 MySQL JDBC 驱动"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:403
+msgid "Phase 1 — หา Windows Host IP (สำหรับเชื่อม SQL Server + MySQL)"
+msgstr "Phase 1 — 查找 Windows 主机 IP（用于 SQL Server + MySQL 连接）"
+
+# ===== ALL Phase and STEP Translations =====
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:405
+msgid "STEP 1 : ที่ Terminal WSL2 เพื่อหา Windows Host IP"
+msgstr "STEP 1 : 在 Terminal WSL2 中查找 Windows 主机 IP"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:407
+msgid "วิธีที่ 1 : จาก WSL2:"
+msgstr "方法 1 : 从 WSL2："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:410
+msgid "วิธีที่ 2 : จาก Windows PowerShell:"
+msgstr "方法 2 : 从 Windows PowerShell："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:413
+msgid "วิธีที่ 3 : จาก cmd:"
+msgstr "方法 3 : 从 cmd："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:416
+msgid ""
+"ดูที่ IPv4 Address ที่ Ethernet adapter vEthernet (WSL (Hyper-V firewall))"
+msgstr "查看 Ethernet adapter vEthernet (WSL (Hyper-V firewall)) 的 IPv4 地址"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:418
+msgid "STEP 2 : ทดสอบต่อ SQL Server Port"
+msgstr "STEP 2 : 测试 SQL Server 端口连接"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:419
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:422
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:457
+msgid "Windows Host IP_ที่ได้"
+msgstr "获取的_Windows_主机_IP"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:421
+msgid "STEP 3 : ทดสอบต่อ MySQL Port"
+msgstr "STEP 3 : 测试 MySQL 端口连接"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:436
+msgid "Phase 2 — สร้าง Target Table ใน MySQL"
+msgstr "Phase 2 — 在 MySQL 中创建目标表"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:438
+msgid "STEP 1 : เพิ่มสิทธิ์ใน MySQL"
+msgstr "STEP 1 : 在 MySQL 中授予权限"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:439
+msgid "เปิด MySQL Command Line Client หรือ MySQL Workbench บน Windows แล้วรัน"
+msgstr "在 Windows 上打开 MySQL 命令行客户端或 MySQL Workbench 并运行"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:440
+msgid "อนุญาต root จาก WSL2 subnet ทั้งหมด"
+msgstr "允许来自所有 WSL2 子网的 root"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:444
+msgid "แทน"
+msgstr "在"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:444
+msgid "ด้วย password MySQL จริงของคุณครับ"
+msgstr "替换为您实际的 MySQL 密码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:446
+msgid "STEP 2 : ตรวจสอบว่าเพิ่มสำเร็จ"
+msgstr "STEP 2 : 验证是否成功"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:448
+msgid "ในผลลัพธ์"
+msgstr "结果："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:456
+msgid "STEP 3 : กลับมา WSL2 ทดสอบใหม่"
+msgstr "STEP 3 : 返回 WSL2 并重新测试"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:458
+msgid "เช่น"
+msgstr "例如"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:460
+msgid "STEP 4 : สร้าง Target Table ใน MySQL"
+msgstr "STEP 4 : 在 MySQL 中创建目标表"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:461
+msgid "รัน SQL นี้ใน WSL2 MySQL prompt"
+msgstr "在 WSL2 MySQL 提示符中运行此 SQL"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:490
+msgid "STEP 5 : สร้าง .env File (ซ่อน Credentials)"
+msgstr "STEP 5 : 创建 .env 文件（隐藏凭据）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:492
+msgid "เปิด VS Code"
+msgstr "打开Visual Studio"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:493
+#: .\pipeline\templates\pipeline\ssis.html:432
+#: .\pipeline\templates\pipeline\ssis.html:454
+#: .\pipeline\templates\pipeline\ssis.html:468
+#: .\pipeline\templates\pipeline\ssis.html:469
+#: .\pipeline\templates\pipeline\ssis.html:538
+#: .\pipeline\templates\pipeline\ssis.html:648
+#: .\pipeline\templates\pipeline\ssis.html:669
+#: .\pipeline\templates\pipeline\ssis.html:729
+#: .\pipeline\templates\pipeline\ssis.html:760
+#: .\pipeline\templates\pipeline\ssis.html:772
+#: .\pipeline\templates\pipeline\ssis.html:803
+#: .\pipeline\templates\pipeline\ssis.html:835
+#: .\pipeline\templates\pipeline\ssis.html:911
+#: .\pipeline\templates\pipeline\ssis.html:933
+#: .\pipeline\templates\pipeline\ssis.html:989
+msgid "กด"
+msgstr "点击"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:493
+msgid "สำหรับ Windows"
+msgstr "对于 Windows"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:494
+msgid "กด Connect to WSL"
+msgstr "点击连接到 WSL"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:495
+msgid "เลือก location ของโปรเจค"
+msgstr "选择您希望csv文件出现的位置"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:496
+msgid "สร้างไฟล์"
+msgstr "步骤 4：创建 DAG 文件"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:496
+msgid "ในโฟลเดอร์ dags"
+msgstr "创建文件夹"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:523
+msgid "Phase 3 — ตั้งค่า Airflow Connections ผ่าน Web UI"
+msgstr "Phase 3 — 通过 Web UI 配置 Airflow 连接"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:525
+msgid "STEP 1 : ติดตั้ง MSSQL Provider และ Mysql Provider"
+msgstr "STEP 1 : 安装 MSSQL Provider 和 Mysql Provider"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:526
+msgid "รันใน WSL2 Terminal"
+msgstr "在 WSL2 终端中运行"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:531
+msgid "STEP 2 : เริ่ม Airflow Services"
+msgstr "STEP 2 : 启动 Airflow 服务"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:532
+msgid "เปิด 2 WSL2 Terminal แยกกัน"
+msgstr "打开 2 个独立的 WSL2 终端"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:534
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:723
+msgid "Terminal 1:"
+msgstr "终端 1："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:538
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:727
+msgid "Terminal 2:"
+msgstr "终端 2："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:542
+msgid "เปิด Browser ไปที่"
+msgstr "返回到"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:542
+msgid "แล้ว Login ด้วย"
+msgstr "并放置文件"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:544
+msgid "STEP 3 : Airflow Connections"
+msgstr "STEP 3 : Airflow 连接"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:546
+msgid "เพิ่ม SQL Server Connection"
+msgstr "步骤 1：添加日志时间函数"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:548
+#: .\pipeline\templates\pipeline\knime.html:102
+#: .\pipeline\templates\pipeline\knime.html:126
+msgid "ไปที่"
+msgstr "访问"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:549
+msgid "คลิก + (Add a new record)"
+msgstr "点击 +（添加新记录）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:550
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:601
+msgid "กรอกข้อมูล"
+msgstr "填写信息"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:558
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:609
+#: .\pipeline\templates\pipeline\knime.html:818
+#: .\pipeline\templates\pipeline\knime.html:871
+msgid "ค่า"
+msgstr "值"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:584
+msgid "ใส่ password SQLServer จริง"
+msgstr "输入实际的 SQLServer 密码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:595
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:646
+msgid "คลิก Save"
+msgstr "点击保存"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:598
+msgid "เพิ่ม MySQL Connection"
+msgstr "步骤 1：添加日志时间函数"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:600
+msgid "คลิก + อีกครั้ง"
+msgstr "再次点击 +"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:649
+msgid "ทำไมต้องกรอกค่าเหล่านี้?"
+msgstr "为什么需要填写这些值？"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:650
+msgid ""
+"Airflow Connections คือการเก็บข้อมูลการเชื่อมต่อไว้ในที่เดียว แทนที่จะ "
+"hardcode ใน DAG code โดยตรง"
+msgstr "Airflow Connections 是将连接信息存储在一个地方的方法，而不是直接在 DAG 代码中硬编码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:652
+msgid "แต่ละ Field มีหน้าที่อะไร?"
+msgstr "每个字段的作用是什么？"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:653
+msgid ""
+"ชื่อที่ใช้อ้างอิงใน DAG code เช่น mssql_frauddb เวลาเรียกใช้ใน Python "
+"จะเขียนว่า conn_id='mssql_frauddb' Airflow "
+"จะไปดึงค่าที่เหลือมาให้เองอัตโนมัติ"
+msgstr ""
+"在 DAG 代码中用于引用的名称，例如 mssql_frauddb。在 Python 中调用时，写 "
+"conn_id='mssql_frauddb'，Airflow 将自动检索其余值"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:655
+msgid ""
+"บอก Airflow ว่าเป็น database ประเภทไหน เพื่อใช้ driver ที่ถูกต้อง เช่น mssql"
+" ใช้ pymssql, mysql ใช้ mysqlclient"
+msgstr ""
+"告诉 Airflow 这是什么类型的数据库，以使用正确的驱动程序。例如，mssql 使用 pymssql，mysql 使用 mysqlclient"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:657
+msgid ""
+"IP address ของ server ที่ database รันอยู่ ในกรณีนี้คือ Windows Host IP "
+"172.31.128.1 ที่ WSL2 มองเห็น"
+msgstr "数据库运行所在服务器的 IP 地址。在这种情况下，是 WSL2 可以看到的 Windows 主机 IP 172.31.128.1"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:659
+msgid "ชื่อ database ที่ต้องการเชื่อมต่อ เช่น frauddb หรือ fraud_dl"
+msgstr "要连接的数据库名称，例如 frauddb 或 fraud_dl"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:661
+msgid "username และ password สำหรับ authenticate เข้า database"
+msgstr "数据库身份验证的用户名和密码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:663
+msgid ""
+"port ที่ database รับการเชื่อมต่อ SQL Server ใช้ 57642 (dynamic port) และ "
+"MySQL ใช้ 3306 (default port)"
+msgstr "数据库接受连接的端口。SQL Server 使用 57642（动态端口），MySQL 使用 3306（默认端口）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:665
+msgid "ภาพรวมการทำงาน"
+msgstr "整体工作流程"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:668
+msgid "ดึงค่าจาก"
+msgstr "从中检索值"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:670
+msgid "เชื่อมต่อ SQL Server จริง"
+msgstr "连接到 SQL Server"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:672
+msgid ""
+"พูดง่ายๆ คือแทนที่จะเขียน IP, password ใน code ตรงๆ เก็บไว้ใน Connections "
+"แทน ปลอดภัยกว่าและแก้ไขได้ง่ายโดยไม่ต้องแตะ code"
+msgstr "简单来说，不是在代码中直接写 IP 和密码，而是将它们存储在 Connections 中。这样更安全，更容易编辑而无需触及代码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:686
+msgid "Phase 4 — Extract"
+msgstr "阶段 4 — 提取"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:688
+msgid "ภาพรวมของ Extract Task"
+msgstr "提取任务概述"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:689
+msgid ""
+"Extract คือการดึงข้อมูลจาก SQL Server แล้วบันทึกเป็น Parquet เพื่อส่งต่อให้ "
+"Transform"
+msgstr "提取是从 SQL Server 拉取数据并保存为 Parquet 以传递给转换"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:697
+msgid ""
+"อธิบายง่ายๆ คือ ดึงข้อมูลจาก SQL Server ด้วย pyodbc → บันทึกเป็น Parquet → "
+"Push timing ผ่าน XCom"
+msgstr "简单解释：使用 pyodbc 从 SQL Server 拉取数据 → 保存为 Parquet → 通过 XCom 推送计时"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:700
+msgid "Parquet คืออะไร?"
+msgstr "什么是KNIME？"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:701
+msgid ""
+"Parquet คือรูปแบบไฟล์สำหรับเก็บข้อมูลตาราง เหมือน CSV แต่เก็บข้อมูลแบบ "
+"\"คอลัมน์\" แทนที่จะเป็น \"แถว\" ทำให้ประมวลผลได้เร็วกว่า และไฟล์เล็กกว่ามาก"
+msgstr "Parquet 是一种用于存储表格数据的文件格式，类似于 CSV，但以\"列\"格式而不是\"行\"格式存储数据，使其处理速度更快，文件大小也更小"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:702
+msgid "เก็บทีละแถว"
+msgstr "按行存储"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:706
+msgid "เก็บทีละคอลัมน์"
+msgstr "按列存储"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:712
+msgid "STEP 1 : สร้างโฟลเดอร์สำหรับเก็บ Parquet"
+msgstr "步骤 1：创建用于存储 Parquet 文件的文件夹"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:714
+msgid "รันโค้ดบรรทัดนี้แล้วจะไม่เจออะไรเพราะโฟลเดอร์ว่างเปล่า"
+msgstr "运行此行后不会找到任何内容，因为文件夹为空"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:716
+msgid "STEP 2 : สร้างไฟล์ DAG (เฉพาะส่วน Extract ก่อน)"
+msgstr "步骤 2：创建 DAG 文件（仅提取部分）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:717
+msgid "ในโฟลเดอร์ dags ที่โฟลเดอร์โปรเจค"
+msgstr "在 dags 文件夹中粘贴此代码："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:719
+msgid "หรือรันโค้ดนี้ที่ WSL ก็ได้"
+msgstr "在此处粘贴此代码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:722
+msgid ""
+"STEP 3 : เปิด Airflow Services (ถ้าทำต่อจาก Phase 3 หรือ เปิดไว้อยู่แล้ว "
+"ให้ข้ามไปที่ STEP 4 )"
+msgstr "步骤 3：打开 Airflow 服务（如果从阶段 3 继续或已经打开，请跳至步骤 4）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:731
+msgid "STEP 4 : เขียนโค้ด"
+msgstr "步骤 4：编写代码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:732
+msgid "วางโค้ดนี้"
+msgstr "粘贴此代码："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:757
+msgid "โหลด .env"
+msgstr "加载 .env"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:761
+msgid "Force JAVA_HOME สำหรับ PySpark ใน Airflow Task"
+msgstr "为 Airflow Task 中的 PySpark 强制设置 JAVA_HOME"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:798
+msgid "--- เริ่มจับเวลา ---"
+msgstr "--- 开始计时 ---"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:801
+msgid "เชื่อม SQL Server ด้วย pyodbc"
+msgstr "使用 pyodbc 连接到 SQL Server"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:805
+msgid "ดึงข้อมูลจาก Table"
+msgstr "从表中提取数据"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:807
+msgid "ชื่อ Column"
+msgstr "列名"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:808
+msgid "ข้อมูลทุกแถว"
+msgstr "所有行数据"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:811
+msgid "แปลงเป็น dict"
+msgstr "转换为字典"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:817
+msgid "แปลงเป็น PyArrow Table แล้วบันทึกเป็น Parquet"
+msgstr "转换为 PyArrow Table 并保存为 Parquet"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:820
+msgid "--- หยุดจับเวลา ---"
+msgstr "--- 停止计时 ---"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:823
+msgid "ส่งค่าผ่าน XCom ไปให้ Task ถัดไป"
+msgstr "通过 XCom 传递值给下一个任务"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:849
+msgid "กด Save ("
+msgstr "点击Start"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:849
+msgid "หรือ"
+msgstr "或"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:851
+msgid "STEP 5 : ตรวจว่า Airflow เห็น DAG"
+msgstr "步骤 5：验证 Airflow 识别 DAG"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:852
+msgid "ดูผ่าน Web UI โดยเปิดเบราว์เซอร์ไปที่"
+msgstr "通过 Web UI 查看，打开浏览器访问"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:852
+msgid "แล้วคลิก"
+msgstr "并放置文件"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:852
+msgid "จากนั้น Unpause DAG ขั้นตอนนี้อาจต้องรอสักครู่"
+msgstr "在阶段1之前，必须先完成所有这些项目"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:854
+msgid "STEP 6 : ตรวจสอบว่ามีโฟลเดอร์ /tmp/fraud_etl รึยัง"
+msgstr "步骤 6：检查 /tmp/fraud_etl 文件夹是否存在"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:856
+msgid "ถ้าไม่มีสร้างใหม่เพราะ /tmp จะถูกล้างทุกครั้งที่ restart WSL2"
+msgstr "如果不存在则创建它，因为每次重启 WSL2 时 /tmp 都会被清空"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:859
+msgid "STEP 7 : Trigger DAG และ ตรวจสอบผลลัพธ์"
+msgstr "步骤 7：触发 DAG 并检查结果"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:860
+msgid "1. กด Trigger DAG"
+msgstr "1. 点击 Trigger DAG"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:861
+msgid "2. หลัง Trigger จะเห็น Task แต่ละอันเปลี่ยนสีตามสถานะ"
+msgstr "2. 触发后，您将看到每个任务根据状态改变颜色"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:868
+msgid "STEP 8 : ตรวจสอบผลลัพธ์"
+msgstr "步骤 8：验证结果"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:869
+msgid "ดูว่าไฟล์ Parquet ถูกสร้างหรือเปล่า"
+msgstr "验证创建成功："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:872
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:885
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1083
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1239
+msgid "ผลที่ควรได้"
+msgstr "预期结果是看到文件"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:877
+msgid "ดูจำนวนแถวใน Parquet ว่าถูกต้องไหม"
+msgstr "在MySQL中验证数据是否正确"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:890
+msgid "สรุปสิ่งที่ Extract ทำ"
+msgstr "提取过程摘要"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:895
+msgid "ขั้นตอน"
+msgstr "步骤"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:896
+#: .\pipeline\templates\pipeline\home.html:110
+msgid "รายละเอียด"
+msgstr "详细信息"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:901
+msgid "เชื่อม SQL Server"
+msgstr "连接 SQL Server"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:902
+msgid "ผ่าน pyodbc + credentials จาก .env"
+msgstr "通过 pyodbc + 来自 .env 的凭据"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:905
+msgid "ดึงข้อมูล"
+msgstr "提取数据"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:909
+msgid "แปลงเป็น Parquet"
+msgstr "转换为 Parquet"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:910
+msgid "ผ่าน PyArrow บันทึกที่ /tmp/fraud_etl/"
+msgstr "通过 PyArrow 保存到 /tmp/fraud_etl/"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:913
+msgid "จับเวลา"
+msgstr "计时"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:914
+msgid "time.perf_counter() ตั้งแต่ connect จนบันทึกเสร็จ"
+msgstr "time.perf_counter() 从连接到保存完成"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:918
+msgid "ส่ง extract_sec และ path ของ Parquet ไปให้ Transform"
+msgstr "发送 extract_sec 和 Parquet 路径给 Transform"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:936
+msgid "Phase 5 — TRANSFORM"
+msgstr "阶段 5 — 转换"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:938
+msgid "ภาพรวมของ Transform Task"
+msgstr "提取任务概述"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:947
+msgid "STEP 1 : เพิ่ม Transform function ใน DAG"
+msgstr "步骤 1：向 DAG 添加转换函数"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:948
+msgid "ของ DAG Definition แล้วเพิ่ม Transform function"
+msgstr "步骤 2：更新 DAG 定义以包含转换"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:948
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1146
+msgid "ก่อน"
+msgstr "上一页"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1021
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1213
+msgid "Save"
+msgstr "保存"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1023
+msgid "STEP 2 : แก้ DAG Definition ให้รวม Transform"
+msgstr "步骤 2：更新 DAG 定义以包含转换"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1024
+msgid "หา DAG Definition แล้วแก้ for loop"
+msgstr "查找 DAG Definition 并更新 for 循环"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1052
+msgid "STEP 3 : Trigger DAG"
+msgstr "步骤 3：触发 DAG"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1053
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1227
+msgid "เปิดเบราว์เซอร์ไปที่"
+msgstr "打开浏览器访问"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1053
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1227
+msgid "แล้วคลิก Trigger DAG"
+msgstr "然后触发 DAG"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1059
+msgid "รูป: Airflow DAG แสดง Extract และ Transform Tasks"
+msgstr "图：Airflow DAG 显示提取和转换任务"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1061
+msgid "STEP 4 : ตรวจสอบผลลัพธ์"
+msgstr "步骤 4：验证结果"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1074
+msgid "ตรวจ column ว่า Transform ถูกต้องไหม"
+msgstr "验证安装成功"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1099
+msgid "สรุปสิ่งที่ทำใน TRANSFORM"
+msgstr "提取过程摘要"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1101
+msgid "Input"
+msgstr "输入"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1102
+msgid "รับ path ของ"
+msgstr "获取路径"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1102
+msgid "มาจาก Extract ผ่าน XCom"
+msgstr "密码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1104
+msgid "Step 1 — Hash ข้อมูลส่วนตัว"
+msgstr "步骤 1 — 哈希个人数据"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1105
+msgid "เข้ารหัส SHA-256 ทั้ง 4 column แล้วสร้าง column ใหม่แทน"
+msgstr "对所有 4 列进行 SHA-256 加密并创建新列替换"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1111
+msgid "Step 2 — แปลง DateTime"
+msgstr "步骤 2 — 转换日期时间"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1114
+msgid "Step 3 — Filter"
+msgstr "步骤 3 — 过滤"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1115
+msgid "ตัดแถวที่ข้อมูลผิดปกติออก"
+msgstr "逐个字段填写信息："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1119
+msgid "Step 4 — Select"
+msgstr "步骤 4 — 选择"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1120
+msgid ""
+"เลือกเฉพาะ 15 column ที่ตรงกับ Schema ของ MySQL โดยทิ้ง column เก่าอย่าง"
+msgstr "仅选择与 MySQL Schema 匹配的 15 列，删除旧列如"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1120
+msgid "ออก"
+msgstr "拖动"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1122
+msgid "Output"
+msgstr "输出"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1123
+msgid "บันทึกเป็น"
+msgstr "将表命名为"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1123
+msgid "แล้วส่ง path และเวลาที่ใช้ผ่าน XCom ให้ Task Load ต่อไป"
+msgstr "此节点计算转换阶段使用的总时间"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1137
+msgid "Phase 6 — LOAD"
+msgstr "阶段 6 — 加载"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1139
+msgid "ภาพรวมของ Load Task"
+msgstr "提取任务概述"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1145
+msgid "STEP 1 : เพิ่ม Load function ใน DAG"
+msgstr "步骤 1：向 DAG 添加加载函数"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1146
+msgid "เพิ่ม Load function"
+msgstr "步骤 1：向 DAG 添加加载函数"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1182
+msgid "STEP 2 : แก้ DAG Definition ให้รวม Load"
+msgstr "步骤 2：更新 DAG 定义以包含加载"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1215
+msgid "STEP 3 : ตรวจสอบ MySQL ก่อน Trigger"
+msgstr "步骤 3：触发前验证 MySQL"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1216
+msgid "รันโค้ดนี้ใน MySQL"
+msgstr "在此处粘贴此代码"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1222
+msgid "ผลที่ควรได้ (ยังว่างอยู่)"
+msgstr "预期结果是看到文件"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1226
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1338
+msgid "STEP 4 : Trigger DAG"
+msgstr "步骤 4：触发 DAG"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1233
+msgid "รูป: Airflow DAG แสดง Extract, Transform และ Load Tasks ทั้งหมด"
+msgstr "图：Airflow DAG 显示所有提取、转换和加载任务"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1235
+msgid "STEP 5 : ตรวจสอบผลลัพธ์หลังรัน"
+msgstr "步骤 5：运行后验证结果"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1255
+msgid "Phase 7 — LOG TIMING"
+msgstr "阶段 7 — 记录时间"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1257
+msgid "ภาพรวมของ Log Timing Task"
+msgstr "提取任务概述"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1281
+msgid "ดึงค่าเวลาจาก XCom"
+msgstr "从 XCom 获取时间值"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1282
+msgid "บันทึกลง CSV"
+msgstr "保存到 CSV"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1263
+msgid "STEP 1 : เพิ่ม Log Timing function"
+msgstr "步骤 1：添加日志时间函数"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1264
+msgid "เพิ่ม function ก่อน DAG Definition"
+msgstr "步骤 1：向 DAG 添加加载函数"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1294
+msgid "# รับค่าเวลาจาก XCom"
+msgstr "# 从 XCom 获取时间值"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1299
+msgid "# เขียน CSV"
+msgstr "# 写入 CSV"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1296
+msgid "STEP 2 : แก้ DAG Definition ให้ครบทุก Task"
+msgstr "步骤 2：使用所有任务更新 DAG 定义"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1333
+msgid "STEP 3 : ล้างข้อมูล MySQL ก่อน Trigger ใหม่"
+msgstr "步骤 3：在重新触发之前清除 MySQL 数据"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1334
+msgid "เพราะรันไปแล้ว 1,110,000 แถว ถ้า Trigger อีกครั้งจะรันซ้ำ"
+msgstr "因为已经运行了 1,110,000 行，如果再次触发将运行重复数据"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1345
+msgid "รูป: Airflow DAG แสดงทุก Task รวมถึง Log Timing"
+msgstr "图：Airflow DAG 显示所有任务包括日志计时"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1347
+msgid "STEP 5 : ตรวจสอบข้อมูลใน MySQL"
+msgstr "步骤 6：验证 MySQL 中的数据"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1348
+msgid "รัน SQL ใน MySQL"
+msgstr "在 MySQL 中运行 SQL"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1370
+msgid "STEP 6 : ตรวจสอบผลลัพธ์"
+msgstr "步骤 6：验证结果"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1371
+msgid "ดู CSV หลังรันเสร็จ"
+msgstr "运行后查看 CSV"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1374
+msgid "ผลที่ได้"
+msgstr "获得的结果"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1383
+msgid "สรุปและวิเคราะห์ผล Airflow + Pyspark ETL Benchmark"
+msgstr "Airflow + PySpark ETL 基准测试总结与分析"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1385
+#: .\pipeline\templates\pipeline\knime.html:1196
+#: .\pipeline\templates\pipeline\ssis.html:1174
+msgid "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้:"
+msgstr "从测试和计时中获得的文件可以总结为表格如下："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1386
+msgid ""
+"จากการทดสอบ ETL Pipeline ด้วย Apache Airflow 2.8.0 ร่วมกับ PySpark บน "
+"Dataset 3 ขนาด ได้ผลการจับเวลาดังตารางที่ 1 "
+"โดยแต่ละแถวแสดงเวลาที่ใช้ในแต่ละขั้นตอน ได้แก่ Extract, Transform และ Load "
+"หน่วยเป็นวินาที"
+msgstr ""
+"从使用 Apache Airflow 2.8.0 和 PySpark 对 3 种数据集大小进行 ETL 管道测试中，获得了表 1 "
+"中所示的计时结果，其中每行显示每个阶段使用的时间：提取、转换和加载，单位为秒"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1421
+msgid ""
+"เพื่อให้เห็นภาพที่ชัดเจนขึ้น ข้อมูลจากตารางได้ถูกนำไปแสดงผลในรูปแบบกราฟ 3 "
+"แบบ ดังต่อไปนี้"
+msgstr "分析所有4种方法的所有阶段的计时结果，并以图表形式显示，以比较ETL管道性能。"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1423
+msgid "1. Airflow + PySpark: การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "图1：按数据大小分隔的各阶段时间比较"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1428
+msgid ""
+"Fig 1 : Airflow + PySpark - การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "图1：按数据大小分隔的各阶段时间比较"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1430
+msgid ""
+"จากกราฟ พบว่าขั้นตอน Load ใช้เวลานานที่สุดในทุกขนาดข้อมูล "
+"โดยเมื่อข้อมูลมีขนาด 1 ล้านแถว ขั้นตอน Load ใช้เวลาถึง 955 วินาที ในขณะที่ "
+"Extract ใช้เพียง 19 วินาที และ Transform ใช้เพียง 39 วินาที"
+msgstr ""
+"在此项目中，我们需要分别计时3个阶段，因此我们必须为每个阶段分别创建一个任务。这使我们能够测量提取需要多少秒、转换需要多少秒以及加载需要多少秒。"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1431
+msgid "สาเหตุที่ Load ใช้เวลามากที่สุดมาจาก:"
+msgstr "步骤3：执行（暂时不要连接线）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1431
+msgid ""
+"เมื่อ Spark ส่งข้อมูลปริมาณมากไปยังฐานข้อมูลภายนอก "
+"ระบบจะใช้ช่องทางเดียวในการส่งข้อมูลทั้งหมด ทำให้ยิ่งข้อมูลมีปริมาณมากเท่าใด "
+"กระบวนการนี้ก็ใช้เวลานานมากขึ้นเท่านั้น"
+msgstr "将处理后的数据分发到大学各部门的MySQL，并通过Power BI显示结果，以支持大学内高管和人员的决策。"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1433
+msgid "2. Airflow + PySpark: สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "图2：各阶段占总时间的比例"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1438
+msgid "Fig 2 : Airflow + PySpark - สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "图2：各阶段占总时间的比例"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1440
+#, python-format
+msgid ""
+"จากกราฟพบว่าขั้นตอน Load ครอบครองเวลารวมมากที่สุดในทุกขนาดข้อมูล "
+"และสัดส่วนเพิ่มขึ้นเรื่อยๆ ตามปริมาณข้อมูล โดยที่ข้อมูล 1,000,000 แถว "
+"ขั้นตอน Load ใช้เวลาถึง 94%% ของเวลารวมทั้งหมด"
+msgstr ""
+"Airflow + "
+"PySpark：测试结果表明，Airflow与PySpark在处理大量数据方面提供了最佳性能，特别是随着数据量的增加。它还提供了高度的灵活性和易于扩展性。"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1441
+msgid "สาเหตุมาจาก:"
+msgstr "原因："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1441
+msgid ""
+"PySpark JDBC Writer ในโค้ดไม่ได้ตั้งค่าการกระจายงาน "
+"ทำให้ข้อมูลทั้งหมดถูกส่งออกผ่าน JDBC เพียงช่องทางเดียว "
+"ซึ่งการส่งข้อมูลทั้งหมดผ่านกระบวนการเดียวจะใช้เวลานานมากเมื่อข้อมูลมีปริมาณมาก"
+" และทรัพยากรที่เหลืออยู่ในระบบก็ไม่ได้ถูกนำมาใช้งาน "
+"ยิ่งข้อมูลมีปริมาณมากขึ้นเท่าใด เวลาของขั้นตอน Load "
+"ก็เพิ่มขึ้นในอัตราที่สูงกว่าขั้นตอนอื่นอย่างชัดเจน"
+msgstr ""
+"<strong>Package.dtsx</strong> "
+"是存储所有工作流程步骤的文件。它是一个文档，说明需要做什么以及按什么顺序进行。SSIS读取此文件并按指定执行任务。创建3个单独文件的原因是每个文件处理不同大小的数据。分离文件消除了每次运行时更改值的需要，并减少了在不知情的情况下运行错误大小的机会。"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1443
+msgid "3. Airflow + PySpark: อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "3. 各阶段的可扩展性"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1448
+msgid "Fig 3 : Airflow + PySpark - อัตราการขยายตัวของแต่ละ Phase"
+msgstr "图3：各阶段的可扩展性"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1450
+msgid "จากกราฟพบว่า"
+msgstr "从图表中发现"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1450
+msgid "ขั้นตอน Load มีเส้นชันที่สุด"
+msgstr "步骤3：配置"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1450
+msgid ""
+"โดยเพิ่มขึ้นประมาณ 30 เท่า (955 ÷ 32.2 = 29.6 เท่า ≈ 30 เท่า) "
+"เมื่อข้อมูลเพิ่มขึ้น 100 เท่า"
+msgstr "增加约 30 倍（955 ÷ 32.2 = 29.6 倍 ≈ 30 倍）当数据增加 100 倍时"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1451
+msgid "สาเหตุที่ Load เพิ่มขึ้นเร็วที่สุดนั้น:"
+msgstr "步骤3：执行（暂时不要连接线）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1451
+msgid ""
+"เมื่อเขียนข้อมูลไปยังฐานข้อมูลผ่าน JDBC นั้น PySpark ใช้จำนวน Partition "
+"ที่มีอยู่ในหน่วยความจำเพื่อควบคุมการทำงานพร้อมกัน"
+msgstr "分析所有4种方法的所有阶段的计时结果，并以图表形式显示，以比较ETL管道性能。"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1451
+msgid ""
+"เมื่อไม่ได้ตั้งค่าการกระจายงาน ข้อมูลทั้งหมดจึงถูกส่งออกผ่านช่องทางเดียว"
+msgstr "使用从测试结果中选择的ETL工具从暂存区提取数据以进行处理。"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1453
+#: .\pipeline\templates\pipeline\knime.html:1318
+msgid "สรุป"
+msgstr "总结"
+
+# ===== SSIS PAGE =====
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1454
+msgid "จากการทดสอบ Airflow + PySpark ETL Pipeline สรุปได้ว่า"
+msgstr "使用SSIS进行ETL管道测试"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1456
+msgid "ใช้เวลามากที่สุดและมีอัตราการขยายตัวสูงที่สุด"
+msgstr "从图3使用公式计算扩展比率："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1457
+#, python-format
+msgid ""
+"ที่ข้อมูล 1M แถว Load ใช้เวลา 94%% ของเวลารวม (955 วินาที จาก 1,014 วินาที)"
+msgstr "在 1M 行数据时，加载占总时间的 94%%（1,014 秒中的 955 秒）"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1458
+msgid ""
+"สาเหตุหลักมาจากการส่งข้อมูลผ่าน JDBC เพียงช่องทางเดียว ไม่ได้ใช้การกระจายงาน"
+msgstr "从测试和计时中获得的文件可以总结为表格如下："
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1459
+msgid "Extract และ Transform มีประสิทธิภาพดี เพิ่มขึ้นในอัตราที่สมเหตุสมผล"
+msgstr "提取和转换性能良好，以合理的速率增加"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1462
+msgid "References"
+msgstr "参考文献"
+
+# ===== Analysis Page Translations =====
+#: .\pipeline\templates\pipeline\analysis.html:5
+msgid "สรุปและวิเคราะห์ผล ETL Tool Comparison: 4 Tools"
+msgstr "ETL 工具对比总结与分析：4 种工具"
+
+#: .\pipeline\templates\pipeline\analysis.html:11
+msgid "สรุปและวิเคราะห์ผล ETL Tool Comparison: 4 Tools สรุปผลการทดสอบ ETL"
+msgstr "ETL 工具对比总结与分析：4 种工具 - ETL 测试结果总结"
+
+#: .\pipeline\templates\pipeline\analysis.html:12
+msgid ""
+"โปรเจคนี้นำเครื่องมือ 4 อย่างมาทดสอบด้วยข้อมูลการตรวจจับการทุจริตบัตรเครดิต "
+"(Credit Card Transactions Fraud Detection) โดยแบ่งขนาดข้อมูลออกเป็นสามระดับ "
+"คือ 10,000 แถว 100,000 แถว และ 1,000,000 แถว "
+"แล้วจับเวลาว่าแต่ละเครื่องมือใช้เวลานานแค่ไหนในแต่ละขั้นตอน "
+"เครื่องมือที่ใช้เวลาน้อยกว่าถือว่าดีกว่าในการทดสอบนี้"
+msgstr ""
+"本项目使用 4 种工具对信用卡交易欺诈检测数据进行测试。数据分为三个规模：10,000 行、100,000 行和 1,000,000 "
+"行。我们测量每个工具在各个步骤所需的时间。耗时较少的工具在此测试中被认为更好。"
+
+#: .\pipeline\templates\pipeline\analysis.html:17
+msgid "ภาพรวม: แต่ละเครื่องมือใช้เวลารวมเท่าไร"
+msgstr "概览：每个工具的总耗时"
+
+#: .\pipeline\templates\pipeline\analysis.html:20
+msgid ""
+"กราฟนี้แสดงเวลารวมทั้งหมดของแต่ละเครื่องมือ "
+"แกนนอนคือขนาดข้อมูลแบ่งเป็นสามกลุ่ม แต่ละกลุ่มมีแท่งสี่แท่งเรียงกัน "
+"แท่งที่สูงกว่าหมายความว่าใช้เวลานานกว่า"
+msgstr "此图显示每个工具的总时间。横轴表示分为三组的数据大小。每组有四个柱状图排列。较高的柱状图表示执行时间较长。"
+
+#: .\pipeline\templates\pipeline\analysis.html:27
+msgid "เวลารวมทั้งหมดของแต่ละเครื่องมือ แยกตามขนาดข้อมูล"
+msgstr "每个工具的总时间，按数据大小分类"
+
+#: .\pipeline\templates\pipeline\analysis.html:32
+msgid ""
+"จากตาราง Airflow+Pandas เร็วที่สุดในทุกขนาด โดยที่ข้อมูล 1 "
+"ล้านแถวก็ยังใช้เวลาเพียง 131 วินาทีขณะที่ SSIS ใช้ 459 วินาทีKNIME ใช้ 630 "
+"วินาทีและ Airflow+PySpark ช้าที่สุดด้วยเวลาถึง 1,014 วินาทีหรือกว่า 16 "
+"นาทีสิ่งที่น่าสังเกตคือ Airflow+PySpark ช้าตั้งแต่ข้อมูลขนาดเล็กมาก "
+"แม้แต่ข้อมูล 10,000 แถว ก็ยังใช้เวลาถึง 53 "
+"วินาทีทั้งที่เครื่องมืออื่นทำเสร็จภายใน 23 วินาทีสาเหตุคือทุกครั้งที่รัน "
+"PySpark มันต้องเปิดระบบ Java ขึ้นมาก่อน ซึ่งกินเวลาประมาณ 20-30 "
+"วินาทีทุกครั้งโดยไม่ขึ้นกับว่ามีข้อมูลมากหรือน้อยแค่ไหน ทำให้ข้อมูลน้อยๆ "
+"เสียเปรียบอย่างชัดเจน"
+msgstr ""
+"从图表可见，Airflow+Pandas 在所有规模下都是最快的。对于 100 万行数据，它只用了 131 秒，而 SSIS 用了 459 "
+"秒，KNIME 用了 630 秒，Airflow+PySpark 最慢，达到 1,014 秒或超过 16 "
+"分钟。值得注意的是，Airflow+PySpark 即使在小数据下也很慢。即使是 10,000 行数据，它也需要 53 秒，而其他工具在 23 "
+"秒内完成。这是因为每次 PySpark 运行都必须先启动 Java 系统，无论数据大小如何，这都需要约 20-30 秒。这使得小数据集处于明显的劣势。"
+
+#: .\pipeline\templates\pipeline\analysis.html:38
+#: .\pipeline\templates\pipeline\analysis.html:48
+msgid ""
+"สัดส่วนของแต่ละ Phase ต่อเวลารวม - แสดงถึงเวลาหายไปอยู่ในขั้นตอนไหนมากที่สุด"
+msgstr "各阶段占总时间的比例 - 显示哪个步骤耗时最多"
+
+#: .\pipeline\templates\pipeline\analysis.html:41
+msgid ""
+"กราฟนี้แบ่งแต่ละแท่งออกเป็นสามส่วนซ้อนกันตามสีสีน้ำเงินคือขั้นดึงข้อมูล(Extract)"
+" สีเขียวคือขั้นแปลงข้อมูล(Transform) สีแดงคือขั้นตอนบันทึกข้อมูล(load) "
+"ส่วนที่ใหญ่ที่สุดในแท่งคือขั้นตอนที่กินเวลามากที่สุดของเครื่องมือนั้น "
+"ซึ่งสามารถสรุปได้ดังนี้:"
+msgstr ""
+"此图将每个柱状图分为三个堆叠部分，按颜色区分：蓝色是提取（Extract）阶段，绿色是转换（Transform）阶段，红色是加载（Load）阶段。柱状图中最大的部分代表该工具最耗时的步骤。总结如下："
+
+#: .\pipeline\templates\pipeline\analysis.html:52
+msgid "SSIS : ขั้นตอน Transform กินเวลาไปเกือบทั้งหมด"
+msgstr "SSIS：转换步骤占用了几乎所有时间"
+
+#: .\pipeline\templates\pipeline\analysis.html:54
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว SSIS ใช้เวลาแปลงข้อมูล(Transform)ไปถึง 449 "
+"วินาทีจากเวลารวมทั้งหมด 459 วินาทีสามารถคิดด้วยวิธีคิดนี้"
+msgstr "对于 100 万行数据，SSIS 在转换（Transform）上花费了 449 秒，总时间为 459 秒。计算如下："
+
+#: .\pipeline\templates\pipeline\analysis.html:57
+#: .\pipeline\templates\pipeline\analysis.html:68
+#: .\pipeline\templates\pipeline\analysis.html:79
+#: .\pipeline\templates\pipeline\analysis.html:90
+msgid "วิธีคิด"
+msgstr "计算方法："
+
+#: .\pipeline\templates\pipeline\analysis.html:60
+#, python-format
+msgid ""
+"ดังนั้นคิดเป็น 97.8%% ของเวลาทั้งหมด ส่วนที่เหลืออีก 2.2%% "
+"เป็นการดึงและการโหลดข้อมูลรวมกัน"
+msgstr "因此占总时间的 97.8%%。剩余的 2.2%% 是提取和加载的总和。"
+
+#: .\pipeline\templates\pipeline\analysis.html:63
+msgid "KNIME : ขั้นตอน Load ข้อมูลคือจุดที่ช้าที่สุด"
+msgstr "KNIME：加载步骤是最慢的环节"
+
+#: .\pipeline\templates\pipeline\analysis.html:65
+#, python-format
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว KNIME ใช้เวลาบันทึกข้อมูลไป 470 วินาทีจากเวลารวม 630 "
+"วินาทีคิดเป็น 74.6%%"
+msgstr "对于 100 万行数据，KNIME 在加载上花费了 470 秒，总时间为 630 秒，占 74.6%%。"
+
+#: .\pipeline\templates\pipeline\analysis.html:71
+msgid ""
+"สาเหตุคือ KNIME ในขั้นตอนโหลดข้อมูลมีการใช้ DB Writer Node "
+"ทำให้ข้อมูลถูกส่งทีละ 1 แถว MySQL ต้องบันทึกและยืนยันทุกคำสั่ง ทำให้เวลา "
+"Load พุ่งสูง"
+msgstr ""
+"这是因为 KNIME 在加载步骤中使用 DB Writer Node，一次发送一行数据。MySQL 必须保存并提交每个命令，导致加载时间激增。"
+
+#: .\pipeline\templates\pipeline\analysis.html:74
+msgid "Airflow+PySpark : ขั้นตอน Load ข้อมูลคือจุดที่ช้าที่สุดในทุกเครื่องมือ"
+msgstr "Airflow+PySpark：加载步骤是所有工具中最慢的环节"
+
+#: .\pipeline\templates\pipeline\analysis.html:76
+#, python-format
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว PySpark ใช้เวลาบันทึกข้อมูลไปถึง 955 วินาทีจากเวลารวม "
+"1,014 วินาทีคิดเป็น 94.2%%"
+msgstr "对于 100 万行数据，PySpark 在加载上花费了 955 秒，总时间为 1,014 秒，占 94.2%%。"
+
+#: .\pipeline\templates\pipeline\analysis.html:82
+msgid ""
+"ปัญหาเดียวกับ KNIME คือส่งข้อมูลทีละแถวผ่านช่องทางเดียว "
+"แต่รุนแรงกว่าเพราะไม่ได้ตั้งค่าการกระจายงาน ทำให้ข้อมูลทั้งหมดถูกส่งออกผ่าน "
+"JDBC เพียงช่องทางเดียว ทำให้เวลาพุ่งสูงกว่าทุกเครื่องมือ"
+msgstr ""
+"与 KNIME 的问题相同 - 通过单个通道逐行发送数据。但更严重，因为未配置分布式处理。所有数据都通过单个 JDBC "
+"连接发送出去，导致时间比所有其他工具都要高。"
+
+#: .\pipeline\templates\pipeline\analysis.html:85
+msgid "Airflow+Pandas : สัดส่วนทุกขั้นตอนพอสมดุล"
+msgstr "Airflow+Pandas：所有步骤比例均衡"
+
+#: .\pipeline\templates\pipeline\analysis.html:87
+#, python-format
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว Pandas ใช้เวลาบันทึกข้อมูลไป 102 วินาทีจากเวลารวม 131 "
+"วินาทีคิดเป็น 78.1%%"
+msgstr "对于 100 万行数据，Pandas 在加载上花费了 102 秒，总时间为 131 秒，占 78.1%%。"
+
+#: .\pipeline\templates\pipeline\analysis.html:93
+msgid ""
+"Pandas ส่งข้อมูลเป็นกลุ่มใหญ่ทีเดียวแทนที่จะส่งทีละแถว "
+"ทำให้ขั้นบันทึกข้อมูลใช้เวลาน้อยกว่าเครื่องมืออื่นมาก"
+msgstr "Pandas 一次发送大批数据，而不是逐行发送，使加载步骤比其他工具快得多。"
+
+#: .\pipeline\templates\pipeline\analysis.html:105
+#: .\pipeline\templates\pipeline\analysis.html:111
+msgid "เมื่อข้อมูลโตขึ้น จะเวลามากขึ้นแค่ไหน"
+msgstr "当数据增长时，时间增加多少？"
+
+#: .\pipeline\templates\pipeline\analysis.html:116
+msgid ""
+"เส้นของ Airflow+PySpark ชันที่สุดอย่างเห็นได้ชัด จากจุดเริ่มต้นที่ 53 "
+"วินาทีที่ข้อมูล 10,000 แถว พุ่งขึ้นไปถึง 1,014 วินาทีที่ข้อมูล 1 ล้านแถว "
+"เพิ่มขึ้น 19 เท่า เส้นของ SSIS และ KNIME มีความชันใกล้เคียงกัน "
+"ทั้งคู่เริ่มต้นต่ำแต่เวลาก็โตเร็วเมื่อข้อมูลใหญ่ขึ้น เส้นของ Airflow+Pandas "
+"ราบเรียบที่สุด โตจาก 2.2 วินาทีเป็น 131 วินาทีคิดเป็น 60 เท่า "
+"ซึ่งน้อยที่สุดในบรรดาเครื่องมือที่เริ่มต้นด้วยเวลาต่ำ"
+msgstr ""
+"Airflow+PySpark 线明显最陡，从 10,000 行数据的 53 秒起始点跳升到 100 万行数据的 1,014 秒 - 增加了 19 "
+"倍。SSIS 和 KNIME 线的斜率相似。两者都起始较低，但随着数据大小增加，时间快速增长。Airflow+Pandas 线最平滑，从 2.2 "
+"秒增长到 131 秒 - 增加了 60 倍，这是起始时间较低的工具中最小的增长。"
+
+#: .\pipeline\templates\pipeline\analysis.html:119
+msgid "ตารางเปรียบเทียบ Scalability"
+msgstr "可扩展性对比表"
+
+#: .\pipeline\templates\pipeline\analysis.html:124
+msgid "ช่วงที่ข้อมูลโต"
+msgstr "数据增长范围"
+
+#: .\pipeline\templates\pipeline\analysis.html:135
+#: .\pipeline\templates\pipeline\analysis.html:145
+msgid "ข้อมูลโต 10 เท่า"
+msgstr "数据增长 10 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:137
+#: .\pipeline\templates\pipeline\analysis.html:138
+msgid "ใช้เวลาเพิ่มขึ้น 16 เท่า"
+msgstr "时间增加 16 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:139
+msgid "ใช้เวลาเพิ่มขึ้น 2.5 เท่า"
+msgstr "时间增加 2.5 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:140
+msgid "ใช้เวลาเพิ่มขึ้น 6 เท่า"
+msgstr "时间增加 6 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:147
+#: .\pipeline\templates\pipeline\analysis.html:150
+msgid "ใช้เวลาเพิ่มขึ้น 10 เท่า"
+msgstr "时间增加 10 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:148
+msgid "ใช้เวลาเพิ่มขึ้น 12 เท่า"
+msgstr "时间增加 12 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:149
+msgid "ใช้เวลาเพิ่มขึ้น 7.5 เท่า"
+msgstr "时间增加 7.5 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:155
+msgid "ข้อมูลโต 100 เท่า"
+msgstr "数据增长 100 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:157
+msgid "ใช้เวลาเพิ่มขึ้น 172 เท่า"
+msgstr "时间增加 172 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:158
+msgid "ใช้เวลาเพิ่มขึ้น 200 เท่า"
+msgstr "时间增加 200 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:159
+msgid "ใช้เวลาเพิ่มขึ้น 19 เท่า"
+msgstr "时间增加 19 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:160
+msgid "ใช้เวลาเพิ่มขึ้น 60 เท่า"
+msgstr "时间增加 60 倍"
+
+#: .\pipeline\templates\pipeline\analysis.html:167
+msgid ""
+"จากตารางในแถวที่ 10k → 1m เป็นข้อมูลโต 100 เท่าจะสังเกตได้ว่า PySpark "
+"ใช้เวลาเพิ่มขึ้น 19 เท่าซึ่งถ้าเทียบกับเครื่องมืออื่นๆ "
+"ถือว่าใช้เวลาน้อยที่สุดแต่ต้องคำนึงด้วยว่า PySpark จุดเริ่มต้น คือ 53 "
+"วินาทีหากเทียบกับเครื่องมืออื่นๆ ที่มีจุดเริ่มต้นน้อยกว่า "
+"เช่นหากเปรียบเทียบกับ Pandas เริ่มที่ 2.2 วินาทีดังนั้น PySpark "
+"จึงยังช้ากว่า Pandas ตลอดทุกขนาด แม้อัตราการโตจะดูดีกว่าก็ตาม"
+msgstr ""
+"从表格中 10k → 1m 行（数据增长 100 倍），我们可以看到 PySpark 的时间只增加了 19 倍，这是所有工具中最小的。但是，我们必须考虑"
+" PySpark 的起始点是 53 秒，而其他工具的起始点更低。例如，Pandas 从 2.2 秒开始。因此，尽管 PySpark "
+"的增长率看起来更好，但在所有规模下仍然比 Pandas 慢。"
+
+#: .\pipeline\templates\pipeline\analysis.html:179
+#: .\pipeline\templates\pipeline\analysis.html:189
+msgid "การเปรียบเทียบเวลาในการประมวลผล ETL ตามขนาดข้อมูลในสเกลลอการิทึม"
+msgstr "对数刻度下按数据大小对比 ETL 处理时间"
+
+#: .\pipeline\templates\pipeline\analysis.html:182
+msgid ""
+"ปัญหาของกราฟที่ 3 คือ เมื่อ PySpark สูงถึง 1,014 วินาทีเส้นของ Pandas ที่ "
+"131 วินาทีจะแทบแนบติดกับแกนล่าง ทำให้มองไม่เห็นรายละเอียด กราฟที่ 4 "
+"แก้ปัญหานี้ด้วยการปรับแกน Y ให้แต่ละช่วงกระโดดขึ้น 10 "
+"เท่าแทนที่จะเพิ่มขึ้นทีละเท่ากัน"
+msgstr ""
+"图 3 的问题是当 PySpark 达到 1,014 秒时，Pandas 线在 131 秒几乎贴在底轴上，使细节不可见。图 4 通过调整 Y "
+"轴解决了这个问题，使每个间隔跳跃 10 倍，而不是等量增加。"
+
+#: .\pipeline\templates\pipeline\analysis.html:194
+msgid ""
+"วิธีอ่านกราฟนี้ต่างจากกราฟที่ 3 "
+"ตรงที่ระยะห่างในแนวตั้งไม่ได้วัดว่าต่างกันกี่วินาทีแต่วัดว่าต่างกันกี่เท่า "
+"เส้นที่อยู่สูงกว่าในกราฟนี้ยังหมายถึงใช้เวลานานกว่าเสมอ "
+"และเส้นที่ชันกว่าหมายถึงโตเร็วกว่าเมื่อข้อมูลเพิ่มขึ้น"
+msgstr "阅读此图与图 3 不同，垂直距离不测量秒数的差异，而是测量倍数的差异。较高的线仍然意味着执行时间较长。较陡的线意味着数据增加时增长更快。"
+
+#: .\pipeline\templates\pipeline\analysis.html:198
+msgid ""
+"ผลที่เห็นได้ชัดจากกราฟนี้คือ เส้นของ Airflow+Pandas "
+"อยู่ต่ำสุดตลอดและความชันค่อนข้างคงที่ เส้นของ SSIS และ KNIME เกือบทับกันตลอด"
+" แสดงว่าพฤติกรรมการโตของเวลาคล้ายกันมาก และเส้นของ PySpark "
+"อยู่สูงสุดตลอดและยิ่งชันขึ้นในช่วง 100k ถึง 1m ซึ่งบอกว่ายิ่งข้อมูลมากขึ้น "
+"PySpark ยิ่งช้าขึ้นในอัตราที่เร็วขึ้นด้วย"
+msgstr ""
+"此图的明显结果：Airflow+Pandas 线始终最低，斜率相当恒定。SSIS 和 KNIME "
+"线几乎始终重叠，显示出非常相似的时间增长行为。PySpark 线始终最高，并在 100k 到 1m 范围内变得更陡，表明随着数据增加，PySpark "
+"以加速的速度变慢。"
+
+#: .\pipeline\templates\pipeline\analysis.html:210
+msgid "บทสรุป"
+msgstr "总结"
+
+#: .\pipeline\templates\pipeline\analysis.html:213
+msgid ""
+"จากการทดสอบทั้งหมด Airflow+Pandas ชนะในทุกขนาดข้อมูล "
+"เพราะใช้วิธีเรียบง่ายที่เหมาะกับการทำงานบนเครื่องเดียว "
+"คือส่งข้อมูลเป็นกลุ่มใหญ่และไม่ต้องเปิดระบบพิเศษก่อนทำงาน"
+msgstr ""
+"从所有测试来看，Airflow+Pandas 在所有数据规模下都获胜，因为它使用适合单机操作的简单方法：一次发送大批数据，无需在运行前启动特殊系统。"
+
+#: .\pipeline\templates\pipeline\analysis.html:217
+msgid ""
+"SSIS เร็วในขั้นดึงและบันทึกข้อมูล(Load) แต่ช้าในขั้นแปลงข้อมูล(Transform) "
+"เพราะทำทีละแถวและไม่สามารถเขียนทับคอลัมน์เดิมได้โดยตรง ต่างจาก Python และ "
+"KNIME ที่มองข้อมูลเป็นตารางทั้งก้อน "
+"จึงแก้ไขค่าในคอลัมน์เดิมได้ทันทีในคำสั่งเดียว KNIME "
+"ดึงข้อมูลได้เร็วที่สุดในทุกขนาดแต่บันทึกข้อมูล(Load)ช้าเพราะส่งทีละแถวเช่นกัน"
+" ทั้งสองเครื่องมือนี้การใช้เวลาใช้การประมวลผลในแต่ละขั้นตอนที่คล้ายกัน"
+msgstr ""
+"SSIS 在提取和加载方面很快，但在转换方面很慢，因为它逐行处理且无法直接覆盖现有列。与将数据视为整个表的 Python 和 KNIME "
+"不同，它们可以在单个命令中立即修改列值。KNIME 在所有规模下提取数据最快，但加载慢，因为它也是逐行发送。这两个工具在各步骤的处理时间模式相似。"
+
+#: .\pipeline\templates\pipeline\analysis.html:221
+msgid ""
+"Airflow+PySpark ช้าที่สุด เพราะออกแบบมาสำหรับการทำงานบนหลายเครื่องพร้อมกัน "
+"เมื่อใช้บนเครื่องเดียวจึงยังไม่แสดงศักยภาพจริง การเปิดระบบ Java "
+"และการบันทึกข้อมูล(Load)ทีละแถวรวมกันทำให้ช้ากว่าทุกเครื่องมือในทุกขนาดที่ทดสอบ"
+msgstr ""
+"Airflow+PySpark 最慢，因为它是为多机操作设计的。在单机上使用时，它没有显示出真正的潜力。启动 Java "
+"系统和逐行加载数据的组合使其在所有测试规模下都比所有工具慢。"
+
+#: .\pipeline\templates\pipeline\analysis.html:224
+msgid "สมมติฐานกับผลจริง"
+msgstr "假设与实际结果"
+
+#: .\pipeline\templates\pipeline\analysis.html:225
+msgid "ผลที่ได้จากการทดสอบแตกต่างจากที่คาดไว้เกือบทุกแนวทาง กล่าวคือ"
+msgstr "测试结果与预期在几乎所有方面都不同，即："
+
+#: .\pipeline\templates\pipeline\analysis.html:228
+msgid ""
+"ที่คาดว่าจะเร็วที่สุด ผลจริงได้อันดับที่ 2 "
+"เพราะขั้นตอนแปลงข้อมูลใช้เวลานานกว่าที่คาด"
+msgstr "预期最快，实际排名第 2，因为转换步骤比预期花费更长时间"
+
+#: .\pipeline\templates\pipeline\analysis.html:229
+msgid "ที่คาดว่าจะช้าที่สุด ผลจริงได้อันดับที่ 3 ไม่ใช่ช้าที่สุดอย่างที่คาด"
+msgstr "预期最慢，实际排名第 3 - 并非如预期的最慢"
+
+#: .\pipeline\templates\pipeline\analysis.html:230
+msgid "Airflow ร่วมกับ PySpark"
+msgstr "Airflow 与 PySpark"
+
+#: .\pipeline\templates\pipeline\analysis.html:230
+msgid "ที่คาดว่าจะอยู่ในระดับกลาง ผลจริงกลับช้าที่สุดในทุกขนาดข้อมูล"
+msgstr "预期处于中等水平，实际在所有数据规模下都最慢"
+
+#: .\pipeline\templates\pipeline\analysis.html:231
+msgid "Airflow ร่วมกับ pandas"
+msgstr "Airflow 与 pandas"
+
+#: .\pipeline\templates\pipeline\analysis.html:231
+msgid "ที่คาดว่าจะใกล้เคียงกับ PySpark ผลจริงกลับเร็วที่สุดในทุกขนาดข้อมูล"
+msgstr "预期与 PySpark 相似，实际在所有数据规模下都最快"
+
+#: .\pipeline\templates\pipeline\analysis.html:235
+msgid ""
+"จากผลที่ได้ทำให้กลุ่มนักศึกษาผู้จัดทำได้บทเรียนว่า "
+"เครื่องมือที่ดูซับซ้อนหรือทรงพลังที่สุดไม่ได้หมายความว่าจะเร็วที่สุดเสมอไป "
+"ขึ้นอยู่กับว่าใช้กับข้อมูลขนาดใดและในสภาพแวดล้อมแบบใดด้วย"
+msgstr "从这些结果中，学生团队了解到，看起来最复杂或最强大的工具并不总是意味着最快。这取决于使用的数据大小和环境。"
+
+#: .\pipeline\templates\pipeline\analysis.html:241
+msgid "ดูรายละเอียดแต่ละเครื่องมือ"
+msgstr "查看各工具详情"
+
+#: .\pipeline\templates\pipeline\analysis.html:249
+msgid "กลับหน้าแรก"
+msgstr "返回首页"
+
+# Navigation and Common
+#: .\pipeline\templates\pipeline\home.html:5
+#: .\pipeline\templates\pipeline\test_translation.html:21
+#: .\pipeline\views.py:7 .\templates\base.html:46
+msgid "Home"
+msgstr "首页"
+
+# ===== HOME PAGE =====
+#: .\pipeline\templates\pipeline\home.html:11
+msgid ""
+"การเปรียบเทียบประสิทธิภาพ ETL Pipeline 4 แนวทาง ด้วย SSIS, KNIME, Airflow "
+"ร่วมกับ PySpark และ Airflow ร่วมกับ Pandas"
+msgstr "使用SSIS、KNIME、Airflow与PySpark以及Airflow与Pandas的4种ETL管道方法的性能比较"
+
+#: .\pipeline\templates\pipeline\home.html:16
+msgid "บทนำ"
+msgstr "简介"
+
+#: .\pipeline\templates\pipeline\home.html:18
+msgid ""
+"โครงการนี้เกิดขึ้นจากความต้องการจัดการข้อมูลปริมาณมากที่เกิดขึ้นภายในมหาวิทยาลัย"
+" โดยเป็นส่วนหนึ่งของ Senior Project อย่างไรก็ตาม "
+"การนำเสนอในครั้งนี้ไม่ได้ครอบคลุมทุกด้านของ Senior Project "
+"แต่มุ่งเน้นนำเสนอเฉพาะมุมมองด้าน Processing Performance "
+"เพียงด้านเดียวเท่านั้น"
+msgstr "该项目源于大学内部管理大量数据的需求，作为毕业设计的一部分。然而，本次演示并未涵盖毕业设计的所有方面，而是仅专注于处理性能这一视角。"
+
+#: .\pipeline\templates\pipeline\home.html:21
+msgid ""
+"การเลือก 4 แนวทางในการทดสอบครั้งนี้มีที่มาจากบริบทการทำงานจริง โดย SSIS "
+"ถูกเลือกเนื่องจากมหาวิทยาลัยมี Microsoft License อยู่แล้ว KNIME "
+"ถูกเลือกเนื่องจากเป็น Low-code Tool "
+"ที่ไม่จำเป็นต้องอาศัยความเชี่ยวชาญด้านการเขียนโค้ด และ Airflow "
+"ถูกเลือกโดยกลุ่มนักศึกษาผู้จัดทำซึ่งมีความถนัดด้าน Python มากกว่า C# โดย "
+"Airflow ได้ทดสอบร่วมกับ 2 Processing Engine คือ PySpark และ pandas "
+"เพื่อเปรียบเทียบว่า Engine ที่ออกแบบมาสำหรับ Big Data โดยเฉพาะอย่าง PySpark "
+"จะให้ผลลัพธ์ที่ดีกว่า pandas หรือไม่"
+msgstr ""
+"选择这4种测试方法源于实际工作环境。选择SSIS是因为大学已拥有Microsoft许可证。选择KNIME是因为它是一个低代码工具，不需要编码专业知识。Airflow由更擅长Python而非C#的学生项目团队选择。Airflow与两个处理引擎进行了测试：PySpark和pandas，以比较专为大数据设计的引擎（如PySpark）是否比pandas表现更好。"
+
+#: .\pipeline\templates\pipeline\home.html:24
+msgid ""
+"การทดสอบทั้งหมดดำเนินการบนเครื่องคอมพิวเตอร์ส่วนบุคคล "
+"โดยเครื่องมือทุกตัวได้รับการติดตั้งบน Server ของมหาวิทยาลัย "
+"ซึ่งกลุ่มนักศึกษาผู้จัดทำสามารถเข้าถึงและดำเนินการทดสอบได้จากระยะไกล "
+"ทำให้สามารถรันงานได้เสมือนการใช้งานจริงในสภาพแวดล้อมขององค์กร "
+"โดยใช้ชุดข้อมูล Credit Card Fraud Detection จาก Kaggle ทดสอบใน 3 ขนาด ได้แก่"
+" 10,000 100,000 และ 1,000,000 แถว วัดผลผ่านเวลาที่ใช้จริงในแต่ละขั้นตอน "
+"ได้แก่ Extract, Transform และ Load "
+"เพื่อให้ได้ข้อสรุปที่เป็นประโยชน์สำหรับการตัดสินใจเลือกใช้แนวทางที่เหมาะสมกับบริบทขององค์กร"
+msgstr ""
+"所有测试均在个人电脑上进行，所有工具都安装在大学服务器上，学生项目团队可以远程访问和测试，使其能够像在真实组织环境中一样运行作业。使用来自Kaggle的信用卡欺诈检测数据集，对3种规模进行了测试：10,000、100,000和1,000,000行，测量提取、转换和加载各阶段的实际时间，以得出有用的结论，用于决定适合组织环境的方法。"
+
+#: .\pipeline\templates\pipeline\home.html:30
+msgid "สถาปัตยกรรมระบบ"
+msgstr "系统架构"
+
+#: .\pipeline\templates\pipeline\home.html:32
+msgid ""
+"โครงการนี้มีสถาปัตยกรรม 2 รูปแบบ ได้แก่ "
+"สถาปัตยกรรมสำหรับการทดสอบที่ใช้จริงในโครงการนี้ "
+"และสถาปัตยกรรมระบบสำหรับการใช้งานจริงในมหาวิทยาลัยที่ออกแบบไว้เป็นเป้าหมายปลายทาง"
+" โดยผลที่ได้จากการทดสอบในโครงการนี้จะเป็นข้อมูลประกอบการตัดสินใจเลือก ETL "
+"Tool ที่เหมาะสมสำหรับนำไปใช้ในระบบจริงต่อไป"
+msgstr ""
+"该项目有两种架构设计：本项目中实际使用的测试架构，以及为实际大学使用设计的生产系统架构作为目标。该项目的测试结果将作为选择适合在实际系统中实施的ETL工具的决策依据。"
+
+#: .\pipeline\templates\pipeline\home.html:35
+msgid "1. สถาปัตยกรรมสำหรับการทดสอบ (Test Framework Architecture)"
+msgstr "1. 测试框架架构"
+
+#: .\pipeline\templates\pipeline\home.html:43
+msgid "จากภาพสามารถอธิบายได้ดังนี้"
+msgstr "该图可以解释如下："
+
+# ===== ADDITIONAL HOME PAGE TRANSLATIONS =====
+#: .\pipeline\templates\pipeline\home.html:45
+#: .\pipeline\templates\pipeline\home.html:73
+msgid "1. Ingest :"
+msgstr "1. 摄取："
+
+#: .\pipeline\templates\pipeline\home.html:45
+msgid ""
+"นำเข้าข้อมูลจากไฟล์ fraudTrain.csv เข้าสู่ SQL Server เพื่อใช้เป็น Staging "
+"Area โดยแบ่งข้อมูลออกเป็น 3 ขนาด ได้แก่ fraud_10k, fraud_100k และ fraud_1m"
+msgstr ""
+"从fraudTrain.csv文件导入数据到SQL "
+"Server作为暂存区，将数据分为3种规模：fraud_10k、fraud_100k和fraud_1m"
+
+#: .\pipeline\templates\pipeline\home.html:47
+#: .\pipeline\templates\pipeline\home.html:75
+msgid "2. Extract :"
+msgstr "2. 提取："
+
+#: .\pipeline\templates\pipeline\home.html:47
+msgid ""
+"ดึงข้อมูลจาก SQL Server (Staging Area) เพื่อนำไปประมวลผลในแต่ละ ETL Tool "
+"ในขั้นตอนถัดไป"
+msgstr "从SQL Server（暂存区）提取数据，以便在下一步骤中在每个ETL工具中处理"
+
+#: .\pipeline\templates\pipeline\home.html:49
+#: .\pipeline\templates\pipeline\home.html:77
+msgid "3. Transform :"
+msgstr "3. 转换："
+
+#: .\pipeline\templates\pipeline\home.html:49
+msgid ""
+"ประมวลผลข้อมูลด้วย 4 แนวทาง ได้แก่ SSIS, KNIME, Airflow ร่วมกับ PySpark และ "
+"Airflow ร่วมกับ pandas "
+"โดยการแปลงข้อมูลจะทำเหมือนกันทุกแนวทางเพื่อให้เกิดความเป็นมาตรฐานเดียวกันของข้อมูล"
+" ได้แก่"
+msgstr ""
+"使用4种方法处理数据：SSIS、KNIME、Airflow与PySpark以及Airflow与pandas。所有方法的数据转换都相同，以确保数据标准化，包括："
+
+#: .\pipeline\templates\pipeline\home.html:51
+msgid "ทำการเข้ารหัสข้อมูลส่วนตัวด้วย SHA-256"
+msgstr "使用SHA-256哈希个人数据"
+
+#: .\pipeline\templates\pipeline\home.html:52
+msgid "แปลง Data Type"
+msgstr "转换数据类型"
+
+#: .\pipeline\templates\pipeline\home.html:53
+msgid "กรองข้อมูลที่ไม่สมบูรณ์ออก"
+msgstr "筛选出不完整的数据"
+
+#: .\pipeline\templates\pipeline\home.html:54
+msgid "เปลี่ยนชื่อคอลัมน์"
+msgstr "重命名列"
+
+#: .\pipeline\templates\pipeline\home.html:57
+#: .\pipeline\templates\pipeline\home.html:79
+msgid "4. Load :"
+msgstr "4. 加载："
+
+#: .\pipeline\templates\pipeline\home.html:57
+msgid ""
+"บันทึกข้อมูลที่ผ่านการ Transform แล้วลงใน MySQL "
+"พร้อมจับเวลาในทุกขั้นตอนเพื่อนำไปวิเคราะห์เปรียบเทียบด้วย MATLAB"
+msgstr "将转换后的数据保存到MySQL，同时对所有阶段进行计时，以便使用MATLAB进行比较分析。"
+
+#: .\pipeline\templates\pipeline\home.html:59
+msgid "5. Matlab :"
+msgstr "5. Matlab："
+
+#: .\pipeline\templates\pipeline\home.html:59
+msgid ""
+"นำผลเวลาที่จับได้จากทุกขั้นตอนของทั้ง 4 "
+"แนวทางมาวิเคราะห์และแสดงผลในรูปแบบกราฟเพื่อเปรียบเทียบประสิทธิภาพ ETL "
+"Pipeline"
+msgstr "分析所有4种方法的所有阶段的计时结果，并以图表形式显示，以比较ETL管道性能。"
+
+#: .\pipeline\templates\pipeline\home.html:61
+msgid "2. สถาปัตยกรรมระบบสำหรับการใช้งานจริง (Production System Architecture)"
+msgstr "2. 生产系统架构"
+
+#: .\pipeline\templates\pipeline\home.html:70
+msgid ""
+"จากภาพเป็นเพียงแนวคิดเท่านั้น "
+"ผลที่ได้จากการทดสอบในโครงการนี้จะเป็นข้อมูลประกอบการตัดสินใจเลือก ETL Tool "
+"ที่เหมาะสมสำหรับนำไปใช้ในระบบจริงต่อไป "
+"อย่างไรก็ตามการตัดสินใจดังกล่าวต้องอาศัยความเห็นจากบุคลากรหลายฝ่ายที่มีส่วนร่วมในการพัฒนาระบบประกอบด้วย"
+msgstr "该图仅是概念。该项目的测试结果将作为选择合适ETL工具以在实际系统中实施的决策依据。然而，此类决策必须依赖参与系统开发的各方人员的意见。"
+
+#: .\pipeline\templates\pipeline\home.html:73
+msgid ""
+"รับข้อมูลจากแหล่งข้อมูลหลากหลายรูปแบบที่เกิดขึ้นจริงในมหาวิทยาลัย ได้แก่ "
+"CSV, API, JSON และ XLS เข้าสู่ SQL Server เพื่อใช้เป็น Staging Area "
+"และได้มีการออกแบบเพื่อเตรียมการรับข้อมูลประเภทข้อมูลที่ไม่มีโครงสร้าง "
+"(unstructured data) ในอนาคตอีกด้วย"
+msgstr ""
+"接收大学中实际发生的各种来源的数据，包括CSV、API、JSON和XLS，进入SQL Server用作暂存区，并设计为在未来准备接收非结构化数据。"
+
+#: .\pipeline\templates\pipeline\home.html:75
+msgid ""
+"ใช้ ETL Tool ที่ได้รับการคัดเลือกจากผลการทดสอบ ดึงข้อมูลจาก Staging Area "
+"เพื่อนำไปประมวลผล"
+msgstr "使用从测试结果中选择的ETL工具从暂存区提取数据以进行处理。"
+
+#: .\pipeline\templates\pipeline\home.html:77
+msgid ""
+"ประมวลผลและทำความสะอาดข้อมูลด้วย ETL Tool ที่คัดเลือกแล้ว ทั้งนี้ขั้นตอน "
+"Transform จะครอบคลุมการทำความสะอาดข้อมูล การเข้ารหัสข้อมูลส่วนตัว "
+"และการแปลงรูปแบบข้อมูลให้พร้อมใช้งาน โดย Tool "
+"ที่จะใช้ยังอยู่ระหว่างการพิจารณาจากผลการทดสอบของโครงการนี้"
+msgstr ""
+"使用选定的ETL工具处理和清理数据。转换阶段将涵盖数据清理、个人数据加密和数据格式转换以供使用。要使用的工具仍在根据该项目的测试结果进行考虑。"
+
+#: .\pipeline\templates\pipeline\home.html:79
+msgid ""
+"กระจายข้อมูลที่ผ่านการประมวลผลแล้วไปยัง MySQL ของแต่ละหน่วยงานในมหาวิทยาลัย "
+"และแสดงผลผ่าน Power BI "
+"เพื่อเป็นการประกอบการตัดสินใจของผู้บริหารและบุคลากรในมหาวิทยาลัย"
+msgstr "将处理后的数据分发到大学各部门的MySQL，并通过Power BI显示结果，以支持大学内高管和人员的决策。"
+
+#: .\pipeline\templates\pipeline\home.html:84
+msgid "สมมติฐาน"
+msgstr "假设"
+
+#: .\pipeline\templates\pipeline\home.html:86
+msgid ""
+"ก่อนเริ่มการทดสอบ "
+"กลุ่มนักศึกษาผู้จัดทำได้ตั้งสมมติฐานเกี่ยวกับประสิทธิภาพของแต่ละแนวทางไว้ดังนี้"
+msgstr "在开始测试之前，学生项目团队对每种方法的性能建立了以下假设："
+
+#: .\pipeline\templates\pipeline\home.html:89
+msgid "1. SSIS :"
+msgstr "1. SSIS："
+
+#: .\pipeline\templates\pipeline\home.html:89
+msgid ""
+"คาดว่าจะมีประสิทธิภาพสูงสุด เนื่องจาก SSIS ใช้ภาษา C# ในการประมวลผล "
+"ซึ่งอยู่ในตระกูลเดียวกับภาษา C++ ที่ขึ้นชื่อด้านความเร็วในการประมวลผล "
+"จึงคาดว่าจะได้เปรียบด้านความเร็วเหนือแนวทางอื่น"
+msgstr "预计将具有最高性能，因为SSIS使用C#进行处理，与以处理速度著称的C++属于同一家族，因此预计将在速度上优于其他方法。"
+
+#: .\pipeline\templates\pipeline\home.html:91
+msgid "2. KNIME :"
+msgstr "2. KNIME："
+
+#: .\pipeline\templates\pipeline\home.html:91
+msgid ""
+"คาดว่าจะมีประสิทธิภาพต่ำที่สุด เนื่องจากเป็น Low-code Tool "
+"ที่เน้นความง่ายในการใช้งานมากกว่าประสิทธิภาพ การทำงานผ่านแบบ Low-code "
+"อาจมีประสิทธิภาพต่ำกว่าการเขียนโค้ดโดยตรง"
+msgstr "预计将具有最低性能，因为它是一个强调易用性而非性能的低代码工具。低代码操作可能比直接编码性能更低。"
+
+#: .\pipeline\templates\pipeline\home.html:93
+msgid "3. Airflow ร่วมกับ PySpark :"
+msgstr "3. Airflow与PySpark："
+
+#: .\pipeline\templates\pipeline\home.html:93
+msgid ""
+"คาดว่าจะมีประสิทธิภาพอยู่ในระดับปานกลาง เนื่องจาก PySpark "
+"ถูกออกแบบมาสำหรับข้อมูลระดับ Terabyte ขึ้นไป "
+"ในขณะที่ข้อมูลที่ใช้ทดสอบมีขนาดสูงสุดเพียง 1 ล้านแถว จึงคาดว่า PySpark "
+"จะไม่ได้แสดงศักยภาพเต็มที่ แต่ก็ไม่ช้าเกินไป"
+msgstr ""
+"预计将具有中等性能，因为PySpark是为TB级及以上数据设计的，而测试数据的最大规模仅为100万行，因此预计PySpark不会显示其全部潜力，但也不会太慢。"
+
+#: .\pipeline\templates\pipeline\home.html:95
+msgid "4. Airflow ร่วมกับ pandas :"
+msgstr "4. Airflow与pandas："
+
+#: .\pipeline\templates\pipeline\home.html:95
+msgid ""
+"คาดว่าจะมีประสิทธิภาพใกล้เคียงกับ Airflow ร่วมกับ PySpark เนื่องจากใช้ "
+"Orchestrator ตัวเดียวกัน แตกต่างกันเพียง Processing Engine เท่านั้น"
+msgstr "预计性能与Airflow与PySpark相似，因为它使用相同的编排器，仅在处理引擎上有所不同。"
+
+#: .\pipeline\templates\pipeline\home.html:100
+msgid "สเปกคอมพิวเตอร์ในการทดสอบ"
+msgstr "测试计算机规格"
+
+#: .\pipeline\templates\pipeline\home.html:102
+msgid ""
+"การทดสอบทั้งหมดในโครงการนี้ดำเนินการบนเครื่องคอมพิวเตอร์ที่มีสเปกดังนี้"
+msgstr "该项目的所有测试均在具有以下规格的计算机上进行："
+
+#: .\pipeline\templates\pipeline\home.html:109
+msgid "รายการ"
+msgstr "项目"
+
+#: .\pipeline\templates\pipeline\home.html:123
+msgid "ระบบปฏิบัติการ"
+msgstr "操作系统"
+
+#: .\pipeline\templates\pipeline\home.html:131
+msgid ""
+"การทดลองในครั้งนี้ดำเนินการทดสอบทั้ง 4 "
+"แนวทางบนชุดข้อมูลและเงื่อนไขเดียวกันทุกประการ "
+"โดยแต่ละแนวทางจะถูกทดสอบกับข้อมูล 3 ขนาด ได้แก่ 10,000 100,000 และ 1,000,000"
+" แถว พร้อมจับเวลาแยกในแต่ละขั้นตอน ได้แก่ Extract Transform และ Load "
+"เพื่อให้ผลการเปรียบเทียบมีความเที่ยงตรงและสามารถนำไปอ้างอิงได้โดยจะนำเสนอผลการทดลองของ"
+" SSIS, KNIME, Airflow ร่วมกับ PySpark และ Airflow ร่วมกับ pandas ตามลำดับ"
+msgstr ""
+"本实验在相同的数据集和条件下测试了所有4种方法。每种方法都使用3种数据规模进行测试：10,000、100,000和1,000,000行，分别计时每个阶段：提取、转换和加载，以确保准确可靠的比较结果。将按顺序展示SSIS、KNIME、Airflow与PySpark以及Airflow与pandas的实验结果。"
+
+#: .\pipeline\templates\pipeline\home.html:137
+msgid "เรียนรู้เพิ่มเติมเกี่ยวกับแต่ละเครื่องมือ"
+msgstr "了解更多关于每个工具"
+
+#: .\pipeline\templates\pipeline\home.html:138
+msgid "เลือกเครื่องมือเพื่อดูรายละเอียดการทดลองและผลการวิเคราะห์:"
+msgstr "选择工具以查看详细实验和分析结果："
+
+#: .\pipeline\templates\pipeline\home.html:167
+msgid "ดูการวิเคราะห์และสรุปผลโดยรวม"
+msgstr "查看综合分析和摘要"
+
+#: .\pipeline\templates\pipeline\knime.html:90
+msgid "Phase 0 — เตรียมระบบ KNIME (Step-by-Step)"
+msgstr "阶段0 — 准备KNIME系统（分步指南）"
+
+#: .\pipeline\templates\pipeline\knime.html:92
+msgid "KNIME คืออะไร?"
+msgstr "什么是KNIME？"
+
+#: .\pipeline\templates\pipeline\knime.html:93
+msgid ""
+"KNIME คือโปรแกรมสำหรับจัดการและประมวลผลข้อมูล "
+"ทำงานด้วยการลากและวางลงบนพื้นที่ทำงาน แล้วลากเส้นเชื่อมเข้าหากัน "
+"แต่ละจุด(Node) ทำหน้าที่อย่างใดอย่างหนึ่ง"
+msgstr "KNIME是用于数据管理和处理的程序。它通过拖放到工作区，然后绘制线条连接它们来工作。每个点（节点）执行特定功能。"
+
+#: .\pipeline\templates\pipeline\knime.html:100
+msgid "Step 1: ติดตั้ง KNIME Analytics Platform"
+msgstr "步骤1：安装KNIME Analytics Platform"
+
+#: .\pipeline\templates\pipeline\knime.html:103
+msgid "เลือก KNIME Analytics Platform (ฟรีไม่ต้องซื้อ)"
+msgstr "选择KNIME Analytics Platform（免费，无需购买）"
+
+#: .\pipeline\templates\pipeline\knime.html:104
+msgid "เลือก OS ของเครื่องตัวเอง (Windows / Mac / Linux)"
+msgstr "选择您的操作系统（Windows / Mac / Linux）"
+
+#: .\pipeline\templates\pipeline\knime.html:105
+msgid "ดาวน์โหลดแล้ว Install ตามปกติ"
+msgstr "下载并正常安装"
+
+#: .\pipeline\templates\pipeline\knime.html:106
+msgid "เปิดโปรแกรมขึ้นมา จะเห็นหน้า Workbench"
+msgstr "打开程序，您将看到工作台"
+
+#: .\pipeline\templates\pipeline\knime.html:108
+msgid ""
+"<strong>หน้าตาที่จะเห็น:</strong> มีช่อง Node Repository ด้านซ้าย, "
+"พื้นที่ว่างกลางจอ (Workflow Editor), และ Node Description ด้านขวา"
+msgstr "<strong>您将看到：</strong> 左侧的节点存储库，中央的空白区域（工作流编辑器），右侧的节点描述"
+
+#: .\pipeline\templates\pipeline\knime.html:110
+msgid "Step 2: ติดตั้ง Extension: KNIME Database"
+msgstr "步骤2：安装扩展：KNIME Database"
+
+#: .\pipeline\templates\pipeline\knime.html:111
+msgid "KNIME ต้องติดตั้ง Extension เพิ่มก่อน ถึงจะใช้ DB Node ได้"
+msgstr "KNIME需要先安装额外的扩展才能使用DB节点"
+
+#: .\pipeline\templates\pipeline\knime.html:113
+msgid "ที่ Menu Bar บนสุด → Install Extensions"
+msgstr "在顶部菜单栏 → 安装扩展"
+
+#: .\pipeline\templates\pipeline\knime.html:114
+msgid "ในช่อง Search พิมพ์ว่า <code>SQL Server</code>"
+msgstr "在搜索框中输入 <code>SQL Server</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:115
+msgid ""
+"ติ๊กถูกที่: <strong>KNIME Microsoft JDBC Driver For SQL Server</strong>"
+msgstr "勾选：<strong>KNIME Microsoft JDBC Driver For SQL Server</strong>"
+
+#: .\pipeline\templates\pipeline\knime.html:116
+msgid "กด Install (หรือ Next)"
+msgstr "点击安装（或下一步）"
+
+#: .\pipeline\templates\pipeline\knime.html:118
+msgid "รอติดตั้ง แล้ว Restart KNIME"
+msgstr "等待安装，然后重启KNIME"
+
+#: .\pipeline\templates\pipeline\knime.html:121
+msgid "Step 3: ดาวน์โหลด JDBC Driver (สำคัญมาก)"
+msgstr "步骤3：下载JDBC驱动程序（非常重要）"
+
+#: .\pipeline\templates\pipeline\knime.html:122
+msgid "KNIME ต้องการ JDBC Driver เพื่อเชื่อมต่อกับ Database ทั้งสอง"
+msgstr "KNIME需要JDBC驱动程序来连接两个数据库"
+
+#: .\pipeline\templates\pipeline\knime.html:124
+msgid "ดาวน์โหลด MySQL Connector/J"
+msgstr "下载MySQL Connector/J"
+
+#: .\pipeline\templates\pipeline\knime.html:127
+msgid ""
+"ที่ช่อง Select Operating System เลือก <strong>Platform Independent</strong>"
+msgstr "在选择操作系统框中，选择 <strong>Platform Independent</strong>"
+
+#: .\pipeline\templates\pipeline\knime.html:128
+msgid "จะเห็นไฟล์ 2 แบบ ดาวน์โหลดแบบ <strong>ZIP Archive</strong>"
+msgstr "您将看到2种文件类型，下载 <strong>ZIP Archive</strong>"
+
+#: .\pipeline\templates\pipeline\knime.html:129
+msgid ""
+"กด Download → จะมีหน้าให้ Login → กด <strong>No thanks, just start my "
+"download</strong> ได้เลย ไม่ต้องสมัคร"
+msgstr ""
+"点击下载 → 将出现登录页面 → 点击 <strong>No thanks, just start my download</strong>，无需注册"
+
+#: .\pipeline\templates\pipeline\knime.html:130
+msgid "แตกไฟล์ ZIP ที่ดาวน์โหลดมา"
+msgstr "解压缩下载的ZIP文件"
+
+#: .\pipeline\templates\pipeline\knime.html:131
+msgid ""
+"ข้างในจะมีไฟล์ชื่อประมาณ <code>mysql-connector-j-9.x.x.jar</code> → "
+"เอาไฟล์นี้ไว้ที่ไหนก็ได้ที่จำได้ เช่น <code>C:\\jdbc\\mysql-"
+"connector-j-9.x.x.jar</code>"
+msgstr ""
+"内部您会找到名为约 <code>mysql-connector-j-9.x.x.jar</code> 的文件 → 将此文件保存在您能记住的任何地方，例如"
+" <code>C:\\jdbc\\mysql-connector-j-9.x.x.jar</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:134
+msgid "Step 4: เพิ่ม JDBC Driver ใน KNIME"
+msgstr "步骤4：在KNIME中添加JDBC驱动程序"
+
+#: .\pipeline\templates\pipeline\knime.html:136
+msgid "เปิด KNIME ขึ้นมา"
+msgstr "打开KNIME"
+
+#: .\pipeline\templates\pipeline\knime.html:137
+msgid "คลิก Preferences ⚙️ มุมขวาบน"
+msgstr "点击右上角的首选项 ⚙️"
+
+#: .\pipeline\templates\pipeline\knime.html:138
+msgid "ด้านซ้าย ขยาย KNIME → คลิก Databases"
+msgstr "在左侧，展开KNIME → 点击数据库"
+
+#: .\pipeline\templates\pipeline\knime.html:139
+msgid "กดปุ่ม Add ด้านขวา"
+msgstr "点击右侧的添加按钮"
+
+#: .\pipeline\templates\pipeline\knime.html:140
+msgid "กรอกข้อมูลทีละช่อง:"
+msgstr "逐个字段填写信息："
+
+#: .\pipeline\templates\pipeline\knime.html:144
+msgid ""
+"URL template: ลบของเดิมออก แล้วพิมพ์ "
+"<code>jdbc:mysql://&lt;host&gt;:&lt;port&gt;/&lt;database&gt;</code>"
+msgstr ""
+"URL模板：删除原始内容，然后输入 "
+"<code>jdbc:mysql://&lt;host&gt;:&lt;port&gt;/&lt;database&gt;</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:145
+msgid "Database type: ปล่อยเป็น default ไว้ก่อน"
+msgstr "数据库类型：暂时保留为默认值"
+
+#: .\pipeline\templates\pipeline\knime.html:148
+msgid "กด Add file"
+msgstr "点击添加文件"
+
+#: .\pipeline\templates\pipeline\knime.html:149
+msgid ""
+"ไปที่โฟลเดอร์ที่ดาวน์โหลด <code>mysql-connector-j-9.x.x.jar</code> มาจาก "
+"Step 3"
+msgstr "转到从步骤3下载 <code>mysql-connector-j-9.x.x.jar</code> 的文件夹"
+
+#: .\pipeline\templates\pipeline\knime.html:150
+msgid "เลือกไฟล์ <code>mysql-connector-j-9.x.x.jar</code>"
+msgstr "选择文件 <code>mysql-connector-j-9.x.x.jar</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:151
+msgid "กด Open"
+msgstr "点击打开"
+
+#: .\pipeline\templates\pipeline\knime.html:152
+msgid ""
+"กด Find driver classes → จะเด้งให้เลือก → เลือก "
+"<code>com.mysql.cj.jdbc.Driver</code>"
+msgstr "点击查找驱动程序类 → 将弹出选择 → 选择 <code>com.mysql.cj.jdbc.Driver</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:155
+msgid "Step 5: สร้างตาราง fraud_clean_knime ใน MySQL"
+msgstr "步骤5：在MySQL中创建fraud_clean_knime表"
+
+#: .\pipeline\templates\pipeline\knime.html:156
+msgid "เปิด MySQL Workbench แล้วรัน SQL นี้"
+msgstr "打开MySQL Workbench并运行此SQL"
+
+#: .\pipeline\templates\pipeline\knime.html:179
+msgid "ตรวจสอบว่าสร้างสำเร็จด้วย:"
+msgstr "验证创建成功："
+
+#: .\pipeline\templates\pipeline\knime.html:182
+msgid "Step 6: สร้าง KNIME Workflow ใหม่"
+msgstr "步骤6：创建新的KNIME工作流"
+
+#: .\pipeline\templates\pipeline\knime.html:184
+msgid "ใน KNIME คลิกขวาที่ LOCAL (Local Workspace) ด้านซ้าย"
+msgstr "在KNIME中，右键单击左侧的LOCAL（本地工作区）"
+
+#: .\pipeline\templates\pipeline\knime.html:185
+msgid "เลือก New KNIME Workflow..."
+msgstr "选择新建KNIME工作流..."
+
+#: .\pipeline\templates\pipeline\knime.html:186
+msgid "ตั้งชื่อ เช่น <code>ETL_FraudDetection_KNIME</code>"
+msgstr "命名，例如 <code>ETL_FraudDetection_KNIME</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:187
+msgid "กด Finish → จะได้พื้นที่ว่างสำหรับสร้าง Workflow"
+msgstr "点击完成 → 您将获得创建工作流的空白区域"
+
+#: .\pipeline\templates\pipeline\knime.html:191
+msgid "ก่อนไป Phase 1 ต้องผ่านทุกข้อนี้ก่อน"
+msgstr "在阶段1之前，必须先完成所有这些项目"
+
+#: .\pipeline\templates\pipeline\knime.html:196
+msgid "ข้อ"
+msgstr "编号"
+
+#: .\pipeline\templates\pipeline\knime.html:197
+msgid "งาน"
+msgstr "任务"
+
+#: .\pipeline\templates\pipeline\knime.html:203
+msgid "ติดตั้ง KNIME สำเร็จ เปิดได้"
+msgstr "KNIME安装成功并可以打开"
+
+#: .\pipeline\templates\pipeline\knime.html:207
+msgid "ติดตั้ง KNIME Database Extension"
+msgstr "安装KNIME数据库扩展"
+
+#: .\pipeline\templates\pipeline\knime.html:211
+msgid "มีไฟล์ .jar ทั้ง SQL Server และ MySQL"
+msgstr "拥有SQL Server和MySQL的.jar文件"
+
+#: .\pipeline\templates\pipeline\knime.html:215
+msgid "ลงทะเบียน JDBC Driver ใน KNIME Preferences"
+msgstr "在KNIME首选项中注册JDBC驱动程序"
+
+#: .\pipeline\templates\pipeline\knime.html:219
+msgid "สร้างตาราง fraud_clean_knime ใน MySQL สำเร็จ"
+msgstr "成功在MySQL中创建fraud_clean_knime表"
+
+#: .\pipeline\templates\pipeline\knime.html:223
+msgid "สร้าง Workflow ใหม่ใน KNIME แล้ว"
+msgstr "在KNIME中创建了新工作流"
+
+#: .\pipeline\templates\pipeline\knime.html:241
+msgid "Phase 1 — Extract: ดึงข้อมูลจาก SQL Server + จับเวลา"
+msgstr "阶段1 — 提取：从SQL Server拉取数据 + 计时"
+
+#: .\pipeline\templates\pipeline\knime.html:243
+msgid "วัตถุประสงค์ของ Phase 1"
+msgstr "阶段1的目标"
+
+#: .\pipeline\templates\pipeline\knime.html:244
+msgid ""
+"ใน Phase 1 มีเป้าหมายเพื่อเชื่อมต่อกับ SQL Server (frauddb) "
+"และดึงข้อมูลจากตาราง fraud_10k, fraud_100k และ fraud_1m พร้อมเริ่มจับเวลา "
+"Extract โดยใช้ Java Snippet Node"
+msgstr ""
+"在阶段1中，目标是连接到SQL "
+"Server（frauddb）并从表fraud_10k、fraud_100k和fraud_1m中拉取数据，同时使用Java代码片段节点开始提取计时"
+
+#: .\pipeline\templates\pipeline\knime.html:246
+msgid "Phase 1 มี 3 Node หลัก ทำตามลำดับนี้ได้เลย"
+msgstr "阶段1有3个主要节点，按此顺序操作"
+
+#: .\pipeline\templates\pipeline\knime.html:249
+msgid ""
+"เราเริ่มต้นด้วยการสร้าง Connection ระหว่าง KNIME กับ Microsoft SQL Server "
+"โดยใช้ Node Microsoft SQL Server Connector สำหรับเชื่อมต่อระหว่าง KNIME กับ "
+"Microsoft SQL Server"
+msgstr "我们首先使用Microsoft SQL Server连接器节点创建KNIME与Microsoft SQL Server之间的连接"
+
+#: .\pipeline\templates\pipeline\knime.html:251
+msgid "วิธีเพิ่ม Node:"
+msgstr "如何添加节点："
+
+#: .\pipeline\templates\pipeline\knime.html:253
+msgid ""
+"ที่ช่อง Search Node (มุมซ้ายล่าง) พิมพ์ว่า <code>Microsoft SQL Server "
+"Connector</code>"
+msgstr "在搜索节点框（左下角）中，输入 <code>Microsoft SQL Server Connector</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:254
+msgid "ลาก Node มาวางใน Workflow Editor"
+msgstr "将节点拖放到工作流编辑器中"
+
+#: .\pipeline\templates\pipeline\knime.html:257
+msgid "วิธีตั้งค่า (คลิกขวาที่ Node กด configure):"
+msgstr "如何配置（右键单击节点并选择配置）："
+
+#: .\pipeline\templates\pipeline\knime.html:263
+msgid "ค่าที่ใส่"
+msgstr "要输入的值"
+
+#: .\pipeline\templates\pipeline\knime.html:269
+msgid "localhost หรือ IP ของ SQL Server"
+msgstr "localhost或SQL Server的IP"
+
+#: .\pipeline\templates\pipeline\knime.html:285
+msgid "ชื่อ user SQL Server ของคุณ"
+msgstr "您的SQL Server用户名"
+
+#: .\pipeline\templates\pipeline\knime.html:289
+#: .\pipeline\templates\pipeline\knime.html:840
+msgid "รหัสผ่าน"
+msgstr "密码"
+
+#: .\pipeline\templates\pipeline\knime.html:295
+msgid ""
+"<strong>หมายเหตุ:</strong> ถ้ายังไม่ได้ติดตั้ง JDBC Driver ของ SQL Server "
+"ให้ไปที่ Preferences → Databases แล้วเพิ่ม .jar ไฟล์ของ Microsoft JDBC "
+"Driver ก่อน"
+msgstr ""
+"<strong>注意：</strong> 如果您尚未安装SQL Server JDBC驱动程序，请转到首选项 → 数据库并首先添加Microsoft "
+"JDBC驱动程序的.jar文件"
+
+#: .\pipeline\templates\pipeline\knime.html:296
+msgid ""
+"กด OK แล้วกด Execute (คลิกขวา → Execute) เพื่อทดสอบ Connection ถ้าสำเร็จ "
+"Node จะเป็นสีเขียว ✅"
+msgstr "点击确定然后执行（右键单击 → 执行）以测试连接。如果成功，节点将变为绿色 ✅"
+
+#: .\pipeline\templates\pipeline\knime.html:299
+msgid ""
+"เนื่องจาก Node Microsoft SQL Server Connector (Node 1) ทำได้แค่ เปิด "
+"Connection เท่านั้น ยังไม่ได้ดึงข้อมูลออกมา เราจึงต้องมีNode ที่ทำหน้าที่ "
+"ดึงข้อมูลจาก Database มาเป็น Table ใน KNIME โดยรับจาก SQL Server Connector "
+"(Node 1) แล้วรัน SQL Query "
+"ที่กำหนดไว้ผลลัพธ์ที่ได้คือตารางข้อมูลที่พร้อมส่งต่อให้Node ถัดไป ถ้าไม่มี "
+"Node นี้ KNIME จะไม่รู้ว่าต้องการข้อมูลตารางไหน และจำนวนเท่าไหร่ นอกจากนี้ "
+"ยังได้เพิ่ม SYSDATETIME() เข้ามาด้วย เพื่อบันทึกเวลาที่ SQL Server เริ่มต้น "
+"Query ณ ขณะนั้น โดยเก็บไว้เป็น Column ชื่อ extract_start_time "
+"เพื่อที่จะได้นำไปคำนวณเวลาที่ใช้ในการ Extract ใน Node ถัดไป"
+msgstr ""
+"由于Microsoft SQL "
+"Server连接器节点（节点1）只能打开连接，尚未拉取数据。我们需要一个节点从数据库拉取数据作为KNIME中的表，通过从SQL "
+"Server连接器（节点1）接收并运行指定的SQL查询。结果是准备传递给下一个节点的数据表。没有此节点，KNIME将不知道需要哪个表数据以及需要多少。此外，添加了SYSDATETIME()以记录SQL"
+" Server开始查询的时间，存储为名为extract_start_time的列，以计算下一个节点中用于提取的时间。"
+
+#: .\pipeline\templates\pipeline\knime.html:301
+#: .\pipeline\templates\pipeline\knime.html:326
+#: .\pipeline\templates\pipeline\knime.html:447
+#: .\pipeline\templates\pipeline\knime.html:577
+#: .\pipeline\templates\pipeline\knime.html:607
+#: .\pipeline\templates\pipeline\knime.html:668
+#: .\pipeline\templates\pipeline\knime.html:686
+#: .\pipeline\templates\pipeline\knime.html:805
+#: .\pipeline\templates\pipeline\knime.html:852
+#: .\pipeline\templates\pipeline\knime.html:923
+#: .\pipeline\templates\pipeline\knime.html:1041
+#: .\pipeline\templates\pipeline\knime.html:1067
+#: .\pipeline\templates\pipeline\knime.html:1089
+msgid "ขั้นตอนที่ 1: เพิ่ม Node"
+msgstr "步骤1：添加节点"
+
+#: .\pipeline\templates\pipeline\knime.html:303
+msgid "ไปที่ช่อง Search Node ด้านซ้าย"
+msgstr "转到左侧的搜索节点框"
+
+#: .\pipeline\templates\pipeline\knime.html:304
+msgid "พิมพ์ <code>DB Query Reader</code>"
+msgstr "输入 <code>DB Query Reader</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:305
+msgid "ลาก Node มาวาง ทางขวาของ Node 1"
+msgstr "拖动节点并将其放置在节点1的右侧"
+
+#: .\pipeline\templates\pipeline\knime.html:308
+#: .\pipeline\templates\pipeline\knime.html:332
+#: .\pipeline\templates\pipeline\knime.html:453
+#: .\pipeline\templates\pipeline\knime.html:583
+#: .\pipeline\templates\pipeline\knime.html:613
+#: .\pipeline\templates\pipeline\knime.html:674
+#: .\pipeline\templates\pipeline\knime.html:692
+#: .\pipeline\templates\pipeline\knime.html:858
+#: .\pipeline\templates\pipeline\knime.html:929
+#: .\pipeline\templates\pipeline\knime.html:1047
+#: .\pipeline\templates\pipeline\knime.html:1073
+#: .\pipeline\templates\pipeline\knime.html:1095
+msgid "ขั้นตอนที่ 2: ต่อสาย"
+msgstr "步骤2：连接线路"
+
+#: .\pipeline\templates\pipeline\knime.html:309
+msgid ""
+"ลากเส้นจาก Output Port ของ Node 1 (สี่เหลี่ยมเล็กด้านขวา) ไปที่ Input Port "
+"ของ Node 2 (ด้านซ้าย)"
+msgstr "从节点1的输出端口（右侧的小方块）拖一条线到节点2的输入端口（左侧）"
+
+#: .\pipeline\templates\pipeline\knime.html:312
+#: .\pipeline\templates\pipeline\knime.html:335
+#: .\pipeline\templates\pipeline\knime.html:586
+#: .\pipeline\templates\pipeline\knime.html:616
+#: .\pipeline\templates\pipeline\knime.html:677
+#: .\pipeline\templates\pipeline\knime.html:932
+#: .\pipeline\templates\pipeline\knime.html:1050
+#: .\pipeline\templates\pipeline\knime.html:1076
+#: .\pipeline\templates\pipeline\knime.html:1098
+msgid "ขั้นตอนที่ 3: ตั้งค่า"
+msgstr "步骤3：配置"
+
+#: .\pipeline\templates\pipeline\knime.html:313
+msgid "คลิกขวาที่ Node กด configure แล้วใส่ SQL Query:"
+msgstr "右键单击节点，选择配置，并输入SQL查询："
+
+#: .\pipeline\templates\pipeline\knime.html:315
+#: .\pipeline\templates\pipeline\knime.html:399
+#: .\pipeline\templates\pipeline\knime.html:599
+#: .\pipeline\templates\pipeline\knime.html:915
+#: .\pipeline\templates\pipeline\ssis.html:330
+#: .\pipeline\templates\pipeline\ssis.html:454
+#: .\pipeline\templates\pipeline\ssis.html:469
+#: .\pipeline\templates\pipeline\ssis.html:740
+msgid "กด OK"
+msgstr "点击OK"
+
+#: .\pipeline\templates\pipeline\knime.html:317
+#: .\pipeline\templates\pipeline\knime.html:401
+#: .\pipeline\templates\pipeline\knime.html:601
+#: .\pipeline\templates\pipeline\knime.html:629
+#: .\pipeline\templates\pipeline\knime.html:680
+#: .\pipeline\templates\pipeline\knime.html:917
+msgid "ขั้นตอนที่ 4: Execute"
+msgstr "步骤4：执行"
+
+#: .\pipeline\templates\pipeline\knime.html:318
+msgid "คลิกขวา Node 2 → Execute"
+msgstr "右键单击节点2 → 执行"
+
+#: .\pipeline\templates\pipeline\knime.html:319
+msgid ""
+"ถ้าสำเร็จ Node จะเป็นสีเขียว ซึ่งจะมีข้อมูล 10,000 แถวและจะเห็น Column "
+"<code>extract_start_time</code> เพิ่มขึ้นมาในทุก Row "
+"โดยผลลัพธ์จะเห็นเป็นตัวเลขยาวๆ เช่น "
+"<code>2026-02-26T21:09:10.639728500</code> นั้นคือค่าปกติ"
+msgstr ""
+"如果成功，节点将变为绿色，显示10,000行数据，您将看到每行添加了<code>extract_start_time</code>列。结果将显示为长数字，如<code>2026-02-26T21:09:10.639728500</code>，这是正常的。"
+
+#: .\pipeline\templates\pipeline\knime.html:322
+msgid ""
+"Node นี้ทำหน้าที่รับค่าจาก <code>extract_start_time</code> "
+"ที่ติดมากับข้อมูลจาก Node 2 ซึ่งเป็นเวลาที่ SQL Server บันทึกไว้ตอนเริ่มต้น "
+"Query จากนั้นนำมาคำนวณหาเวลาที่ใช้ในการ Extract โดยใช้คำสั่ง Java "
+"System.currentTimeMillis() ซึ่งจะคืนค่าเวลาปัจจุบันในหน่วย Milliseconds"
+msgstr ""
+"此节点从节点2接收伴随数据的<code>extract_start_time</code>值，这是SQL "
+"Server在开始查询时记录的时间。然后使用Java命令System.currentTimeMillis()计算用于提取的时间，该命令返回以毫秒为单位的当前时间。"
+
+#: .\pipeline\templates\pipeline\knime.html:324
+msgid ""
+"การใช้ Java Snippet Node เป็นการที่เปิดให้เรา เขียน Java Code เอง "
+"ได้โดยตรงภายใน KNIME ซึ่งส่วนใหญ่ใช้กับงานที่มีความต้องการเฉพาะเจาะจงที่ "
+"Node สำเร็จรูปทั่วไปไม่รองรับ"
+msgstr "使用Java代码片段节点允许我们直接在KNIME中编写Java代码，主要用于一般现成节点不支持的特定需求的任务。"
+
+#: .\pipeline\templates\pipeline\knime.html:328
+#: .\pipeline\templates\pipeline\knime.html:449
+#: .\pipeline\templates\pipeline\knime.html:688
+#: .\pipeline\templates\pipeline\knime.html:925
+msgid "พิมพ์ <code>Java Snippet</code> ใน Search Node"
+msgstr "在搜索节点中输入 <code>Java Snippet</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:329
+msgid "ลาก Node มาวาง ทางขวาของ Node 2"
+msgstr "拖动节点并放置在节点2的右侧"
+
+#: .\pipeline\templates\pipeline\knime.html:336
+#: .\pipeline\templates\pipeline\knime.html:696
+#: .\pipeline\templates\pipeline\knime.html:933
+msgid "ส่วนที่ 1: เพิ่ม Input Column"
+msgstr "第1部分：添加输入列"
+
+#: .\pipeline\templates\pipeline\knime.html:337
+msgid "กดปุ่ม Add แล้วตั้งค่า:"
+msgstr "点击添加按钮并配置："
+
+#: .\pipeline\templates\pipeline\knime.html:357
+msgid "ส่วนที่ 2: เพิ่ม Output Column"
+msgstr "第2部分：添加输出列"
+
+#: .\pipeline\templates\pipeline\knime.html:377
+msgid "ส่วนที่ 3: ใส่ Code"
+msgstr "第3部分：插入代码"
+
+#: .\pipeline\templates\pipeline\knime.html:402
+msgid "คลิกขวา Node 3 → Execute"
+msgstr "右键单击节点3 → 执行"
+
+#: .\pipeline\templates\pipeline\knime.html:403
+msgid "ถ้าสำเร็จจะเห็น Column <code>extract_sec</code> เพิ่มขึ้นมาในทุก Row"
+msgstr "如果成功，您将看到每行添加了<code>extract_sec</code>列"
+
+#: .\pipeline\templates\pipeline\knime.html:405
+msgid "ภาพรวม Phase 1 ที่ได้"
+msgstr "阶段1概览"
+
+#: .\pipeline\templates\pipeline\knime.html:413
+msgid "Checklist ก่อนไป Phase 2"
+msgstr "阶段2之前的检查清单"
+
+#: .\pipeline\templates\pipeline\knime.html:415
+msgid "Node 1 Execute แล้วเป็นสีเขียว (Connection สำเร็จ)"
+msgstr "节点1执行并变为绿色（连接成功）"
+
+#: .\pipeline\templates\pipeline\knime.html:416
+msgid "Node 2 Execute แล้วเห็นข้อมูล 10,000 แถว"
+msgstr "节点2执行并看到10,000行数据"
+
+#: .\pipeline\templates\pipeline\knime.html:417
+msgid ""
+"Node 3 Execute แล้วเห็น Column <code>extract_start_time</code> เพิ่มขึ้นมา"
+msgstr "节点3执行并看到添加了<code>extract_start_time</code>列"
+
+#: .\pipeline\templates\pipeline\knime.html:434
+msgid "วัตถุประสงค์ของ Phase 2"
+msgstr "阶段2的目标"
+
+#: .\pipeline\templates\pipeline\knime.html:435
+msgid ""
+"ในเฟสนี้เราจะแปลงข้อมูลดิบจาก SQL Server ที่ Extract "
+"มาแล้วให้อยู่ในรูปแบบที่ถูกต้อง สะอาด และพร้อมสำหรับการ Load ลง MySQL "
+"ซึ่งในเฟสนี้มีการ:"
+msgstr "在此阶段，我们将从SQL Server提取的原始数据转换为正确、干净的格式，准备加载到MySQL。此阶段包括："
+
+#: .\pipeline\templates\pipeline\knime.html:437
+msgid "Hash ข้อมูลส่วนตัว"
+msgstr "哈希个人数据"
+
+#: .\pipeline\templates\pipeline\knime.html:438
+msgid "แปลง Data Type ใน คอลัมน์ trans_date_trans_time"
+msgstr "转换trans_date_trans_time列中的数据类型"
+
+#: .\pipeline\templates\pipeline\knime.html:439
+msgid "กรองข้อมูลที่ amt <= 0 หรือ NULL ออก"
+msgstr "过滤掉amt <= 0或NULL的数据"
+
+#: .\pipeline\templates\pipeline\knime.html:440
+msgid "Rename columns"
+msgstr "重命名列"
+
+#: .\pipeline\templates\pipeline\knime.html:443
+msgid "Phase นี้มี 5 Node (Node 4-8) ทำตามลำดับเลย"
+msgstr "此阶段有5个节点（节点4-8），按顺序操作"
+
+#: .\pipeline\templates\pipeline\knime.html:450
+msgid "ลากมาวางต่อจาก Node 3"
+msgstr "拖放到节点3之后"
+
+#: .\pipeline\templates\pipeline\knime.html:456
+msgid "ขั้นตอนที่ 3: ตั้งค่า Output Columns"
+msgstr "步骤3：设置输出列"
+
+#: .\pipeline\templates\pipeline\knime.html:457
+msgid "ส่วนที่ 1: เพิ่ม Output Column"
+msgstr "第1部分：添加输出列"
+
+#: .\pipeline\templates\pipeline\knime.html:458
+msgid "กดปุ่ม Add ในส่วน Output 4 ครั้ง สำหรับ column ที่ต้อง Hash:"
+msgstr "在输出部分点击添加按钮4次，用于需要哈希的列："
+
+#: .\pipeline\templates\pipeline\knime.html:507
+msgid ""
+"<strong>สังเกต:</strong> ครั้งนี้เลือก Replace ไม่ใช่ Append "
+"เพราะต้องการทับค่าเดิมด้วยค่า Hash"
+msgstr "<strong>注意：</strong> 这次选择替换，而不是追加，因为我们想用哈希值覆盖原始值"
+
+#: .\pipeline\templates\pipeline\knime.html:509
+msgid "ส่วนที่ 2: เพิ่ม Input Column"
+msgstr "第2部分：添加输入列"
+
+#: .\pipeline\templates\pipeline\knime.html:510
+msgid "กดปุ่ม Add ในส่วน Input 4 ครั้ง:"
+msgstr "在输入部分点击添加按钮4次："
+
+#: .\pipeline\templates\pipeline\knime.html:545
+msgid "ขั้นตอนที่ 5: ใส่ Code ใน Snippet"
+msgstr "步骤5：在代码片段中插入代码"
+
+#: .\pipeline\templates\pipeline\knime.html:546
+#: .\pipeline\templates\pipeline\knime.html:739
+msgid "บรรทัด 13 (Your custom imports):"
+msgstr "第13行（您的自定义导入）："
+
+#: .\pipeline\templates\pipeline\knime.html:549
+msgid "บรรทัด 37 (Your custom variables):"
+msgstr "第37行（您的自定义变量）："
+
+#: .\pipeline\templates\pipeline\knime.html:561
+msgid "บรรทัด 42-45 (แทนที่ที่มีอยู่):"
+msgstr "第42-45行（替换现有）："
+
+#: .\pipeline\templates\pipeline\knime.html:571
+#: .\pipeline\templates\pipeline\knime.html:776
+msgid "ขั้นตอนที่ 6: Execute"
+msgstr "步骤6：执行"
+
+#: .\pipeline\templates\pipeline\knime.html:572
+msgid ""
+"คลิกขวา → Execute ถ้าสำเร็จแล้วเช็คว่า column cc_num, first, last, dob "
+"เปลี่ยนเป็น Hash แล้ว"
+msgstr "右键单击 → 执行。如果成功，检查列cc_num、first、last、dob是否已更改为哈希"
+
+#: .\pipeline\templates\pipeline\knime.html:575
+msgid ""
+"Node นี้แปลง trans_date_trans_time จาก String เป็น DateTime จริงๆตอน Extract"
+" โปรแกรม Knime ได้แปลง datatype จากString เป็น DateTime ให้แล้วอัตโนมัติ "
+"แต่เพื่อให้มั่นใจว่า Format ถูกต้องตามที่ต้องการ และ ให้ขั้นตอนการ Transform"
+" มีความชัดเจนและสามารถตรวจสอบได้ในทุก Step จึงยังคงใส่ Node นี้ไว้"
+msgstr ""
+"此节点将trans_date_trans_time从字符串转换为日期时间。实际上，在提取期间，KNIME自动将数据类型从字符串转换为日期时间。但是，为了确保格式按需要正确，并使转换过程在每个步骤中都清晰可验证，仍然包括此节点。"
+
+#: .\pipeline\templates\pipeline\knime.html:579
+msgid "พิมพ์ <code>String to Date&Time</code> ใน Search Node"
+msgstr "在搜索节点中输入 <code>String to Date&Time</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:580
+msgid "ลากมาวางต่อจาก Node 4"
+msgstr "拖放到节点4之后"
+
+#: .\pipeline\templates\pipeline\knime.html:587
+msgid "ส่วนที่ 1: เอา column ที่ไม่ต้องการออก"
+msgstr "第1部分：删除不需要的列"
+
+#: .\pipeline\templates\pipeline\knime.html:588
+msgid "กดปุ่ม << เพื่อย้ายทุก column ไปฝั่ง Excludes ก่อน"
+msgstr "点击<<按钮首先将所有列移至排除侧"
+
+#: .\pipeline\templates\pipeline\knime.html:590
+msgid "ส่วนที่ 2: เลือกเฉพาะ trans_date_trans_time"
+msgstr "第2部分：仅选择trans_date_trans_time"
+
+#: .\pipeline\templates\pipeline\knime.html:591
+msgid ""
+"คลิกที่ trans_date_trans_time ในฝั่ง Excludes แล้วกด > เพื่อย้ายมาฝั่ง "
+"Includes"
+msgstr "点击排除侧的trans_date_trans_time，然后点击>移至包含侧"
+
+#: .\pipeline\templates\pipeline\knime.html:593
+msgid "ส่วนที่ 3: เลื่อนลงไปดู Input format"
+msgstr "第3部分：向下滚动查看输入格式"
+
+#: .\pipeline\templates\pipeline\knime.html:595
+msgid "คลิกที่ Date & time"
+msgstr "点击日期和时间"
+
+#: .\pipeline\templates\pipeline\knime.html:596
+msgid "Input format จะเปลี่ยนเป็น: <code>yyyy-MM-dd\\'T\\'HH:mm[:ss[.SSS]]</code>"
+msgstr "输入格式将更改为：<code>yyyy-MM-dd\\'T\\'HH:mm[:ss[.SSS]]</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:597
+msgid ""
+"Output columns เลือก Replace ได้เลย เพราะเราต้องการแทนที่ "
+"trans_date_trans_time ด้วย DateTime"
+msgstr "对于输出列，选择替换，因为我们想用日期时间替换trans_date_trans_time"
+
+#: .\pipeline\templates\pipeline\knime.html:602
+msgid "คลิกขวา → Execute แล้วเช็ค column trans_date_trans_time"
+msgstr "右键单击 → 执行并检查trans_date_trans_time列"
+
+#: .\pipeline\templates\pipeline\knime.html:605
+msgid "Node นี้กรองทิ้ง Row ที่ amt <= 0 หรือ amt เป็น NULL"
+msgstr "此节点过滤掉amt <= 0或amt为NULL的行"
+
+#: .\pipeline\templates\pipeline\knime.html:609
+msgid "พิมพ์ <code>Rule-based Row Filter</code> ใน Search Node"
+msgstr "在搜索节点中输入 <code>Rule-based Row Filter</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:610
+msgid "ลากมาวางต่อจาก Node 5"
+msgstr "拖放到节点5之后"
+
+#: .\pipeline\templates\pipeline\knime.html:617
+msgid "คลิกขวา Node 6 กด configure แล้วใส่ Rule ในช่อง:"
+msgstr "右键单击节点6，选择配置，并在框中输入规则："
+
+#: .\pipeline\templates\pipeline\knime.html:622
+msgid "อธิบาย:"
+msgstr "说明："
+
+#: .\pipeline\templates\pipeline\knime.html:624
+msgid ""
+"<code>$amt$ <= 0 => FALSE</code> = ถ้า amt น้อยกว่าหรือเท่ากับ 0 → ลบทิ้ง"
+msgstr "<code>$amt$ <= 0 => FALSE</code> = 如果amt小于或等于0 → 删除"
+
+#: .\pipeline\templates\pipeline\knime.html:625
+msgid "<code>MISSING $amt$ => FALSE</code> = ถ้า amt เป็น NULL → ลบทิ้ง"
+msgstr "<code>MISSING $amt$ => FALSE</code> = 如果amt为NULL → 删除"
+
+#: .\pipeline\templates\pipeline\knime.html:626
+msgid "<code>TRUE => TRUE</code> = นอกนั้นเก็บไว้ทั้งหมด"
+msgstr "<code>TRUE => TRUE</code> = 保留其他所有内容"
+
+#: .\pipeline\templates\pipeline\knime.html:630
+msgid "คลิกขวา → Execute แล้วเช็คจำนวน Row ที่เหลือ"
+msgstr "右键单击 → 执行并检查剩余的行数"
+
+#: .\pipeline\templates\pipeline\knime.html:633
+msgid "Node นี้เราจะเปลี่ยนชื่อคอลัมน์ 5 คอลัมน์:"
+msgstr "在此节点中，我们将重命名5列："
+
+#: .\pipeline\templates\pipeline\knime.html:639
+msgid "ชื่อเดิม"
+msgstr "原始名称"
+
+#: .\pipeline\templates\pipeline\knime.html:640
+msgid "ชื่อใหม่"
+msgstr "新名称"
+
+#: .\pipeline\templates\pipeline\knime.html:670
+msgid "พิมพ์ <code>Column Rename</code> ใน Search Node"
+msgstr "在搜索节点中输入 <code>Column Rename</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:671
+msgid "ลากมาวางต่อจาก Node 6"
+msgstr "拖放到节点6之后"
+
+#: .\pipeline\templates\pipeline\knime.html:678
+msgid "ดับเบิลคลิก แล้วเปลี่ยนชื่อดังนี้ (ตามตารางข้างบน)"
+msgstr "双击并按如下重命名（根据上表）"
+
+#: .\pipeline\templates\pipeline\knime.html:681
+msgid "คลิกขวา → Execute แล้วเช็คคอลัมน์ว่าเปลี่ยนชื่อตามที่ตั้งไว้หรือไม่"
+msgstr "右键单击 → 执行并检查列是否按设置重命名"
+
+#: .\pipeline\templates\pipeline\knime.html:684
+msgid "Node นี้คำนวณเวลาที่ใช้ใน Transform Phase ทั้งหมด"
+msgstr "此节点计算转换阶段使用的总时间"
+
+#: .\pipeline\templates\pipeline\knime.html:689
+msgid "ลากมาวางต่อจาก Node 7"
+msgstr "拖放到节点7之后"
+
+#: .\pipeline\templates\pipeline\knime.html:695
+msgid "ขั้นตอนที่ 3: ตั้งค่า Input Columns"
+msgstr "步骤3：设置输入列"
+
+#: .\pipeline\templates\pipeline\knime.html:697
+msgid "กด Add ในส่วน Input 1 ครั้ง:"
+msgstr "在输入部分点击添加1次："
+
+#: .\pipeline\templates\pipeline\knime.html:717
+#: .\pipeline\templates\pipeline\knime.html:959
+msgid "ส่วนที่ 2: เพิ่ม Output Columns"
+msgstr "第2部分：添加输出列"
+
+#: .\pipeline\templates\pipeline\knime.html:718
+#: .\pipeline\templates\pipeline\knime.html:960
+msgid "กด Add ในส่วน Output 1 ครั้ง:"
+msgstr "在输出部分点击添加1次："
+
+#: .\pipeline\templates\pipeline\knime.html:738
+msgid "ขั้นตอนที่ 5: ใส่ Code"
+msgstr "步骤5：插入代码"
+
+#: .\pipeline\templates\pipeline\knime.html:742
+msgid "บรรทัด 34-45 (แทนที่ที่มีอยู่):"
+msgstr "第34-45行（替换现有）："
+
+#: .\pipeline\templates\pipeline\knime.html:777
+msgid "คลิกขวา → Execute แล้วเช็คว่า column transform_sec มีค่าเป็นวินาที"
+msgstr "右键单击 → 执行并检查transform_sec列的值是否为秒"
+
+#: .\pipeline\templates\pipeline\knime.html:793
+msgid "วัตถุประสงค์ของ Phase 3"
+msgstr "阶段3的目标"
+
+#: .\pipeline\templates\pipeline\knime.html:794
+msgid "Phase 3 มีวัตถุประสงค์หลัก 2 ประการ คือ"
+msgstr "阶段3有2个主要目标："
+
+#: .\pipeline\templates\pipeline\knime.html:796
+msgid ""
+"เพื่อโหลดข้อมูลที่ผ่านการ Transform แล้วเข้าสู่ตาราง fraud_clean_knime บน "
+"MySQL"
+msgstr "将转换后的数据加载到MySQL上的fraud_clean_knime表中"
+
+#: .\pipeline\templates\pipeline\knime.html:797
+msgid "เพื่อจับเวลาขั้นตอน Load แยกตามขนาด 10K, 100K และ 1M แถว และบันทึกผล"
+msgstr "分别计时10K、100K和1M行的加载阶段并记录结果"
+
+#: .\pipeline\templates\pipeline\knime.html:800
+msgid "Phase นี้มี 6 Node (Node 9-14) ทำตามลำดับเลย"
+msgstr "此阶段有6个节点（节点9-14），按顺序操作"
+
+#: .\pipeline\templates\pipeline\knime.html:803
+msgid ""
+"MySQL Connector Node ทำหน้าที่เป็น ตัวสร้างการเชื่อมต่อ (Connection Object) "
+"ระหว่าง KNIME กับ MySQL Database โดยเฉพาะ โดยตัว Node "
+"เองไม่ได้ดึงหรือเขียนข้อมูลใดๆ เพียงแค่ทำหน้าที่การเชื่อมต่อ เท่านั้น ซึ่ง "
+"MySQL Connector Node จะส่งการเชื่อมต่อไปให้Node ถัดไปใช้งาน"
+msgstr ""
+"MySQL连接器节点充当KNIME和MySQL数据库之间的连接对象创建者。节点本身不拉取或写入任何数据，它仅充当连接器。MySQL连接器节点将连接传递给下一个节点使用"
+
+#: .\pipeline\templates\pipeline\knime.html:807
+msgid "พิมพ์ <code>MySQL Connector</code> ใน Search Node"
+msgstr "在搜索节点中输入 <code>MySQL Connector</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:808
+msgid "ลากมาวางใต้ Workflow (แยกออกมา ยังไม่ต้องต่อสาย)"
+msgstr "拖放到工作流下方（分开，暂不连接）"
+
+#: .\pipeline\templates\pipeline\knime.html:811
+msgid "ขั้นตอนที่ 2: ตั้งค่า"
+msgstr "步骤2：配置"
+
+#: .\pipeline\templates\pipeline\knime.html:812
+#: .\pipeline\templates\pipeline\knime.html:865
+msgid "คลิกขวากด configure แล้วตั้งค่า:"
+msgstr "右键单击配置并设置："
+
+#: .\pipeline\templates\pipeline\knime.html:836
+msgid "ชื่อ user MySQL"
+msgstr "MySQL用户名"
+
+#: .\pipeline\templates\pipeline\knime.html:846
+msgid "ขั้นตอนที่ 3: Execute ก่อนยังไม่ต้องต่อสาย"
+msgstr "步骤3：执行（暂时不要连接线）"
+
+#: .\pipeline\templates\pipeline\knime.html:847
+#: .\pipeline\templates\pipeline\knime.html:918
+msgid "คลิกขวา → Execute ถ้าสำเร็จ Node จะเป็นสีเขียว ✅"
+msgstr "右键单击 → 执行。如果成功，节点将变为绿色 ✅"
+
+#: .\pipeline\templates\pipeline\knime.html:850
+msgid ""
+"DB Writer Node ทำหน้าที่ เขียนข้อมูลจาก KNIME ลงสู่ตารางใน Database "
+"โดยรับข้อมูลที่ผ่านการ Transform มาแล้วจาก Node ก่อนหน้า "
+"และรับการเชื่อมต่อจาก MySQL Connector เพื่อรู้ว่าต้องเขียนลง Database ไหน"
+msgstr ""
+"DB Writer节点将数据从KNIME写入数据库中的表，通过从前一个节点接收转换后的数据并从MySQL连接器接收连接以了解要写入哪个数据库"
+
+#: .\pipeline\templates\pipeline\knime.html:854
+msgid "พิมพ์ <code>DB Writer</code> ใน Search Node"
+msgstr "在搜索节点中输入 <code>DB Writer</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:855
+msgid "ลากมาวางต่อจาก Node 8"
+msgstr "从节点8拖放连接"
+
+#: .\pipeline\templates\pipeline\knime.html:864
+msgid "ขั้นตอนที่ 3: ตั้งค่า DB Writer"
+msgstr "步骤3：配置DB Writer"
+
+#: .\pipeline\templates\pipeline\knime.html:887
+msgid "<strong>If table exists:</strong> เลือก Append rows"
+msgstr "<strong>如果表存在：</strong> 选择追加行"
+
+#: .\pipeline\templates\pipeline\knime.html:890
+msgid "ต้องย้าย column ที่ไม่มีใน MySQL ออกไปฝั่ง Excludes:"
+msgstr "必须将MySQL中不存在的列移至排除侧："
+
+#: .\pipeline\templates\pipeline\knime.html:905
+msgid "เลื่อนดู Includes ทั้งหมดแล้วเทียบกับ Schema MySQL ที่สร้างไว้:"
+msgstr "滚动查看所有包含并与创建的MySQL架构进行比较："
+
+#: .\pipeline\templates\pipeline\knime.html:910
+msgid "<strong>ส่วน Output: เอาติ๊ก ✅ ออก</strong>"
+msgstr "<strong>输出部分：删除勾选 ✅</strong>"
+
+#: .\pipeline\templates\pipeline\knime.html:912
+msgid "ติ๊ก ✅ Append status column ออก"
+msgstr "取消勾选 ✅ 追加状态列"
+
+#: .\pipeline\templates\pipeline\knime.html:913
+msgid "ติ๊ก ✅ Append error column ออก"
+msgstr "取消勾选 ✅ 追加错误列"
+
+#: .\pipeline\templates\pipeline\knime.html:921
+msgid ""
+"Node นี้ทำหน้าที่ หยุดจับเวลาของ Phase Load และคำนวณเวลาที่ใช้ในแต่ละ Phase "
+"ทั้งหมด เพื่อเตรียมบันทึกลง CSV"
+msgstr "此节点停止加载阶段计时器并计算每个阶段使用的时间以准备记录到CSV"
+
+#: .\pipeline\templates\pipeline\knime.html:926
+msgid "ลากมาวางต่อจาก Node 10 (DB Writer)"
+msgstr "从节点10（DB Writer）拖放连接"
+
+#: .\pipeline\templates\pipeline\knime.html:934
+msgid "กด Add ในส่วน Input 2 ครั้ง:"
+msgstr "在输入部分点击添加2次："
+
+#: .\pipeline\templates\pipeline\knime.html:985
+msgid "ขั้นตอนที่ 4: ใส่ Code"
+msgstr "步骤4：插入代码"
+
+#: .\pipeline\templates\pipeline\knime.html:1034
+msgid "ขั้นตอนที่ 5: Execute"
+msgstr "步骤5：执行"
+
+#: .\pipeline\templates\pipeline\knime.html:1035
+#: .\pipeline\templates\pipeline\knime.html:1172
+msgid "กด Reset all → Execute all"
+msgstr "点击全部重置 → 全部执行"
+
+#: .\pipeline\templates\pipeline\knime.html:1036
+msgid ""
+"คลิกขวา → Execute แล้วเช็คว่ามี column load_sec มีค่าเป็นวินาทีและ column "
+"dataset ปรากฏขึ้นมา"
+msgstr "右键单击→执行并检查列load_sec的值是否为秒，列dataset是否出现"
+
+#: .\pipeline\templates\pipeline\knime.html:1039
+msgid ""
+"Node นี้ทำหน้าที่แปลงข้อมูลในแถวแรกของ Table ให้กลายเป็น Flow Variable "
+"(ตัวแปรที่อยู่นอก Table) สรุปง่ายๆคือ "
+"ทำให้ข้อมุลแถวแรกในตารางกลายเป็นตัวแปรที่อยู่นอกตารางเพื่อให้Node "
+"ที่อยู่ถัดไปในทุกจุดของ Workflow สามารถดึงตัวแปรนั้นไปใช้ได้เลย "
+"ในโปรเจคนี้แปลงค่า extract_sec, transform_sec, load_sec และ dataset จาก Row "
+"แรกเป็น Flow Variable"
+msgstr ""
+"此节点将表的第一行中的数据转换为流变量（表外的变量）。简单地说，它使表中第一行数据成为表外的变量，以便工作流中任何位置的节点都可以使用这些变量。在此项目中，它将第一行的extract_sec、transform_sec、load_sec和dataset值转换为流变量"
+
+#: .\pipeline\templates\pipeline\knime.html:1043
+msgid "พิมพ์ <code>Table Row to Variable</code> ใน Search Node"
+msgstr "在搜索节点中输入 <code>Table Row to Variable</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:1044
+msgid "ลากมาวางต่อจาก Load Timer Stop"
+msgstr "从加载计时器停止拖放连接"
+
+#: .\pipeline\templates\pipeline\knime.html:1052
+msgid "ย้ายไปฝั่ง Excludes ให้เหลือแค่ 4 ตัวใน Includes"
+msgstr "移至排除侧，在包含中仅保留4个"
+
+#: .\pipeline\templates\pipeline\knime.html:1053
+msgid ""
+"กดปุ่ม << เพื่อย้ายทุกอย่างไป Excludes ก่อน แล้วค่อยย้ายกลับมาแค่ 4 ตัวนี้:"
+msgstr "点击<<按钮首先将所有内容移至排除，然后仅移回这4个："
+
+#: .\pipeline\templates\pipeline\knime.html:1061
+#: .\pipeline\templates\pipeline\knime.html:1084
+#: .\pipeline\templates\pipeline\knime.html:1104
+msgid "กด Apply หรือ Apply and Execute"
+msgstr "点击应用或应用并执行"
+
+#: .\pipeline\templates\pipeline\knime.html:1065
+msgid ""
+"Node นี้ทำหน้าที่ ตรงข้ามกับ Table Row to Variable เลยคือแปลง Flow Variable "
+"ที่ลอยอยู่นอก Table ให้กลับมาเป็น แถวข้อมูลใน Table แทนในโปรเจคนี้ Node "
+"นี้จะรับค่า extract_sec, transform_sec, load_sec และ dataset จาก Node 12 : "
+"Table Row to Variable กลับมาเป็นแถวข้อมูลในตารางอีกครั้ง "
+"ทั้งหมดนี้เพื่อให้CSV Writer ที่รับได้แค่ Table ธรรมดาสามารถบันทึกค่า Timing"
+" ทั้ง 3 Phase ลงไฟล์ได้"
+msgstr ""
+"此节点与表行到变量相反 - "
+"它将表外浮动的流变量转换回表行。在此项目中，此节点从节点12：表行到变量接收extract_sec、transform_sec、load_sec和dataset值，再次返回到表行。所有这些都是为了使CSV"
+" Writer（只接受常规表）能够将所有3个阶段的计时值记录到文件中"
+
+#: .\pipeline\templates\pipeline\knime.html:1069
+msgid "พิมพ์ <code>Variable to Table Row</code> ใน Search Node"
+msgstr "在搜索节点中输入 <code>Variable to Table Row</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:1070
+msgid "ลากมาวางต่อจาก Table Row to Variable"
+msgstr "从表行到变量拖放连接"
+
+#: .\pipeline\templates\pipeline\knime.html:1077
+msgid "ย้าย 4 ตัวนี้จาก Excludes → Includes:"
+msgstr "将这4个从排除 → 包含："
+
+#: .\pipeline\templates\pipeline\knime.html:1087
+msgid ""
+"CSV Writer Node ทำหน้าที่ เขียนข้อมูลจาก Table ออกมาเป็นไฟล์ .csv "
+"บนเครื่องของเรา"
+msgstr "CSV Writer节点将表中的数据写出为我们机器上的.csv文件"
+
+#: .\pipeline\templates\pipeline\knime.html:1091
+msgid "พิมพ์ <code>CSV Writer</code> ใน Search Node"
+msgstr "在搜索节点中输入 <code>CSV Writer</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:1092
+msgid "ลากมาวางต่อจาก Variable to Table Row"
+msgstr "从变量到表行拖放连接"
+
+#: .\pipeline\templates\pipeline\knime.html:1100
+msgid "เลือก location ที่อยากให้ไฟล์ csv แสดง"
+msgstr "选择您希望csv文件出现的位置"
+
+#: .\pipeline\templates\pipeline\knime.html:1101
+msgid "ใส่ชื่อไฟล์ในช่อง Name: <code>knime_10k_timing_log.csv</code>"
+msgstr "在名称字段中输入文件名：<code>knime_10k_timing_log.csv</code>"
+
+#: .\pipeline\templates\pipeline\knime.html:1102
+msgid "กด Choose file"
+msgstr "点击选择文件"
+
+#: .\pipeline\templates\pipeline\knime.html:1107
+msgid "ตรวจสอบผลใน MySQL Workbench:"
+msgstr "在MySQL Workbench中验证结果："
+
+#: .\pipeline\templates\pipeline\knime.html:1108
+msgid "รันโค้ดนี้:"
+msgstr "运行此代码："
+
+#: .\pipeline\templates\pipeline\knime.html:1163
+msgid ""
+"และเปิด timing_log_knime.csv ในโฟลเดอร์ที่กำหนด location "
+"ในโปรเจคนี้กำหนดไว้ที่โฟลเดอร์ data"
+msgstr "并在位置指定的文件夹中打开timing_log_knime.csv，在此项目中设置为data文件夹"
+
+#: .\pipeline\templates\pipeline\knime.html:1165
+msgid "ก่อนรัน 100K หรือ 1M:"
+msgstr "在运行100K或1M之前："
+
+#: .\pipeline\templates\pipeline\knime.html:1167
+msgid "ใน MySQL รัน TRUNCATE TABLE ก่อน โดยรันโค้ดนี้:"
+msgstr "在MySQL中，通过运行此代码首先运行TRUNCATE TABLE："
+
+#: .\pipeline\templates\pipeline\knime.html:1171
+msgid "เปลี่ยน Node 2, Node 11 และ Node 14 เป็น \"100k\" หรือ \"1m\""
+msgstr "将节点2、节点11和节点14更改为\"100k\"或\"1m\""
+
+#: .\pipeline\templates\pipeline\knime.html:1177
+msgid "ภาพประกอบการทดสอบ ETL Pipeline ด้วย KNIME"
+msgstr "展示使用KNIME测试ETL管道的图像"
+
+#: .\pipeline\templates\pipeline\knime.html:1193
+msgid "สรุปและวิเคราะห์ผล KNIME ETL Benchmark"
+msgstr "KNIME ETL基准测试摘要和分析"
+
+#: .\pipeline\templates\pipeline\knime.html:1195
+msgid "ผลการทดสอบ"
+msgstr "测试结果"
+
+#: .\pipeline\templates\pipeline\knime.html:1240
+msgid "1. KNIME: การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "1. KNIME：按数据大小比较每个阶段的时间"
+
+#: .\pipeline\templates\pipeline\knime.html:1263
+msgid "2. KNIME: สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "2. KNIME：每个阶段占总时间的比例"
+
+#: .\pipeline\templates\pipeline\knime.html:1295
+msgid "3. KNIME: อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "3. KNIME：每个阶段的增长率（可扩展性）"
+
+# ===== SSIS PAGE =====
+#: .\pipeline\templates\pipeline\ssis.html:53
+msgid "การทดสอบ ETL Pipeline ด้วย SSIS"
+msgstr "使用SSIS进行ETL管道测试"
+
+#: .\pipeline\templates\pipeline\ssis.html:59
+msgid "ภาพรวม ETL Pipeline"
+msgstr "ETL管道概述"
+
+#: .\pipeline\templates\pipeline\ssis.html:61
+msgid ""
+"การทดสอบ ETL Pipeline ด้วย SSIS แบ่งออกเป็น 3 Phase หลัก คือ Extract, "
+"Transform และ Load โดยใช้ Visual Studio สร้าง SSIS Package ที่ดึงข้อมูลจาก "
+"SQL Server, ทำการ Transform ด้วย Script Component (SHA256 Hashing) "
+"และโหลดเข้า MySQL Database"
+msgstr ""
+"使用SSIS进行ETL管道测试分为3个主要阶段：提取、转换和加载。使用Visual Studio创建SSIS包，从SQL "
+"Server提取数据，使用脚本组件（SHA256哈希）进行转换，并加载到MySQL数据库"
+
+#: .\pipeline\templates\pipeline\ssis.html:95
+msgid "Prerequisites (สิ่งที่ต้องติดตั้งก่อนเริ่ม)"
+msgstr "前提条件"
+
+#: .\pipeline\templates\pipeline\ssis.html:97
+msgid "SSIS คืออะไร? (What is SSIS?)"
+msgstr "什么是SSIS？"
+
+#: .\pipeline\templates\pipeline\ssis.html:98
+msgid ""
+"SQL Server Integration Services (SSIS) คือ platform สำหรับสร้าง data "
+"integration และ ETL (Extract, Transform, Load) workflow ของ Microsoft "
+"มันเป็นส่วนหนึ่งของ SQL Server และทำงานผ่าน Visual Studio โดยใช้วิธีการลาก-"
+"วาง ก่อนที่จะเริ่มการทดลองได้ต้องติดตั้ง Software ที่ใช้ก่อน ดังหัวข้อถัดไป"
+msgstr ""
+"SQL Server Integration "
+"Services（SSIS）是Microsoft用于构建数据集成和ETL（提取、转换、加载）工作流的平台。它是SQL "
+"Server的一部分，通过Visual Studio使用拖放方法工作。在开始实验之前，必须先安装所需的软件，如下一节所述。"
+
+#: .\pipeline\templates\pipeline\ssis.html:100
+msgid "รายการ Software ที่ต้องติดตั้ง"
+msgstr "所需软件列表"
+
+#: .\pipeline\templates\pipeline\ssis.html:101
+msgid ""
+"ทั้งหมดนี้เป็นรายการที่ต้องติดตั้งและตั้งค่าก่อนเริ่มต้นทำโปรเจคนี้โดยใช้ "
+"SSIS ซึ่งสามารถหาวิธีการติดตั้งได้ตามอินเทอร์เน็ตหรือแหล่งความรู้ทั่วไป "
+"ถ้าหากมีการติดตั้งและตั้งค่าแล้วสามารถข้ามไปทำ Phase 1 การเตรียม Dataset และ"
+" SQL Server ได้เลย"
+msgstr ""
+"这些是在使用SSIS开始此项目之前需要安装和配置的项目。可以在互联网或一般知识来源中找到安装指南。如果已经安装和配置，可以跳到第1阶段：准备数据集和SQL"
+" Server。"
+
+#: .\pipeline\templates\pipeline\ssis.html:126
+msgid "Phase 1: การเตรียม Dataset และ SQL Server"
+msgstr "第1阶段：准备数据集和SQL Server"
+
+# ===== SSIS PAGE TRANSLATIONS =====
+#: .\pipeline\templates\pipeline\ssis.html:128
+msgid "STEP 1: Download Dataset จาก Kaggle"
+msgstr "步骤1：从Kaggle下载数据集"
+
+#: .\pipeline\templates\pipeline\ssis.html:130
+msgid "ไปที่ kaggle.com → สมัครสมาชิกถ้ายังไม่มีบัญชี"
+msgstr "前往kaggle.com → 如果没有账户请注册"
+
+#: .\pipeline\templates\pipeline\ssis.html:131
+#: .\pipeline\templates\pipeline\ssis.html:362
+msgid "ค้นหา"
+msgstr "搜索"
+
+#: .\pipeline\templates\pipeline\ssis.html:131
+msgid "หรือเข้าลิงก์นี้เลย"
+msgstr "或直接访问此链接"
+
+#: .\pipeline\templates\pipeline\ssis.html:134
+msgid "กด Download → ได้ไฟล์"
+msgstr "点击Download → 获取文件"
+
+#: .\pipeline\templates\pipeline\ssis.html:135
+#: .\pipeline\templates\pipeline\ssis.html:988
+msgid "สร้างโฟลเดอร์"
+msgstr "创建文件夹"
+
+#: .\pipeline\templates\pipeline\ssis.html:135
+msgid "แล้ววางไฟล์"
+msgstr "并放置文件"
+
+#: .\pipeline\templates\pipeline\ssis.html:135
+msgid "ไว้"
+msgstr "在那里"
+
+#: .\pipeline\templates\pipeline\ssis.html:138
+msgid "STEP 2: สร้าง Database ใน SQL Server"
+msgstr "步骤2：在SQL Server中创建数据库"
+
+#: .\pipeline\templates\pipeline\ssis.html:140
+msgid ""
+"เปิด SSMS (SQL Server Management Studio) ในโปรเจคนี้ใช้ SQL Server "
+"Authentication"
+msgstr "打开SSMS（SQL Server Management Studio）。此项目使用SQL Server身份验证"
+
+#: .\pipeline\templates\pipeline\ssis.html:146
+msgid "Database frauddb ถูกสร้างสำเร็จ"
+msgstr "数据库frauddb创建成功"
+
+#: .\pipeline\templates\pipeline\ssis.html:151
+msgid "เชื่อมต่อ SQL Server → กด New Query"
+msgstr "连接到SQL Server → 点击New Query"
+
+#: .\pipeline\templates\pipeline\ssis.html:152
+msgid "วาง SQL นี้แล้วกด Execute (F5)"
+msgstr "粘贴此SQL并按Execute（F5）"
+
+#: .\pipeline\templates\pipeline\ssis.html:159
+#: .\pipeline\templates\pipeline\ssis.html:298
+msgid "ผลลัพธ์:"
+msgstr "结果："
+
+#: .\pipeline\templates\pipeline\ssis.html:161
+msgid "STEP 3: วิธี Import CSV ด้วย SSMS Import Flat File Wizard"
+msgstr "步骤3：使用SSMS导入平面文件向导导入CSV"
+
+#: .\pipeline\templates\pipeline\ssis.html:163
+msgid ""
+"ใน SSMS → Object Explorer → คลิกขวาที่ FraudDB → Tasks → Import Flat File..."
+msgstr "在SSMS中 → Object Explorer → 右键单击FraudDB → Tasks → Import Flat File..."
+
+#: .\pipeline\templates\pipeline\ssis.html:164
+msgid "กด Next → Browse เลือกไฟล์"
+msgstr "点击Next → 浏览选择文件"
+
+#: .\pipeline\templates\pipeline\ssis.html:164
+msgid "ตั้งชื่อตารางเป็น"
+msgstr "将表命名为"
+
+#: .\pipeline\templates\pipeline\ssis.html:164
+msgid "กด Next"
+msgstr "点击Next"
+
+#: .\pipeline\templates\pipeline\ssis.html:165
+msgid "หน้า Preview Data → กด Next"
+msgstr "Preview Data页面 → 点击Next"
+
+#: .\pipeline\templates\pipeline\ssis.html:166
+msgid "หน้า Modify Columns → แก้ Data Type ดังนี้:"
+msgstr "Modify Columns页面 → 更改数据类型如下："
+
+#: .\pipeline\templates\pipeline\ssis.html:185
+msgid ""
+"ติ๊ก Allow Nulls ทุก column เพราะข้อมูลจริงอาจมีบาง column ที่ว่างเปล่า "
+"ถ้าไม่ติ๊กไว้จะ Error ตอน Import → กด Next → Finish"
+msgstr "为所有列勾选Allow Nulls，因为实际数据可能有一些空列。如果不勾选，导入时会出错 → 点击Next → Finish"
+
+#: .\pipeline\templates\pipeline\ssis.html:188
+msgid "ข้อดีของวิธีนี้"
+msgstr "此方法的优点"
+
+#: .\pipeline\templates\pipeline\ssis.html:188
+msgid ""
+"คือ Wizard จัดการ quoted fields เช่น \"fraud_Rippin, Kub and Mann\" "
+"ให้อัตโนมัติไม่ต้องแก้ไขอะไรเพิ่ม"
+msgstr "向导会自动处理带引号的字段，如\"fraud_Rippin, Kub and Mann\"，无需额外编辑"
+
+#: .\pipeline\templates\pipeline\ssis.html:190
+msgid "ขั้นตอนต่อไปคือตรวจนับแถวใน SSMS ก่อน รันได้เลย:"
+msgstr "下一步是先在SSMS中计数行。直接运行："
+
+#: .\pipeline\templates\pipeline\ssis.html:198
+msgid "การ Import CSV ด้วย SSMS Import Flat File Wizard"
+msgstr "使用SSMS导入平面文件向导导入CSV"
+
+#: .\pipeline\templates\pipeline\ssis.html:202
+#: .\pipeline\templates\pipeline\ssis.html:223
+msgid "ผลลัพธ์ที่ได้:"
+msgstr "获得的结果："
+
+#: .\pipeline\templates\pipeline\ssis.html:204
+msgid "STEP 4: สร้างตาราง 3 ขนาดสำหรับ Benchmark"
+msgstr "步骤4：为基准测试创建3种规模的表"
+
+#: .\pipeline\templates\pipeline\ssis.html:205
+#: .\pipeline\templates\pipeline\ssis.html:243
+msgid "รัน SQL นี้ใน SSMS ได้เลย:"
+msgstr "直接在SSMS中运行此SQL："
+
+#: .\pipeline\templates\pipeline\ssis.html:218
+msgid "Count all tables"
+msgstr "统计所有表"
+
+#: .\pipeline\templates\pipeline\ssis.html:227
+msgid "สร้างตาราง 3 ขนาดสำหรับ Benchmark สำเร็จ"
+msgstr "成功创建3种规模的基准测试表"
+
+#: .\pipeline\templates\pipeline\ssis.html:231
+msgid "STEP 5: ดูว่ามีคอลัมน์อะไรบ้างใน dataset"
+msgstr "步骤5：查看数据集中有哪些列"
+
+#: .\pipeline\templates\pipeline\ssis.html:232
+msgid "รัน SQL นี้ใน SSMS:"
+msgstr "在SSMS中运行此SQL："
+
+#: .\pipeline\templates\pipeline\ssis.html:235
+msgid "View all columns of fraud_staging"
+msgstr "查看 fraud_staging 的所有列"
+
+#: .\pipeline\templates\pipeline\ssis.html:241
+msgid "STEP 6: เปลี่ยนชื่อคอลัมน์ long เป็น long_col"
+msgstr "步骤6：将列long重命名为long_col"
+
+#: .\pipeline\templates\pipeline\ssis.html:242
+msgid "เพราะ"
+msgstr "因为"
+
+#: .\pipeline\templates\pipeline\ssis.html:242
+msgid "เป็น keyword ของ C# ทำให้ BufferWrapper.cs Build ไม่ผ่าน"
+msgstr "是C#关键字，导致BufferWrapper.cs构建失败"
+
+#: .\pipeline\templates\pipeline\ssis.html:251
+msgid "Phase 1 เสร็จสมบูรณ์แล้ว! 🎊"
+msgstr "第1阶段完成！🎊"
+
+#: .\pipeline\templates\pipeline\ssis.html:265
+msgid "Phase 2: สร้าง Target Database ใน MySQL"
+msgstr "第2阶段：在MySQL中创建目标数据库"
+
+#: .\pipeline\templates\pipeline\ssis.html:267
+msgid "STEP 1: สร้าง Database และ Table ใน MySQL"
+msgstr "步骤1：在MySQL中创建数据库和表"
+
+#: .\pipeline\templates\pipeline\ssis.html:268
+msgid "เปิด MySQL Workbench → เชื่อมต่อ → เปิด New Query แล้วรัน SQL นี้:"
+msgstr "打开MySQL Workbench → 连接 → 打开New Query并运行此SQL："
+
+#: .\pipeline\templates\pipeline\ssis.html:302
+msgid "สร้าง Database และ Table ใน MySQL สำเร็จ"
+msgstr "成功在MySQL中创建数据库和表"
+
+#: .\pipeline\templates\pipeline\ssis.html:306
+msgid "STEP 2: ตั้งค่า MySQL ODBC DSN"
+msgstr "步骤2：配置MySQL ODBC DSN"
+
+#: .\pipeline\templates\pipeline\ssis.html:308
+msgid "กด Windows Search → พิมพ์ \\"
+msgstr "点击添加按钮并配置："
+
+#: .\pipeline\templates\pipeline\ssis.html:309
+msgid "ไปที่ tab System DSN (ไม่ใช่ User DSN!)"
+msgstr "转到System DSN选项卡（不是User DSN！）"
+
+#: .\pipeline\templates\pipeline\ssis.html:310
+msgid "กด Add → เลือก MySQL ODBC 9.6 Unicode Driver → กด Finish"
+msgstr "点击Add → 选择MySQL ODBC 9.6 Unicode Driver → 点击Finish"
+
+#: .\pipeline\templates\pipeline\ssis.html:311
+msgid "กรอกข้อมูลดังนี้:"
+msgstr "填写如下信息："
+
+#: .\pipeline\templates\pipeline\ssis.html:318
+#: .\pipeline\templates\pipeline\ssis.html:441
+#: .\pipeline\templates\pipeline\ssis.html:629
+#: .\pipeline\templates\pipeline\ssis.html:858
+msgid "ค่าที่กรอก"
+msgstr "要填写的值"
+
+#: .\pipeline\templates\pipeline\ssis.html:325
+msgid "ตามที่ตั้งตอนติดตั้ง MySQL"
+msgstr "根据MySQL安装期间的设置"
+
+#: .\pipeline\templates\pipeline\ssis.html:326
+msgid "password ที่ตั้งตอนติดตั้ง MySQL"
+msgstr "MySQL安装期间设置的密码"
+
+#: .\pipeline\templates\pipeline\ssis.html:330
+msgid "กด Test → ต้องได้"
+msgstr "点击Test → 应该通过"
+
+#: .\pipeline\templates\pipeline\ssis.html:332
+msgid "วิธีเช็ค MySQL User"
+msgstr "如何检查MySQL用户"
+
+#: .\pipeline\templates\pipeline\ssis.html:333
+msgid "วิธีที่ 1 — ดูใน MySQL Workbench"
+msgstr "方法1 — 在MySQL Workbench中查看"
+
+#: .\pipeline\templates\pipeline\ssis.html:334
+msgid ""
+"เปิด MySQL Workbench → ดูที่หน้า Home จะเห็น Connection ที่มีอยู่ ใต้ชื่อ "
+"Connection จะเห็น username เช่น root หรือชื่ออื่น"
+msgstr "打开MySQL Workbench → 查看主页以查看现有连接。在连接名称下，您将看到用户名，如root或其他名称"
+
+#: .\pipeline\templates\pipeline\ssis.html:336
+msgid "วิธีที่ 2 — รัน SQL ใน MySQL Workbench"
+msgstr "方法2 — 在MySQL Workbench中运行SQL"
+
+#: .\pipeline\templates\pipeline\ssis.html:338
+msgid "จะแสดง User ที่ Login อยู่ตอนนี้เลย"
+msgstr "显示当前登录的用户"
+
+#: .\pipeline\templates\pipeline\ssis.html:340
+msgid ""
+"ส่วนใหญ่ถ้าติดตั้ง MySQL แบบ Default จะใช้ User root และ Password "
+"ที่ตั้งตอนติดตั้ง"
+msgstr "通常，如果使用默认设置安装MySQL，则使用用户root和安装期间设置的密码"
+
+#: .\pipeline\templates\pipeline\ssis.html:342
+msgid "Phase 2 เสร็จสมบูรณ์แล้ว! 🎊"
+msgstr "第2阶段完成！🎊"
+
+#: .\pipeline\templates\pipeline\ssis.html:356
+msgid "Phase 3: สร้าง SSIS Project ใน Visual Studio"
+msgstr "第3阶段：在Visual Studio中创建SSIS项目"
+
+#: .\pipeline\templates\pipeline\ssis.html:358
+msgid "STEP 1: สร้าง Project ใหม่"
+msgstr "步骤1：创建新项目"
+
+#: .\pipeline\templates\pipeline\ssis.html:360
+msgid "เปิด Visual Studio"
+msgstr "打开Visual Studio"
+
+#: .\pipeline\templates\pipeline\ssis.html:361
+msgid "กด Create a new project"
+msgstr "点击Create a new project"
+
+#: .\pipeline\templates\pipeline\ssis.html:362
+msgid "ในช่อง Search"
+msgstr "在搜索字段中"
+
+#: .\pipeline\templates\pipeline\ssis.html:363
+msgid "เลือก Integration Services Project → กด Next"
+msgstr "选择Integration Services Project → 点击Next"
+
+#: .\pipeline\templates\pipeline\ssis.html:364
+msgid "ตั้งชื่อ Project:"
+msgstr "命名项目："
+
+#: .\pipeline\templates\pipeline\ssis.html:365
+msgid "เลือก Location ที่ต้องการเก็บไฟล์ เช่น"
+msgstr "选择要保存文件的位置，例如"
+
+#: .\pipeline\templates\pipeline\ssis.html:366
+msgid "กด Create"
+msgstr "点击Create"
+
+#: .\pipeline\templates\pipeline\ssis.html:369
+msgid "ผลที่ควรได้คือเห็นไฟล์"
+msgstr "预期结果是看到文件"
+
+#: .\pipeline\templates\pipeline\ssis.html:369
+msgid "ถูกสร้างอัตโนมัติใน Solution Explorer ✅"
+msgstr "在Solution Explorer中自动创建 ✅"
+
+#: .\pipeline\templates\pipeline\ssis.html:371
+msgid "STEP 2: Rename Package และสร้าง Package เพิ่ม"
+msgstr "步骤2：重命名包并创建其他包"
+
+#: .\pipeline\templates\pipeline\ssis.html:373
+msgid "ใน Solution Explorer → คลิกขวาที่"
+msgstr "在 Solution Explorer 中 → 右键单击"
+
+#: .\pipeline\templates\pipeline\ssis.html:373
+msgid "→ Rename → เปลี่ยนเป็น"
+msgstr "→ Rename → 改为"
+
+#: .\pipeline\templates\pipeline\ssis.html:374
+msgid "คลิกขวาที่โฟลเดอร์ SSIS Packages → New SSIS Package → Rename เป็น"
+msgstr "右键单击 SSIS Packages 文件夹 → New SSIS Package → Rename 为"
+
+#: .\pipeline\templates\pipeline\ssis.html:375
+msgid "ทำซ้ำอีกครั้ง → Rename เป็น"
+msgstr "再次重复 → Rename 为"
+
+#: .\pipeline\templates\pipeline\ssis.html:378
+msgid "ผลที่ควรได้คือเห็น 3 Package ใน Solution Explorer ✅"
+msgstr "结果应该在 Solution Explorer 中看到 3 个 Package ✅"
+
+#: .\pipeline\templates\pipeline\ssis.html:386
+msgid ""
+"<strong>Package.dtsx</strong> คือไฟล์ที่เก็บขั้นตอนการทำงานทั้งหมด "
+"ก็คือเอกสารที่ข้างในบอกว่าต้องทำอะไรบ้าง เรียงลำดับยังไง SSIS "
+"จะอ่านไฟล์นี้แล้วทำงานตามที่กำหนดไว้ เหตุที่ต้องสร้างแยกเป็น 3 "
+"ไฟล์เพราะแต่ละไฟล์จะทำงานกับข้อมูลคนละขนาดกัน "
+"การแยกไฟล์ทำให้ไม่ต้องกลับมาแก้ค่าทุกครั้งที่รัน "
+"และลดโอกาสรันผิดขนาดโดยไม่รู้ตัว"
+msgstr ""
+"<strong>Package.dtsx</strong> "
+"是存储所有工作流程步骤的文件。它是一个文档，说明需要做什么以及按什么顺序进行。SSIS读取此文件并按指定执行任务。创建3个单独文件的原因是每个文件处理不同大小的数据。分离文件消除了每次运行时更改值的需要，并减少了在不知情的情况下运行错误大小的机会。"
+
+#: .\pipeline\templates\pipeline\ssis.html:389
+msgid "STEP 3: สร้าง Variables สำหรับ Timing"
+msgstr "步骤3：创建计时变量"
+
+#: .\pipeline\templates\pipeline\ssis.html:390
+msgid "เริ่มที่"
+msgstr "从...开始"
+
+#: .\pipeline\templates\pipeline\ssis.html:390
+msgid "ก่อน → Double-click เพื่อเปิด"
+msgstr "之前 → 双击打开"
+
+#: .\pipeline\templates\pipeline\ssis.html:391
+msgid ""
+"แล้วไปที่ <strong>Control Flow</strong> (พื้นที่ว่างๆ) → คลิกขวา → "
+"<strong>Variables</strong> จะเห็นหน้าต่าง Variables ขึ้นมา → กด "
+"<strong>+</strong> เพิ่ม Variables ดังนี้:"
+msgstr ""
+"然后转到<strong>Control Flow</strong>（空白区域） → 右键单击 → "
+"<strong>Variables</strong>以查看Variables窗口 → "
+"点击<strong>+</strong>添加Variables如下："
+
+#: .\pipeline\templates\pipeline\ssis.html:394
+msgid ""
+"เราต้องสร้าง Variables ไว้ก่อนเสมอ เพราะถ้า Task พยายามเรียกใช้ Variable "
+"ที่ยังไม่มี SSIS จะ Error ทันที Type ของ Variable "
+"ต้องเลือกให้ตรงกับชนิดของข้อมูลที่จะเก็บ เช่น เวลาใช้ DateTime "
+"วินาทีที่มีทศนิยมใช้ Double และข้อความใช้ String"
+msgstr ""
+"我们必须始终先创建变量，因为如果任务尝试使用尚不存在的变量，SSIS将立即出错。变量的类型必须与将存储的数据类型匹配，例如时间使用DateTime，带小数的秒数使用Double，文本使用String。"
+
+#: .\pipeline\templates\pipeline\ssis.html:403
+msgid "หมายเหตุ (Value)"
+msgstr "注释（值）"
+
+#: .\pipeline\templates\pipeline\ssis.html:413
+msgid "10k หรือ 100k หรือ 1m"
+msgstr "10k 或 100k 或 1m"
+
+#: .\pipeline\templates\pipeline\ssis.html:422
+msgid "STEP 4: สร้าง Connection Manager"
+msgstr "步骤4：创建连接管理器"
+
+#: .\pipeline\templates\pipeline\ssis.html:425
+msgid ""
+"Connection Manager คือการบอก SSIS ว่าจะเชื่อมต่อ Database ไหนบ้าง ต้องสร้าง "
+"2 อัน คือ SQL Server และ MySQL ที่ต้องสร้าง 2 อัน "
+"เพราะข้อมูลในโปรเจคนี้ต้องวิ่งข้ามฐานข้อมูล 2 ตัวที่ต่างกัน คือ SQL Server "
+"(ต้นทาง) และ MySQL (ปลายทาง) SSIS "
+"จึงต้องรู้จักทั้งสองก่อนถึงจะส่งข้อมูลจากที่หนึ่งไปอีกที่หนึ่งได้"
+msgstr ""
+"连接管理器告诉SSIS要连接到哪些数据库。我们需要创建2个：SQL "
+"Server和MySQL。需要2个是因为此项目中的数据必须跨2个不同的数据库流动：SQL "
+"Server（源）和MySQL（目标）。SSIS必须先了解两者才能将数据从一个传输到另一个。"
+
+#: .\pipeline\templates\pipeline\ssis.html:428
+msgid "STEP 4.1: Connection ที่ 1 (SQL Server)"
+msgstr "步骤4.1：连接1（SQL Server）"
+
+#: .\pipeline\templates\pipeline\ssis.html:430
+#: .\pipeline\templates\pipeline\ssis.html:466
+msgid ""
+"ใน Solution Explorer → คลิกขวาที่ Connection Managers → New Connection "
+"Managers"
+msgstr ""
+"在Solution Explorer中 → 右键单击Connection Managers → New Connection Managers"
+
+#: .\pipeline\templates\pipeline\ssis.html:431
+#: .\pipeline\templates\pipeline\ssis.html:467
+msgid "เลือก"
+msgstr "选择"
+
+#: .\pipeline\templates\pipeline\ssis.html:432
+msgid "ไปที่ Providers เลือก"
+msgstr "转到Providers并选择"
+
+#: .\pipeline\templates\pipeline\ssis.html:433
+msgid "กรอกข้อมูล Server ที่ต้องการเชื่อมต่อ:"
+msgstr "填写要连接的服务器信息："
+
+#: .\pipeline\templates\pipeline\ssis.html:448
+msgid "รหัสผ่านของ sk"
+msgstr "sk 的密码"
+
+#: .\pipeline\templates\pipeline\ssis.html:454
+#: .\pipeline\templates\pipeline\ssis.html:469
+msgid "ต้องได้"
+msgstr "应该通过"
+
+#: .\pipeline\templates\pipeline\ssis.html:457
+msgid ""
+"<strong>ADO.NET</strong> คือชุดเครื่องมือที่ใช้สำหรับเชื่อมต่อฐานข้อมูลใน "
+".NET ส่วน <strong>SqlClient Data Provider</strong> คือตัวที่ ADO.NET "
+"ใช้คุยกับ SQL Server โดยเฉพาะ เปรียบได้ว่า ADO.NET "
+"คือช่องทางเชื่อมต่อฐานข้อมูลทั่วไป และ SqlClient คือปลั๊กที่เสียบเข้ากับ SQL"
+" Server โดยเฉพาะ"
+msgstr ""
+"<strong>ADO.NET</strong> 是用于 .NET 中数据库连接的工具集，而 <strong>SqlClient Data "
+"Provider</strong> 是 ADO.NET 专门用于与 SQL Server 通信的组件。可以将 ADO.NET "
+"比作通用的数据库连接通道，而 SqlClient 是专门插入 SQL Server 的插头。"
+
+#: .\pipeline\templates\pipeline\ssis.html:464
+msgid "STEP 4.2: Connection ที่ 2 (MySQL)"
+msgstr "步骤4.2：连接2（MySQL）"
+
+#: .\pipeline\templates\pipeline\ssis.html:468
+msgid "เลือก DSN ="
+msgstr "选择DSN ="
+
+#: .\pipeline\templates\pipeline\ssis.html:468
+msgid "จากที่เราได้ตั้งค่า MySQL ODBC DSN มาแล้ว"
+msgstr "由于我们已经配置了MySQL ODBC DSN"
+
+#: .\pipeline\templates\pipeline\ssis.html:473
+msgid ""
+"MySQL เป็นฐานข้อมูลของบริษัทอื่นที่ไม่ใช่ Microsoft ADO.NET "
+"ถูกออกแบบมาให้ทำงานกับฐานข้อมูลของ Microsoft ได้ดีที่สุด ส่วน ODBC "
+"คือมาตรฐานกลางที่ใช้เชื่อมต่อฐานข้อมูลได้หลายยี่ห้อรวมถึง MySQL ด้วย "
+"นั่นคือเหตุผลที่ใน Prerequisites ต้องติดตั้ง MySQL ODBC Driver ก่อน "
+"เพราะถ้าไม่มี Driver นี้ SSIS จะมองไม่เห็น MySQL เลย"
+msgstr ""
+"MySQL是来自Microsoft以外公司的数据库。ADO.NET旨在与Microsoft数据库配合使用效果最佳。ODBC是可以连接到包括MySQL在内的多个数据库品牌的通用标准。这就是为什么在先决条件中我们必须先安装MySQL"
+" ODBC驱动程序，因为没有此驱动程序，SSIS将根本无法看到MySQL。"
+
+#: .\pipeline\templates\pipeline\ssis.html:476
+msgid "Phase 3 เสร็จสมบูรณ์แล้ว! 🎊"
+msgstr "第3阶段完成！🎊"
+
+#: .\pipeline\templates\pipeline\ssis.html:490
+msgid "Phase 4: สร้าง SSIS Control Flow"
+msgstr "第4阶段：创建SSIS控制流"
+
+#: .\pipeline\templates\pipeline\ssis.html:491
+msgid "Phase นี้เป็นหัวใจหลักของโปรเจคเลย เราจะเริ่มที่ ETL_10k.dtsx ก่อน"
+msgstr "这个阶段是项目的核心。我们将先从ETL_10k.dtsx开始"
+
+#: .\pipeline\templates\pipeline\ssis.html:493
+msgid "ภาพรวม Task ทั้งหมดที่จะสร้าง"
+msgstr "要创建的所有任务概览"
+
+#: .\pipeline\templates\pipeline\ssis.html:508
+msgid "Task 1: Script Task: Start Timer"
+msgstr "任务1：脚本任务：启动计时器"
+
+#: .\pipeline\templates\pipeline\ssis.html:511
+msgid ""
+"Script Task คือ Task ที่เปิดให้เราเขียนโค้ด C# เองได้ "
+"ใช้ในกรณีที่สิ่งที่เราต้องการทำไม่มี Task สำเร็จรูปใน SSIS รองรับ เช่น "
+"การจับเวลา การคำนวณ หรือการเขียนไฟล์ CSV ซึ่งทั้งหมดนี้ SSIS ไม่มี Task "
+"สำเร็จรูปให้ใช้"
+msgstr ""
+"脚本任务是允许我们自己编写C#代码的任务。当我们想要做的事情在SSIS中没有现成的任务时使用，例如计时、计算或写入CSV文件——所有这些SSIS都没有现成的任务。"
+
+#: .\pipeline\templates\pipeline\ssis.html:515
+msgid ""
+"ในโปรเจคนี้ใช้ Script Task ทั้งหมด 4 จุด คือ Task 1 บันทึกเวลาเริ่มต้น Task "
+"3 คำนวณเวลาที่ใช้ใน Extract Task 5 คำนวณเวลาที่ใช้ใน Transform และ Task 7 "
+"คำนวณเวลาที่ใช้ใน Load แล้วเขียนผลทั้งหมดลงไฟล์ CSV"
+msgstr ""
+"在此项目中，脚本任务用于4个地方：任务1记录开始时间，任务3计算提取中使用的时间，任务5计算转换中使用的时间，任务7计算加载中使用的时间并将所有结果写入CSV文件。"
+
+#: .\pipeline\templates\pipeline\ssis.html:518
+msgid "เริ่มจาก Task แรกก่อนเลย:"
+msgstr "从第一个任务开始："
+
+#: .\pipeline\templates\pipeline\ssis.html:520
+msgid "เพื่อเปิด"
+msgstr "打开"
+
+#: .\pipeline\templates\pipeline\ssis.html:521
+msgid "ดูที่ SSIS Toolbox ด้านซ้าย → หา"
+msgstr "查看左侧的SSIS Toolbox → 查找"
+
+#: .\pipeline\templates\pipeline\ssis.html:522
+msgid "ลาก Script Task ลงมาวางใน Control Flow Design Surface"
+msgstr "拖动Script Task并放置在Control Flow Design Surface中"
+
+#: .\pipeline\templates\pipeline\ssis.html:523
+msgid "คลิกขวาที่ Script Task → เปลี่ยนชื่อเป็น"
+msgstr "右键单击Script Task → 重命名为"
+
+#: .\pipeline\templates\pipeline\ssis.html:524
+msgid "Double-click แล้วตั้งค่าดังนี้:"
+msgstr "双击并配置如下："
+
+#: .\pipeline\templates\pipeline\ssis.html:533
+msgid ""
+"<strong>User::</strong> คือ prefix ที่ SSIS ใส่ให้อัตโนมัติเพื่อบอกว่า "
+"Variable ตัวนี้เป็นตัวที่เราสร้างเองใน STEP 3 ไม่ใช่ Variable ที่ SSIS "
+"สร้างไว้ให้ในระบบ การใส่ User:: ไว้ข้างหน้าทำให้ SSIS รู้ว่าต้องไปหา "
+"Variable ตัวนี้จากที่ที่เราสร้างไว้"
+msgstr ""
+"<strong>User::</strong> 是 SSIS 自动添加的前缀，用于表示此 Variable 是我们在 STEP 3 中创建的，而不是 "
+"SSIS 系统内置的 Variable。添加 User:: 前缀可以让 SSIS 知道要从我们创建的地方查找此 Variable。"
+
+#: .\pipeline\templates\pipeline\ssis.html:534
+msgid ""
+"<strong>ReadWriteVariables</strong> คือการบอก Script Task "
+"ว่าจะขอสิทธิ์เข้าถึง Variable ตัวไหนบ้าง SSIS บังคับให้ต้องระบุไว้ก่อนเสมอ "
+"ถ้าไม่ระบุแล้ว Script พยายามเขียนค่าลง Variable ตัวนั้น SSIS จะ Error ทันที"
+msgstr ""
+"<strong>ReadWriteVariables</strong> 用于告诉 Script Task 需要访问哪些 Variable。SSIS "
+"强制要求必须事先指定。如果未指定而 Script 尝试向该 Variable 写入值，SSIS 将立即报错。"
+
+#: .\pipeline\templates\pipeline\ssis.html:538
+msgid "หาโค้ด"
+msgstr "查找代码"
+
+#: .\pipeline\templates\pipeline\ssis.html:541
+msgid "วางโค้ดนี้:"
+msgstr "粘贴此代码："
+
+#: .\pipeline\templates\pipeline\ssis.html:596
+#: .\pipeline\templates\pipeline\ssis.html:714
+#: .\pipeline\templates\pipeline\ssis.html:804
+#: .\pipeline\templates\pipeline\ssis.html:947
+#: .\pipeline\templates\pipeline\ssis.html:1082
+msgid "ปิด Script Editor → กด"
+msgstr "关闭Script Editor → 点击"
+
+#: .\pipeline\templates\pipeline\ssis.html:599
+msgid "Task 2: Data Flow Task - Extract (Extract from SQL Server)"
+msgstr "任务2：数据流任务 - 提取（从SQL Server提取）"
+
+#: .\pipeline\templates\pipeline\ssis.html:602
+msgid ""
+"Data Flow Task คือ Task ที่ใช้สำหรับเคลื่อนย้ายข้อมูล "
+"ข้างในจะมีพื้นที่แยกสำหรับกำหนดว่าข้อมูลจะไหลจากที่ไหน ผ่านอะไรบ้าง "
+"และไปลงที่ไหน ต่างจาก Script Task ตรงที่ Script Task "
+"ใช้เขียนโค้ดเพื่อทำงานทั่วไป แต่ Data Flow Task "
+"ออกแบบมาเพื่อจัดการข้อมูลโดยเฉพาะ"
+msgstr ""
+"数据流任务是用于移动数据的任务。内部有一个单独的区域来定义数据从哪里流动、通过什么以及流向哪里。与用于编写通用任务代码的脚本任务不同，数据流任务专门设计用于数据管理。"
+
+#: .\pipeline\templates\pipeline\ssis.html:606
+msgid ""
+"ในโปรเจคนี้ต้องการจับเวลาแยกกันเป็น 3 Phase ดังนั้นเราต้องแยกเป็น Task ละ "
+"Phase ทำให้จับเวลาได้ว่า Extract ใช้เวลากี่วินาทีTransform "
+"ใช้เวลากี่วินาทีและ Load ใช้เวลากี่วินาที"
+msgstr ""
+"在此项目中，我们需要分别计时3个阶段，因此我们必须为每个阶段分别创建一个任务。这使我们能够测量提取需要多少秒、转换需要多少秒以及加载需要多少秒。"
+
+#: .\pipeline\templates\pipeline\ssis.html:610
+#: .\pipeline\templates\pipeline\ssis.html:614
+#: .\pipeline\templates\pipeline\ssis.html:654
+#: .\pipeline\templates\pipeline\ssis.html:724
+#: .\pipeline\templates\pipeline\ssis.html:728
+#: .\pipeline\templates\pipeline\ssis.html:740
+#: .\pipeline\templates\pipeline\ssis.html:819
+#: .\pipeline\templates\pipeline\ssis.html:849
+#: .\pipeline\templates\pipeline\ssis.html:918
+#: .\pipeline\templates\pipeline\ssis.html:956
+#: .\pipeline\templates\pipeline\ssis.html:970
+msgid "ลาก"
+msgstr "拖动"
+
+#: .\pipeline\templates\pipeline\ssis.html:610
+msgid "จาก SSIS Toolbox ลงใน Control Flow"
+msgstr "从SSIS Toolbox到Control Flow"
+
+#: .\pipeline\templates\pipeline\ssis.html:611
+#: .\pipeline\templates\pipeline\ssis.html:655
+#: .\pipeline\templates\pipeline\ssis.html:725
+#: .\pipeline\templates\pipeline\ssis.html:919
+#: .\pipeline\templates\pipeline\ssis.html:957
+#: .\pipeline\templates\pipeline\ssis.html:971
+msgid "เปลี่ยนชื่อเป็น"
+msgstr "重命名列"
+
+#: .\pipeline\templates\pipeline\ssis.html:612
+msgid ""
+"เชื่อมลูกศร (Precedence Constraint) โดยคลิกที่ Start Timer แล้วลากลูกศรไปที่"
+" Extract from SQL Server"
+msgstr "通过单击Start Timer并将箭头拖动到Extract from SQL Server来连接箭头（优先约束）"
+
+#: .\pipeline\templates\pipeline\ssis.html:613
+#: .\pipeline\templates\pipeline\ssis.html:727
+msgid "Double-click เข้าไปข้างใน Data Flow Task"
+msgstr "双击进入Data Flow Task"
+
+#: .\pipeline\templates\pipeline\ssis.html:614
+msgid "จาก SSIS Toolbox ตรง other sources ลงมาใน Data Flow"
+msgstr "从SSIS Toolbox中的other sources下拉到Data Flow"
+
+#: .\pipeline\templates\pipeline\ssis.html:618
+msgid ""
+"ADO NET Source คือ Component ที่ทำหน้าที่ดึงข้อมูลจากฐานข้อมูลเข้ามาใน Data "
+"Flow ที่ใช้ ADO NET Source เพราะเราสร้าง Connection Manager ของ SQL Server "
+"ไว้แบบ ADO.NET ใน STEP 4.1 ใน phase 3 แล้ว ADO NET Source จึงสามารถใช้ "
+"Connection Manager ตัวนั้นเชื่อมต่อและดึงข้อมูลจากตาราง fraud_10k ได้"
+msgstr ""
+"ADO NET源是将数据从数据库拉入数据流的组件。我们使用ADO NET源是因为我们在阶段3的步骤4.1中将SQL "
+"Server连接管理器创建为ADO.NET。因此ADO NET源可以使用该连接管理器连接并从fraud_10k表中拉取数据。"
+
+#: .\pipeline\templates\pipeline\ssis.html:622
+msgid "ที่ ADO NET Source → ตั้งค่า:"
+msgstr "在ADO NET Source → 配置："
+
+#: .\pipeline\templates\pipeline\ssis.html:648
+msgid "เพื่อตรวจสอบว่าดึงข้อมูลได้ → กด"
+msgstr "验证数据提取 → 点击"
+
+#: .\pipeline\templates\pipeline\ssis.html:650
+msgid "Task 3: Script Task - Log Extract Time"
+msgstr "任务3：脚本任务 - 记录提取时间"
+
+#: .\pipeline\templates\pipeline\ssis.html:653
+msgid "คลิก tab Control Flow ด้านบน"
+msgstr "点击顶部的Control Flow选项卡"
+
+#: .\pipeline\templates\pipeline\ssis.html:654
+msgid "ลงมาใน Control Flow"
+msgstr "放到Control Flow"
+
+#: .\pipeline\templates\pipeline\ssis.html:656
+msgid "เชื่อมลูกศรจาก Extract from SQL Server → Log Extract Time"
+msgstr "连接箭头从Extract from SQL Server → Log Extract Time"
+
+#: .\pipeline\templates\pipeline\ssis.html:657
+#: .\pipeline\templates\pipeline\ssis.html:828
+#: .\pipeline\templates\pipeline\ssis.html:921
+msgid "ตั้งค่า:"
+msgstr "配置："
+
+#: .\pipeline\templates\pipeline\ssis.html:665
+msgid ""
+"Task 3 ต้องทำงาน 3 อย่างพร้อมกัน คือ อ่านค่าจาก ExtractStart เพื่อรู้ว่า "
+"Extract เริ่มเมื่อกี่โมง เขียนผลลัพธ์ที่คำนวณได้ลง ExtractSec "
+"ว่าใช้เวลากี่วินาทีและเริ่มจับเวลา Transform ทันทีโดยบันทึกเวลาปัจจุบันลง "
+"TransformStart"
+msgstr ""
+"任务3必须同时执行3件事：从ExtractStart读取值以了解提取何时开始，将计算结果写入ExtractSec显示花了多少秒，并通过将当前时间记录到TransformStart立即开始计时转换。"
+
+#: .\pipeline\templates\pipeline\ssis.html:669
+msgid "วางโค้ดนี้ที่"
+msgstr "在此处粘贴此代码"
+
+#: .\pipeline\templates\pipeline\ssis.html:718
+msgid ""
+"💡 Task นี้คำนวณว่า Extract ใช้เวลากี่วินาทีแล้วเริ่มจับเวลา Transform "
+"ต่อทันที ถ้ารอบันทึกใน Task 4 เวลาที่ได้จะไม่แม่นยำ Task 3 และ Task 4 SSIS "
+"ต้องใช้เวลาเตรียมตัวก่อนที่ Data Flow Task จะเริ่มทำงานจริง "
+"ถ้าบันทึกเวลาไว้ตรงท้าย Task 3 พอดีก่อนที่จะส่งต่อให้ Task 4 "
+"เวลาที่จับได้จะแม่นยำกว่า"
+msgstr ""
+"💡 "
+"此任务计算提取花了多少秒并立即开始计时转换。如果我们等到在任务4中记录，时间将不准确。在任务3和任务4之间，SSIS需要准备时间才能真正开始数据流任务工作。如果我们在传递给任务4之前在任务3的末尾记录时间，捕获的时间将更准确。"
+
+#: .\pipeline\templates\pipeline\ssis.html:721
+msgid "Task 4: Data Flow Task: Transform"
+msgstr "任务4：数据流任务：转换"
+
+#: .\pipeline\templates\pipeline\ssis.html:724
+#: .\pipeline\templates\pipeline\ssis.html:918
+#: .\pipeline\templates\pipeline\ssis.html:956
+#: .\pipeline\templates\pipeline\ssis.html:970
+msgid "ลงใน Control Flow"
+msgstr "放入Control Flow"
+
+#: .\pipeline\templates\pipeline\ssis.html:726
+msgid "เชื่อมลูกศรจาก Log Extract Time → Transform"
+msgstr "连接箭头从Log Extract Time → Transform"
+
+#: .\pipeline\templates\pipeline\ssis.html:728
+msgid ""
+"ลงมา → Double-click → ตั้งค่าเลือก Table = fraud_10k, fraud_100k, เหมือน "
+"Task 2"
+msgstr "放下 → 双击 → 配置并选择Table = fraud_10k, fraud_100k，与任务2相同"
+
+#: .\pipeline\templates\pipeline\ssis.html:733
+msgid ""
+"ทำไม Task 4 ต้องดึงข้อมูลจาก SQL Server อีกครั้ง ทั้งที่ Task 2 ก็ดึงมาแล้ว?"
+" เพราะข้อมูลที่ดึงมาใน Task 2 ลอยอยู่ใน Memory ชั่วคราวและหายไปแล้วตั้งแต่ "
+"Task 2 จบลง แต่ละ Data Flow Task จะดึงข้อมูลของตัวเองขึ้นมาใหม่ทุกครั้ง Task"
+" 2 ดึงมาเพื่อนับเวลา Extract อย่างเดียว ส่วน Task 4 ดึงมาเพื่อ Transform และ"
+" Load เข้า MySQL"
+msgstr ""
+"为什么任务4需要再次从SQL "
+"Server拉取数据，而任务2已经拉取了？因为任务2中拉取的数据临时浮动在内存中，并在任务2结束时消失。每个数据流任务每次都会重新拉取自己的数据。任务2仅用于计时提取，而任务4用于转换并加载到MySQL。"
+
+#: .\pipeline\templates\pipeline\ssis.html:736
+msgid ""
+"Task 4.1: ตั้งค่า Script Component (เพิ่ม Script Component (Transformation))"
+msgstr "任务4.1：配置Script Component（添加Script Component（Transformation））"
+
+#: .\pipeline\templates\pipeline\ssis.html:738
+msgid "ยังอยู่ใน Data Flow ของ Transform:"
+msgstr "仍在Transform的Data Flow中："
+
+#: .\pipeline\templates\pipeline\ssis.html:740
+msgid "ลงมาต่อ → เลือก Type ="
+msgstr "继续下拉 → 选择Type ="
+
+#: .\pipeline\templates\pipeline\ssis.html:741
+msgid ""
+"เชื่อมลูกศรจาก ADO NET Source → จะเห็นลูกศรสีน้ำเงินโผล่ออกมา → "
+"ลากลูกศรไปวางที่ Script Component"
+msgstr "连接箭头从ADO NET Source → 您将看到蓝色箭头出现 → 将箭头拖到Script Component"
+
+#: .\pipeline\templates\pipeline\ssis.html:744
+msgid "Task 4.2: ตั้งค่า Script Component"
+msgstr "任务4.2：配置Script Component"
+
+#: .\pipeline\templates\pipeline\ssis.html:746
+msgid ""
+"Double-click ที่ Script Component จะเห็นหน้าต่าง Script Transformation "
+"Editor"
+msgstr "双击Script Component以查看Script Transformation Editor窗口"
+
+#: .\pipeline\templates\pipeline\ssis.html:747
+msgid "การตั้งค่า Script Component จะมีอยู่ 3 ขั้นตอนหลัก ดังนี้:"
+msgstr "Script Component配置有3个主要步骤如下："
+
+#: .\pipeline\templates\pipeline\ssis.html:749
+msgid "Task 4.2.1: ตั้งค่า Tab Input Columns (ซ้ายมือ)"
+msgstr "任务4.2.1：配置Tab Input Columns（左侧）"
+
+#: .\pipeline\templates\pipeline\ssis.html:751
+msgid ""
+"ติ๊กถูกทุก column ที่ต้องการ <strong>ยกเว้น column1</strong> เพราะ column1 "
+"คือ Unnamed: 0 จาก CSV ซึ่งเป็นแค่ index ลำดับแถว ไม่มีความหมายทางธุรกิจเลย "
+"เราไม่ต้องการนำไปใช้ใน Transform หรือเก็บลง MySQL"
+msgstr ""
+"勾选所有所需列<strong>除了column1</strong>，因为column1是来自CSV的Unnamed: "
+"0，只是行索引，没有业务意义。我们不想在Transform中使用它或保存到MySQL"
+
+#: .\pipeline\templates\pipeline\ssis.html:753
+msgid ""
+"Task 4.2.2: เพิ่ม Output Columns ใน Script Component ไปที่ Tab Inputs and "
+"Outputs (ซ้ายมือ)"
+msgstr "任务4.2.2：在Script Component中添加输出列到Tab Inputs and Outputs（左侧）"
+
+#: .\pipeline\templates\pipeline\ssis.html:756
+msgid ""
+"Output Columns คือ Column ใหม่ที่ Script Component "
+"สร้างขึ้นมาเพื่อเก็บผลลัพธ์หลังจาก Transform แล้ว SSIS จะไม่ยอมให้เขียนทับ "
+"Column ที่รับมาจาก Input โดยตรงดังนั้นเราจึงต้องสร้าง Column ใหม่ขึ้นมา"
+msgstr "输出列是脚本组件创建的新列，用于在转换后存储结果。SSIS不允许直接覆盖从输入接收的列，因此我们必须创建新列。"
+
+#: .\pipeline\templates\pipeline\ssis.html:760
+msgid "ขยาย"
+msgstr "展开"
+
+#: .\pipeline\templates\pipeline\ssis.html:760
+msgid "คลิก"
+msgstr "点击"
+
+#: .\pipeline\templates\pipeline\ssis.html:761
+#: .\pipeline\templates\pipeline\ssis.html:762
+#: .\pipeline\templates\pipeline\ssis.html:763
+#: .\pipeline\templates\pipeline\ssis.html:764
+#: .\pipeline\templates\pipeline\ssis.html:765
+msgid "กด Add Column → แก้ชื่อเป็น"
+msgstr "点击Add Column → 重命名为"
+
+#: .\pipeline\templates\pipeline\ssis.html:765
+msgid "Length ไม่ต้องใส่"
+msgstr "无需输入Length"
+
+#: .\pipeline\templates\pipeline\ssis.html:769
+msgid "Task 4.2.3: Edit Script ใน Script Component ใน Tab Scripts (ซ้ายมือ)"
+msgstr "任务4.2.3：在Tab Scripts中编辑Script Component中的脚本（左侧）"
+
+#: .\pipeline\templates\pipeline\ssis.html:772
+#: .\pipeline\templates\pipeline\ssis.html:878
+msgid "คลิก Tab"
+msgstr "点击Tab"
+
+#: .\pipeline\templates\pipeline\ssis.html:773
+msgid "วางโค้ดนี้ข้างบน"
+msgstr "在上方粘贴此代码"
+
+#: .\pipeline\templates\pipeline\ssis.html:786
+#: .\pipeline\templates\pipeline\ssis.html:933
+#: .\pipeline\templates\pipeline\ssis.html:989
+msgid "วางโค้ดนี้ใน"
+msgstr "在此处粘贴此代码"
+
+#: .\pipeline\templates\pipeline\ssis.html:796
+msgid "เพิ่ม using ด้านบนที่"
+msgstr "在顶部添加using"
+
+#: .\pipeline\templates\pipeline\ssis.html:808
+msgid "ถ้า Build ไม่สำเร็จ ลองเปลี่ยนตามวิธีนี้ดู:"
+msgstr "如果 Build 失败，请尝试以下步骤："
+
+#: .\pipeline\templates\pipeline\ssis.html:809
+msgid ""
+"1. ไปที่ Build → Configuration Manager → ไปที่ Active solution platform → "
+"New → เปลี่ยน Platform เป็น x64 → OK → Close"
+msgstr ""
+"1. 转到 Build → Configuration Manager → Active solution platform → New → 将 "
+"Platform 改为 x64 → OK → Close"
+
+#: .\pipeline\templates\pipeline\ssis.html:810
+msgid ""
+"2. ไปที่ Solution Explorer ด้านขวา → จะเห็นตัวหนาที่แสดง Assembly name → "
+"คลิกขวา → Properties"
+msgstr ""
+"2. 转到右侧的 Solution Explorer → 会看到显示 Assembly name 的粗体文本 → 右键单击 → Properties"
+
+#: .\pipeline\templates\pipeline\ssis.html:811
+msgid "3. เปลี่ยน Target Framework เป็น .NET Framework 4.7.2"
+msgstr "3. 将 Target Framework 改为 .NET Framework 4.7.2"
+
+#: .\pipeline\templates\pipeline\ssis.html:812
+msgid "4. กด Build ใหม่อีกครั้ง → Build SC_..."
+msgstr "4. 再次点击 Build → Build SC_..."
+
+#: .\pipeline\templates\pipeline\ssis.html:813
+msgid "5. ปิด Script Editor → กด OK"
+msgstr "5. 关闭 Script Editor → 点击 OK"
+
+#: .\pipeline\templates\pipeline\ssis.html:816
+msgid "Task 4.3: เพิ่ม Conditional Split (กรอง amt <= 0)"
+msgstr "任务4.3：添加条件拆分（筛选amt <= 0）"
+
+#: .\pipeline\templates\pipeline\ssis.html:819
+msgid "ลงใน Data Flow"
+msgstr "放入Data Flow"
+
+#: .\pipeline\templates\pipeline\ssis.html:823
+msgid ""
+"Conditional Split คือ Component ที่ทำหน้าที่แยกแถวข้อมูลออกเป็น 2 "
+"ทางตามเงื่อนไขที่กำหนด ในโปรเจคนี้กำหนดเงื่อนไขว่าถ้า amt <= 0 หรือ amt เป็น"
+" NULL ให้แยกออกไปเป็น Invalid เนื่องจากธุรกรรมที่มียอดเงิน 0 "
+"หรือติดลบไม่มีความหมายในเชิงการวิเคราะห์การฉ้อโกง "
+"เพราะการฉ้อโกงจะต้องมีการใช้เงินจริงๆ "
+"ถ้าเอาแถวพวกนี้เข้าไปด้วยจะทำให้ผลการวิเคราะห์คลาดเคลื่อน "
+"ส่วนแถวที่ผ่านเงื่อนไขจะไหลต่อไปเป็น Valid"
+msgstr ""
+"Conditional Split 是一个根据指定条件将数据行分成 2 条路径的组件。在此项目中，条件设置为如果 amt <= 0 或 amt 为 "
+"NULL，则分离到 "
+"Invalid，因为金额为零或负数的交易对于欺诈分析没有意义。欺诈必须涉及实际的资金使用。如果包含这些行，会导致分析结果失真。通过条件的行将流向 "
+"Valid。"
+
+#: .\pipeline\templates\pipeline\ssis.html:827
+msgid "เชื่อมลูกศรจาก Script Component → Conditional Split"
+msgstr "连接箭头从Script Component → Conditional Split"
+
+#: .\pipeline\templates\pipeline\ssis.html:839
+msgid ""
+"💡 Conditional Split ทำหน้าที่เหมือน if-else คือแถวที่ amt <= 0 "
+"จะถูกแยกออกไปเป็น Invalid ส่วนแถวปกติจะผ่านไปเป็น Valid"
+msgstr ""
+"💡 Conditional Split 的作用类似于 if-else：amt <= 0 的行会被分离到 Invalid，而正常行则通过为 Valid"
+
+#: .\pipeline\templates\pipeline\ssis.html:842
+msgid "Task 4.4: เพิ่ม ODBC Destination (Load เข้า MySQL)"
+msgstr "任务4.4：添加ODBC目标（加载到MySQL）"
+
+#: .\pipeline\templates\pipeline\ssis.html:845
+msgid ""
+"ODBC Destination คือ Component "
+"ที่ทำหน้าที่รับข้อมูลปลายทางและส่งเข้าฐานข้อมูล ในที่นี้ใช้ส่งข้อมูลเข้า "
+"MySQL โดยใช้ Connection Manager ที่สร้างไว้ใน STEP 4.2 ของ Phase 3 "
+"ที่ต้องเชื่อมจาก Valid เพราะเราต้องการเฉพาะแถวที่ผ่านการกรองแล้วเท่านั้น "
+"ส่วน Invalid คือแถวที่ถูกคัดออกซึ่งไม่ต้องการเก็บไว้"
+msgstr ""
+"ODBC目标是接收目标数据并将其发送到数据库的组件。在这里，它用于使用阶段3的步骤4.2中创建的连接管理器将数据发送到MySQL。它必须从有效连接，因为我们只想要通过过滤的行。无效是被过滤掉的行，我们不想保留。"
+
+#: .\pipeline\templates\pipeline\ssis.html:849
+msgid "จาก Toolbox ลงใน Data Flow"
+msgstr "从Toolbox到Data Flow"
+
+#: .\pipeline\templates\pipeline\ssis.html:850
+msgid "เชื่อมลูกศรจาก Conditional Split → ODBC Destination โดยเลือก Output ="
+msgstr "连接箭头从Conditional Split → ODBC Destination，选择Output ="
+
+#: .\pipeline\templates\pipeline\ssis.html:851
+msgid "ที่ ODBC Destination → ตั้งค่า:"
+msgstr "在ODBC Destination → 配置："
+
+#: .\pipeline\templates\pipeline\ssis.html:878
+msgid "Map column ให้ตรงกัน:"
+msgstr "映射列以匹配："
+
+#: .\pipeline\templates\pipeline\ssis.html:882
+msgid ""
+"Mapping คือการบอก SSIS ว่า Column ที่ไหลมาจาก Data Flow ตัวไหนควรเอาไปเก็บใน"
+" Column ไหนของตาราง MySQL ต้องทำเพราะชื่อ Column ใน Data Flow กับชื่อ Column"
+" ใน MySQL อาจไม่ตรงกันทุกตัว เช่น trans_dt_clean ใน Data Flow ต้องจับคู่กับ "
+"trans_datetime ใน MySQL ถ้าไม่ทำ Mapping SSIS จะไม่รู้ว่าต้องเอาข้อมูลไปใส่ "
+"Column ไหน"
+msgstr ""
+"映射告诉SSIS从数据流中的哪一列应该存储在MySQL表的哪一列中。这是必要的，因为数据流中的列名和MySQL中的列名可能并不都匹配，例如数据流中的trans_dt_clean必须与MySQL中的trans_datetime配对。没有映射，SSIS将不知道将数据放在哪一列中。"
+
+#: .\pipeline\templates\pipeline\ssis.html:913
+msgid "Task 5: Script Task: Log Transform Time"
+msgstr "任务5：脚本任务：记录转换时间"
+
+#: .\pipeline\templates\pipeline\ssis.html:920
+msgid "เชื่อมลูกศรจาก Transform → Log Transform Time"
+msgstr "连接箭头从Transform → Log Transform Time"
+
+#: .\pipeline\templates\pipeline\ssis.html:929
+msgid ""
+"อ่านค่าจาก TransformStart แล้วเขียนผลลงใน TransformSec และเริ่มจับเวลา Load"
+msgstr "从TransformStart读取值，将结果写入TransformSec，并开始计时加载"
+
+#: .\pipeline\templates\pipeline\ssis.html:950
+msgid ""
+"Task 5 ทำงานเหมือน Task 3 ทุกอย่างแต่เปลี่ยนจากการคำนวณเวลา Extract "
+"มาเป็นการคำนวณเวลา Transform แทน และบันทึกเวลาเริ่ม Load "
+"ไว้ทันทีก่อนส่งต่อให้ Task 6 เพื่อให้เวลาที่จับได้แม่นยำที่สุด"
+msgstr "任务5的工作方式与任务3完全相同，但从计算提取时间改为计算转换时间，并在传递给任务6之前立即记录加载开始时间，以获得最准确的计时。"
+
+#: .\pipeline\templates\pipeline\ssis.html:953
+msgid "Task 6: Data Flow Task: Load เข้า MySQL"
+msgstr "任务6：数据流任务：加载到MySQL"
+
+#: .\pipeline\templates\pipeline\ssis.html:958
+msgid "เชื่อมลูกศรจาก Log Transform Time → Load to MySQL"
+msgstr "连接箭头从Log Transform Time → Load to MySQL"
+
+#: .\pipeline\templates\pipeline\ssis.html:962
+msgid ""
+"💡 <strong>สังเกต:</strong> Task 6 นี้ไม่ต้องทำอะไรเพิ่มแล้ว เพราะเราได้ Load"
+" ข้อมูลเข้า MySQL ไปแล้วใน Task 4 (ODBC Destination) ดังนั้น Task 6 "
+"เราจะทำแค่นี้ในโปรเจคนี้จะข้ามไปทำ Task 7 — Log Load + Write CSV เลย"
+msgstr ""
+"💡 <strong>注意：</strong>Task 6 不需要额外的工作，因为我们已经在 Task 4 (ODBC Destination) "
+"中将数据加载到 MySQL 了。所以对于 Task 6，在这个项目中我们将直接跳到 Task 7 — Log Load + Write CSV。"
+
+#: .\pipeline\templates\pipeline\ssis.html:963
+msgid ""
+"<strong>ถ้าไม่ต้องทำอะไร แล้วทำไมต้องสร้าง Task นี้ขึ้นมาด้วย?</strong>"
+msgstr "<strong>如果不需要做任何事情，为什么还要创建这个 Task？</strong>"
+
+#: .\pipeline\templates\pipeline\ssis.html:964
+msgid ""
+"เพราะเราต้องการวัดเวลาครบทั้ง 3 Phase คือ Extract Transform และ Load "
+"ถ้าไม่มี Task 6 Task 5 จะบันทึกเวลาเริ่ม Load ลง LoadStart แต่ไม่มี Task "
+"ที่เป็นจุดสิ้นสุดของ Load ให้ Task 7 ใช้คำนวณว่า Load ใช้เวลากี่วินาที "
+"การแยก Task 6 ออกมาจึงเป็นแค่การสร้างจุดสิ้นสุดให้ครบโครงสร้างมากกว่า"
+msgstr ""
+"因为我们需要测量全部 3 个阶段：Extract、Transform 和 Load。如果没有 Task 6，Task 5 会将 Load 开始时间记录到"
+" LoadStart，但没有 Task 标记 Load 的结束点供 Task 7 计算 Load 花费了多少秒。分离出 Task 6 "
+"只是为了创建一个适当的结束点来完善结构。"
+
+#: .\pipeline\templates\pipeline\ssis.html:967
+msgid "Task 7: Script Task: Log Load + Write CSV"
+msgstr "任务7：脚本任务：记录加载 + 写入CSV"
+
+#: .\pipeline\templates\pipeline\ssis.html:972
+msgid "เชื่อมลูกศรจาก Load to MySQL → Log Load + Write CSV"
+msgstr "连接箭头从Load to MySQL → Log Load + Write CSV"
+
+#: .\pipeline\templates\pipeline\ssis.html:973
+msgid "ที่ Log Load + Write CSV"
+msgstr "在Log Load + Write CSV"
+
+#: .\pipeline\templates\pipeline\ssis.html:974
+msgid "ตั้งค่า"
+msgstr "配置"
+
+#: .\pipeline\templates\pipeline\ssis.html:980
+msgid ""
+"เพราะ Task 7 ต้องทำงาน 2 อย่างพร้อมกัน อย่างแรกคือคำนวณเวลา Load เหมือนที่ "
+"Task 3 และ Task 5 ทำ จึงต้องการ LoadStart และ LoadSec "
+"อย่างที่สองคือเขียนผลรวมทั้งหมดลงไฟล์ CSV จึงต้องดึง ExtractSec และ "
+"TransformSec ที่คำนวณไว้แล้วตั้งแต่ Task 3 และ Task 5 มาใช้ด้วย ส่วน "
+"DatasetSize ใช้เพื่อบอกว่าแถวที่กำลังเขียนลง CSV นี้เป็นผลของการรันขนาดไหน"
+msgstr ""
+"因为任务7必须同时执行2件事。第一件事是像任务3和任务5一样计算加载时间，所以需要LoadStart和LoadSec。第二件事是将所有总计写入CSV文件，所以必须拉取在任务3和任务5中已经计算的ExtractSec和TransformSec。DatasetSize用于指示正在写入CSV的此行来自哪个大小的运行。"
+
+#: .\pipeline\templates\pipeline\ssis.html:988
+msgid "ใน"
+msgstr "在"
+
+#: .\pipeline\templates\pipeline\ssis.html:1085
+msgid "🎉🎉🎉 ETL_10k สำเร็จ! ไปต่อที่ Phase 5 เลย"
+msgstr "🎉🎉🎉 ETL_10k成功！继续到阶段5"
+
+#: .\pipeline\templates\pipeline\ssis.html:1100
+msgid "Phase 5: รัน Package"
+msgstr "第5阶段：运行包"
+
+#: .\pipeline\templates\pipeline\ssis.html:1102
+msgid "การรัน ETL_10k.dtsx"
+msgstr "运行ETL_10k.dtsx"
+
+#: .\pipeline\templates\pipeline\ssis.html:1104
+msgid "เปิด Package ETL_10k.dtsx"
+msgstr "打开包ETL_10k.dtsx"
+
+#: .\pipeline\templates\pipeline\ssis.html:1105
+msgid "กด Start (หรือกด F5)"
+msgstr "点击Start（或按F5）"
+
+#: .\pipeline\templates\pipeline\ssis.html:1108
+msgid "ผลการรัน Package:"
+msgstr "包执行结果："
+
+#: .\pipeline\templates\pipeline\ssis.html:1112
+msgid "Package ทำงานสำเร็จ - ทุก Task เป็นสีเขียว"
+msgstr "包执行成功 - 所有任务都是绿色"
+
+#: .\pipeline\templates\pipeline\ssis.html:1117
+msgid "รอ Task ทุกอันเปลี่ยนเป็นสีเขียว (หมายถึงสำเร็จ)"
+msgstr "等待所有任务变为绿色（表示成功）"
+
+#: .\pipeline\templates\pipeline\ssis.html:1118
+#: .\pipeline\templates\pipeline\ssis.html:1122
+msgid "ตรวจสอบผลใน MySQL Workbench"
+msgstr "在MySQL Workbench中验证结果"
+
+#: .\pipeline\templates\pipeline\ssis.html:1119
+msgid "เปิดไฟล์ timing_log.csv เพื่อดูผลการจับเวลา"
+msgstr "打开timing_log.csv文件查看计时结果"
+
+#: .\pipeline\templates\pipeline\ssis.html:1125
+msgid "Check row count (should be 10000)"
+msgstr "检查行数（应为 10000）"
+
+#: .\pipeline\templates\pipeline\ssis.html:1128
+msgid "Check hash"
+msgstr "检查哈希值"
+
+#: .\pipeline\templates\pipeline\ssis.html:1136
+msgid "Check no negative amt"
+msgstr "检查无负数金额"
+
+#: .\pipeline\templates\pipeline\ssis.html:1139
+msgid "การรัน ETL_100k.dtsx และ ETL_1m.dtsx"
+msgstr "运行ETL_100k.dtsx和ETL_1m.dtsx"
+
+#: .\pipeline\templates\pipeline\ssis.html:1141
+msgid "รัน"
+msgstr "运行"
+
+#: .\pipeline\templates\pipeline\ssis.html:1141
+msgid "ใน MySQL"
+msgstr "在MySQL中"
+
+#: .\pipeline\templates\pipeline\ssis.html:1148
+msgid "เปลี่ยน Variable DatasetSize เป็น \\"
+msgstr "将 Variable DatasetSize 改为 \"100k\" 或 \"1m\""
+
+#: .\pipeline\templates\pipeline\ssis.html:1149
+msgid "เปลี่ยน Table ใน ADO NET Source เป็น fraud_100k หรือ fraud_1m"
+msgstr "将ADO NET Source中的表更改为fraud_100k或fraud_1m"
+
+#: .\pipeline\templates\pipeline\ssis.html:1150
+msgid "กด Start"
+msgstr "点击Start"
+
+#: .\pipeline\templates\pipeline\ssis.html:1153
+msgid "เนื้อหาสำคัญ:"
+msgstr "重要内容："
+
+#: .\pipeline\templates\pipeline\ssis.html:1155
+msgid "ต้อง TRUNCATE TABLE ก่อนรัน Package ใหม่"
+msgstr "在运行新包之前必须TRUNCATE TABLE"
+
+#: .\pipeline\templates\pipeline\ssis.html:1156
+msgid "ตรวจสอบผลใน MySQL ว่าข้อมูลถูกต้อง"
+msgstr "在MySQL中验证数据是否正确"
+
+#: .\pipeline\templates\pipeline\ssis.html:1157
+msgid "ไฟล์ timing_log.csv จะมีผลการจับเวลาทั้ง 3 ขนาด"
+msgstr "文件timing_log.csv将包含所有3种规模的计时结果"
+
+#: .\pipeline\templates\pipeline\ssis.html:1172
+msgid "สรุปและวิเคราะห์ผล SSIS ETL Benchmark"
+msgstr "SSIS ETL基准测试总结与分析"
+
+#: .\pipeline\templates\pipeline\ssis.html:1209
+msgid ""
+"เมื่อนำข้อมูลดังกล่าวมาวิเคราะห์และสร้างภาพด้วย MATLAB "
+"เพื่อให้เห็นภาพได้ชัดเจน ได้นำเสนอกราฟ 3 รูปแบบ ได้แก่ Grouped Bar Chart, "
+"Stacked Bar Chart และ Line Chart ตามลำดับ ดังแสดงในรูปที่ 1-3"
+msgstr "当使用MATLAB分析此数据并创建可视化以提高清晰度时，按顺序展示了3种类型的图表：分组条形图、堆叠条形图和折线图，如图1-3所示"
+
+#: .\pipeline\templates\pipeline\ssis.html:1211
+msgid "1. การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล (Grouped Bar Chart)"
+msgstr "1. 按数据大小分隔的每个阶段时间比较（分组条形图）"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+#: .\pipeline\templates\pipeline\ssis.html:1215
+msgid "การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "图1：按数据大小分隔的各阶段时间比较"
+
+# ===== SSIS BENCHMARK ANALYSIS PAGE =====
+#: .\pipeline\templates\pipeline\ssis.html:1217
+msgid "Fig 1 : การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr "图1：按数据大小分隔的各阶段时间比较"
+
+#: .\pipeline\templates\pipeline\ssis.html:1221
+msgid ""
+"จากภาพ Fig 1 : การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล "
+"เป็นภาพที่แสดงการเปรียบเทียบเวลาแต่ละ Phase (Extract / Transform / Load) "
+"แยกตาม Dataset Size จากกราฟพบว่า Transform Phase ใช้เวลามากที่สุดในทุก "
+"Dataset Size อย่างเห็นได้ชัด โดย Extract และ Load "
+"แทบมองไม่เห็นในสเกลเดียวกับ Transform เมื่อข้อมูลขนาดใหญ่ขึ้น สังเกตได้ว่า "
+"Transform ที่ 1m rows ใช้เวลา 449.14 วินาทีในขณะที่ Extract และ Load "
+"รวมกันใช้เพียง 10.02 วินาทีเท่านั้น"
+msgstr ""
+"从图1：按数据大小分隔的各阶段时间比较可以看出，该图显示了按数据集大小分隔的每个阶段（提取/转换/加载）的时间比较。图表清楚地显示，转换阶段在所有数据集大小中花费的时间最多。当数据大小增加时，提取和加载在与转换相同的比例上几乎看不见。可以观察到，1百万行的转换需要449.14秒，而提取和加载合计仅需10.02秒。"
+
+#: .\pipeline\templates\pipeline\ssis.html:1223
+msgid ""
+"จากการวิเคราะห์ใน Transform Phase สาเหตุมาจากการใช้ Script Component "
+"เป็นการรันแบบ Synchronous "
+"(ต้องรอคำสั่งก่อนหน้าทำงานเสร็จก่อนถึงจะรันคำสั่งต่อไปได้) ในเอกสารของ "
+"Microsoft ระบุว่า <code>ProcessInputRow()</code> ถูกเรียกหนึ่งครั้งต่อหนึ่ง "
+"row <sup>[1]</sup> ทำให้การ Hash จำนวน 4 columns สำหรับ 1m rows คือการคำนวณ "
+"hash รวม <strong>4,000,000 ครั้ง</strong> ด้วยสาเหตุใน Transform Phase "
+"จึงใช้เวลานานกว่า Extract และ Load ดังนั้น"
+msgstr ""
+"从转换阶段的分析来看，原因来自于使用同步模式的脚本组件（必须等待前一个命令完成才能运行下一个命令）。Microsoft文档指出，<code>ProcessInputRow()</code>每行调用一次<sup>[1]</sup>，使得对1百万行的4列进行哈希计算总共需要<strong>4,000,000次哈希计算</strong>。因此，转换阶段比提取和加载花费更长的时间。"
+
+#: .\pipeline\templates\pipeline\ssis.html:1225
+msgid "2. สัดส่วนของแต่ละ Phase ต่อเวลารวม (Stacked Bar Chart)"
+msgstr "2. 各阶段占总时间的比例（堆叠条形图）"
+
+#: .\pipeline\templates\pipeline\ssis.html:1229
+msgid "สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "图2：各阶段占总时间的比例"
+
+#: .\pipeline\templates\pipeline\ssis.html:1231
+msgid "Fig 2 : สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr "图2：各阶段占总时间的比例"
+
+#: .\pipeline\templates\pipeline\ssis.html:1235
+msgid ""
+"จากภาพ Fig 2 สะท้อนให้เห็นว่า Transform Phase เป็น Bottleneck(คอขวด หรือ "
+"ข้อจำกัด) แม้ใน Dataset Size ที่ 10k จะไม่แสดงใน bar เพราะ bar "
+"เล็กเกินไปแต่เราสามารถคำนวณได้โดยใช้"
+msgstr "从图2可以看出，转换阶段是瓶颈（约束或限制）。尽管10k的数据集大小未显示在条形图中，因为条形图太小，但我们可以使用以下方法计算："
+
+#: .\pipeline\templates\pipeline\ssis.html:1237
+msgid "วิธีคิด:"
+msgstr "计算方法："
+
+#: .\pipeline\templates\pipeline\ssis.html:1242
+msgid "ทำให้เมื่อคำนวณสำหรับ Transform Phase สามารถคำนวณได้ดังนี้"
+msgstr "因此，在计算转换阶段时，可以按如下方式计算："
+
+#: .\pipeline\templates\pipeline\ssis.html:1244
+msgid "10k rows"
+msgstr "100万行"
+
+#: .\pipeline\templates\pipeline\ssis.html:1256
+msgid "1m rows"
+msgstr "100万行"
+
+#: .\pipeline\templates\pipeline\ssis.html:1262
+#, python-format
+msgid ""
+"จากการคำนวณเห็นได้ว่า 97.8%%%% ของเวลาทั้งหมดหายไปกับ Transform Phase เพียง "
+"Phase เดียว โดยที่ Dataset Size ที่ 10k ใช้เวลา Transform ไปถึง 93%%%% "
+"ของเวลา , 100k ใช้เวลา Transform ไปถึง 98.2%%%% ของเวลา และที่ 1m ใช้เวลา "
+"Transform ไปถึง 97.8%%%% ของเวลา จึงสรุปได้ว่า Transform Phase เป็น "
+"<strong>ขั้นตอนที่ใช้เวลามากที่สุดและส่งผลโดยตรงต่อเวลารวมทั้งหมด</strong>"
+msgstr ""
+"从计算中可以看出，97.8%%%% 的总时间花费在 Transform 阶段上。对于 10k 数据集大小，Transform 占用了 93%%%% "
+"的时间，100k 占用了 98.2%%%% 的时间，1m 占用了 97.8%%%% 的时间。因此可以得出结论，Transform "
+"阶段是<strong>最耗时的步骤，直接影响总时间</strong>。"
+
+#: .\pipeline\templates\pipeline\ssis.html:1264
+msgid "3. อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "3. 各阶段的可扩展性"
+
+#: .\pipeline\templates\pipeline\ssis.html:1270
+msgid "Fig 3 : อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr "图3：各阶段的可扩展性"
+
+#: .\pipeline\templates\pipeline\ssis.html:1274
+msgid "จากรูปที่ 3 คำนวณ Scaling Ratio (อัตราส่วนการปรับขนาด) ด้วยสูตร"
+msgstr "从图3使用公式计算扩展比率："
+
+#: .\pipeline\templates\pipeline\ssis.html:1285
+msgid "ได้ผลดังนี้"
+msgstr "结果如下："
+
+#: .\pipeline\templates\pipeline\ssis.html:1287
+msgid "Extract Scaling:"
+msgstr "提取扩展："
+
+#: .\pipeline\templates\pipeline\ssis.html:1300
+msgid "Transform Scaling:"
+msgstr "转换扩展："
+
+#: .\pipeline\templates\pipeline\ssis.html:1316
+msgid "Load Scaling:"
+msgstr "加载扩展："
+
+#: .\pipeline\templates\pipeline\ssis.html:1332
+msgid "Total Scaling:"
+msgstr "总扩展："
+
+#: .\pipeline\templates\pipeline\ssis.html:1336
+msgid "จากตัวเลขข้างต้น สามารถอธิบายแต่ละขั้นตอนได้ดังนี้"
+msgstr "从上述数字可以解释每个步骤如下："
+
+#: .\pipeline\templates\pipeline\ssis.html:1338
+msgid ""
+"<strong>ขั้นตอนดึงข้อมูล (Extract)</strong> ช่วง 10k→100k ใช้เวลาเพิ่มขึ้น "
+"4.34 เท่า ช่วง 100k→1m เวลาเพิ่มขึ้นถึง 14.13 เท่า ซึ่ง Microsoft ระบุว่า "
+"disk เป็นการดำเนินการที่ใช้ทรัพยากรมากและใช้เวลานานกว่าการอ่านจาก Memory "
+"<sup>[2]</sup> ดังนั้นเมื่อข้อมูลมีขนาดใหญ่ขึ้นมาก การอ่านข้อมูลจาก Disk "
+"จึงส่งผลให้เวลา Extract เพิ่มขึ้นอย่างชัดเจน"
+msgstr ""
+"<strong>提取阶段：</strong>在10k→100k范围内，时间增加了4.34倍。在100k→1m范围内，时间增加到14.13倍。Microsoft指出，磁盘是资源密集型操作，比从内存读取需要更长的时间<sup>[2]</sup>。因此，当数据变得更大时，从磁盘读取数据明显导致提取时间增加。"
+
+#: .\pipeline\templates\pipeline\ssis.html:1340
+msgid ""
+"<strong>ขั้นตอนแปลงข้อมูล (Transform)</strong> ช่วง 10k→100k "
+"เวลาเพิ่มขึ้นถึง 17.40 เท่า เนื่องจากการเรียกใช้ SHA256 CryptoService ใน "
+".NET ครั้งแรก ต้องใช้เวลาในการโหลด Library เข้าสู่หน่วยความจำก่อน แต่ช่วง "
+"100k→1m ลดลงเหลือ 10.39 เท่า เพราะระบบโหลด Library เสร็จแล้ว การ Hash "
+"จึงทำงานได้สม่ำเสมอมากขึ้น ซึ่งสอดคล้องกับการทำงานของ Synchronous Script "
+"Component ที่เรียก ProcessInputRow() ทีละหนึ่งแถวอย่างต่อเนื่อง "
+"<sup>[1]</sup>"
+msgstr ""
+"<strong>转换阶段：</strong>在10k→100k范围内，时间增加到17.40倍，因为第一次调用.NET中的SHA256 "
+"CryptoService需要时间先将库加载到内存中。然而，在100k→1m范围内，它减少到10.39倍，因为系统已经加载了库，使哈希操作更加一致。这与同步脚本组件行为一致，该组件连续逐行调用ProcessInputRow()"
+" <sup>[1]</sup>。"
+
+#: .\pipeline\templates\pipeline\ssis.html:1342
+msgid ""
+"<strong>ขั้นตอนโหลดข้อมูล (Load)</strong> ช่วง 10k→100k เวลาเพิ่มขึ้น 5.92 "
+"เท่า แต่ช่วง 100k→1m เวลากลับลดลงเหลือเพียง 0.38 เท่า กล่าวคือที่ 1 "
+"ล้านแถวใช้เวลาน้อยกว่า 100,000 แถว "
+"จากการวิเคราะห์พบว่าอาจมีสาเหตุมาจากการตั้งค่า Batch Size = 5,000 แถวใน ODBC"
+" Destination ทำให้ส่งผลให้การโหลดข้อมูลขนาดใหญ่มีประสิทธิภาพสูงกว่าขนาดเล็ก "
+"อย่างไรก็ตามการระบุสาเหตุที่แน่ชัดต้องการการทดสอบและข้อมูลรองรับเพิ่มเติม"
+msgstr ""
+"<strong>加载阶段：</strong>在10k→100k范围内，时间增加了5.92倍。然而，在100k→1m范围内，时间减少到仅0.38倍，这意味着1百万行所需的时间少于100,000行。分析表明，这可能是由于ODBC目标中的批处理大小=5,000行设置，导致较大的数据加载比较小的数据加载更有效率。然而，确定确切原因需要额外的测试和支持数据。"
+
+#: .\pipeline\templates\pipeline\ssis.html:1344
+msgid ""
+"<strong>ภาพรวม (Total)</strong> เวลารวมเพิ่มขึ้น 16.54 เท่าในช่วงแรก "
+"และลดลงเหลือ 10.44 เท่าในช่วงหลัง ซึ่งสอดคล้องกับพฤติกรรมของ Transform เพราะ"
+" Transform เป็นขั้นตอนที่กำหนดเวลารวมทั้งหมด ดังที่เห็นในรูปที่ 3 ว่าเส้น "
+"Transform และเส้น Total แทบทับกันตลอด"
+msgstr ""
+"<strong>总体（总计）：</strong>总时间在第一阶段增加了16.54倍，在后期减少到10.44倍，这与转换行为一致，因为转换是决定总体时间的步骤。如图3所示，转换线和总计线几乎始终重叠。"
+
+#: .\pipeline\templates\pipeline\ssis.html:1367
+msgid "ดูวิธีการทดสอบและผลการเปรียบเทียบกับเครื่องมือ ETL อื่นๆ"
+msgstr "查看测试方法和与其他ETL工具的比较结果"
+
+#: .\pipeline\views.py:53
+msgid "Analysis and Conclusion"
+msgstr "Analysis and Conclusion"
+
+#: .\templates\base.html:8
+msgid "ETL Pipeline Comparison"
+msgstr "比较"
+
+#: .\templates\base.html:61
+msgid "Analysis"
+msgstr "综合分析"
+
+#: .\templates\base.html:104
+msgid "All rights reserved."
+msgstr "All rights reserved."
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "PySpark อ่าน Parquet"
+msgstr "PySpark 读取 Parquet 文件"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "แปลง DateTime + Rename Columns"
+msgstr "转换日期时间 + 重命名列"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "# สร้าง SparkSession"
+msgstr "# 创建 SparkSession"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "# สร้าง SHA-256 UDF"
+msgstr "# 创建 SHA-256 UDF"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "# Step 1: Hash ข้อมูลส่วนตัว + Rename Columns"
+msgstr "# 步骤 1: 哈希个人数据 + 重命名列"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "# Step 2: แปลง DateTime + Rename Columns"
+msgstr "# 步骤 2: 转换日期时间 + 重命名列"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "# Step 3: Filter amt ผิดปกติ"
+msgstr "# 步骤 3: 过滤异常金额"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "# Step 4: Select เฉพาะ column ที่ต้องการ Load"
+msgstr "# 步骤 4: 仅选择需要加载的列"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid ""
+"หาบรรทัด <code># =====================</code> ของ DAG Definition แล้วเพิ่ม "
+"Transform function <strong>ก่อน</strong> DAG Definition:"
+msgstr ""
+"查找 <code># =====================</code> 行，在 DAG Definition 之前添加 Transform "
+"function <strong>：</strong>"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "แก้ DAG Definition ให้รวม Transform"
+msgstr "更新 DAG Definition 以包含 Transform"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "amt เป็น NULL"
+msgstr "amt 为 NULL"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "ตัดออก"
+msgstr "删除"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "เพิ่ม Load function <strong>ก่อน</strong> DAG Definition:"
+msgstr "在 DAG Definition 之前添加 Load function <strong>：</strong>"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:464
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "-- นับแถวทั้งหมด"
+msgstr "-- 计算所有行"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:467
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "-- ดูตัวอย่างข้อมูล"
+msgstr "-- 查看示例数据"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:470
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "-- ตรวจว่า hash ถูกต้อง"
+msgstr "-- 检查哈希是否正确"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:478
+msgid "-- ตรวจ amt ว่าไม่มี NULL หรือ <= 0"
+msgstr "-- 检查 amt 没有 NULL 或 <= 0"
+
+#: pipeline/templates/pipeline/airflow_pyspark.html
+msgid "PySpark JDBC เขียนเข้า MySQL"
+msgstr "PySpark JDBC 写入 MySQL"
+
+msgid ""
+"พัฒนาโดย วิศวกรผู้พัฒนาระบบ Data Lake ในงานพัฒนาระบบ Data Lake ภายใต้โครงการจัดตั้ง "
+"Digital Service ของ Mae Fah Luang University"
+msgstr "由数据湖系统开发工程师开发，属于清莱皇太后大学数字服务建设项目下的数据湖系统开发工作"

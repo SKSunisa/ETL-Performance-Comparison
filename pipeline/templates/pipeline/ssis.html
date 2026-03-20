@@ -1,0 +1,1469 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}SSIS - ETL Pipeline Comparison{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+<style>
+    /* Code block copy button styles */
+    .copy-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+        transition: all 0.2s ease;
+        z-index: 10;
+    }
+
+    .copy-button:hover {
+        background: #fff;
+        border-color: #3b82f6;
+        color: #3b82f6;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .copy-button.copied {
+        background: #10b981;
+        border-color: #10b981;
+        color: white;
+    }
+
+    pre {
+        position: relative;
+        padding-top: 2.5rem !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="{% static 'images/logos/ssis.svg' %}" alt="SSIS Logo" style="width: 100px; height: 100px; margin: 0 auto 1.5rem; display: block; filter: none !important; background: white; padding: 8px; border-radius: 8px;">
+        <h1>{% trans "การทดสอบ ETL Pipeline ด้วย SSIS" %}</h1>
+        <p>Microsoft's Enterprise ETL Platform</p>
+    </section>
+
+    <!-- ETL Pipeline Overview -->
+    <div class="card">
+        <h2>{% trans "ภาพรวม ETL Pipeline" %}</h2>
+        <p>
+            {% blocktrans %}การทดสอบ ETL Pipeline ด้วย SSIS แบ่งออกเป็น 3 Phase หลัก คือ Extract, Transform และ Load โดยใช้ Visual Studio สร้าง SSIS Package ที่ดึงข้อมูลจาก SQL Server, ทำการ Transform ด้วย Script Component (SHA256 Hashing) และโหลดเข้า MySQL Database{% endblocktrans %}
+        </p>
+        <div class="img-grid-2">
+            <div class="img-container">
+                <img src="{% static 'images/ssis/Illustration of ETL Pipeline testing with SSIS.1.png' %}"
+                     alt="SSIS ETL Pipeline Illustration 1" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary);">
+                    ETL Pipeline Architecture
+                </p>
+            </div>
+            <div class="img-container">
+                <img src="{% static 'images/ssis/Illustration of ETL Pipeline testing with SSIS.2.png' %}"
+                     alt="SSIS ETL Pipeline Illustration 2" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary);">
+                    Data Flow Process
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="card">
+        <div class="tab-navigation">
+            <button class="tab-button active" data-tab="prerequisites">Prerequisites</button>
+            <button class="tab-button" data-tab="phase1">Phase 1</button>
+            <button class="tab-button" data-tab="phase2">Phase 2</button>
+            <button class="tab-button" data-tab="phase3">Phase 3</button>
+            <button class="tab-button" data-tab="phase4">Phase 4</button>
+            <button class="tab-button" data-tab="phase5">Phase 5</button>
+            <button class="tab-button" data-tab="benchmark">Benchmark</button>
+        </div>
+
+        <!-- Prerequisites Tab -->
+        <div id="prerequisites" class="tab-content active">
+            <h2>{% trans "Prerequisites (สิ่งที่ต้องติดตั้งก่อนเริ่ม)" %}</h2>
+
+            <h3>{% trans "SSIS คืออะไร? (What is SSIS?)" %}</h3>
+            <p>{% blocktrans %}SQL Server Integration Services (SSIS) คือ platform สำหรับสร้าง data integration และ ETL (Extract, Transform, Load) workflow ของ Microsoft มันเป็นส่วนหนึ่งของ SQL Server และทำงานผ่าน Visual Studio โดยใช้วิธีการลาก-วาง ก่อนที่จะเริ่มการทดลองได้ต้องติดตั้ง Software ที่ใช้ก่อน ดังหัวข้อถัดไป{% endblocktrans %}</p>
+
+            <h3>{% trans "รายการ Software ที่ต้องติดตั้ง" %}</h3>
+            <p>{% blocktrans %}ทั้งหมดนี้เป็นรายการที่ต้องติดตั้งและตั้งค่าก่อนเริ่มต้นทำโปรเจคนี้โดยใช้ SSIS ซึ่งสามารถหาวิธีการติดตั้งได้ตามอินเทอร์เน็ตหรือแหล่งความรู้ทั่วไป ถ้าหากมีการติดตั้งและตั้งค่าแล้วสามารถข้ามไปทำ Phase 1 การเตรียม Dataset และ SQL Server ได้เลย{% endblocktrans %}</p>
+
+            <ul>
+                <li>SQL Server</li>
+                <li>SQL Server Management Studio (SSMS)</li>
+                <li>MySQL Server</li>
+                <li>MySQL ODBC Driver</li>
+                <li>MySQL Workbench</li>
+                <li>Visual Studio</li>
+                <li>SSIS Extension</li>
+                <li>MATLAB</li>
+            </ul>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('phase1')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 1 Tab -->
+        <div id="phase1" class="tab-content">
+            <h2>{% trans "Phase 1: การเตรียม Dataset และ SQL Server" %}</h2>
+
+            <h3>{% trans "STEP 1: Download Dataset จาก Kaggle" %}</h3>
+            <ol>
+                <li>{% trans "ไปที่ kaggle.com → สมัครสมาชิกถ้ายังไม่มีบัญชี" %}</li>
+                <li>{% trans "ค้นหา" %} "Credit Card Fraud Detection" {% trans "หรือเข้าลิงก์นี้เลย" %}:<br>
+                    <a href="https://www.kaggle.com/datasets/kartik2112/fraud-detection" target="_blank">https://www.kaggle.com/datasets/kartik2112/fraud-detection</a>
+                </li>
+                <li>{% trans "กด Download → ได้ไฟล์" %} <code>fraudTrain.csv</code></li>
+                <li>{% trans "สร้างโฟลเดอร์" %} <code>D:\ssis_credit_card_fraud_detection</code> {% trans "แล้ววางไฟล์" %} <code>fraudTrain.csv</code> {% trans "ไว้" %}</li>
+            </ol>
+
+            <h3>{% trans "STEP 2: สร้าง Database ใน SQL Server" %}</h3>
+            <ol>
+                <li>{% trans "เปิด SSMS (SQL Server Management Studio) ในโปรเจคนี้ใช้ SQL Server Authentication" %}</li>
+            </ol>
+
+            <div class="img-container" style="max-width: 800px;">
+                <img src="{% static 'images/ssis/Phase 1-Step2.png' %}" alt="Phase 1 Step 2 - Database Creation" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    {% trans "Database frauddb ถูกสร้างสำเร็จ" %}
+                </p>
+            </div>
+
+            <ol start="2">
+                <li>{% trans "เชื่อมต่อ SQL Server → กด New Query" %}</li>
+                <li>{% trans "วาง SQL นี้แล้วกด Execute (F5)" %}</li>
+            </ol>
+
+            <pre><code>-- Create Database
+CREATE DATABASE frauddb;
+GO</code></pre>
+
+            <p><strong>{% trans "ผลลัพธ์:" %}</strong></p>
+
+            <h3>{% trans "STEP 3: วิธี Import CSV ด้วย SSMS Import Flat File Wizard" %}</h3>
+            <ol>
+                <li>{% trans "ใน SSMS → Object Explorer → คลิกขวาที่ FraudDB → Tasks → Import Flat File..." %}</li>
+                <li>{% trans "กด Next → Browse เลือกไฟล์" %} <code>fraudTrain.csv</code> → {% trans "ตั้งชื่อตารางเป็น" %} <code>fraud_staging</code> → {% trans "กด Next" %}</li>
+                <li>{% trans "หน้า Preview Data → กด Next" %}</li>
+                <li>{% trans "หน้า Modify Columns → แก้ Data Type ดังนี้:" %}</li>
+            </ol>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Column</th>
+                        <th>{% trans "แก้เป็น" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>column1</td><td>int</td></tr>
+                    <tr><td>merchant</td><td>nvarchar(150)</td></tr>
+                    <tr><td>street</td><td>nvarchar(150)</td></tr>
+                    <tr><td>job</td><td>nvarchar(100)</td></tr>
+                </tbody>
+            </table>
+
+            <ol start="5">
+                <li>{% blocktrans %}ติ๊ก Allow Nulls ทุก column เพราะข้อมูลจริงอาจมีบาง column ที่ว่างเปล่า ถ้าไม่ติ๊กไว้จะ Error ตอน Import → กด Next → Finish{% endblocktrans %}</li>
+            </ol>
+
+            <p>💡 <strong>{% trans "ข้อดีของวิธีนี้" %}</strong> {% blocktrans %}คือ Wizard จัดการ quoted fields เช่น "fraud_Rippin, Kub and Mann" ให้อัตโนมัติไม่ต้องแก้ไขอะไรเพิ่ม{% endblocktrans %}</p>
+
+            <p><strong>{% trans "ขั้นตอนต่อไปคือตรวจนับแถวใน SSMS ก่อน รันได้เลย:" %}</strong></p>
+
+            <pre><code>USE frauddb;
+SELECT COUNT(*) AS total_rows FROM fraud_staging;</code></pre>
+
+            <div class="img-container">
+                <img src="{% static 'images/ssis/phase1-step3.png' %}" alt="Phase 1 Step 3 - Import Wizard" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    {% trans "การ Import CSV ด้วย SSMS Import Flat File Wizard" %}
+                </p>
+            </div>
+
+            <p><strong>{% trans "ผลลัพธ์ที่ได้:" %}</strong> 1296675 rows</p>
+
+            <h3>{% trans "STEP 4: สร้างตาราง 3 ขนาดสำหรับ Benchmark" %}</h3>
+            <p>{% trans "รัน SQL นี้ใน SSMS ได้เลย:" %}</p>
+
+            <pre><code>USE frauddb;
+
+-- Batch 1: 10,000 rows
+SELECT TOP 10000 * INTO fraud_10k FROM fraud_staging;
+
+-- Batch 2: 100,000 rows
+SELECT TOP 100000 * INTO fraud_100k FROM fraud_staging;
+
+-- Batch 3: 1,000,000 rows
+SELECT TOP 1000000 * INTO fraud_1m FROM fraud_staging;
+
+-- {% trans "Count all tables" %}
+SELECT COUNT(*) AS rows_10k FROM fraud_10k;
+SELECT COUNT(*) AS rows_100k FROM fraud_100k;
+SELECT COUNT(*) AS rows_1m FROM fraud_1m;</code></pre>
+
+            <p><strong>{% trans "ผลลัพธ์ที่ได้:" %}</strong></p>
+            <div class="img-container">
+                <img src="{% static 'images/ssis/phase1-step4.png' %}" alt="Phase 1 Step 4 - Create Test Tables" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    {% trans "สร้างตาราง 3 ขนาดสำหรับ Benchmark สำเร็จ" %}
+                </p>
+            </div>
+
+            <h3>{% trans "STEP 5: ดูว่ามีคอลัมน์อะไรบ้างใน dataset" %}</h3>
+            <p>{% trans "รัน SQL นี้ใน SSMS:" %}</p>
+
+            <pre><code>USE frauddb;
+-- {% trans "View all columns of fraud_staging" %}
+SELECT COLUMN_NAME, DATA_TYPE
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'fraud_staging'
+ORDER BY ORDINAL_POSITION;</code></pre>
+
+            <h3>{% trans "STEP 6: เปลี่ยนชื่อคอลัมน์ long เป็น long_col" %}</h3>
+            <p>{% trans "เพราะ" %} <strong>long</strong> {% trans "เป็น keyword ของ C# ทำให้ BufferWrapper.cs Build ไม่ผ่าน" %}</p>
+            <p>{% trans "รัน SQL นี้ใน SSMS ได้เลย:" %}</p>
+
+            <pre><code>USE frauddb;
+EXEC sp_rename 'fraud_staging.long', 'long_col', 'COLUMN';
+EXEC sp_rename 'fraud_10k.long', 'long_col', 'COLUMN';
+EXEC sp_rename 'fraud_100k.long', 'long_col', 'COLUMN';
+EXEC sp_rename 'fraud_1m.long', 'long_col', 'COLUMN';</code></pre>
+
+            <p><strong>{% trans "Phase 1 เสร็จสมบูรณ์แล้ว! 🎊" %}</strong></p>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('phase2')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 2 Tab -->
+        <div id="phase2" class="tab-content">
+            <h2>{% trans "Phase 2: สร้าง Target Database ใน MySQL" %}</h2>
+
+            <h3>{% trans "STEP 1: สร้าง Database และ Table ใน MySQL" %}</h3>
+            <p>{% trans "เปิด MySQL Workbench → เชื่อมต่อ → เปิด New Query แล้วรัน SQL นี้:" %}</p>
+
+            <pre><code>-- Create Database
+CREATE DATABASE fraud_dl;
+USE fraud_dl;
+
+-- Create a Target table
+CREATE TABLE fraud_clean_ssis (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    trans_datetime DATETIME,
+    cc_num_hash VARCHAR(64),
+    merchant VARCHAR(150),
+    category VARCHAR(50),
+    amt DECIMAL(10,2),
+    first_hash VARCHAR(64),
+    last_hash VARCHAR(64),
+    gender CHAR(50),
+    city VARCHAR(50),
+    state CHAR(50),
+    city_pop INT,
+    job VARCHAR(100),
+    dob_hash VARCHAR(64),
+    trans_num VARCHAR(50),
+    is_fraud TINYINT(1),
+    loaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- verify
+SHOW TABLES;</code></pre>
+
+            <p><strong>{% trans "ผลลัพธ์:" %}</strong></p>
+            <div class="img-container">
+                <img src="{% static 'images/ssis/phase2-step1.png' %}" alt="Phase 2 Step 1 - MySQL Database Creation" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    {% trans "สร้าง Database และ Table ใน MySQL สำเร็จ" %}
+                </p>
+            </div>
+
+            <h3>{% trans "STEP 2: ตั้งค่า MySQL ODBC DSN" %}</h3>
+            <ol>
+                <li>{% trans "กด Windows Search → พิมพ์ \"ODBC\" → เลือก ODBC Data Sources (64-bit)" %}</li>
+                <li>{% trans "ไปที่ tab System DSN (ไม่ใช่ User DSN!)" %}</li>
+                <li>{% trans "กด Add → เลือก MySQL ODBC 9.6 Unicode Driver → กด Finish" %}</li>
+                <li>{% trans "กรอกข้อมูลดังนี้:" %}</li>
+            </ol>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>{% trans "ค่าที่กรอก" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Data Source Name</td><td>MySQL_FraudDL</td></tr>
+                    <tr><td>Server</td><td>localhost</td></tr>
+                    <tr><td>Database</td><td>fraud_dl</td></tr>
+                    <tr><td>User</td><td>root ({% trans "ตามที่ตั้งตอนติดตั้ง MySQL" %})</td></tr>
+                    <tr><td>Password</td><td>{% trans "password ที่ตั้งตอนติดตั้ง MySQL" %}</td></tr>
+                </tbody>
+            </table>
+
+            <p>{% trans "กด Test → ต้องได้" %} "Connection Successful" → {% trans "กด OK" %}</p>
+
+            <h4>{% trans "วิธีเช็ค MySQL User" %}</h4>
+            <p><strong>{% trans "วิธีที่ 1 — ดูใน MySQL Workbench" %}</strong><br>
+            {% blocktrans %}เปิด MySQL Workbench → ดูที่หน้า Home จะเห็น Connection ที่มีอยู่ ใต้ชื่อ Connection จะเห็น username เช่น root หรือชื่ออื่น{% endblocktrans %}</p>
+
+            <p><strong>{% trans "วิธีที่ 2 — รัน SQL ใน MySQL Workbench" %}</strong></p>
+            <pre><code>SELECT USER();</code></pre>
+            <p>{% trans "จะแสดง User ที่ Login อยู่ตอนนี้เลย" %}</p>
+
+            <p>💡 {% blocktrans %}ส่วนใหญ่ถ้าติดตั้ง MySQL แบบ Default จะใช้ User root และ Password ที่ตั้งตอนติดตั้ง{% endblocktrans %}</p>
+
+            <p><strong>{% trans "Phase 2 เสร็จสมบูรณ์แล้ว! 🎊" %}</strong></p>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('phase3')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 3 Tab -->
+        <div id="phase3" class="tab-content">
+            <h2>{% trans "Phase 3: สร้าง SSIS Project ใน Visual Studio" %}</h2>
+
+            <h3>{% trans "STEP 1: สร้าง Project ใหม่" %}</h3>
+            <ol>
+                <li>{% trans "เปิด Visual Studio" %}</li>
+                <li>{% trans "กด Create a new project" %}</li>
+                <li>{% trans "ค้นหา" %} "Integration Services Project" {% trans "ในช่อง Search" %}</li>
+                <li>{% trans "เลือก Integration Services Project → กด Next" %}</li>
+                <li>{% trans "ตั้งชื่อ Project:" %} <code>FraudETL</code></li>
+                <li>{% trans "เลือก Location ที่ต้องการเก็บไฟล์ เช่น" %} <code>D:\ssis_credit_card_fraud_detection\</code></li>
+                <li>{% trans "กด Create" %}</li>
+            </ol>
+
+            <p>{% trans "ผลที่ควรได้คือเห็นไฟล์" %} <code>Package.dtsx</code> {% trans "ถูกสร้างอัตโนมัติใน Solution Explorer ✅" %}</p>
+
+            <h3>{% trans "STEP 2: Rename Package และสร้าง Package เพิ่ม" %}</h3>
+            <ol>
+                <li>{% trans "ใน Solution Explorer → คลิกขวาที่" %} <code>Package.dtsx</code> {% trans "→ Rename → เปลี่ยนเป็น" %} <code>ETL_10k.dtsx</code></li>
+                <li>{% trans "คลิกขวาที่โฟลเดอร์ SSIS Packages → New SSIS Package → Rename เป็น" %} <code>ETL_100k.dtsx</code></li>
+                <li>{% trans "ทำซ้ำอีกครั้ง → Rename เป็น" %} <code>ETL_1m.dtsx</code></li>
+            </ol>
+
+            <p>{% trans "ผลที่ควรได้คือเห็น 3 Package ใน Solution Explorer ✅" %}</p>
+
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">📁 SSIS Packages
+ 📄 ETL_10k.dtsx
+ 📄 ETL_100k.dtsx
+ 📄 ETL_1m.dtsx</pre>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}<strong>Package.dtsx</strong> คือไฟล์ที่เก็บขั้นตอนการทำงานทั้งหมด ก็คือเอกสารที่ข้างในบอกว่าต้องทำอะไรบ้าง เรียงลำดับยังไง SSIS จะอ่านไฟล์นี้แล้วทำงานตามที่กำหนดไว้ เหตุที่ต้องสร้างแยกเป็น 3 ไฟล์เพราะแต่ละไฟล์จะทำงานกับข้อมูลคนละขนาดกัน การแยกไฟล์ทำให้ไม่ต้องกลับมาแก้ค่าทุกครั้งที่รัน และลดโอกาสรันผิดขนาดโดยไม่รู้ตัว{% endblocktrans %}</p>
+            </div>
+
+            <h3>{% trans "STEP 3: สร้าง Variables สำหรับ Timing" %}</h3>
+            <p>{% trans "เริ่มที่" %} <strong>ETL_10k.dtsx</strong> {% trans "ก่อน → Double-click เพื่อเปิด" %}</p>
+            <p>{% blocktrans %}แล้วไปที่ <strong>Control Flow</strong> (พื้นที่ว่างๆ) → คลิกขวา → <strong>Variables</strong> จะเห็นหน้าต่าง Variables ขึ้นมา → กด <strong>+</strong> เพิ่ม Variables ดังนี้:{% endblocktrans %}</p>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}เราต้องสร้าง Variables ไว้ก่อนเสมอ เพราะถ้า Task พยายามเรียกใช้ Variable ที่ยังไม่มี SSIS จะ Error ทันที Type ของ Variable ต้องเลือกให้ตรงกับชนิดของข้อมูลที่จะเก็บ เช่น เวลาใช้ DateTime วินาทีที่มีทศนิยมใช้ Double และข้อความใช้ String{% endblocktrans %}</p>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>{% trans "หมายเหตุ (Value)" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>ExtractStart</td><td>DateTime</td><td></td></tr>
+                        <tr><td>TransformStart</td><td>DateTime</td><td></td></tr>
+                        <tr><td>LoadStart</td><td>DateTime</td><td></td></tr>
+                        <tr><td>ExtractSec</td><td>Double</td><td>0</td></tr>
+                        <tr><td>TransformSec</td><td>Double</td><td>0</td></tr>
+                        <tr><td>LoadSec</td><td>Double</td><td>0</td></tr>
+                        <tr><td>DatasetSize</td><td>String</td><td>{% trans "10k หรือ 100k หรือ 1m" %}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="img-container">
+                <img src="{% static 'images/ssis/phase3-step3.png' %}" alt="Phase 3 Step 3 - Variables Configuration" loading="lazy">
+            </div>
+
+            <h3>{% trans "STEP 4: สร้าง Connection Manager" %}</h3>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}Connection Manager คือการบอก SSIS ว่าจะเชื่อมต่อ Database ไหนบ้าง ต้องสร้าง 2 อัน คือ SQL Server และ MySQL ที่ต้องสร้าง 2 อัน เพราะข้อมูลในโปรเจคนี้ต้องวิ่งข้ามฐานข้อมูล 2 ตัวที่ต่างกัน คือ SQL Server (ต้นทาง) และ MySQL (ปลายทาง) SSIS จึงต้องรู้จักทั้งสองก่อนถึงจะส่งข้อมูลจากที่หนึ่งไปอีกที่หนึ่งได้{% endblocktrans %}</p>
+            </div>
+
+            <h4>{% trans "STEP 4.1: Connection ที่ 1 (SQL Server)" %}</h4>
+            <ol>
+                <li>{% trans "ใน Solution Explorer → คลิกขวาที่ Connection Managers → New Connection Managers" %}</li>
+                <li>{% trans "เลือก" %} <strong>ADO.NET</strong> → Add</li>
+                <li>{% trans "กด" %} <strong>New...</strong> → {% trans "ไปที่ Providers เลือก" %} <strong>SqlClient Data Provider</strong> → OK</li>
+                <li>{% trans "กรอกข้อมูล Server ที่ต้องการเชื่อมต่อ:" %}</li>
+            </ol>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>{% trans "ค่าที่กรอก" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Server Name</td><td><code>DESKTOP-2FDM07U\SQLEXPRESS</code></td></tr>
+                        <tr><td>Authentication</td><td>SQL Server Authentication</td></tr>
+                        <tr><td>Login</td><td><code>sk</code></td></tr>
+                        <tr><td>Password</td><td>{% trans "รหัสผ่านของ sk" %}</td></tr>
+                        <tr><td>Database</td><td><code>frauddb</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>{% trans "กด" %} <strong>Test Connection</strong> → {% trans "ต้องได้" %} <strong>"Test connection succeeded"</strong> → {% trans "กด OK" %}</p>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}<strong>ADO.NET</strong> คือชุดเครื่องมือที่ใช้สำหรับเชื่อมต่อฐานข้อมูลใน .NET ส่วน <strong>SqlClient Data Provider</strong> คือตัวที่ ADO.NET ใช้คุยกับ SQL Server โดยเฉพาะ เปรียบได้ว่า ADO.NET คือช่องทางเชื่อมต่อฐานข้อมูลทั่วไป และ SqlClient คือปลั๊กที่เสียบเข้ากับ SQL Server โดยเฉพาะ{% endblocktrans %}</p>
+            </div>
+
+            <div class="img-container">
+                <img src="{% static 'images/ssis/phase3-step4.1.png' %}" alt="Phase 3 Step 4.1 - SQL Server Connection Configuration" loading="lazy">
+            </div>
+
+            <h4>{% trans "STEP 4.2: Connection ที่ 2 (MySQL)" %}</h4>
+            <ol>
+                <li>{% trans "ใน Solution Explorer → คลิกขวาที่ Connection Managers → New Connection Managers" %}</li>
+                <li>{% trans "เลือก" %} <strong>ODBC</strong> → Add</li>
+                <li>{% trans "กด" %} <strong>New...</strong> → {% trans "เลือก DSN =" %} <code>MySQL_FraudDL</code> {% trans "จากที่เราได้ตั้งค่า MySQL ODBC DSN มาแล้ว" %}</li>
+                <li>{% trans "กด" %} <strong>Test Connection</strong> → {% trans "ต้องได้" %} <strong>"Test connection succeeded"</strong> → {% trans "กด OK" %}</li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}MySQL เป็นฐานข้อมูลของบริษัทอื่นที่ไม่ใช่ Microsoft ADO.NET ถูกออกแบบมาให้ทำงานกับฐานข้อมูลของ Microsoft ได้ดีที่สุด ส่วน ODBC คือมาตรฐานกลางที่ใช้เชื่อมต่อฐานข้อมูลได้หลายยี่ห้อรวมถึง MySQL ด้วย นั่นคือเหตุผลที่ใน Prerequisites ต้องติดตั้ง MySQL ODBC Driver ก่อน เพราะถ้าไม่มี Driver นี้ SSIS จะมองไม่เห็น MySQL เลย{% endblocktrans %}</p>
+            </div>
+
+            <p><strong>{% trans "Phase 3 เสร็จสมบูรณ์แล้ว! 🎊" %}</strong></p>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('phase4')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 4 Tab -->
+        <div id="phase4" class="tab-content">
+            <h2>{% trans "Phase 4: สร้าง SSIS Control Flow" %}</h2>
+            <p>{% trans "Phase นี้เป็นหัวใจหลักของโปรเจคเลย เราจะเริ่มที่ ETL_10k.dtsx ก่อน" %}</p>
+
+            <h3>{% trans "ภาพรวม Task ทั้งหมดที่จะสร้าง" %}</h3>
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">1. Script Task: Start Timer
+ ↓
+2. Data Flow Task: Extract
+ ↓
+3. Script Task: Log Extract Time
+ ↓
+4. Data Flow Task: Transform
+ ↓
+5. Script Task: Log Transform Time
+ ↓
+6. Data Flow Task: Load
+ ↓
+7. Script Task: Log Load + Write CSV</pre>
+
+            <h3>{% trans "Task 1: Script Task: Start Timer" %}</h3>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}Script Task คือ Task ที่เปิดให้เราเขียนโค้ด C# เองได้ ใช้ในกรณีที่สิ่งที่เราต้องการทำไม่มี Task สำเร็จรูปใน SSIS รองรับ เช่น การจับเวลา การคำนวณ หรือการเขียนไฟล์ CSV ซึ่งทั้งหมดนี้ SSIS ไม่มี Task สำเร็จรูปให้ใช้{% endblocktrans %}</p>
+            </div>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}ในโปรเจคนี้ใช้ Script Task ทั้งหมด 4 จุด คือ Task 1 บันทึกเวลาเริ่มต้น Task 3 คำนวณเวลาที่ใช้ใน Extract Task 5 คำนวณเวลาที่ใช้ใน Transform และ Task 7 คำนวณเวลาที่ใช้ใน Load แล้วเขียนผลทั้งหมดลงไฟล์ CSV{% endblocktrans %}</p>
+            </div>
+
+            <p><strong>{% trans "เริ่มจาก Task แรกก่อนเลย:" %}</strong></p>
+            <ol>
+                <li>Double-click <code>ETL_10k.dtsx</code> {% trans "เพื่อเปิด" %}</li>
+                <li>{% trans "ดูที่ SSIS Toolbox ด้านซ้าย → หา" %} <strong>Script Task</strong></li>
+                <li>{% trans "ลาก Script Task ลงมาวางใน Control Flow Design Surface" %}</li>
+                <li>{% trans "คลิกขวาที่ Script Task → เปลี่ยนชื่อเป็น" %} <code>Start Timer</code></li>
+                <li>{% trans "Double-click แล้วตั้งค่าดังนี้:" %}
+                    <ul>
+                        <li><strong>ScriptLanguage:</strong> Microsoft Visual C# 2026</li>
+                        <li><strong>ReadWriteVariables:</strong> <code>User::ExtractStart</code></li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0 0 0.5rem 0;">{% blocktrans %}<strong>User::</strong> คือ prefix ที่ SSIS ใส่ให้อัตโนมัติเพื่อบอกว่า Variable ตัวนี้เป็นตัวที่เราสร้างเองใน STEP 3 ไม่ใช่ Variable ที่ SSIS สร้างไว้ให้ในระบบ การใส่ User:: ไว้ข้างหน้าทำให้ SSIS รู้ว่าต้องไปหา Variable ตัวนี้จากที่ที่เราสร้างไว้{% endblocktrans %}</p>
+                <p style="margin: 0;">{% blocktrans %}<strong>ReadWriteVariables</strong> คือการบอก Script Task ว่าจะขอสิทธิ์เข้าถึง Variable ตัวไหนบ้าง SSIS บังคับให้ต้องระบุไว้ก่อนเสมอ ถ้าไม่ระบุแล้ว Script พยายามเขียนค่าลง Variable ตัวนั้น SSIS จะ Error ทันที{% endblocktrans %}</p>
+            </div>
+
+            <ol start="6">
+                <li>{% trans "กด" %} <strong>Edit Script</strong> → {% trans "หาโค้ด" %} <code>public void Main()</code></li>
+            </ol>
+
+            <p>{% trans "วางโค้ดนี้:" %}</p>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'th' %}
+            <pre><code>public void Main()
+{
+    Dts.Variables["User::ExtractStart"].Value = DateTime.Now;
+    /*
+    บรรทัดนี้บันทึกเวลาปัจจุบัน ณ ตอนที่ Task นี้ทำงานลงใน Variable ชื่อ ExtractStart
+    ส่วน DateTime.Now คือคำสั่งที่ดึงเวลาปัจจุบันของเครื่อง
+    และ .Value คือการบอกว่าให้เอาค่านี้ไปเก็บไว้ใน Variable
+    */
+
+    Dts.TaskResult = (int)ScriptResults.Success;
+    /*
+    บรรทัดนี้คือการบอก SSIS ว่า Task นี้ทำงานเสร็จแล้วและสำเร็จ
+    ถ้าไม่ใส่ SSIS จะไม่รู้ว่า Task ทำงานเสร็จหรือยัง และจะไม่ยอมเดินหน้าไปทำ Task ถัดไป
+    */
+}</code></pre>
+            {% elif LANGUAGE_CODE == 'en' %}
+            <pre><code>public void Main()
+{
+    Dts.Variables["User::ExtractStart"].Value = DateTime.Now;
+    /*
+    This line records the current time when this Task runs into the Variable named ExtractStart
+    DateTime.Now is the command that gets the current time of the machine
+    And .Value tells it to store this value in the Variable
+    */
+
+    Dts.TaskResult = (int)ScriptResults.Success;
+    /*
+    This line tells SSIS that this Task has finished and was successful
+    If you don't include this, SSIS won't know if the Task is done yet and won't proceed to the next Task
+    */
+}</code></pre>
+            {% else %}
+            <pre><code>public void Main()
+{
+    Dts.Variables["User::ExtractStart"].Value = DateTime.Now;
+    /*
+    此行将此任务运行时的当前时间记录到名为ExtractStart的变量中
+    DateTime.Now是获取机器当前时间的命令
+    .Value表示将此值存储到变量中
+    */
+
+    Dts.TaskResult = (int)ScriptResults.Success;
+    /*
+    此行告诉SSIS此任务已完成且成功
+    如果不包含此行，SSIS将不知道任务是否完成，也不会继续执行下一个任务
+    */
+}</code></pre>
+            {% endif %}
+
+            <p><code>Ctrl+S</code></p>
+
+            <ol start="7">
+                <li>Build → {% trans "ปิด Script Editor → กด" %} <strong>OK</strong></li>
+            </ol>
+
+            <h3>{% trans "Task 2: Data Flow Task - Extract (Extract from SQL Server)" %}</h3>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}Data Flow Task คือ Task ที่ใช้สำหรับเคลื่อนย้ายข้อมูล ข้างในจะมีพื้นที่แยกสำหรับกำหนดว่าข้อมูลจะไหลจากที่ไหน ผ่านอะไรบ้าง และไปลงที่ไหน ต่างจาก Script Task ตรงที่ Script Task ใช้เขียนโค้ดเพื่อทำงานทั่วไป แต่ Data Flow Task ออกแบบมาเพื่อจัดการข้อมูลโดยเฉพาะ{% endblocktrans %}</p>
+            </div>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}ในโปรเจคนี้ต้องการจับเวลาแยกกันเป็น 3 Phase ดังนั้นเราต้องแยกเป็น Task ละ Phase ทำให้จับเวลาได้ว่า Extract ใช้เวลากี่วินาทีTransform ใช้เวลากี่วินาทีและ Load ใช้เวลากี่วินาที{% endblocktrans %}</p>
+            </div>
+
+            <ol>
+                <li>{% trans "ลาก" %} <strong>Data Flow Task</strong> {% trans "จาก SSIS Toolbox ลงใน Control Flow" %}</li>
+                <li>{% trans "เปลี่ยนชื่อเป็น" %} <code>Extract from SQL Server</code></li>
+                <li>{% blocktrans %}เชื่อมลูกศร (Precedence Constraint) โดยคลิกที่ Start Timer แล้วลากลูกศรไปที่ Extract from SQL Server{% endblocktrans %}</li>
+                <li>{% trans "Double-click เข้าไปข้างใน Data Flow Task" %}</li>
+                <li>{% trans "ลาก" %} <strong>ADO NET Source</strong> {% trans "จาก SSIS Toolbox ตรง other sources ลงมาใน Data Flow" %}</li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}ADO NET Source คือ Component ที่ทำหน้าที่ดึงข้อมูลจากฐานข้อมูลเข้ามาใน Data Flow ที่ใช้ ADO NET Source เพราะเราสร้าง Connection Manager ของ SQL Server ไว้แบบ ADO.NET ใน STEP 4.1 ใน phase 3 แล้ว ADO NET Source จึงสามารถใช้ Connection Manager ตัวนั้นเชื่อมต่อและดึงข้อมูลจากตาราง fraud_10k ได้{% endblocktrans %}</p>
+            </div>
+
+            <ol start="6">
+                <li>Double-click {% trans "ที่ ADO NET Source → ตั้งค่า:" %}</li>
+            </ol>
+
+            <table style="margin: 1.5rem auto; border-collapse: collapse; width: 90%; max-width: 800px;">
+                <thead>
+                    <tr style="background: var(--primary); color: white;">
+                        <th style="padding: 0.75rem; border: 1px solid var(--border);">Field</th>
+                        <th style="padding: 0.75rem; border: 1px solid var(--border);">{% trans "ค่าที่กรอก" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">ADO NET Source</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">DESKTOP-2FDM07U_SQLEXPRESS.frauddb.sk</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">Data Access Mode</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">Table or view</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">Table</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">[dbo].[fraud_10k]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>{% trans "กด" %} <strong>Preview</strong> {% trans "เพื่อตรวจสอบว่าดึงข้อมูลได้ → กด" %} <strong>OK</strong></p>
+
+            <h3>{% trans "Task 3: Script Task - Log Extract Time" %}</h3>
+
+            <ol>
+                <li>{% trans "กลับไปที่" %} <strong>Control Flow</strong> ({% trans "คลิก tab Control Flow ด้านบน" %})</li>
+                <li>{% trans "ลาก" %} <strong>Script Task</strong> {% trans "ลงมาใน Control Flow" %}</li>
+                <li>{% trans "เปลี่ยนชื่อเป็น" %} <code>Log Extract Time</code></li>
+                <li>{% trans "เชื่อมลูกศรจาก Extract from SQL Server → Log Extract Time" %}</li>
+                <li>Double-click → {% trans "ตั้งค่า:" %}
+                    <ul>
+                        <li><strong>ReadWriteVariables:</strong> <code>User::ExtractStart,User::ExtractSec,User::TransformStart</code></li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}Task 3 ต้องทำงาน 3 อย่างพร้อมกัน คือ อ่านค่าจาก ExtractStart เพื่อรู้ว่า Extract เริ่มเมื่อกี่โมง เขียนผลลัพธ์ที่คำนวณได้ลง ExtractSec ว่าใช้เวลากี่วินาทีและเริ่มจับเวลา Transform ทันทีโดยบันทึกเวลาปัจจุบันลง TransformStart{% endblocktrans %}</p>
+            </div>
+
+            <ol start="6">
+                <li>{% trans "กด" %} <strong>Edit Script</strong> → {% trans "วางโค้ดนี้ที่" %} <code>public void Main()</code>:</li>
+            </ol>
+
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'th' %}
+            <pre><code>public void Main()
+{
+    var start = (DateTime)Dts.Variables["User::ExtractStart"].Value;
+    var elapsed = DateTime.Now - start;  // ได้ผลลัพธ์เป็นระยะเวลาที่ผ่านไป
+    Dts.Variables["User::ExtractSec"].Value = elapsed.TotalSeconds;
+    // TotalSeconds จะแปลงทุกอย่างให้เหลือแค่จำนวนวินาที
+    // elapsed อย่างเดียวจะได้ผลลัพธ์เป็นรูปแบบเวลาเต็มๆ
+
+    Dts.Variables["User::TransformStart"].Value = DateTime.Now;
+    Dts.TaskResult = (int)ScriptResults.Success;
+}</code></pre>
+            {% elif LANGUAGE_CODE == 'en' %}
+            <pre><code>public void Main()
+{
+    var start = (DateTime)Dts.Variables["User::ExtractStart"].Value;
+    var elapsed = DateTime.Now - start;  // Gets the elapsed time period
+    Dts.Variables["User::ExtractSec"].Value = elapsed.TotalSeconds;
+    // TotalSeconds converts everything to just the number of seconds
+    // elapsed alone would return the result in full time format
+
+    Dts.Variables["User::TransformStart"].Value = DateTime.Now;
+    Dts.TaskResult = (int)ScriptResults.Success;
+}</code></pre>
+            {% else %}
+            <pre><code>public void Main()
+{
+    var start = (DateTime)Dts.Variables["User::ExtractStart"].Value;
+    var elapsed = DateTime.Now - start;  // 获取经过的时间段
+    Dts.Variables["User::ExtractSec"].Value = elapsed.TotalSeconds;
+    // TotalSeconds将所有内容转换为秒数
+    // elapsed单独使用会以完整时间格式返回结果
+
+    Dts.Variables["User::TransformStart"].Value = DateTime.Now;
+    Dts.TaskResult = (int)ScriptResults.Success;
+}</code></pre>
+            {% endif %}
+
+            <p><code>Ctrl+S</code></p>
+
+            <ol start="7">
+                <li>Build → {% trans "ปิด Script Editor → กด" %} <strong>OK</strong></li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}💡 Task นี้คำนวณว่า Extract ใช้เวลากี่วินาทีแล้วเริ่มจับเวลา Transform ต่อทันที ถ้ารอบันทึกใน Task 4 เวลาที่ได้จะไม่แม่นยำ Task 3 และ Task 4 SSIS ต้องใช้เวลาเตรียมตัวก่อนที่ Data Flow Task จะเริ่มทำงานจริง ถ้าบันทึกเวลาไว้ตรงท้าย Task 3 พอดีก่อนที่จะส่งต่อให้ Task 4 เวลาที่จับได้จะแม่นยำกว่า{% endblocktrans %}</p>
+            </div>
+
+            <h3>{% trans "Task 4: Data Flow Task: Transform" %}</h3>
+
+            <ol>
+                <li>{% trans "ลาก" %} <strong>Data Flow Task</strong> {% trans "ลงใน Control Flow" %}</li>
+                <li>{% trans "เปลี่ยนชื่อเป็น" %} <code>Transform</code></li>
+                <li>{% trans "เชื่อมลูกศรจาก Log Extract Time → Transform" %}</li>
+                <li>{% trans "Double-click เข้าไปข้างใน Data Flow Task" %}</li>
+                <li>{% trans "ลาก" %} <strong>ADO NET Source</strong> {% trans "ลงมา → Double-click → ตั้งค่าเลือก Table = fraud_10k, fraud_100k, เหมือน Task 2" %}</li>
+                <li>{% trans "กด" %} <strong>OK</strong></li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}ทำไม Task 4 ต้องดึงข้อมูลจาก SQL Server อีกครั้ง ทั้งที่ Task 2 ก็ดึงมาแล้ว? เพราะข้อมูลที่ดึงมาใน Task 2 ลอยอยู่ใน Memory ชั่วคราวและหายไปแล้วตั้งแต่ Task 2 จบลง แต่ละ Data Flow Task จะดึงข้อมูลของตัวเองขึ้นมาใหม่ทุกครั้ง Task 2 ดึงมาเพื่อนับเวลา Extract อย่างเดียว ส่วน Task 4 ดึงมาเพื่อ Transform และ Load เข้า MySQL{% endblocktrans %}</p>
+            </div>
+
+            <h4>{% trans "Task 4.1: ตั้งค่า Script Component (เพิ่ม Script Component (Transformation))" %}</h4>
+
+            <p>{% trans "ยังอยู่ใน Data Flow ของ Transform:" %}</p>
+            <ol>
+                <li>{% trans "ลาก" %} <strong>Script Component</strong> {% trans "ลงมาต่อ → เลือก Type =" %} <strong>Transformation</strong> → {% trans "กด OK" %}</li>
+                <li>{% blocktrans %}เชื่อมลูกศรจาก ADO NET Source → จะเห็นลูกศรสีน้ำเงินโผล่ออกมา → ลากลูกศรไปวางที่ Script Component{% endblocktrans %}</li>
+            </ol>
+
+            <h4>{% trans "Task 4.2: ตั้งค่า Script Component" %}</h4>
+
+            <p>{% trans "Double-click ที่ Script Component จะเห็นหน้าต่าง Script Transformation Editor" %}<br>
+            {% trans "การตั้งค่า Script Component จะมีอยู่ 3 ขั้นตอนหลัก ดังนี้:" %}</p>
+
+            <h4>{% trans "Task 4.2.1: ตั้งค่า Tab Input Columns (ซ้ายมือ)" %}</h4>
+
+            <p>{% blocktrans %}ติ๊กถูกทุก column ที่ต้องการ <strong>ยกเว้น column1</strong> เพราะ column1 คือ Unnamed: 0 จาก CSV ซึ่งเป็นแค่ index ลำดับแถว ไม่มีความหมายทางธุรกิจเลย เราไม่ต้องการนำไปใช้ใน Transform หรือเก็บลง MySQL{% endblocktrans %}</p>
+
+            <h4>{% trans "Task 4.2.2: เพิ่ม Output Columns ใน Script Component ไปที่ Tab Inputs and Outputs (ซ้ายมือ)" %}</h4>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}Output Columns คือ Column ใหม่ที่ Script Component สร้างขึ้นมาเพื่อเก็บผลลัพธ์หลังจาก Transform แล้ว SSIS จะไม่ยอมให้เขียนทับ Column ที่รับมาจาก Input โดยตรงดังนั้นเราจึงต้องสร้าง Column ใหม่ขึ้นมา{% endblocktrans %}</p>
+            </div>
+
+            <ul>
+                <li>{% trans "ขยาย" %} <strong>Output 0</strong> → {% trans "คลิก" %} <strong>Output Columns</strong> → {% trans "กด" %} <strong>Add Column</strong></li>
+                <li>{% trans "กด Add Column → แก้ชื่อเป็น" %} <code>cc_num_hash</code> → DataType = string [DT_STR] → Length = 64</li>
+                <li>{% trans "กด Add Column → แก้ชื่อเป็น" %} <code>first_hash</code> → DataType = string [DT_STR] → Length = 64</li>
+                <li>{% trans "กด Add Column → แก้ชื่อเป็น" %} <code>last_hash</code> → DataType = string [DT_STR] → Length = 64</li>
+                <li>{% trans "กด Add Column → แก้ชื่อเป็น" %} <code>dob_hash</code> → DataType = string [DT_STR] → Length = 64</li>
+                <li>{% trans "กด Add Column → แก้ชื่อเป็น" %} <code>trans_dt_clean</code> → DataType = database timestamp [DT_DBTIMESTAMP] → {% trans "Length ไม่ต้องใส่" %}</li>
+                <li>OK</li>
+            </ul>
+
+            <h4>{% trans "Task 4.2.3: Edit Script ใน Script Component ใน Tab Scripts (ซ้ายมือ)" %}</h4>
+
+            <ol>
+                <li>{% trans "คลิก Tab" %} <strong>Script</strong> → {% trans "กด" %} <strong>Edit Script</strong></li>
+                <li>{% trans "วางโค้ดนี้ข้างบน" %} <code>public override void Input0_ProcessInputRow(Input0Buffer Row)</code>:</li>
+            </ol>
+
+            <pre><code>private string HashSHA256(string input)
+{
+    using (var sha = SHA256.Create())
+    {
+        byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(input ?? ""));
+        return BitConverter.ToString(bytes).Replace("-", "").ToLower();
+    }
+}</code></pre>
+
+            <ol start="3">
+                <li>{% trans "วางโค้ดนี้ใน" %} <code>Input0_ProcessInputRow</code>:</li>
+            </ol>
+
+            <pre><code>Row.ccnumhash = HashSHA256(Row.ccnum.ToString());
+Row.firsthash = HashSHA256(Row.first);
+Row.lasthash = HashSHA256(Row.last);
+Row.dobhash = HashSHA256(Row.dob.ToString());
+Row.transdtclean = Row.transdatetranstime;</code></pre>
+
+            <ol start="4">
+                <li>{% trans "เพิ่ม using ด้านบนที่" %} <code>#region Namespaces</code>:</li>
+            </ol>
+
+            <pre><code>using System.Security.Cryptography;
+using System.Text;</code></pre>
+
+            <ol start="5">
+                <li>{% trans "กด" %} <strong>Build</strong> → Build SC_...</li>
+                <li>{% trans "ปิด Script Editor → กด" %} <strong>OK</strong></li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0 0 0.5rem 0;"><strong>{% trans "ถ้า Build ไม่สำเร็จ ลองเปลี่ยนตามวิธีนี้ดู:" %}</strong></p>
+                <p style="margin: 0.5rem 0;">{% trans "1. ไปที่ Build → Configuration Manager → ไปที่ Active solution platform → New → เปลี่ยน Platform เป็น x64 → OK → Close" %}</p>
+                <p style="margin: 0.5rem 0;">{% trans "2. ไปที่ Solution Explorer ด้านขวา → จะเห็นตัวหนาที่แสดง Assembly name → คลิกขวา → Properties" %}</p>
+                <p style="margin: 0.5rem 0;">{% trans "3. เปลี่ยน Target Framework เป็น .NET Framework 4.7.2" %}</p>
+                <p style="margin: 0.5rem 0;">{% trans "4. กด Build ใหม่อีกครั้ง → Build SC_..." %}</p>
+                <p style="margin: 0;">{% trans "5. ปิด Script Editor → กด OK" %}</p>
+            </div>
+
+            <h4>{% trans "Task 4.3: เพิ่ม Conditional Split (กรอง amt <= 0)" %}</h4>
+
+            <ol>
+                <li>{% trans "ลาก" %} <strong>Conditional Split</strong> {% trans "ลงใน Data Flow" %}</li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}Conditional Split คือ Component ที่ทำหน้าที่แยกแถวข้อมูลออกเป็น 2 ทางตามเงื่อนไขที่กำหนด ในโปรเจคนี้กำหนดเงื่อนไขว่าถ้า amt <= 0 หรือ amt เป็น NULL ให้แยกออกไปเป็น Invalid เนื่องจากธุรกรรมที่มียอดเงิน 0 หรือติดลบไม่มีความหมายในเชิงการวิเคราะห์การฉ้อโกง เพราะการฉ้อโกงจะต้องมีการใช้เงินจริงๆ ถ้าเอาแถวพวกนี้เข้าไปด้วยจะทำให้ผลการวิเคราะห์คลาดเคลื่อน ส่วนแถวที่ผ่านเงื่อนไขจะไหลต่อไปเป็น Valid{% endblocktrans %}</p>
+            </div>
+
+            <ol start="2">
+                <li>{% trans "เชื่อมลูกศรจาก Script Component → Conditional Split" %}</li>
+                <li>Double-click → {% trans "ตั้งค่า:" %}
+                    <ul>
+                        <li><strong>Output Name:</strong> Invalid</li>
+                        <li><strong>Condition:</strong> <code>amt <= 0 || ISNULL(amt)</code></li>
+                        <li><strong>Default Output:</strong> Valid</li>
+                    </ul>
+                </li>
+                <li>{% trans "กด" %} <strong>OK</strong></li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% trans "💡 Conditional Split ทำหน้าที่เหมือน if-else คือแถวที่ amt <= 0 จะถูกแยกออกไปเป็น Invalid ส่วนแถวปกติจะผ่านไปเป็น Valid" %}</p>
+            </div>
+
+            <h4>{% trans "Task 4.4: เพิ่ม ODBC Destination (Load เข้า MySQL)" %}</h4>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}ODBC Destination คือ Component ที่ทำหน้าที่รับข้อมูลปลายทางและส่งเข้าฐานข้อมูล ในที่นี้ใช้ส่งข้อมูลเข้า MySQL โดยใช้ Connection Manager ที่สร้างไว้ใน STEP 4.2 ของ Phase 3 ที่ต้องเชื่อมจาก Valid เพราะเราต้องการเฉพาะแถวที่ผ่านการกรองแล้วเท่านั้น ส่วน Invalid คือแถวที่ถูกคัดออกซึ่งไม่ต้องการเก็บไว้{% endblocktrans %}</p>
+            </div>
+
+            <ol>
+                <li>{% trans "ลาก" %} <strong>ODBC Destination</strong> {% trans "จาก Toolbox ลงใน Data Flow" %}</li>
+                <li>{% trans "เชื่อมลูกศรจาก Conditional Split → ODBC Destination โดยเลือก Output =" %} <strong>Valid</strong></li>
+                <li>Double-click {% trans "ที่ ODBC Destination → ตั้งค่า:" %}</li>
+            </ol>
+
+            <table style="margin: 1.5rem auto; border-collapse: collapse; width: 90%; max-width: 800px;">
+                <thead>
+                    <tr style="background: var(--primary); color: white;">
+                        <th style="padding: 0.75rem; border: 1px solid var(--border);">Field</th>
+                        <th style="padding: 0.75rem; border: 1px solid var(--border);">{% trans "ค่าที่กรอก" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">ODBC Connection Manager</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">MySQL_FraudDL.root</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">Data access mode</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">Table Name - batch</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">Name of the table or the view</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border);">fraud_clean_ssis</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ol start="4">
+                <li>{% trans "คลิก Tab" %} <strong>Mappings</strong> → {% trans "Map column ให้ตรงกัน:" %}</li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}Mapping คือการบอก SSIS ว่า Column ที่ไหลมาจาก Data Flow ตัวไหนควรเอาไปเก็บใน Column ไหนของตาราง MySQL ต้องทำเพราะชื่อ Column ใน Data Flow กับชื่อ Column ใน MySQL อาจไม่ตรงกันทุกตัว เช่น trans_dt_clean ใน Data Flow ต้องจับคู่กับ trans_datetime ใน MySQL ถ้าไม่ทำ Mapping SSIS จะไม่รู้ว่าต้องเอาข้อมูลไปใส่ Column ไหน{% endblocktrans %}</p>
+            </div>
+
+            <table style="margin: 1.5rem auto; border-collapse: collapse; width: 90%; max-width: 800px;">
+                <thead>
+                    <tr style="background: var(--primary); color: white;">
+                        <th style="padding: 0.75rem; border: 1px solid var(--border);">Input Column</th>
+                        <th style="padding: 0.75rem; border: 1px solid var(--border);">Destination Column</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">cc_num_hash</td><td style="padding: 0.75rem; border: 1px solid var(--border);">cc_num_hash</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">first_hash</td><td style="padding: 0.75rem; border: 1px solid var(--border);">first_hash</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">last_hash</td><td style="padding: 0.75rem; border: 1px solid var(--border);">last_hash</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">dob_hash</td><td style="padding: 0.75rem; border: 1px solid var(--border);">dob_hash</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">trans_dt_clean</td><td style="padding: 0.75rem; border: 1px solid var(--border);">trans_datetime</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">merchant</td><td style="padding: 0.75rem; border: 1px solid var(--border);">merchant</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">category</td><td style="padding: 0.75rem; border: 1px solid var(--border);">category</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">amt</td><td style="padding: 0.75rem; border: 1px solid var(--border);">amt</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">gender</td><td style="padding: 0.75rem; border: 1px solid var(--border);">gender</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">city</td><td style="padding: 0.75rem; border: 1px solid var(--border);">city</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">state</td><td style="padding: 0.75rem; border: 1px solid var(--border);">state</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">city_pop</td><td style="padding: 0.75rem; border: 1px solid var(--border);">city_pop</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">job</td><td style="padding: 0.75rem; border: 1px solid var(--border);">job</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">trans_num</td><td style="padding: 0.75rem; border: 1px solid var(--border);">trans_num</td></tr>
+                    <tr><td style="padding: 0.75rem; border: 1px solid var(--border);">is_fraud</td><td style="padding: 0.75rem; border: 1px solid var(--border);">is_fraud</td></tr>
+                </tbody>
+            </table>
+
+            <p>{% trans "กด" %} <strong>OK</strong></p>
+
+            <h3>{% trans "Task 5: Script Task: Log Transform Time" %}</h3>
+
+            <p>{% trans "กลับไปที่" %} <strong>Control Flow</strong></p>
+
+            <ol>
+                <li>{% trans "ลาก" %} <strong>Script Task</strong> {% trans "ลงใน Control Flow" %}</li>
+                <li>{% trans "เปลี่ยนชื่อเป็น" %} <code>Log Transform Time</code></li>
+                <li>{% trans "เชื่อมลูกศรจาก Transform → Log Transform Time" %}</li>
+                <li>Double-click → {% trans "ตั้งค่า:" %}
+                    <ul>
+                        <li><strong>ReadWriteVariables:</strong> <code>User::TransformStart,User::TransformSec,User::LoadStart</code></li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}อ่านค่าจาก TransformStart แล้วเขียนผลลงใน TransformSec และเริ่มจับเวลา Load{% endblocktrans %}</p>
+            </div>
+
+            <ol start="5">
+                <li>{% trans "กด" %} <strong>Edit Script</strong> → {% trans "วางโค้ดนี้ใน" %} <code>Main()</code>:</li>
+            </ol>
+
+            <pre><code>public void Main()
+{
+    // TODO: Add your code here
+    var start = (DateTime)Dts.Variables["User::TransformStart"].Value;
+    var elapsed = DateTime.Now - start;
+    Dts.Variables["User::TransformSec"].Value = elapsed.TotalSeconds;
+
+    Dts.Variables["User::LoadStart"].Value = DateTime.Now;
+    Dts.TaskResult = (int)ScriptResults.Success;
+}</code></pre>
+
+            <p>Save → Build → {% trans "ปิด Script Editor → กด" %} <strong>OK</strong></p>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}Task 5 ทำงานเหมือน Task 3 ทุกอย่างแต่เปลี่ยนจากการคำนวณเวลา Extract มาเป็นการคำนวณเวลา Transform แทน และบันทึกเวลาเริ่ม Load ไว้ทันทีก่อนส่งต่อให้ Task 6 เพื่อให้เวลาที่จับได้แม่นยำที่สุด{% endblocktrans %}</p>
+            </div>
+
+            <h3>{% trans "Task 6: Data Flow Task: Load เข้า MySQL" %}</h3>
+
+            <ol>
+                <li>{% trans "ลาก" %} <strong>Data Flow Task</strong> {% trans "ลงใน Control Flow" %}</li>
+                <li>{% trans "เปลี่ยนชื่อเป็น" %} <code>Load to MySQL</code></li>
+                <li>{% trans "เชื่อมลูกศรจาก Log Transform Time → Load to MySQL" %}</li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0 0 0.5rem 0;">{% blocktrans %}💡 <strong>สังเกต:</strong> Task 6 นี้ไม่ต้องทำอะไรเพิ่มแล้ว เพราะเราได้ Load ข้อมูลเข้า MySQL ไปแล้วใน Task 4 (ODBC Destination) ดังนั้น Task 6 เราจะทำแค่นี้ในโปรเจคนี้จะข้ามไปทำ Task 7 — Log Load + Write CSV เลย{% endblocktrans %}</p>
+                <p style="margin: 0.5rem 0;">{% blocktrans %}<strong>ถ้าไม่ต้องทำอะไร แล้วทำไมต้องสร้าง Task นี้ขึ้นมาด้วย?</strong>{% endblocktrans %}</p>
+                <p style="margin: 0;">{% blocktrans %}เพราะเราต้องการวัดเวลาครบทั้ง 3 Phase คือ Extract Transform และ Load ถ้าไม่มี Task 6 Task 5 จะบันทึกเวลาเริ่ม Load ลง LoadStart แต่ไม่มี Task ที่เป็นจุดสิ้นสุดของ Load ให้ Task 7 ใช้คำนวณว่า Load ใช้เวลากี่วินาที การแยก Task 6 ออกมาจึงเป็นแค่การสร้างจุดสิ้นสุดให้ครบโครงสร้างมากกว่า{% endblocktrans %}</p>
+            </div>
+
+            <h3>{% trans "Task 7: Script Task: Log Load + Write CSV" %}</h3>
+
+            <ol>
+                <li>{% trans "ลาก" %} <strong>Script Task</strong> {% trans "ลงใน Control Flow" %}</li>
+                <li>{% trans "เปลี่ยนชื่อเป็น" %} <code>Log Load + Write CSV</code></li>
+                <li>{% trans "เชื่อมลูกศรจาก Load to MySQL → Log Load + Write CSV" %}</li>
+                <li>Double-click {% trans "ที่ Log Load + Write CSV" %}</li>
+                <li>{% trans "ตั้งค่า" %} <strong>ReadWriteVariables:</strong><br>
+                    <code>User::LoadStart,User::ExtractSec,User::TransformSec,User::LoadSec,User::DatasetSize</code>
+                </li>
+            </ol>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}เพราะ Task 7 ต้องทำงาน 2 อย่างพร้อมกัน อย่างแรกคือคำนวณเวลา Load เหมือนที่ Task 3 และ Task 5 ทำ จึงต้องการ LoadStart และ LoadSec อย่างที่สองคือเขียนผลรวมทั้งหมดลงไฟล์ CSV จึงต้องดึง ExtractSec และ TransformSec ที่คำนวณไว้แล้วตั้งแต่ Task 3 และ Task 5 มาใช้ด้วย ส่วน DatasetSize ใช้เพื่อบอกว่าแถวที่กำลังเขียนลง CSV นี้เป็นผลของการรันขนาดไหน{% endblocktrans %}</p>
+            </div>
+
+            <div class="img-container">
+                <img src="{% static 'images/ssis/phase4-step7.png' %}" alt="Phase 4 Task 7 - Complete Control Flow Diagram" loading="lazy">
+            </div>
+
+            <ol start="6">
+                <li>{% trans "สร้างโฟลเดอร์" %} <code>data</code> {% trans "ใน" %} <code>D:\ssis_credit_card_fraud_detection</code></li>
+                <li>{% trans "กด" %} <strong>Edit Script</strong> → {% trans "วางโค้ดนี้ใน" %} <code>Main()</code>:</li>
+            </ol>
+
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'th' %}
+            <pre><code>public void Main()
+{
+    var loadStart = (DateTime)Dts.Variables["User::LoadStart"].Value;
+    double loadSec = (DateTime.Now - loadStart).TotalSeconds;
+    double extSec = (double)Dts.Variables["User::ExtractSec"].Value;
+    double trfSec = (double)Dts.Variables["User::TransformSec"].Value;
+    string size = (string)Dts.Variables["User::DatasetSize"].Value;
+
+    string logPath = @"D:\ssis_credit_card_fraud_detection\data\timing_log.csv";
+
+    /*
+    บรรทัดนี้ตรวจสอบว่าไฟล์ timing_log.csv มีอยู่แล้วหรือยัง
+    ถ้ายังไม่มีก็จะสร้างไฟล์ใหม่พร้อมเขียน Header บรรทัดแรกว่า dataset, extract_sec,
+    transform_sec, load_sec
+    */
+    if (!System.IO.File.Exists(logPath))
+        // WriteAllText คือการเขียนทับไฟล์ทั้งหมด ถ้าใช้ตัวนี้ทุกครั้งที่รัน Package
+        // ข้อมูลเก่าจะหายหมด เหลือแค่ผลของการรันล่าสุด
+        System.IO.File.WriteAllText(logPath, "dataset,extract_sec,transform_sec,load_sec\n");
+
+    string line = $"{size},{extSec},{trfSec},{loadSec}\n";
+    // AppendAllText คือการเพิ่มข้อมูลต่อท้ายไฟล์โดยไม่ลบของเดิมออก
+    // ทำให้หลังจากรันครบทั้ง 3 ขนาดไฟล์ CSV จะมีข้อมูลครบ 3 แถวคือ 10k 100k และ 1m
+    System.IO.File.AppendAllText(logPath, line);
+
+    Dts.Variables["User::LoadSec"].Value = loadSec;
+    Dts.TaskResult = (int)ScriptResults.Success;
+}</code></pre>
+            {% elif LANGUAGE_CODE == 'en' %}
+            <pre><code>public void Main()
+{
+    var loadStart = (DateTime)Dts.Variables["User::LoadStart"].Value;
+    double loadSec = (DateTime.Now - loadStart).TotalSeconds;
+    double extSec = (double)Dts.Variables["User::ExtractSec"].Value;
+    double trfSec = (double)Dts.Variables["User::TransformSec"].Value;
+    string size = (string)Dts.Variables["User::DatasetSize"].Value;
+
+    string logPath = @"D:\ssis_credit_card_fraud_detection\data\timing_log.csv";
+
+    /*
+    This line checks if the timing_log.csv file already exists
+    If it doesn't exist, it creates a new file and writes the first Header line: dataset, extract_sec,
+    transform_sec, load_sec
+    */
+    if (!System.IO.File.Exists(logPath))
+        // WriteAllText overwrites the entire file. If you use this every time you run the Package
+        // the old data will be lost, leaving only the result of the latest run
+        System.IO.File.WriteAllText(logPath, "dataset,extract_sec,transform_sec,load_sec\n");
+
+    string line = $"{size},{extSec},{trfSec},{loadSec}\n";
+    // AppendAllText appends data to the end of the file without deleting the original
+    // This ensures that after running all 3 sizes, the CSV file will have complete 3 rows: 10k, 100k, and 1m
+    System.IO.File.AppendAllText(logPath, line);
+
+    Dts.Variables["User::LoadSec"].Value = loadSec;
+    Dts.TaskResult = (int)ScriptResults.Success;
+}</code></pre>
+            {% else %}
+            <pre><code>public void Main()
+{
+    var loadStart = (DateTime)Dts.Variables["User::LoadStart"].Value;
+    double loadSec = (DateTime.Now - loadStart).TotalSeconds;
+    double extSec = (double)Dts.Variables["User::ExtractSec"].Value;
+    double trfSec = (double)Dts.Variables["User::TransformSec"].Value;
+    string size = (string)Dts.Variables["User::DatasetSize"].Value;
+
+    string logPath = @"D:\ssis_credit_card_fraud_detection\data\timing_log.csv";
+
+    /*
+    此行检查timing_log.csv文件是否已存在
+    如果不存在，则创建新文件并写入第一行标题：dataset, extract_sec,
+    transform_sec, load_sec
+    */
+    if (!System.IO.File.Exists(logPath))
+        // WriteAllText覆盖整个文件。如果每次运行包时都使用此方法
+        // 旧数据将丢失，只保留最新运行的结果
+        System.IO.File.WriteAllText(logPath, "dataset,extract_sec,transform_sec,load_sec\n");
+
+    string line = $"{size},{extSec},{trfSec},{loadSec}\n";
+    // AppendAllText将数据追加到文件末尾而不删除原始内容
+    // 这确保运行完所有3个大小后，CSV文件将包含完整的3行：10k、100k和1m
+    System.IO.File.AppendAllText(logPath, line);
+
+    Dts.Variables["User::LoadSec"].Value = loadSec;
+    Dts.TaskResult = (int)ScriptResults.Success;
+}</code></pre>
+            {% endif %}
+
+            <p>Save → Build → {% trans "ปิด Script Editor → กด" %} <strong>OK</strong></p>
+
+            <div style="background: var(--bg-surface); padding: 1.5rem; border-left: 4px solid var(--primary); margin: 1.5rem 0; color: var(--text-primary); font-weight: 500;">
+                <p style="margin: 0;">{% blocktrans %}🎉🎉🎉 ETL_10k สำเร็จ! ไปต่อที่ Phase 5 เลย{% endblocktrans %}</p>
+            </div>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('phase5')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 5 Tab -->
+        <div id="phase5" class="tab-content">
+            <h2>{% trans "Phase 5: รัน Package" %}</h2>
+
+            <h3>{% trans "การรัน ETL_10k.dtsx" %}</h3>
+            <ol>
+                <li>{% trans "เปิด Package ETL_10k.dtsx" %}</li>
+                <li>{% trans "กด Start (หรือกด F5)" %}</li>
+            </ol>
+
+            <p><strong>{% trans "ผลการรัน Package:" %}</strong></p>
+            <div class="img-container">
+                <img src="{% static 'images/ssis/phase5-2.png' %}" alt="Phase 5 Package Execution Success" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    {% trans "Package ทำงานสำเร็จ - ทุก Task เป็นสีเขียว" %}
+                </p>
+            </div>
+
+            <ol start="3">
+                <li>{% trans "รอ Task ทุกอันเปลี่ยนเป็นสีเขียว (หมายถึงสำเร็จ)" %}</li>
+                <li>{% trans "ตรวจสอบผลใน MySQL Workbench" %}</li>
+                <li>{% trans "เปิดไฟล์ timing_log.csv เพื่อดูผลการจับเวลา" %}</li>
+            </ol>
+
+            <h3>{% trans "ตรวจสอบผลใน MySQL Workbench" %}</h3>
+            <pre><code>USE fraud_dl;
+
+-- {% trans "Check row count (should be 10000)" %}
+SELECT COUNT(*) FROM fraud_clean_ssis;
+
+-- {% trans "Check hash" %}
+SELECT
+    cc_num_hash,
+    first_hash,
+    last_hash,
+    dob_hash
+FROM fraud_clean_ssis LIMIT 5;
+
+-- {% trans "Check no negative amt" %}
+SELECT COUNT(*) FROM fraud_clean_ssis WHERE amt <= 0;</code></pre>
+
+            <h3>{% trans "การรัน ETL_100k.dtsx และ ETL_1m.dtsx" %}</h3>
+            <ol>
+                <li>{% trans "รัน" %} <code>TRUNCATE TABLE fraud_clean_ssis;</code> {% trans "ใน MySQL" %}</li>
+            </ol>
+
+            <pre><code>USE fraud_dl;
+TRUNCATE TABLE fraud_clean_ssis;</code></pre>
+
+            <ol start="2">
+                <li>{% trans "เปลี่ยน Variable DatasetSize เป็น \"100k\" หรือ \"1m\"" %}</li>
+                <li>{% trans "เปลี่ยน Table ใน ADO NET Source เป็น fraud_100k หรือ fraud_1m" %}</li>
+                <li>{% trans "กด Start" %}</li>
+            </ol>
+
+            <p><strong>{% trans "เนื้อหาสำคัญ:" %}</strong></p>
+            <ul>
+                <li>{% trans "ต้อง TRUNCATE TABLE ก่อนรัน Package ใหม่" %}</li>
+                <li>{% trans "ตรวจสอบผลใน MySQL ว่าข้อมูลถูกต้อง" %}</li>
+                <li>{% trans "ไฟล์ timing_log.csv จะมีผลการจับเวลาทั้ง 3 ขนาด" %}</li>
+            </ul>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('benchmark')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Benchmark Tab -->
+        <div id="benchmark" class="tab-content">
+            <h2>{% trans "สรุปและวิเคราะห์ผล SSIS ETL Benchmark" %}</h2>
+
+            <p>{% trans "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้:" %}</p>
+
+            <div class="table-container">
+                <table style="margin: 1.5rem auto; border-collapse: collapse; width: 90%; max-width: 800px;">
+                    <thead>
+                        <tr style="background: var(--primary); color: white;">
+                            <th style="padding: 0.75rem; border: 1px solid var(--border);">dataset</th>
+                            <th style="padding: 0.75rem; border: 1px solid var(--border);">extract_sec</th>
+                            <th style="padding: 0.75rem; border: 1px solid var(--border);">transform_sec</th>
+                            <th style="padding: 0.75rem; border: 1px solid var(--border);">load_sec</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">10k</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">0.163</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">2.484</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">0.013</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">100k</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">0.707</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">43.221</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">0.077</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">1m</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">9.991</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">449.141</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border);">0.029</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>{% blocktrans %}เมื่อนำข้อมูลดังกล่าวมาวิเคราะห์และสร้างภาพด้วย MATLAB เพื่อให้เห็นภาพได้ชัดเจน ได้นำเสนอกราฟ 3 รูปแบบ ได้แก่ Grouped Bar Chart, Stacked Bar Chart และ Line Chart ตามลำดับ ดังแสดงในรูปที่ 1-3{% endblocktrans %}</p>
+
+            <h3>{% trans "1. การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล (Grouped Bar Chart)" %}</h3>
+
+            <div class="img-container" style="max-width: 650px; margin: 0 auto;">
+                <img src="{% static 'images/ssis/ssis_1_grouped_bar.png' %}"
+                     alt="Fig 1: {% trans 'การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล' %}" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    {% trans "Fig 1 : การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล" %}
+                </p>
+            </div>
+
+            <p>{% blocktrans %}จากภาพ Fig 1 : การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล เป็นภาพที่แสดงการเปรียบเทียบเวลาแต่ละ Phase (Extract / Transform / Load) แยกตาม Dataset Size จากกราฟพบว่า Transform Phase ใช้เวลามากที่สุดในทุก Dataset Size อย่างเห็นได้ชัด โดย Extract และ Load แทบมองไม่เห็นในสเกลเดียวกับ Transform เมื่อข้อมูลขนาดใหญ่ขึ้น สังเกตได้ว่า Transform ที่ 1m rows ใช้เวลา 449.14 วินาทีในขณะที่ Extract และ Load รวมกันใช้เพียง 10.02 วินาทีเท่านั้น{% endblocktrans %}</p>
+
+            <p>{% blocktrans %}จากการวิเคราะห์ใน Transform Phase สาเหตุมาจากการใช้ Script Component เป็นการรันแบบ Synchronous (ต้องรอคำสั่งก่อนหน้าทำงานเสร็จก่อนถึงจะรันคำสั่งต่อไปได้) ในเอกสารของ Microsoft ระบุว่า <code>ProcessInputRow()</code> ถูกเรียกหนึ่งครั้งต่อหนึ่ง row <sup>[1]</sup> ทำให้การ Hash จำนวน 4 columns สำหรับ 1m rows คือการคำนวณ hash รวม <strong>4,000,000 ครั้ง</strong> ด้วยสาเหตุใน Transform Phase จึงใช้เวลานานกว่า Extract และ Load ดังนั้น{% endblocktrans %}</p>
+
+            <h3>{% trans "2. สัดส่วนของแต่ละ Phase ต่อเวลารวม (Stacked Bar Chart)" %}</h3>
+
+            <div class="img-container" style="max-width: 650px; margin: 0 auto;">
+                <img src="{% static 'images/ssis/ssis_2_stacked_bar.png' %}"
+                     alt="Fig 2: {% trans 'สัดส่วนของแต่ละ Phase ต่อเวลารวม' %}" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    {% trans "Fig 2 : สัดส่วนของแต่ละ Phase ต่อเวลารวม" %}
+                </p>
+            </div>
+
+            <p>{% blocktrans %}จากภาพ Fig 2 สะท้อนให้เห็นว่า Transform Phase เป็น Bottleneck(คอขวด หรือ ข้อจำกัด) แม้ใน Dataset Size ที่ 10k จะไม่แสดงใน bar เพราะ bar เล็กเกินไปแต่เราสามารถคำนวณได้โดยใช้{% endblocktrans %}</p>
+
+            <p><strong>{% trans "วิธีคิด:" %}</strong></p>
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">Phase% = (Phase_sec ÷ Total_sec) × 100
+
+Total_sec = Extract_sec + Transform_sec + Load_sec</pre>
+
+            <p><strong>{% trans "ทำให้เมื่อคำนวณสำหรับ Transform Phase สามารถคำนวณได้ดังนี้" %}</strong></p>
+
+            <p><strong>{% trans "10k rows" %}</strong></p>
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">Total = 0.163 + 2.484 + 0.013 = 2.660s
+Extract%   = (0.163 ÷ 2.660) × 100 = 6.13%
+Transform% = (2.484 ÷ 2.660) × 100 = 93.38%
+Load%      = (0.013 ÷ 2.660) × 100 = 0.49%</pre>
+
+            <p><strong>100k</strong></p>
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">Total = 0.707 + 43.220 + 0.077 = 44.004s
+Extract%   = (0.707 ÷ 44.004) × 100 = 1.61%
+Transform% = (43.220 ÷ 44.004) × 100 = 98.22%
+Load%      = (0.077 ÷ 44.004) × 100 = 0.18%</pre>
+
+            <p><strong>{% trans "1m rows" %}</strong></p>
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">Total = 9.991 + 449.141 + 0.029 = 459.161s
+Extract%   = (9.991 ÷ 459.161) × 100 = 2.18%
+Transform% = (449.141 ÷ 459.161) × 100 = 97.82%
+Load%      = (0.029 ÷ 459.161) × 100 = 0.01%</pre>
+
+            <p>{% blocktrans %}จากการคำนวณเห็นได้ว่า 97.8%% ของเวลาทั้งหมดหายไปกับ Transform Phase เพียง Phase เดียว โดยที่ Dataset Size ที่ 10k ใช้เวลา Transform ไปถึง 93%% ของเวลา , 100k ใช้เวลา Transform ไปถึง 98.2%% ของเวลา และที่ 1m ใช้เวลา Transform ไปถึง 97.8%% ของเวลา จึงสรุปได้ว่า Transform Phase เป็น <strong>ขั้นตอนที่ใช้เวลามากที่สุดและส่งผลโดยตรงต่อเวลารวมทั้งหมด</strong>{% endblocktrans %}</p>
+
+            <h3>{% trans "3. อัตราการขยายตัวของแต่ละ Phase (Scalability)" %}</h3>
+
+            <div class="img-container" style="max-width: 650px; margin: 0 auto;">
+                <img src="{% static 'images/ssis/ssis_3_line_scalability.png' %}"
+                     alt="Fig 3: {% trans 'อัตราการขยายตัวของแต่ละ Phase (Scalability)' %}" loading="lazy">
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    {% trans "Fig 3 : อัตราการขยายตัวของแต่ละ Phase (Scalability)" %}
+                </p>
+            </div>
+
+            <p>{% trans "จากรูปที่ 3 คำนวณ Scaling Ratio (อัตราส่วนการปรับขนาด) ด้วยสูตร" %}</p>
+
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'th' %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">Scaling Ratio = เวลา Batch ถัดไป ÷ เวลา Batch ปัจจุบัน</pre>
+            {% elif LANGUAGE_CODE == 'en' %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">Scaling Ratio = Next Batch Time ÷ Current Batch Time</pre>
+            {% else %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">Scaling Ratio = 下一批次时间 ÷ 当前批次时间</pre>
+            {% endif %}
+
+            <p><strong>{% trans "ได้ผลดังนี้" %}</strong></p>
+
+            <p><strong>{% trans "Extract Scaling:" %}</strong></p>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'th' %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 0.707 / 0.163 = 4.34x  (ข้อมูลเพิ่ม 10x หรือ 10 เท่า)
+100k → 1m:  9.991 / 0.707 = 14.13x (ข้อมูลเพิ่ม 10x)</pre>
+            {% elif LANGUAGE_CODE == 'en' %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 0.707 / 0.163 = 4.34x  (data increased 10x or 10 times)
+100k → 1m:  9.991 / 0.707 = 14.13x (data increased 10x)</pre>
+            {% else %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 0.707 / 0.163 = 4.34x  (数据增加10倍)
+100k → 1m:  9.991 / 0.707 = 14.13x (数据增加10倍)</pre>
+            {% endif %}
+
+            <p><strong>{% trans "Transform Scaling:" %}</strong></p>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'th' %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 43.220 / 2.484   = 17.40x  (ข้อมูลเพิ่ม 10x)
+100k → 1m:  449.141 / 43.220 = 10.39x  (ข้อมูลเพิ่ม 10x)
+10k → 1m:   449.141 / 2.484   = 180.81x (ข้อมูลเพิ่ม 100x 100 เท่า เวลาเพิ่มถึง 180.81 เท่า)</pre>
+            {% elif LANGUAGE_CODE == 'en' %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 43.220 / 2.484   = 17.40x  (data increased 10x)
+100k → 1m:  449.141 / 43.220 = 10.39x  (data increased 10x)
+10k → 1m:   449.141 / 2.484   = 180.81x (data increased 100x, time increased 180.81 times)</pre>
+            {% else %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 43.220 / 2.484   = 17.40x  (数据增加10倍)
+100k → 1m:  449.141 / 43.220 = 10.39x  (数据增加10倍)
+10k → 1m:   449.141 / 2.484   = 180.81x (数据增加100倍，时间增加180.81倍)</pre>
+            {% endif %}
+
+            <p><strong>{% trans "Load Scaling:" %}</strong></p>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'th' %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 0.077 / 0.013 = 5.92x  (ข้อมูลเพิ่ม 10x)
+100k → 1m:  0.029 / 0.077 = 0.38x  (เร็วขึ้น → Buffer/cache effect)
+10k → 1m:   0.029 / 0.013 = 2.23x</pre>
+            {% elif LANGUAGE_CODE == 'en' %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 0.077 / 0.013 = 5.92x  (data increased 10x)
+100k → 1m:  0.029 / 0.077 = 0.38x  (faster → Buffer/cache effect)
+10k → 1m:   0.029 / 0.013 = 2.23x</pre>
+            {% else %}
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 0.077 / 0.013 = 5.92x  (数据增加10倍)
+100k → 1m:  0.029 / 0.077 = 0.38x  (更快 → 缓冲/缓存效应)
+10k → 1m:   0.029 / 0.013 = 2.23x</pre>
+            {% endif %}
+
+            <p><strong>{% trans "Total Scaling:" %}</strong></p>
+            <pre style="background: var(--bg-surface); padding: 1rem; border-left: 4px solid var(--primary); margin: 1rem 0; color: var(--text-primary); font-weight: 500;">10k → 100k: 44.004 / 2.660   = 16.54x
+100k → 1m:  459.161 / 44.004 = 10.44x</pre>
+
+            <p>{% trans "จากตัวเลขข้างต้น สามารถอธิบายแต่ละขั้นตอนได้ดังนี้" %}</p>
+
+            <p>{% blocktrans %}<strong>ขั้นตอนดึงข้อมูล (Extract)</strong> ช่วง 10k→100k ใช้เวลาเพิ่มขึ้น 4.34 เท่า ช่วง 100k→1m เวลาเพิ่มขึ้นถึง 14.13 เท่า ซึ่ง Microsoft ระบุว่า disk เป็นการดำเนินการที่ใช้ทรัพยากรมากและใช้เวลานานกว่าการอ่านจาก Memory <sup>[2]</sup> ดังนั้นเมื่อข้อมูลมีขนาดใหญ่ขึ้นมาก การอ่านข้อมูลจาก Disk จึงส่งผลให้เวลา Extract เพิ่มขึ้นอย่างชัดเจน{% endblocktrans %}</p>
+
+            <p>{% blocktrans %}<strong>ขั้นตอนแปลงข้อมูล (Transform)</strong> ช่วง 10k→100k เวลาเพิ่มขึ้นถึง 17.40 เท่า เนื่องจากการเรียกใช้ SHA256 CryptoService ใน .NET ครั้งแรก ต้องใช้เวลาในการโหลด Library เข้าสู่หน่วยความจำก่อน แต่ช่วง 100k→1m ลดลงเหลือ 10.39 เท่า เพราะระบบโหลด Library เสร็จแล้ว การ Hash จึงทำงานได้สม่ำเสมอมากขึ้น ซึ่งสอดคล้องกับการทำงานของ Synchronous Script Component ที่เรียก ProcessInputRow() ทีละหนึ่งแถวอย่างต่อเนื่อง <sup>[1]</sup>{% endblocktrans %}</p>
+
+            <p>{% blocktrans %}<strong>ขั้นตอนโหลดข้อมูล (Load)</strong> ช่วง 10k→100k เวลาเพิ่มขึ้น 5.92 เท่า แต่ช่วง 100k→1m เวลากลับลดลงเหลือเพียง 0.38 เท่า กล่าวคือที่ 1 ล้านแถวใช้เวลาน้อยกว่า 100,000 แถว จากการวิเคราะห์พบว่าอาจมีสาเหตุมาจากการตั้งค่า Batch Size = 5,000 แถวใน ODBC Destination ทำให้ส่งผลให้การโหลดข้อมูลขนาดใหญ่มีประสิทธิภาพสูงกว่าขนาดเล็ก อย่างไรก็ตามการระบุสาเหตุที่แน่ชัดต้องการการทดสอบและข้อมูลรองรับเพิ่มเติม{% endblocktrans %}</p>
+
+            <p>{% blocktrans %}<strong>ภาพรวม (Total)</strong> เวลารวมเพิ่มขึ้น 16.54 เท่าในช่วงแรก และลดลงเหลือ 10.44 เท่าในช่วงหลัง ซึ่งสอดคล้องกับพฤติกรรมของ Transform เพราะ Transform เป็นขั้นตอนที่กำหนดเวลารวมทั้งหมด ดังที่เห็นในรูปที่ 3 ว่าเส้น Transform และเส้น Total แทบทับกันตลอด{% endblocktrans %}</p>
+
+            <h3>References</h3>
+            <ol>
+                <li>"Creating a Synchronous Transformation with the script component," <em>Microsoft.com.</em> [Online]. Available: <a href="https://learn.microsoft.com/en-us/sql/integration-services/extending-packages-scripting-data-flow-script-component-types/creating-a-synchronous-transformation-with-the-script-component?view=sql-server-ver17" target="_blank">https://learn.microsoft.com/en-us/sql/integration-services/extending-packages-scripting-data-flow-script-component-types/creating-a-synchronous-transformation-with-the-script-component?view=sql-server-ver17</a></li>
+                <li>rwestMSFT, "Memory management architecture guide - SQL Server," <em>Microsoft.com.</em> [Online]. Available: <a href="https://learn.microsoft.com/en-us/sql/relational-databases/memory-management-architecture-guide?view=sql-server-ver17" target="_blank">https://learn.microsoft.com/en-us/sql/relational-databases/memory-management-architecture-guide?view=sql-server-ver17</a></li>
+            </ol>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <a href="{% url 'pipeline:knime' %}" class="section-nav-btn next-phase" style="text-decoration: none;">
+                    {% trans "Next Page" %} <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="card" style="text-align: center;">
+        <h2 style="margin-bottom: 1rem; color: var(--text-primary); font-weight: 500;">{% trans "เปรียบเทียบกับเครื่องมืออื่น" %}</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-secondary);">
+            {% trans "ดูวิธีการทดสอบและผลการเปรียบเทียบกับเครื่องมือ ETL อื่นๆ" %}
+        </p>
+        <div class="grid-2">
+            <a href="{% url 'pipeline:knime' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">KNIME</a>
+            <a href="{% url 'pipeline:airflow_pyspark' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">Airflow + PySpark</a>
+            <a href="{% url 'pipeline:airflow_pandas' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">Airflow + Pandas</a>
+            <a href="{% url 'pipeline:analysis' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">{% trans "การวิเคราะห์โดยรวม" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/tabs.js' %}"></script>
+<script>
+    // Add copy buttons to all code blocks
+    document.addEventListener('DOMContentLoaded', function() {
+        const codeBlocks = document.querySelectorAll('pre code');
+
+        codeBlocks.forEach((codeBlock) => {
+            const pre = codeBlock.parentElement;
+
+            // Create copy button
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            // Add click event
+            copyButton.addEventListener('click', async () => {
+                const code = codeBlock.textContent;
+
+                try {
+                    await navigator.clipboard.writeText(code);
+
+                    // Show success feedback
+                    copyButton.textContent = 'Copied!';
+                    copyButton.classList.add('copied');
+
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy';
+                        copyButton.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = code;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+
+                    try {
+                        document.execCommand('copy');
+                        copyButton.textContent = 'Copied!';
+                        copyButton.classList.add('copied');
+
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        copyButton.textContent = 'Failed';
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy';
+                        }, 2000);
+                    }
+
+                    document.body.removeChild(textArea);
+                }
+            });
+
+            // Insert button into pre element
+            pre.style.position = 'relative';
+            pre.insertBefore(copyButton, codeBlock);
+        });
+    });
+
+    // Function to switch between tabs
+    function switchTab(tabId) {
+        // Get all tab buttons and contents
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Remove active class from all tabs
+        tabButtons.forEach(button => button.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        // Add active class to selected tab
+        const targetButton = document.querySelector(`[data-tab="${tabId}"]`);
+        const targetContent = document.getElementById(tabId);
+
+        if (targetButton && targetContent) {
+            targetButton.classList.add('active');
+            targetContent.classList.add('active');
+
+            // Scroll to top of content
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    }
+</script>
+{% endblock %}

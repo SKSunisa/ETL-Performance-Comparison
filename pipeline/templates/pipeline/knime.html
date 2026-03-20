@@ -1,0 +1,1449 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}KNIME - ETL Pipeline Comparison{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+<style>
+    #benchmark .img-container img {
+        max-width: 70%;
+        height: auto;
+    }
+
+    /* Code block copy button styles */
+    .code-block-wrapper {
+        position: relative;
+    }
+
+    .copy-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+        transition: all 0.2s ease;
+        z-index: 10;
+    }
+
+    .copy-button:hover {
+        background: #fff;
+        border-color: #3b82f6;
+        color: #3b82f6;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .copy-button.copied {
+        background: #10b981;
+        border-color: #10b981;
+        color: white;
+    }
+
+    pre {
+        position: relative;
+        padding-top: 2.5rem !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="{% static 'images/logos/knime.svg' %}" alt="KNIME Logo" style="width: 100px; height: 100px; margin: 0 auto 1.5rem; display: block; filter: none !important; background: white; padding: 8px; border-radius: 8px;">
+        <h1>KNIME</h1>
+        <p>Open-Source Analytics Platform with Visual Workflow Design</p>
+    </section>
+
+    <!-- Tab Navigation -->
+    <div class="card">
+        <div class="tab-navigation">
+            <button class="tab-button" data-tab="phase0">
+                Phase 0 <span class="badge">Setup</span>
+            </button>
+            <button class="tab-button" data-tab="phase1">
+                Phase 1 <span class="badge">Extract</span>
+            </button>
+            <button class="tab-button" data-tab="phase2">
+                Phase 2 <span class="badge">Transform</span>
+            </button>
+            <button class="tab-button" data-tab="phase3">
+                Phase 3 <span class="badge">Load</span>
+            </button>
+            <button class="tab-button" data-tab="benchmark">
+                Benchmark <span class="badge">Results</span>
+            </button>
+        </div>
+
+        <!-- Tab Contents -->
+
+        <!-- Phase 0 Tab -->
+        <div id="phase0" class="tab-content">
+            <h2>{% trans "Phase 0 — เตรียมระบบ KNIME (Step-by-Step)" %}</h2>
+
+            <h3>{% trans "KNIME คืออะไร?" %}</h3>
+            <p>{% blocktrans %}KNIME คือโปรแกรมสำหรับจัดการและประมวลผลข้อมูล ทำงานด้วยการลากและวางลงบนพื้นที่ทำงาน แล้วลากเส้นเชื่อมเข้าหากัน แต่ละจุด(Node) ทำหน้าที่อย่างใดอย่างหนึ่ง{% endblocktrans %}</p>
+
+            <div class="img-container">
+                <img src="{% static 'images/knime/Image illustrating ETL Pipeline testing with KNIME.png' %}"
+                     alt="KNIME ETL Pipeline Illustration" loading="lazy">
+            </div>
+
+            <h3>{% trans "Step 1: ติดตั้ง KNIME Analytics Platform" %}</h3>
+            <ol>
+                <li>{% trans "ไปที่" %} <a href="https://www.knime.com/downloads" target="_blank">https://www.knime.com/downloads</a></li>
+                <li>{% trans "เลือก KNIME Analytics Platform (ฟรีไม่ต้องซื้อ)" %}</li>
+                <li>{% trans "เลือก OS ของเครื่องตัวเอง (Windows / Mac / Linux)" %}</li>
+                <li>{% trans "ดาวน์โหลดแล้ว Install ตามปกติ" %}</li>
+                <li>{% trans "เปิดโปรแกรมขึ้นมา จะเห็นหน้า Workbench" %}</li>
+            </ol>
+            <p>{% blocktrans %}<strong>หน้าตาที่จะเห็น:</strong> มีช่อง Node Repository ด้านซ้าย, พื้นที่ว่างกลางจอ (Workflow Editor), และ Node Description ด้านขวา{% endblocktrans %}</p>
+
+            <h3>{% trans "Step 2: ติดตั้ง Extension: KNIME Database" %}</h3>
+            <p>{% trans "KNIME ต้องติดตั้ง Extension เพิ่มก่อน ถึงจะใช้ DB Node ได้" %}</p>
+            <ol>
+                <li>{% trans "ที่ Menu Bar บนสุด → Install Extensions" %}</li>
+                <li>{% blocktrans %}ในช่อง Search พิมพ์ว่า <code>SQL Server</code>{% endblocktrans %}</li>
+                <li>{% blocktrans %}ติ๊กถูกที่: <strong>KNIME Microsoft JDBC Driver For SQL Server</strong>{% endblocktrans %}</li>
+                <li>{% trans "กด Install (หรือ Next)" %}</li>
+                <li>Accept License → Finish</li>
+                <li>{% trans "รอติดตั้ง แล้ว Restart KNIME" %}</li>
+            </ol>
+
+            <h3>{% trans "Step 3: ดาวน์โหลด JDBC Driver (สำคัญมาก)" %}</h3>
+            <p>{% trans "KNIME ต้องการ JDBC Driver เพื่อเชื่อมต่อกับ Database ทั้งสอง" %}</p>
+
+            <h4>{% trans "ดาวน์โหลด MySQL Connector/J" %}</h4>
+            <ol>
+                <li>{% trans "ไปที่" %} <a href="https://dev.mysql.com/downloads/connector/j/" target="_blank">https://dev.mysql.com/downloads/connector/j/</a></li>
+                <li>{% blocktrans %}ที่ช่อง Select Operating System เลือก <strong>Platform Independent</strong>{% endblocktrans %}</li>
+                <li>{% blocktrans %}จะเห็นไฟล์ 2 แบบ ดาวน์โหลดแบบ <strong>ZIP Archive</strong>{% endblocktrans %}</li>
+                <li>{% blocktrans %}กด Download → จะมีหน้าให้ Login → กด <strong>No thanks, just start my download</strong> ได้เลย ไม่ต้องสมัคร{% endblocktrans %}</li>
+                <li>{% trans "แตกไฟล์ ZIP ที่ดาวน์โหลดมา" %}</li>
+                <li>{% blocktrans %}ข้างในจะมีไฟล์ชื่อประมาณ <code>mysql-connector-j-9.x.x.jar</code> → เอาไฟล์นี้ไว้ที่ไหนก็ได้ที่จำได้ เช่น <code>C:\jdbc\mysql-connector-j-9.x.x.jar</code>{% endblocktrans %}</li>
+            </ol>
+
+            <h3>{% trans "Step 4: เพิ่ม JDBC Driver ใน KNIME" %}</h3>
+            <ol>
+                <li>{% trans "เปิด KNIME ขึ้นมา" %}</li>
+                <li>{% trans "คลิก Preferences ⚙️ มุมขวาบน" %}</li>
+                <li>{% trans "ด้านซ้าย ขยาย KNIME → คลิก Databases" %}</li>
+                <li>{% trans "กดปุ่ม Add ด้านขวา" %}</li>
+                <li>{% trans "กรอกข้อมูลทีละช่อง:" %}
+                    <ul>
+                        <li>ID: <code>mysql</code></li>
+                        <li>Name: <code>MySQL</code></li>
+                        <li>{% blocktrans %}URL template: ลบของเดิมออก แล้วพิมพ์ <code>jdbc:mysql://&lt;host&gt;:&lt;port&gt;/&lt;database&gt;</code>{% endblocktrans %}</li>
+                        <li>{% trans "Database type: ปล่อยเป็น default ไว้ก่อน" %}</li>
+                    </ul>
+                </li>
+                <li>{% trans "กด Add file" %}</li>
+                <li>{% blocktrans %}ไปที่โฟลเดอร์ที่ดาวน์โหลด <code>mysql-connector-j-9.x.x.jar</code> มาจาก Step 3{% endblocktrans %}</li>
+                <li>{% blocktrans %}เลือกไฟล์ <code>mysql-connector-j-9.x.x.jar</code>{% endblocktrans %}</li>
+                <li>{% trans "กด Open" %}</li>
+                <li>{% blocktrans %}กด Find driver classes → จะเด้งให้เลือก → เลือก <code>com.mysql.cj.jdbc.Driver</code>{% endblocktrans %}</li>
+            </ol>
+
+            <h3>{% trans "Step 5: สร้างตาราง fraud_clean_knime ใน MySQL" %}</h3>
+            <p>{% trans "เปิด MySQL Workbench แล้วรัน SQL นี้" %}</p>
+            <pre><code>USE fraud_dl;
+
+CREATE TABLE fraud_clean_knime (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    trans_datetime DATETIME,
+    cc_num_hash VARCHAR(64),
+    merchant VARCHAR(150),
+    category VARCHAR(50),
+    amt DECIMAL(10,2),
+    first_hash VARCHAR(64),
+    last_hash VARCHAR(64),
+    gender CHAR(50),
+    city VARCHAR(50),
+    state CHAR(50),
+    city_pop INT,
+    job VARCHAR(100),
+    dob_hash VARCHAR(64),
+    trans_num VARCHAR(50),
+    is_fraud TINYINT(1),
+    loaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+            <p>{% trans "ตรวจสอบว่าสร้างสำเร็จด้วย:" %}</p>
+            <pre><code>SHOW TABLES IN fraud_dl;</code></pre>
+
+            <h3>{% trans "Step 6: สร้าง KNIME Workflow ใหม่" %}</h3>
+            <ol>
+                <li>{% trans "ใน KNIME คลิกขวาที่ LOCAL (Local Workspace) ด้านซ้าย" %}</li>
+                <li>{% trans "เลือก New KNIME Workflow..." %}</li>
+                <li>{% blocktrans %}ตั้งชื่อ เช่น <code>ETL_FraudDetection_KNIME</code>{% endblocktrans %}</li>
+                <li>{% trans "กด Finish → จะได้พื้นที่ว่างสำหรับสร้าง Workflow" %}</li>
+            </ol>
+
+            <h3>✅ Checklist Phase 0</h3>
+            <p>{% trans "ก่อนไป Phase 1 ต้องผ่านทุกข้อนี้ก่อน" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{% trans "ข้อ" %}</th>
+                            <th>{% trans "งาน" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>{% trans "ติดตั้ง KNIME สำเร็จ เปิดได้" %}</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>{% trans "ติดตั้ง KNIME Database Extension" %}</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>{% trans "มีไฟล์ .jar ทั้ง SQL Server และ MySQL" %}</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>{% trans "ลงทะเบียน JDBC Driver ใน KNIME Preferences" %}</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>{% trans "สร้างตาราง fraud_clean_knime ใน MySQL สำเร็จ" %}</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>{% trans "สร้าง Workflow ใหม่ใน KNIME แล้ว" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('phase1')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 1 Tab -->
+        <div id="phase1" class="tab-content">
+            <h2>{% trans "Phase 1 — Extract: ดึงข้อมูลจาก SQL Server + จับเวลา" %}</h2>
+
+            <h3>{% trans "วัตถุประสงค์ของ Phase 1" %}</h3>
+            <p>{% blocktrans %}ใน Phase 1 มีเป้าหมายเพื่อเชื่อมต่อกับ SQL Server (frauddb) และดึงข้อมูลจากตาราง fraud_10k, fraud_100k และ fraud_1m พร้อมเริ่มจับเวลา Extract โดยใช้ Java Snippet Node{% endblocktrans %}</p>
+
+            <p>{% trans "Phase 1 มี 3 Node หลัก ทำตามลำดับนี้ได้เลย" %}</p>
+
+            <h3>Node 1: Microsoft SQL Server Connector</h3>
+            <p>{% blocktrans %}เราเริ่มต้นด้วยการสร้าง Connection ระหว่าง KNIME กับ Microsoft SQL Server โดยใช้ Node Microsoft SQL Server Connector สำหรับเชื่อมต่อระหว่าง KNIME กับ Microsoft SQL Server{% endblocktrans %}</p>
+
+            <h4>{% trans "วิธีเพิ่ม Node:" %}</h4>
+            <ol>
+                <li>{% blocktrans %}ที่ช่อง Search Node (มุมซ้ายล่าง) พิมพ์ว่า <code>Microsoft SQL Server Connector</code>{% endblocktrans %}</li>
+                <li>{% trans "ลาก Node มาวางใน Workflow Editor" %}</li>
+            </ol>
+
+            <h4>{% trans "วิธีตั้งค่า (คลิกขวาที่ Node กด configure):" %}</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>{% trans "ค่าที่ใส่" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hostname</td>
+                            <td>{% trans "localhost หรือ IP ของ SQL Server" %}</td>
+                        </tr>
+                        <tr>
+                            <td>Port</td>
+                            <td>1433 (default)</td>
+                        </tr>
+                        <tr>
+                            <td>Database name</td>
+                            <td>frauddb</td>
+                        </tr>
+                        <tr>
+                            <td>Authentication</td>
+                            <td>Username / Password</td>
+                        </tr>
+                        <tr>
+                            <td>Username</td>
+                            <td>{% trans "ชื่อ user SQL Server ของคุณ" %}</td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td>{% trans "รหัสผ่าน" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>{% blocktrans %}<strong>หมายเหตุ:</strong> ถ้ายังไม่ได้ติดตั้ง JDBC Driver ของ SQL Server ให้ไปที่ Preferences → Databases แล้วเพิ่ม .jar ไฟล์ของ Microsoft JDBC Driver ก่อน{% endblocktrans %}</p>
+            <p>{% trans "กด OK แล้วกด Execute (คลิกขวา → Execute) เพื่อทดสอบ Connection ถ้าสำเร็จ Node จะเป็นสีเขียว ✅" %}</p>
+
+            <h3>Node 2: DB Query Reader (Read data + Create column for record the start time)</h3>
+            <p>{% blocktrans %}เนื่องจาก Node Microsoft SQL Server Connector (Node 1) ทำได้แค่ เปิด Connection เท่านั้น ยังไม่ได้ดึงข้อมูลออกมา เราจึงต้องมีNode ที่ทำหน้าที่ ดึงข้อมูลจาก Database มาเป็น Table ใน KNIME โดยรับจาก SQL Server Connector (Node 1) แล้วรัน SQL Query ที่กำหนดไว้ผลลัพธ์ที่ได้คือตารางข้อมูลที่พร้อมส่งต่อให้Node ถัดไป ถ้าไม่มี Node นี้ KNIME จะไม่รู้ว่าต้องการข้อมูลตารางไหน และจำนวนเท่าไหร่ นอกจากนี้ ยังได้เพิ่ม SYSDATETIME() เข้ามาด้วย เพื่อบันทึกเวลาที่ SQL Server เริ่มต้น Query ณ ขณะนั้น โดยเก็บไว้เป็น Column ชื่อ extract_start_time เพื่อที่จะได้นำไปคำนวณเวลาที่ใช้ในการ Extract ใน Node ถัดไป{% endblocktrans %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% trans "ไปที่ช่อง Search Node ด้านซ้าย" %}</li>
+                <li>{% blocktrans %}พิมพ์ <code>DB Query Reader</code>{% endblocktrans %}</li>
+                <li>{% trans "ลาก Node มาวาง ทางขวาของ Node 1" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <p>{% trans "ลากเส้นจาก Output Port ของ Node 1 (สี่เหลี่ยมเล็กด้านขวา) ไปที่ Input Port ของ Node 2 (ด้านซ้าย)" %}</p>
+            <pre><code>[Node 1: SQL Server Connector] ── [Node 2: DB Query Reader]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า" %}</h4>
+            <p>{% trans "คลิกขวาที่ Node กด configure แล้วใส่ SQL Query:" %}</p>
+            <pre><code>SELECT *, SYSDATETIME() AS extract_start_time FROM fraud_10k</code></pre>
+            <p>{% trans "กด OK" %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 4: Execute" %}</h4>
+            <p>{% trans "คลิกขวา Node 2 → Execute" %}</p>
+            <p>{% blocktrans %}ถ้าสำเร็จ Node จะเป็นสีเขียว ซึ่งจะมีข้อมูล 10,000 แถวและจะเห็น Column <code>extract_start_time</code> เพิ่มขึ้นมาในทุก Row โดยผลลัพธ์จะเห็นเป็นตัวเลขยาวๆ เช่น <code>2026-02-26T21:09:10.639728500</code> นั้นคือค่าปกติ{% endblocktrans %}</p>
+
+            <h3>Node 3: Java Snippet (Calculate the extraction time)</h3>
+            <p>{% blocktrans %}Node นี้ทำหน้าที่รับค่าจาก <code>extract_start_time</code> ที่ติดมากับข้อมูลจาก Node 2 ซึ่งเป็นเวลาที่ SQL Server บันทึกไว้ตอนเริ่มต้น Query จากนั้นนำมาคำนวณหาเวลาที่ใช้ในการ Extract โดยใช้คำสั่ง Java System.currentTimeMillis() ซึ่งจะคืนค่าเวลาปัจจุบันในหน่วย Milliseconds{% endblocktrans %}</p>
+
+            <p>{% blocktrans %}การใช้ Java Snippet Node เป็นการที่เปิดให้เรา เขียน Java Code เอง ได้โดยตรงภายใน KNIME ซึ่งส่วนใหญ่ใช้กับงานที่มีความต้องการเฉพาะเจาะจงที่ Node สำเร็จรูปทั่วไปไม่รองรับ{% endblocktrans %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>Java Snippet</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลาก Node มาวาง ทางขวาของ Node 2" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 1: SQL Server Connector] ── [Node 2: DB Query Reader] ──► [Node 3: Java Snippet]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า" %}</h4>
+            <p><strong>{% trans "ส่วนที่ 1: เพิ่ม Input Column" %}</strong></p>
+            <p>{% trans "กดปุ่ม Add แล้วตั้งค่า:" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Java Type</th>
+                            <th>Java Field</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>extract_start_time</td>
+                            <td>LocalDateTime</td>
+                            <td>in_extract_start_time</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>{% trans "ส่วนที่ 2: เพิ่ม Output Column" %}</strong></p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Append</th>
+                            <th>Output Type</th>
+                            <th>Java Field</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>extract_sec</td>
+                            <td>Number (Float)</td>
+                            <td>out_extract_sec</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>{% trans "ส่วนที่ 3: ใส่ Code" %}</strong></p>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <pre><code>// Line 1: Convert extract_start_time → Milliseconds and store in start_ms
+long start_ms = in_extract_start_time.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
+
+// Line 2: Current time - start_ms then divide by 1000 = seconds
+out_extract_sec = (System.currentTimeMillis() - start_ms) / 1000.0;</code></pre>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <pre><code>// 第1行：将extract_start_time → 毫秒并存储在start_ms中
+long start_ms = in_extract_start_time.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
+
+// 第2行：当前时间 - start_ms然后除以1000 = 秒
+out_extract_sec = (System.currentTimeMillis() - start_ms) / 1000.0;</code></pre>
+            {% else %}
+            <pre><code>// บรรทัดที่ 1: แปลง extract_start_time → Milliseconds เก็บไว้ใน start_ms
+long start_ms = in_extract_start_time.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
+
+// บรรทัดที่ 2: เวลาปัจจุบัน - start_ms แล้วหาร 1000 = วินาที
+out_extract_sec = (System.currentTimeMillis() - start_ms) / 1000.0;</code></pre>
+            {% endif %}
+
+            <p>{% trans "กด OK" %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 4: Execute" %}</h4>
+            <p>{% trans "คลิกขวา Node 3 → Execute" %}</p>
+            <p>{% blocktrans %}ถ้าสำเร็จจะเห็น Column <code>extract_sec</code> เพิ่มขึ้นมาในทุก Row{% endblocktrans %}</p>
+
+            <h3>{% trans "ภาพรวม Phase 1 ที่ได้" %}</h3>
+            <pre><code>[Node 1: SQL Server Connector]
+ ↓
+[Node 2: DB Query Reader]
+ ↓
+[Node 3: Java Snippet - Timer Start]
+ ↓ (Calculate the extraction time)</code></pre>
+
+            <h3>{% trans "Checklist ก่อนไป Phase 2" %}</h3>
+            <ul>
+                <li>{% trans "Node 1 Execute แล้วเป็นสีเขียว (Connection สำเร็จ)" %}</li>
+                <li>{% trans "Node 2 Execute แล้วเห็นข้อมูล 10,000 แถว" %}</li>
+                <li>{% blocktrans %}Node 3 Execute แล้วเห็น Column <code>extract_start_time</code> เพิ่มขึ้นมา{% endblocktrans %}</li>
+            </ul>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('phase2')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 2 Tab -->
+        <div id="phase2" class="tab-content">
+            <h2>Phase 2 — Transform</h2>
+
+            <h3>{% trans "วัตถุประสงค์ของ Phase 2" %}</h3>
+            <p>{% blocktrans %}ในเฟสนี้เราจะแปลงข้อมูลดิบจาก SQL Server ที่ Extract มาแล้วให้อยู่ในรูปแบบที่ถูกต้อง สะอาด และพร้อมสำหรับการ Load ลง MySQL ซึ่งในเฟสนี้มีการ:{% endblocktrans %}</p>
+            <ol>
+                <li>{% trans "Hash ข้อมูลส่วนตัว" %}</li>
+                <li>{% trans "แปลง Data Type ใน คอลัมน์ trans_date_trans_time" %}</li>
+                <li>{% trans "กรองข้อมูลที่ amt <= 0 หรือ NULL ออก" %}</li>
+                <li>{% trans "Rename columns" %}</li>
+            </ol>
+
+            <p>{% trans "Phase นี้มี 5 Node (Node 4-8) ทำตามลำดับเลย" %}</p>
+
+            <h3>Node 4 — Java Snippet (SHA-256 Hash)</h3>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>Java Snippet</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Node 3" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 3: Java Snippet calculate the extraction time] ──► [Node 4: Java Snippet SHA-256]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า Output Columns" %}</h4>
+            <p><strong>{% trans "ส่วนที่ 1: เพิ่ม Output Column" %}</strong></p>
+            <p>{% trans "กดปุ่ม Add ในส่วน Output 4 ครั้ง สำหรับ column ที่ต้อง Hash:" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field Type</th>
+                            <th>Replace</th>
+                            <th>Name</th>
+                            <th>KNIME Type</th>
+                            <th>Java Type</th>
+                            <th>Java Field</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Column</td>
+                            <td>✅</td>
+                            <td>cc_num</td>
+                            <td>String</td>
+                            <td>String</td>
+                            <td>out_cc_num</td>
+                        </tr>
+                        <tr>
+                            <td>Column</td>
+                            <td>✅</td>
+                            <td>first</td>
+                            <td>String</td>
+                            <td>String</td>
+                            <td>out_first</td>
+                        </tr>
+                        <tr>
+                            <td>Column</td>
+                            <td>✅</td>
+                            <td>last</td>
+                            <td>String</td>
+                            <td>String</td>
+                            <td>out_last</td>
+                        </tr>
+                        <tr>
+                            <td>Column</td>
+                            <td>✅</td>
+                            <td>dob</td>
+                            <td>String</td>
+                            <td>String</td>
+                            <td>out_dob</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>{% blocktrans %}<strong>สังเกต:</strong> ครั้งนี้เลือก Replace ไม่ใช่ Append เพราะต้องการทับค่าเดิมด้วยค่า Hash{% endblocktrans %}</p>
+
+            <p><strong>{% trans "ส่วนที่ 2: เพิ่ม Input Column" %}</strong></p>
+            <p>{% trans "กดปุ่ม Add ในส่วน Input 4 ครั้ง:" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Java Type</th>
+                            <th>Java Field</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>cc_num</td>
+                            <td>String</td>
+                            <td>in_cc_num</td>
+                        </tr>
+                        <tr>
+                            <td>first</td>
+                            <td>String</td>
+                            <td>in_first</td>
+                        </tr>
+                        <tr>
+                            <td>last</td>
+                            <td>String</td>
+                            <td>in_last</td>
+                        </tr>
+                        <tr>
+                            <td>dob</td>
+                            <td>String</td>
+                            <td>in_dob</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% trans "ขั้นตอนที่ 5: ใส่ Code ใน Snippet" %}</h4>
+            <p>{% trans "บรรทัด 13 (Your custom imports):" %}</p>
+            <pre><code>import java.security.MessageDigest;</code></pre>
+
+            <p>{% trans "บรรทัด 37 (Your custom variables):" %}</p>
+            <pre><code>String sha256(String input) throws Exception {
+    if (input == null) return null;
+    MessageDigest md = MessageDigest.getInstance("SHA-256");
+    byte[] hash = md.digest(input.getBytes("UTF-8"));
+    StringBuilder sb = new StringBuilder();
+    for (byte b : hash) {
+        sb.append(String.format("%02x", b));
+    }
+    return sb.toString();
+}</code></pre>
+
+            <p>{% trans "บรรทัด 42-45 (แทนที่ที่มีอยู่):" %}</p>
+            <pre><code>try{
+    out_cc_num = sha256(in_cc_num);
+    out_first = sha256(in_first);
+    out_last = sha256(in_last);
+    out_dob = sha256(in_dob);
+} catch (Exception e) {
+    throw new Abort(e.getMessage());
+}</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 6: Execute" %}</h4>
+            <p>{% trans "คลิกขวา → Execute ถ้าสำเร็จแล้วเช็คว่า column cc_num, first, last, dob เปลี่ยนเป็น Hash แล้ว" %}</p>
+
+            <h3>Node 5: String to DateTime</h3>
+            <p>{% blocktrans %}Node นี้แปลง trans_date_trans_time จาก String เป็น DateTime จริงๆตอน Extract โปรแกรม Knime ได้แปลง datatype จากString เป็น DateTime ให้แล้วอัตโนมัติ แต่เพื่อให้มั่นใจว่า Format ถูกต้องตามที่ต้องการ และ ให้ขั้นตอนการ Transform มีความชัดเจนและสามารถตรวจสอบได้ในทุก Step จึงยังคงใส่ Node นี้ไว้{% endblocktrans %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>String to Date&Time</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Node 4" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 4: Java Snippet SHA-256] ──► [Node 5: String to Date&Time]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า" %}</h4>
+            <p><strong>{% trans "ส่วนที่ 1: เอา column ที่ไม่ต้องการออก" %}</strong></p>
+            <p>{% trans "กดปุ่ม << เพื่อย้ายทุก column ไปฝั่ง Excludes ก่อน" %}</p>
+
+            <p><strong>{% trans "ส่วนที่ 2: เลือกเฉพาะ trans_date_trans_time" %}</strong></p>
+            <p>{% trans "คลิกที่ trans_date_trans_time ในฝั่ง Excludes แล้วกด > เพื่อย้ายมาฝั่ง Includes" %}</p>
+
+            <p><strong>{% trans "ส่วนที่ 3: เลื่อนลงไปดู Input format" %}</strong></p>
+            <ol>
+                <li>{% trans "คลิกที่ Date & time" %}</li>
+                <li>{% blocktrans %}Input format จะเปลี่ยนเป็น: <code>yyyy-MM-dd\'T\'HH:mm[:ss[.SSS]]</code>{% endblocktrans %}</li>
+                <li>{% trans "Output columns เลือก Replace ได้เลย เพราะเราต้องการแทนที่ trans_date_trans_time ด้วย DateTime" %}</li>
+            </ol>
+            <p>{% trans "กด OK" %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 4: Execute" %}</h4>
+            <p>{% trans "คลิกขวา → Execute แล้วเช็ค column trans_date_trans_time" %}</p>
+
+            <h3>Node 6: Rule-based Row Filter</h3>
+            <p>{% trans "Node นี้กรองทิ้ง Row ที่ amt <= 0 หรือ amt เป็น NULL" %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>Rule-based Row Filter</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Node 5" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 5: String to Date&Time] ──► [Node 6: Rule-based Row Filter]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า" %}</h4>
+            <p>{% trans "คลิกขวา Node 6 กด configure แล้วใส่ Rule ในช่อง:" %}</p>
+            <pre><code>$amt$ <= 0 => FALSE
+MISSING $amt$ => FALSE
+TRUE => TRUE</code></pre>
+
+            <p><strong>{% trans "อธิบาย:" %}</strong></p>
+            <ul>
+                <li>{% blocktrans %}<code>$amt$ <= 0 => FALSE</code> = ถ้า amt น้อยกว่าหรือเท่ากับ 0 → ลบทิ้ง{% endblocktrans %}</li>
+                <li>{% blocktrans %}<code>MISSING $amt$ => FALSE</code> = ถ้า amt เป็น NULL → ลบทิ้ง{% endblocktrans %}</li>
+                <li>{% blocktrans %}<code>TRUE => TRUE</code> = นอกนั้นเก็บไว้ทั้งหมด{% endblocktrans %}</li>
+            </ul>
+
+            <h4>{% trans "ขั้นตอนที่ 4: Execute" %}</h4>
+            <p>{% trans "คลิกขวา → Execute แล้วเช็คจำนวน Row ที่เหลือ" %}</p>
+
+            <h3>Node 7: Column Rename</h3>
+            <p>{% trans "Node นี้เราจะเปลี่ยนชื่อคอลัมน์ 5 คอลัมน์:" %}</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{% trans "ชื่อเดิม" %}</th>
+                            <th>{% trans "ชื่อใหม่" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>trans_date_trans_time</td>
+                            <td>trans_datetime</td>
+                        </tr>
+                        <tr>
+                            <td>cc_num</td>
+                            <td>cc_num_hash</td>
+                        </tr>
+                        <tr>
+                            <td>first</td>
+                            <td>first_hash</td>
+                        </tr>
+                        <tr>
+                            <td>last</td>
+                            <td>last_hash</td>
+                        </tr>
+                        <tr>
+                            <td>dob</td>
+                            <td>dob_hash</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>Column Rename</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Node 6" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 6: Rule-based Row Filter] ──► [Node 7: Column Rename]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า" %}</h4>
+            <p>{% trans "ดับเบิลคลิก แล้วเปลี่ยนชื่อดังนี้ (ตามตารางข้างบน)" %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 4: Execute" %}</h4>
+            <p>{% trans "คลิกขวา → Execute แล้วเช็คคอลัมน์ว่าเปลี่ยนชื่อตามที่ตั้งไว้หรือไม่" %}</p>
+
+            <h3>Node 8: Java Snippet (Timer Stop for transform phase)</h3>
+            <p>{% trans "Node นี้คำนวณเวลาที่ใช้ใน Transform Phase ทั้งหมด" %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>Java Snippet</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Node 7" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 7: Column Rename] ──► [Node 8: Java Snippet Timer Stop for transform phase]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า Input Columns" %}</h4>
+            <p><strong>{% trans "ส่วนที่ 1: เพิ่ม Input Column" %}</strong></p>
+            <p>{% trans "กด Add ในส่วน Input 1 ครั้ง:" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Java Type</th>
+                            <th>Java Field</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>extract_start_time</td>
+                            <td>LocalDateTime</td>
+                            <td>in_extract_start_time</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>{% trans "ส่วนที่ 2: เพิ่ม Output Columns" %}</strong></p>
+            <p>{% trans "กด Add ในส่วน Output 1 ครั้ง:" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Append</th>
+                            <th>Output Type</th>
+                            <th>Java Field</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>transform_sec</td>
+                            <td>Number (Float)</td>
+                            <td>out_transform_sec</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% trans "ขั้นตอนที่ 5: ใส่ Code" %}</h4>
+            <p>{% trans "บรรทัด 13 (Your custom imports):" %}</p>
+            <pre><code>import java.time.ZoneId;</code></pre>
+
+            <p>{% trans "บรรทัด 34-45 (แทนที่ที่มีอยู่):" %}</p>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <pre><code>long now = System.currentTimeMillis();
+
+// Convert LocalDateTime → milliseconds first
+long extract_start_ms = in_extract_start_time
+    .atZone(java.time.ZoneId.systemDefault())
+    .toInstant()
+    .toEpochMilli();
+
+out_transform_sec = (now - extract_start_ms) / 1000.0;</code></pre>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <pre><code>long now = System.currentTimeMillis();
+
+// 首先将LocalDateTime → 毫秒
+long extract_start_ms = in_extract_start_time
+    .atZone(java.time.ZoneId.systemDefault())
+    .toInstant()
+    .toEpochMilli();
+
+out_transform_sec = (now - extract_start_ms) / 1000.0;</code></pre>
+            {% else %}
+            <pre><code>long now = System.currentTimeMillis();
+
+// แปลง LocalDateTime → milliseconds ก่อน
+long extract_start_ms = in_extract_start_time
+    .atZone(java.time.ZoneId.systemDefault())
+    .toInstant()
+    .toEpochMilli();
+
+out_transform_sec = (now - extract_start_ms) / 1000.0;</code></pre>
+            {% endif %}
+
+            <h4>{% trans "ขั้นตอนที่ 6: Execute" %}</h4>
+            <p>{% trans "คลิกขวา → Execute แล้วเช็คว่า column transform_sec มีค่าเป็นวินาที" %}</p>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('phase3')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 3 Tab -->
+        <div id="phase3" class="tab-content">
+            <h2>Phase 3 — Load</h2>
+
+            <h3>{% trans "วัตถุประสงค์ของ Phase 3" %}</h3>
+            <p>{% trans "Phase 3 มีวัตถุประสงค์หลัก 2 ประการ คือ" %}</p>
+            <ol>
+                <li>{% trans "เพื่อโหลดข้อมูลที่ผ่านการ Transform แล้วเข้าสู่ตาราง fraud_clean_knime บน MySQL" %}</li>
+                <li>{% trans "เพื่อจับเวลาขั้นตอน Load แยกตามขนาด 10K, 100K และ 1M แถว และบันทึกผล" %}</li>
+            </ol>
+
+            <p>{% trans "Phase นี้มี 6 Node (Node 9-14) ทำตามลำดับเลย" %}</p>
+
+            <h3>Node 9: MySQL Connector</h3>
+            <p>{% blocktrans %}MySQL Connector Node ทำหน้าที่เป็น ตัวสร้างการเชื่อมต่อ (Connection Object) ระหว่าง KNIME กับ MySQL Database โดยเฉพาะ โดยตัว Node เองไม่ได้ดึงหรือเขียนข้อมูลใดๆ เพียงแค่ทำหน้าที่การเชื่อมต่อ เท่านั้น ซึ่ง MySQL Connector Node จะส่งการเชื่อมต่อไปให้Node ถัดไปใช้งาน{% endblocktrans %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>MySQL Connector</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางใต้ Workflow (แยกออกมา ยังไม่ต้องต่อสาย)" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ตั้งค่า" %}</h4>
+            <p>{% trans "คลิกขวากด configure แล้วตั้งค่า:" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>{% trans "ค่า" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hostname</td>
+                            <td>localhost</td>
+                        </tr>
+                        <tr>
+                            <td>Port</td>
+                            <td>3306</td>
+                        </tr>
+                        <tr>
+                            <td>Database name</td>
+                            <td>fraud_dl</td>
+                        </tr>
+                        <tr>
+                            <td>Username</td>
+                            <td>{% trans "ชื่อ user MySQL" %}</td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td>{% trans "รหัสผ่าน" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% trans "ขั้นตอนที่ 3: Execute ก่อนยังไม่ต้องต่อสาย" %}</h4>
+            <p>{% trans "คลิกขวา → Execute ถ้าสำเร็จ Node จะเป็นสีเขียว ✅" %}</p>
+
+            <h3>Node 10: DB Writer</h3>
+            <p>{% blocktrans %}DB Writer Node ทำหน้าที่ เขียนข้อมูลจาก KNIME ลงสู่ตารางใน Database โดยรับข้อมูลที่ผ่านการ Transform มาแล้วจาก Node ก่อนหน้า และรับการเชื่อมต่อจาก MySQL Connector เพื่อรู้ว่าต้องเขียนลง Database ไหน{% endblocktrans %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>DB Writer</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Node 8" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 8: Java Snippet Timer Stop for transform phase] ──►[Node 10: DB Writer]
+
+|
+[Node 9: MySQL Connector] ─────────────────────────────────┘</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า DB Writer" %}</h4>
+            <p>{% trans "คลิกขวากด configure แล้วตั้งค่า:" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>{% trans "ค่า" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Schema name</td>
+                            <td>fraud_dl</td>
+                        </tr>
+                        <tr>
+                            <td>Table name</td>
+                            <td>fraud_clean_knime</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>{% blocktrans %}<strong>If table exists:</strong> เลือก Append rows{% endblocktrans %}</p>
+
+            <p><strong>Columns to write:</strong></p>
+            <p>{% trans "ต้องย้าย column ที่ไม่มีใน MySQL ออกไปฝั่ง Excludes:" %}</p>
+            <ol>
+                <li>column1</li>
+                <li>street</li>
+                <li>zip</li>
+                <li>lat</li>
+                <li>long_col</li>
+                <li>unix_time</li>
+                <li>merch_lat</li>
+                <li>merch_long</li>
+                <li>extract_start_time</li>
+                <li>extract_sec</li>
+                <li>transform_sec</li>
+            </ol>
+
+            <p>{% trans "เลื่อนดู Includes ทั้งหมดแล้วเทียบกับ Schema MySQL ที่สร้างไว้:" %}</p>
+            <pre><code>trans_datetime, cc_num_hash, merchant, category, amt,
+first_hash, last_hash, gender, city, state,
+city_pop, job, dob_hash, trans_num, is_fraud</code></pre>
+
+            <p>{% blocktrans %}<strong>ส่วน Output: เอาติ๊ก ✅ ออก</strong>{% endblocktrans %}</p>
+            <ul>
+                <li>{% trans "ติ๊ก ✅ Append status column ออก" %}</li>
+                <li>{% trans "ติ๊ก ✅ Append error column ออก" %}</li>
+            </ul>
+            <p>{% trans "กด OK" %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 4: Execute" %}</h4>
+            <p>{% trans "คลิกขวา → Execute ถ้าสำเร็จ Node จะเป็นสีเขียว ✅" %}</p>
+
+            <h3>Node 11: Java Snippet (Load Timer Stop)</h3>
+            <p>{% blocktrans %}Node นี้ทำหน้าที่ หยุดจับเวลาของ Phase Load และคำนวณเวลาที่ใช้ในแต่ละ Phase ทั้งหมด เพื่อเตรียมบันทึกลง CSV{% endblocktrans %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>Java Snippet</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Node 10 (DB Writer)" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 10: DB Writer] ──► [Node 11 Java Snippet: Load Timer Stop]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า" %}</h4>
+            <p><strong>{% trans "ส่วนที่ 1: เพิ่ม Input Column" %}</strong></p>
+            <p>{% trans "กด Add ในส่วน Input 2 ครั้ง:" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Java Type</th>
+                            <th>Java Field</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>extract_start_time</td>
+                            <td>LocalDateTime</td>
+                            <td>in_extract_start_time</td>
+                        </tr>
+                        <tr>
+                            <td>transform_sec</td>
+                            <td>Double</td>
+                            <td>in_transform_sec</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>{% trans "ส่วนที่ 2: เพิ่ม Output Columns" %}</strong></p>
+            <p>{% trans "กด Add ในส่วน Output 1 ครั้ง:" %}</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Append</th>
+                            <th>Output Type</th>
+                            <th>Java Field</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>load_sec</td>
+                            <td>Number (Float)</td>
+                            <td>out_load_sec</td>
+                        </tr>
+                        <tr>
+                            <td>dataset</td>
+                            <td>String</td>
+                            <td>out_dataset</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% trans "ขั้นตอนที่ 4: ใส่ Code" %}</h4>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <pre><code>long load_end = System.currentTimeMillis();
+
+// Convert extract_start_time (LocalDateTime) to millisecond
+long extract_start_ms = in_extract_start_time
+    .atZone(java.time.ZoneId.systemDefault())
+    .toInstant()
+    .toEpochMilli();
+
+// Calculate load_sec
+double total_elapsed = (load_end - extract_start_ms) / 1000.0;
+double load_sec = total_elapsed - in_transform_sec;
+
+out_load_sec = load_sec;
+out_dataset = "10k";</code></pre>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <pre><code>long load_end = System.currentTimeMillis();
+
+// 将extract_start_time（LocalDateTime）转换为毫秒
+long extract_start_ms = in_extract_start_time
+    .atZone(java.time.ZoneId.systemDefault())
+    .toInstant()
+    .toEpochMilli();
+
+// 计算load_sec
+double total_elapsed = (load_end - extract_start_ms) / 1000.0;
+double load_sec = total_elapsed - in_transform_sec;
+
+out_load_sec = load_sec;
+out_dataset = "10k";</code></pre>
+            {% else %}
+            <pre><code>long load_end = System.currentTimeMillis();
+
+// แปลง extract_start_time (LocalDateTime) เป็น millisecond
+long extract_start_ms = in_extract_start_time
+    .atZone(java.time.ZoneId.systemDefault())
+    .toInstant()
+    .toEpochMilli();
+
+// คำนวณ load_sec
+double total_elapsed = (load_end - extract_start_ms) / 1000.0;
+double load_sec = total_elapsed - in_transform_sec;
+
+out_load_sec = load_sec;
+out_dataset = "10k";</code></pre>
+            {% endif %}
+
+            <h4>{% trans "ขั้นตอนที่ 5: Execute" %}</h4>
+            <p>{% trans "กด Reset all → Execute all" %}</p>
+            <p>{% trans "คลิกขวา → Execute แล้วเช็คว่ามี column load_sec มีค่าเป็นวินาทีและ column dataset ปรากฏขึ้นมา" %}</p>
+
+            <h3>Node 12: Table Row to Variable</h3>
+            <p>{% blocktrans %}Node นี้ทำหน้าที่แปลงข้อมูลในแถวแรกของ Table ให้กลายเป็น Flow Variable (ตัวแปรที่อยู่นอก Table) สรุปง่ายๆคือ ทำให้ข้อมุลแถวแรกในตารางกลายเป็นตัวแปรที่อยู่นอกตารางเพื่อให้Node ที่อยู่ถัดไปในทุกจุดของ Workflow สามารถดึงตัวแปรนั้นไปใช้ได้เลย ในโปรเจคนี้แปลงค่า extract_sec, transform_sec, load_sec และ dataset จาก Row แรกเป็น Flow Variable{% endblocktrans %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>Table Row to Variable</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Load Timer Stop" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 11 Java Snippet: Load Timer Stop] ─ [Node 12 : Table Row to Variable Node]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า" %}</h4>
+            <ol>
+                <li>{% trans "ย้ายไปฝั่ง Excludes ให้เหลือแค่ 4 ตัวใน Includes" %}</li>
+                <li>{% blocktrans %}กดปุ่ม << เพื่อย้ายทุกอย่างไป Excludes ก่อน แล้วค่อยย้ายกลับมาแค่ 4 ตัวนี้:{% endblocktrans %}
+                    <ul>
+                        <li>extract_sec</li>
+                        <li>transform_sec</li>
+                        <li>load_sec</li>
+                        <li>dataset</li>
+                    </ul>
+                </li>
+                <li>{% trans "กด Apply หรือ Apply and Execute" %}</li>
+            </ol>
+
+            <h3>Node 13: Variable to Table Row</h3>
+            <p>{% blocktrans %}Node นี้ทำหน้าที่ ตรงข้ามกับ Table Row to Variable เลยคือแปลง Flow Variable ที่ลอยอยู่นอก Table ให้กลับมาเป็น แถวข้อมูลใน Table แทนในโปรเจคนี้ Node นี้จะรับค่า extract_sec, transform_sec, load_sec และ dataset จาก Node 12 : Table Row to Variable กลับมาเป็นแถวข้อมูลในตารางอีกครั้ง ทั้งหมดนี้เพื่อให้CSV Writer ที่รับได้แค่ Table ธรรมดาสามารถบันทึกค่า Timing ทั้ง 3 Phase ลงไฟล์ได้{% endblocktrans %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>Variable to Table Row</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Table Row to Variable" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 12 : Table Row to Variable Node] ── [Node 13 : Variable to Table Row]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า" %}</h4>
+            <p>{% trans "ย้าย 4 ตัวนี้จาก Excludes → Includes:" %}</p>
+            <ul>
+                <li>extract_sec</li>
+                <li>transform_sec</li>
+                <li>load_sec</li>
+                <li>dataset</li>
+            </ul>
+            <p>{% trans "กด Apply หรือ Apply and Execute" %}</p>
+
+            <h3>Node 14: CSV Writer</h3>
+            <p>{% trans "CSV Writer Node ทำหน้าที่ เขียนข้อมูลจาก Table ออกมาเป็นไฟล์ .csv บนเครื่องของเรา" %}</p>
+
+            <h4>{% trans "ขั้นตอนที่ 1: เพิ่ม Node" %}</h4>
+            <ol>
+                <li>{% blocktrans %}พิมพ์ <code>CSV Writer</code> ใน Search Node{% endblocktrans %}</li>
+                <li>{% trans "ลากมาวางต่อจาก Variable to Table Row" %}</li>
+            </ol>
+
+            <h4>{% trans "ขั้นตอนที่ 2: ต่อสาย" %}</h4>
+            <pre><code>[Node 13 : Variable to Table Row] ──► [Node 14 : CSV Writer]</code></pre>
+
+            <h4>{% trans "ขั้นตอนที่ 3: ตั้งค่า" %}</h4>
+            <ol>
+                <li>{% trans "เลือก location ที่อยากให้ไฟล์ csv แสดง" %}</li>
+                <li>{% blocktrans %}ใส่ชื่อไฟล์ในช่อง Name: <code>knime_10k_timing_log.csv</code>{% endblocktrans %}</li>
+                <li>{% trans "กด Choose file" %}</li>
+                <li>If exists : Overwrite</li>
+                <li>{% trans "กด Apply หรือ Apply and Execute" %}</li>
+            </ol>
+
+            <h3>{% trans "ตรวจสอบผลใน MySQL Workbench:" %}</h3>
+            <p>{% trans "รันโค้ดนี้:" %}</p>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <pre><code>USE fraud_dl;
+
+-- Check row count (should be 10000)
+SELECT COUNT(*) FROM fraud_clean_knime;
+
+-- Check hash length of 64 characters
+SELECT
+    trans_datetime,
+    cc_num_hash,
+    first_hash,
+    last_hash,
+    dob_hash
+FROM fraud_clean_knime LIMIT 3;
+
+-- Check no negative amt
+SELECT COUNT(*) FROM fraud_clean_knime WHERE amt <= 0;</code></pre>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <pre><code>USE fraud_dl;
+
+-- 检查行数（应该是10000）
+SELECT COUNT(*) FROM fraud_clean_knime;
+
+-- 检查64个字符的哈希长度
+SELECT
+    trans_datetime,
+    cc_num_hash,
+    first_hash,
+    last_hash,
+    dob_hash
+FROM fraud_clean_knime LIMIT 3;
+
+-- 检查没有负数amt
+SELECT COUNT(*) FROM fraud_clean_knime WHERE amt <= 0;</code></pre>
+            {% else %}
+            <pre><code>USE fraud_dl;
+
+-- ตรวจจำนวนแถว (ต้องได้ 10000)
+SELECT COUNT(*) FROM fraud_clean_knime;
+
+-- ตรวจ hash ความยาว 64 ตัวอักษร
+SELECT
+    trans_datetime,
+    cc_num_hash,
+    first_hash,
+    last_hash,
+    dob_hash
+FROM fraud_clean_knime LIMIT 3;
+
+-- ตรวจไม่มี amt ติดลบ
+SELECT COUNT(*) FROM fraud_clean_knime WHERE amt <= 0;</code></pre>
+            {% endif %}
+
+            <p>{% trans "และเปิด timing_log_knime.csv ในโฟลเดอร์ที่กำหนด location ในโปรเจคนี้กำหนดไว้ที่โฟลเดอร์ data" %}</p>
+
+            <h3>{% trans "ก่อนรัน 100K หรือ 1M:" %}</h3>
+            <ol>
+                <li>{% trans "ใน MySQL รัน TRUNCATE TABLE ก่อน โดยรันโค้ดนี้:" %}
+                    <pre><code>USE fraud_dl;
+TRUNCATE TABLE fraud_clean_knime;</code></pre>
+                </li>
+                <li>{% blocktrans %}เปลี่ยน Node 2, Node 11 และ Node 14 เป็น "100k" หรือ "1m"{% endblocktrans %}</li>
+                <li>{% trans "กด Reset all → Execute all" %}</li>
+            </ol>
+
+            <div class="img-container">
+                <img src="{% static 'images/knime/Image illustrating ETL Pipeline testing with KNIME.png' %}"
+                     alt="{% trans "ภาพประกอบการทดสอบ ETL Pipeline ด้วย KNIME" %}" loading="lazy">
+            
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <button class="section-nav-btn next-phase" onclick="switchTab('benchmark')">
+                    {% trans "Next Phase" %} <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+</div>
+        </div>
+
+        <!-- Benchmark Tab -->
+        <div id="benchmark" class="tab-content">
+            <h2>{% trans "สรุปและวิเคราะห์ผล KNIME ETL Benchmark" %}</h2>
+
+            <h3>{% trans "ผลการทดสอบ" %}</h3>
+            <p>{% trans "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้:" %}</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>dataset</th>
+                            <th>extract_sec</th>
+                            <th>transform_sec</th>
+                            <th>load_sec</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10k</td>
+                            <td>0.238</td>
+                            <td>1.045</td>
+                            <td>1.868</td>
+                        </tr>
+                        <tr>
+                            <td>100k</td>
+                            <td>0.759</td>
+                            <td>8.221</td>
+                            <td>41.728</td>
+                        </tr>
+                        <tr>
+                            <td>1m</td>
+                            <td>19.215</td>
+                            <td>141.213</td>
+                            <td>469.997</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <p>From the timing results recorded in the table, KNIME ETL Pipeline took a total of 3.151 seconds, 50.708 seconds, and 630.425 seconds for datasets of 10,000, 100,000, and 1,000,000 rows respectively. Details of each phase are shown in Charts 1 to 3 below.</p>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <p>从表格中记录的计时结果可以得出，KNIME ETL Pipeline 对于 10,000、100,000 和 1,000,000 行的数据集分别总共花费了 3.151 秒、50.708 秒和 630.425 秒。每个阶段的详细信息显示在下面的图表 1 到 3 中。</p>
+            {% else %}
+            <p>จากผลการจับเวลาที่บันทึกในตาราง สรุปได้ว่า KNIME ETL Pipeline ใช้เวลารวม 3.151 วินาที, 50.708 วินาทีและ 630.425 วินาทีสำหรับ Dataset ขนาด 10,000, 100,000 และ 1,000,000 แถว ตามลำดับ โดยรายละเอียดของแต่ละ Phase แสดงในกราฟที่ 1 ถึง 3 ด้านล่าง</p>
+            {% endif %}
+
+            <h3>{% trans "1. KNIME: การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล" %}</h3>
+            <div class="img-container">
+                <img src="{% static 'images/knime/knime_1_grouped_bar.png' %}"
+                     alt="KNIME Grouped Bar Chart" loading="lazy">
+            </div>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <p>This chart clearly shows the time of each phase separated by dataset size. The orange bars (Load) are higher than other bars in all sizes, and at 1,000,000 rows, Load takes 470.00 seconds, which is significantly higher than Transform (141.21s) and Extract (19.21s).</p>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <p>该图表清楚地显示了每个阶段按数据集大小分开的时间。橙色条（Load）在所有大小中都高于其他条，在 1,000,000 行时，Load 花费 470.00 秒，明显高于 Transform（141.21秒）和 Extract（19.21秒）。</p>
+            {% else %}
+            <p>กราฟนี้แสดงเวลาของแต่ละ Phase แยกออกจากกันให้เห็นชัดเจนในแต่ละขนาด Dataset จะเห็นว่าแท่งสีส้ม (Load) สูงกว่าแท่งอื่นในทุกขนาด และที่ 1,000,000 แถว Load ใช้เวลา 470.00 วินาทีซึ่งสูงกว่า Transform (141.21s) และ Extract (19.21s) อย่างชัดเจน</p>
+            {% endif %}
+
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <p>The reason the Load Phase takes so long is because it uses the DB Writer Node, which processes one row at a time. The NodePit documentation, in the Batch size section of the DB Writer Node, states 'Entering 1 disables batch processing. This way only one row is processed at a time.' This means data is sent to the database one row at a time. When KNIME sends data row by row, MySQL needs to write data to disk every time a command is committed. According to the MySQL InnoDB Transaction Management documentation, 'Flushing and syncing log files at each transaction can limit the maximum number of transactions per second' and the speed of the storage device determines the maximum number of commands that can be executed per second.</p>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <p>Load Phase 花费很长时间的原因是因为它使用 DB Writer Node，它一次处理一行。NodePit 文档在 DB Writer Node 的 Batch size 部分指出"输入 1 会禁用批处理。这样一次只处理一行。"这意味着数据一次发送到数据库一行。当 KNIME 逐行发送数据时，MySQL 需要在每次提交命令时将数据写入磁盘。根据 MySQL InnoDB Transaction Management 文档，"在每个事务刷新和同步日志文件可能会限制每秒的最大事务数"，存储设备的速度决定了每秒可以执行的最大命令数。</p>
+            {% else %}
+            <p>สาเหตุที่ Load Phase ใช้เวลานานเพราะว่ามีการใช้ DB Writer Node ซึ่งประมวลผลทีละ 1 แถว เอกสาร NodePit ระบุไว้ในหัวข้อ Batch size ของ DB Writer Node ว่า 'การใส่ค่า 1 จะปิดการประมวลผลแบบ Batch ซึ่งทำให้ประมวลผลทีละ 1 แถวเท่านั้น' หมายความว่าข้อมูลถูกส่งไปยังฐานข้อมูลทีละ 1 แถว เมื่อ KNIME ส่งข้อมูลทีละแถว MySQL จำเป็นต้องบันทึกข้อมูลลงดิสก์ทุกครั้งที่มีการยืนยันคำสั่ง ตามเอกสาร MySQL InnoDB Transaction Management ระบุว่า 'การบันทึกและซิงค์ไฟล์ log ในแต่ละธุรกรรมสามารถจำกัดจำนวนธุรกรรมสูงสุดต่อวินาทีได้' และความเร็วของอุปกรณ์จัดเก็บข้อมูลเป็นตัวกำหนดขีดจำกัดของจำนวนคำสั่งสูงสุดที่ทำได้ต่อวินาที</p>
+            {% endif %}
+
+            <h3>{% trans "2. KNIME: สัดส่วนของแต่ละ Phase ต่อเวลารวม" %}</h3>
+            <div class="img-container">
+                <img src="{% static 'images/knime/knime_2_stacked_bar.png' %}"
+                     alt="KNIME Stacked Bar Chart" loading="lazy">
+            </div>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <p>This chart shows the total time for each dataset size, breaking down the proportion of each phase in the same bar. The total times are 3.151 seconds, 50.708 seconds, and 630.425 seconds respectively.</p>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <p>该图表显示了每个数据集大小的总时间，在同一条中分解每个阶段的比例。总时间分别为 3.151 秒、50.708 秒和 630.425 秒。</p>
+            {% else %}
+            <p>กราฟนี้แสดงเวลารวมทั้งหมดของแต่ละขนาดชุดข้อมูล โดยแบ่งสัดส่วนของแต่ละ Phase ให้เห็นในแท่งเดียวกัน เวลารวมอยู่ที่ 3.151 วินาที, 50.708 วินาทีและ 630.425 วินาทีตามลำดับ</p>
+            {% endif %}
+
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <p>At 1,000,000 rows, the data loading phase (orange) takes up 74.6% of the total time. The reason the Load Phase takes so long is because it uses the DB Writer Node, which processes one row at a time. The NodePit documentation, in the Batch size section of the DB Writer Node, states 'Entering 1 disables batch processing. This way only one row is processed at a time.' which disables batch processing.</p>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <p>在 1,000,000 行时，数据加载阶段（橙色）占总时间的 74.6%。Load Phase 花费很长时间的原因是因为它使用 DB Writer Node，它一次处理一行。NodePit 文档在 DB Writer Node 的 Batch size 部分指出"输入 1 会禁用批处理。这样一次只处理一行。"这会禁用批处理。</p>
+            {% else %}
+            <p>ที่ 1,000,000 แถว ขั้นตอนการโหลดข้อมูล (สีส้ม) กินสัดส่วนถึง 74.6% ของเวลาทั้งหมด สาเหตุที่ Load Phase ใช้เวลานานเพราะว่ามีการใช้ DB Writer Node ซึ่งประมวลผลทีละ 1 แถว เอกสาร NodePit ระบุไว้ในหัวข้อ Batch size ของ DB Writer Node ว่า 'การใส่ค่า 1 จะปิดการประมวลผลแบบ Batch ซึ่งทำให้ประมวลผลทีละ 1 แถวเท่านั้น' ซึ่งเป็นการปิดการทำงานแบบ Batch</p>
+            {% endif %}
+
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <p>From this test, it was found that KNIME's data loading phase takes significantly more time than SSIS across all dataset sizes. The reason may be due to the Driver and Connection Protocol differences between ODBC Destination and JDBC. The JDBC Driver Performance Optimization Tutorial states 'Each call to execute a query incurs overhead. Batch processing reduces this overhead by grouping operations'.</p>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <p>从这个测试中发现，KNIME 的数据加载阶段在所有数据集大小中都比 SSIS 花费更多时间。原因可能是由于 ODBC Destination 和 JDBC 之间的 Driver 和 Connection Protocol 差异。JDBC Driver Performance Optimization Tutorial 指出"每次执行查询的调用都会产生开销。批处理通过分组操作来减少这种开销"。</p>
+            {% else %}
+            <p>จากการทดสอบนี้พบว่าขั้นตอนการโหลดข้อมูลของ KNIME ใช้เวลามากกว่า SSIS อย่างมีนัยสำคัญในทุกขนาดชุดข้อมูล สาเหตุอาจมาจาก Driver และ Connection Protocol ระหว่าง ODBC Destination กับ JDBC โดยเอกสาร JDBC Driver Performance Optimization Tutorial ระบุว่า 'การเรียกใช้คำสั่ง query แต่ละครั้งจะสร้าง overhead การประมวลผลแบบ Batch ช่วยลด overhead นี้โดยการรวมการทำงานเข้าด้วยกัน'</p>
+            {% endif %}
+
+            <h3>{% trans "3. KNIME: อัตราการขยายตัวของแต่ละ Phase (Scalability)" %}</h3>
+            <div class="img-container">
+                <img src="{% static 'images/knime/knime_3_line_scalability.png' %}"
+                     alt="KNIME Line Scalability Chart" loading="lazy">
+            </div>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <p>This chart shows how fast each phase scales as the data grows. The orange line (Load) is the steepest, jumping from 1.868s to 470.00s when data grows 100 times, while the blue line (Extract) is the smoothest.</p>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <p>该图表显示了随着数据增长，每个阶段的扩展速度。橙色线（Load）最陡峭，当数据增长 100 倍时从 1.868 秒跃升到 470.00 秒，而蓝色线（Extract）最平滑。</p>
+            {% else %}
+            <p>กราฟนี้แสดงให้เห็นว่าแต่ละ Phase ขยายตัวเร็วแค่ไหนเมื่อข้อมูลโตขึ้น เส้นสีส้ม (Load) เป็นเส้นที่ชันที่สุด โดยพุ่งจาก 1.868s ไปถึง 470.00s เมื่อข้อมูลโต 100 เท่า ในขณะที่เส้นสีน้ำเงิน (Extract) ราบเรียบที่สุด</p>
+            {% endif %}
+
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <p>The reason Load is so steep is because the JDBC Driver must send COMMIT and BEGIN TRANSACTION commands every time it sends data row by row. According to the MySQL InnoDB Transaction Management documentation, 'Each transaction requires a BEGIN and COMMIT, which adds overhead'. Therefore, as the number of rows increases, the Load burden grows faster than other phases noticeably.</p>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <p>Load 如此陡峭的原因是因为 JDBC Driver 每次逐行发送数据时都必须发送 COMMIT 和 BEGIN TRANSACTION 命令。根据 MySQL InnoDB Transaction Management 文档，"每个事务都需要 BEGIN 和 COMMIT，这会增加开销"。因此，随着行数的增加，Load 负担明显比其他阶段增长更快。</p>
+            {% else %}
+            <p>สาเหตุที่ Load ชันมากเพราะ JDBC Driver ต้องส่งคำสั่ง COMMIT และ BEGIN TRANSACTION ทุกครั้งที่ส่งข้อมูลทีละแถว ตามที่เอกสาร MySQL InnoDB Transaction Management ระบุว่า 'แต่ละธุรกรรมต้องการคำสั่ง BEGIN และ COMMIT ซึ่งเพิ่ม overhead' ดังนั้นเมื่อแถวข้อมูลเพิ่มขึ้น ภาระของ Load จึงโตเร็วกว่า Phase อื่นอย่างเห็นได้ชัด</p>
+            {% endif %}
+
+            <h3>{% trans "สรุป" %}</h3>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+            <p>KNIME is an easy-to-use Visual ETL tool with a clear Node-based workflow. However, in terms of performance, it was found that the Load phase takes a long time due to sending data row by row through the JDBC Driver, making it unsuitable for processing large amounts of data that require high speed.</p>
+            {% elif LANGUAGE_CODE == 'zh-hans' %}
+            <p>KNIME 是一个易于使用的 Visual ETL 工具，具有清晰的基于节点的工作流程。然而，在性能方面，发现 Load 阶段由于通过 JDBC Driver 逐行发送数据而花费很长时间，使其不适合处理需要高速的大量数据。</p>
+            {% else %}
+            <p>KNIME เป็นเครื่องมือ ETL แบบ Visual ที่ใช้งานง่าย มีการทำงานแบบ Node-based ที่ชัดเจน แต่ในด้านประสิทธิภาพพบว่าขั้นตอน Load ใช้เวลานานเนื่องจากการส่งข้อมูลทีละแถวผ่าน JDBC Driver ทำให้ไม่เหมาะกับการประมวลผลข้อมูลขนาดใหญ่ที่ต้องการความเร็วสูง</p>
+            {% endif %}
+
+            <h3>References</h3>
+            <ul>
+                <li>"DB writer," NodePit. [Online]. Available: <a href="https://nodepit.com/node/org.knime.database.node.io.write.DBWriteNodeFactory" target="_blank">https://nodepit.com/node/org.knime.database.node.io.write.DBWriteNodeFactory</a></li>
+                <li>Mysql.com. [Online]. Available: <a href="https://dev.mysql.com/doc/refman/8.4/en/optimizing-innodb-transaction-management.html" target="_blank">https://dev.mysql.com/doc/refman/8.4/en/optimizing-innodb-transaction-management.html</a></li>
+                <li>"JDBC driver application performance optimization tutorial," Progress.com. [Online]. Available: <a href="https://www.progress.com/tutorials/jdbc/designing-performance" target="_blank">https://www.progress.com/tutorials/jdbc/designing-performance</a></li>
+            </ul>
+
+            <div class="section-nav">
+                <button class="section-nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                    <i class="fas fa-arrow-up"></i> {% trans "Back to Top" %}
+                </button>
+                <a href="{% url 'pipeline:airflow_pyspark' %}" class="section-nav-btn next-phase" style="text-decoration: none;">
+                    {% trans "Next Page" %} <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="card" style="text-align: center;">
+        <h3>{% trans "เปรียบเทียบกับเครื่องมืออื่น" %}</h3>
+        <div class="grid-2">
+            <a href="{% url 'pipeline:ssis' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">SSIS</a>
+            <a href="{% url 'pipeline:airflow_pyspark' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">Airflow + PySpark</a>
+            <a href="{% url 'pipeline:airflow_pandas' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">Airflow + Pandas</a>
+            <a href="{% url 'pipeline:analysis' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">{% trans "การวิเคราะห์โดยรวม" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/tabs.js' %}"></script>
+<script>
+    // Add copy buttons to all code blocks
+    document.addEventListener('DOMContentLoaded', function() {
+        const codeBlocks = document.querySelectorAll('pre code');
+
+        codeBlocks.forEach((codeBlock) => {
+            const pre = codeBlock.parentElement;
+
+            // Create copy button
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            // Add click event
+            copyButton.addEventListener('click', async () => {
+                const code = codeBlock.textContent;
+
+                try {
+                    await navigator.clipboard.writeText(code);
+
+                    // Show success feedback
+                    copyButton.textContent = 'Copied!';
+                    copyButton.classList.add('copied');
+
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy';
+                        copyButton.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = code;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+
+                    try {
+                        document.execCommand('copy');
+                        copyButton.textContent = 'Copied!';
+                        copyButton.classList.add('copied');
+
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        copyButton.textContent = 'Failed';
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy';
+                        }, 2000);
+                    }
+
+                    document.body.removeChild(textArea);
+                }
+            });
+
+            // Insert button into pre element
+            pre.style.position = 'relative';
+            pre.insertBefore(copyButton, codeBlock);
+        });
+    });
+
+    // Function to switch between tabs
+    function switchTab(tabId) {
+        // Get all tab buttons and contents
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Remove active class from all tabs
+        tabButtons.forEach(button => button.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        // Add active class to selected tab
+        const targetButton = document.querySelector(`[data-tab="${tabId}"]`);
+        const targetContent = document.getElementById(tabId);
+
+        if (targetButton && targetContent) {
+            targetButton.classList.add('active');
+            targetContent.classList.add('active');
+
+            // Scroll to top of content
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    }
+</script>
+{% endblock %}

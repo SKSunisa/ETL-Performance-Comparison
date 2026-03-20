@@ -1,0 +1,4537 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-19 17:52+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:174
+msgid "Apache Airflow + Pandas"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:175
+msgid "Lightweight ETL Processing with Apache Airflow Orchestration"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:182
+msgid "Implementation"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:185
+msgid "Comparison"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:193
+msgid "การทดสอบ ETL Pipeline ด้วย Apache Airflow และ pandas"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:195
+msgid ""
+"เพื่อให้การเปรียบเทียบมีความเที่ยงตรง การทดสอบ Airflow + pandas ใช้โครงสร้างเดียวกับ "
+"Airflow + PySpark ทุกประการ ไม่ว่าจะเป็น Airflow 2.8.0, DAG Structure, ขั้นตอน "
+"Transform , Dataset ทั้ง 3 ขนาด และ Source/Target Database เดิม "
+"โดยมีสิ่งที่เปลี่ยนแปลงเพียง 3 อย่างเท่านั้น"
+msgstr ""
+"เพื่อให้การเปรียบเทียบมีความเที่ยงตรง การทดสอบ Airflow + pandas ใช้โครงสร้างเดียวกับ "
+"Airflow + PySpark ทุกประการ ไม่ว่าจะเป็น Airflow 2.8.0, DAG Structure, ขั้นตอน "
+"Transform , Dataset ทั้ง 3 ขนาด และ Source/Target Database เดิม "
+"โดยมีสิ่งที่เปลี่ยนแปลงเพียง 3 อย่างเท่านั้น"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:198
+msgid "Processing Engine : เปลี่ยนจาก PySpark เป็น pandas แทน"
+msgstr "Processing Engine : เปลี่ยนจาก PySpark เป็น pandas แทน"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:199
+msgid "Load Method : เปลี่ยนจาก PySpark JDBC Writer เป็น pymysql"
+msgstr "Load Method : เปลี่ยนจาก PySpark JDBC Writer เป็น pymysql"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:200
+msgid ""
+"Target Table : สร้างตาราง fraud_clean_airflow_pandas ใน MySQL (fraud_dl) "
+"แยกออกมา โดยใช้ Schema เดียวกับ fraud_clean_airflow ทุกประการ "
+"เพื่อให้สามารถเปรียบเทียบผลลัพธ์ระหว่างสอง Engine ได้โดยตรง"
+msgstr ""
+"Target Table : สร้างตาราง fraud_clean_airflow_pandas ใน MySQL (fraud_dl) "
+"แยกออกมา โดยใช้ Schema เดียวกับ fraud_clean_airflow ทุกประการ "
+"เพื่อให้สามารถเปรียบเทียบผลลัพธ์ระหว่างสอง Engine ได้โดยตรง"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:203
+#: .\pipeline\templates\pipeline\test_translation.html:16
+#: .\pipeline\views.py:41 .\test_translation_live.py:18
+#: .\test_translation_live.py:24 .\test_translation_live.py:30
+msgid "STEP 1: ติดตั้ง Library เพิ่มเติม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:204
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:328
+msgid "เช็คก่อนรันว่า activate แล้ว โดยต้องเห็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:204
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:328
+msgid "นำหน้าอยู่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:208
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:323
+msgid "ตรวจสอบหลังติดตั้งเสร็จ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:211
+msgid "STEP 2: เพิ่ม requirements.txt"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:214
+msgid "STEP 3: สร้าง Table ใหม่ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:237
+msgid "STEP 4: สร้างไฟล์ DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:238
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:717
+msgid "เปิด VS Code สร้างไฟล์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:238
+msgid "ในโฟลเดอร์ dags วางโค้ดนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:261
+msgid "# โหลด .env"
+msgstr "# โหลด .env"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:315
+msgid "# Step 1: Hash ข้อมูลส่วนตัว"
+msgstr "# Step 1: Hash ข้อมูลส่วนตัว"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:324
+msgid "# Step 2: แปลง DateTime"
+msgstr "# Step 2: แปลง DateTime"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:331
+msgid "# Step 4: Select เฉพาะ column ที่ต้องการ"
+msgstr "# Step 4: Select เฉพาะ column ที่ต้องการ"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:451
+msgid "STEP 5: Trigger DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:452
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1361
+#: .\pipeline\templates\pipeline\ssis.html:653
+#: .\pipeline\templates\pipeline\ssis.html:915
+msgid "กลับไปที่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:452
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1361
+msgid "แล้ว Trigger DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:458
+msgid "รูป: Airflow DAG แสดง fraud_etl_pandas ทั้งหมด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:460
+msgid "STEP 6: ตรวจสอบข้อมูลใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:461
+msgid "รัน SQL ใน MySQL:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:464
+msgid "-- นับแถวทั้งหมด"
+msgstr "-- นับแถวทั้งหมด"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:467
+msgid "-- ดูตัวอย่างข้อมูล"
+msgstr "-- ดูตัวอย่างข้อมูล"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:470
+msgid "-- ตรวจว่า hash ถูกต้อง"
+msgstr "-- ตรวจว่า hash ถูกต้อง"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:478
+msgid "-- ตรวจ amt ว่าไม่มี NULL หรือ <= 0"
+msgstr "-- ตรวจ amt ว่าไม่มี NULL หรือ <= 0"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:483
+msgid "STEP 7: ตรวจสอบผลลัพธ์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:484
+msgid "ดู CSV หลังรันเสร็จ:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:488
+msgid "สรุป:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:488
+msgid ""
+"การทดสอบนี้แสดงให้เห็นว่า pandas สามารถใช้เป็น alternative "
+"ที่เรียบง่ายและมีประสิทธิภาพสูงสำหรับข้อมูลขนาดเล็กถึงกลาง "
+"โดยไม่ต้องการโครงสร้างพื้นฐานที่ซับซ้อนเหมือน PySpark"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:493
+#: .\pipeline\templates\pipeline\airflow_pandas.html:713
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:393
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:426
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:513
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:676
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:926
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1127
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1267
+#: .\pipeline\templates\pipeline\analysis.html:98
+#: .\pipeline\templates\pipeline\analysis.html:172
+#: .\pipeline\templates\pipeline\analysis.html:203
+#: .\pipeline\templates\pipeline\knime.html:231
+#: .\pipeline\templates\pipeline\knime.html:422
+#: .\pipeline\templates\pipeline\knime.html:781
+#: .\pipeline\templates\pipeline\knime.html:1182
+#: .\pipeline\templates\pipeline\knime.html:1337
+#: .\pipeline\templates\pipeline\ssis.html:116
+#: .\pipeline\templates\pipeline\ssis.html:255
+#: .\pipeline\templates\pipeline\ssis.html:346
+#: .\pipeline\templates\pipeline\ssis.html:480
+#: .\pipeline\templates\pipeline\ssis.html:1090
+#: .\pipeline\templates\pipeline\ssis.html:1162
+#: .\pipeline\templates\pipeline\ssis.html:1354 .\templates\base.html:109
+msgid "Back to Top"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:496
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:396
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:429
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:516
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:679
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:929
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1130
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1270
+#: .\pipeline\templates\pipeline\knime.html:234
+#: .\pipeline\templates\pipeline\knime.html:425
+#: .\pipeline\templates\pipeline\knime.html:784
+#: .\pipeline\templates\pipeline\knime.html:1185
+#: .\pipeline\templates\pipeline\ssis.html:119
+#: .\pipeline\templates\pipeline\ssis.html:258
+#: .\pipeline\templates\pipeline\ssis.html:349
+#: .\pipeline\templates\pipeline\ssis.html:483
+#: .\pipeline\templates\pipeline\ssis.html:1093
+#: .\pipeline\templates\pipeline\ssis.html:1165
+msgid "Next Phase"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:503
+msgid "สรุปผลการเปรียบเทียบ Airflow + PySpark vs Airflow + Pandas"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:505
+msgid "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:569
+msgid ""
+"จากตัวเลขข้างต้น เมื่อข้อมูลโตจาก 10k เป็น 1m แถว "
+"เวลาในการประมวลผลแต่ละเฟสจึงมีการเปลี่ยนแปลง "
+"เพื่อคำนวณว่าเวลาเพิ่มขึ้นหรือลดลงกี่เท่าจึงนำไปสู่ตารางด้านล่างเพื่อคำนวณอัตราการขยายตัวของแต่ละเฟส"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:571
+msgid "ตารางวิเคราะห์เปรียบเทียบประสิทธิภาพและอัตราการขยายตัว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:593
+msgid "PySpark เร็วกว่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:602
+#: .\pipeline\templates\pipeline\airflow_pandas.html:611
+#: .\pipeline\templates\pipeline\airflow_pandas.html:620
+#: .\pipeline\templates\pipeline\airflow_pandas.html:629
+#: .\pipeline\templates\pipeline\airflow_pandas.html:638
+#: .\pipeline\templates\pipeline\airflow_pandas.html:647
+#: .\pipeline\templates\pipeline\airflow_pandas.html:656
+#: .\pipeline\templates\pipeline\airflow_pandas.html:665
+msgid "Pandas เร็วกว่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:672
+msgid ""
+"จากตารางจะเห็นตัวเลขที่ผ่านการคำนวณมาแล้วแต่ความแตกต่างนี้เห็นได้ชัดยิ่งขึ้นในกราฟด้านล่าง "
+"ดังต่อไปนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:674
+#, fuzzy
+#| msgid "1. การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล (Grouped Bar Chart)"
+msgid ""
+"การเปรียบเทียบเวลาประมวลผล ETL แต่ละ Phase ระหว่าง Airflow+PySpark และ "
+"Airflow+Pandas"
+msgstr "1. การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล (Grouped Bar Chart)"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:680
+msgid ""
+"Fig 1: การเปรียบเทียบเวลาประมวลผล ETL แต่ละ Phase ระหว่าง Airflow+PySpark และ "
+"Airflow+Pandas"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:682
+msgid "อัตราการขยายตัวของแต่ละ Phase ระหว่าง Airflow+PySpark และ Airflow+Pandas"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:688
+msgid ""
+"Fig 2: อัตราการขยายตัวของแต่ละ Phase ระหว่าง Airflow+PySpark และ Airflow+Pandas"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:690
+#, fuzzy
+#| msgid "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้:"
+msgid "จากกราฟจะขอแบ่งการอธิบายเป็นแต่ละเฟส ดังนี้"
+msgstr "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้:"
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:693
+msgid ""
+"ผลที่ได้คือ PySpark ใช้ 0.746s / 2.405s / 19.362s และ Pandas ใช้ 0.847s / 2.359s / "
+"19.041s ต่างกันไม่เกิน 0.3 วินาที"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:694
+msgid ""
+"เหตุผลมาจากโค้ดของทั้งสอง DAG ใช้ pyodbc เป็น Connector เดียวกันในการดึงข้อมูลจาก SQL "
+"Server โดย PySpark ใช้ cursor.fetchall() และ Pandas ใช้ pd.read_sql() "
+"ซึ่งภายในก็เรียก pyodbc เช่นกัน เมื่ออ่านข้อมูลผ่าน pyodbc ตัว Driver จะจัดการ Buffer และ "
+"Format ผลลัพธ์เป็น Python Object โดยความแตกต่างด้านประสิทธิภาพระหว่างวิธีการ Fetch "
+"ต่างๆ นั้นแทบไม่มีนัยสำคัญ<sup><a href=\\"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:697
+msgid ""
+"PySpark เป็นเครื่องมือที่ให้ Python ไปควบคุม Apache Spark ซึ่งเป็นระบบที่ทำงานบน JVM "
+"(Java Virtual Machine) โดยมีชั้นกลางที่ชื่อว่า Py4J ทำหน้าที่เป็นสะพานรับส่งคำสั่งระหว่าง "
+"Python กับ JVM พูดง่ายๆ คือทุกครั้งที่รัน PySpark มันต้องเปิดระบบ Java ขึ้นมาก่อนเสมอ<sup><a "
+"href=\\"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:698
+msgid ""
+"ผลที่ได้คือ PySpark ใช้ 20.374s / 24.173s / 38.967s ส่วน Pandas ใช้ 0.223s / "
+"1.356s / 9.534s ต่างกันสูงสุดถึง 91 เท่า ที่ Dataset 10k สาเหตุหลักคือ ทุกครั้งที่รัน PySpark "
+"มันจะเริ่มต้นเป็น Python Process ก่อน แล้วค่อยเปิด JVM Instance ขึ้นมา ทำให้แม้ Dataset "
+"จะมีแค่ 10,000 แถว เวลา Transform ก็ยังสูงถึง 20 วินาที"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:701
+msgid ""
+"ผลที่ได้คือ PySpark ใช้ 32.186s / 108.389s / 955.372s ส่วน Pandas ใช้ 1.104s / "
+"9.798s / 102.108s Load Phase นี้คือจุดที่มองเห็นได้ชัดในกราฟ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:702
+msgid ""
+"สาเหตุที่ Pandas เร็วกว่าเพราะส่งข้อมูลหลายรายการพร้อมกันในครั้งเดียว "
+"ทำให้ใช้เวลารวมน้อยกว่ามาก<sup><a href=\"#ref10\">[10]</a></sup> ส่วน PySpark "
+"ช้ากว่านั้นยังไม่สามารถระบุได้อย่างชัดเจนมากนัก "
+"แต่จากการวิเคราะห์คิดว่าเป็นเพราะวิธีที่มันส่งข้อมูลเข้าฐานข้อมูลนั้นมาจาก JDBC "
+"ที่ไม่ได้ตั้งค่าแบบส่งข้อมูลหลายรายการพร้อมกันในครั้งเดียวซึ่งส่งผลให้มีการส่งข้อมูลทีละแถว "
+"เมื่อข้อมูลมี 1,000,000 แถว PySpark จะส่งข้อมูลทีละแถวและทุกรอบต้องรอให้ MySQL "
+"ตอบรับก่อนจึงจะส่งรอบถัดไปได้ทำให้เวลารวมพุ่งสูงถึง 955 วินาที"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:716
+#: .\pipeline\templates\pipeline\knime.html:1340
+#: .\pipeline\templates\pipeline\ssis.html:1357
+msgid "Next Page"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:724
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1539
+#: .\pipeline\templates\pipeline\knime.html:1348
+#: .\pipeline\templates\pipeline\ssis.html:1365
+msgid "เปรียบเทียบกับเครื่องมืออื่น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pandas.html:729
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1544
+#: .\pipeline\templates\pipeline\knime.html:1353
+#: .\pipeline\templates\pipeline\ssis.html:1373
+msgid "การวิเคราะห์โดยรวม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:173
+msgid "Apache Airflow + PySpark"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:174
+msgid "Distributed ETL Processing with Apache Airflow Orchestration"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:181
+msgid "Phase 0"
+msgstr "เฟส 0"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:181
+msgid "System Prep"
+msgstr "เตรียมระบบ"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:184
+msgid "Phase 1"
+msgstr "เฟส 1"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:184
+msgid "Network"
+msgstr "เครือข่าย"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:187
+msgid "Phase 2"
+msgstr "เฟส 2"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:187
+msgid "Target DB"
+msgstr "ฐานข้อมูลปลายทาง"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:190
+msgid "Phase 3"
+msgstr "เฟส 3"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:190
+msgid "Airflow"
+msgstr "Airflow"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:193
+msgid "Phase 4"
+msgstr "เฟส 4"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:193
+msgid "Extract"
+msgstr "ดึงข้อมูล"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:196
+msgid "Phase 5"
+msgstr "เฟส 5"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:196
+msgid "Transform"
+msgstr "แปลงข้อมูล"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:199
+msgid "Phase 6"
+msgstr "เฟส 6"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:199
+msgid "Load"
+msgstr "โหลดข้อมูล"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:202
+msgid "Phase 7"
+msgstr "เฟส 7"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:202
+msgid "Log Timing"
+msgstr "บันทึกเวลา"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:205
+msgid "Benchmark"
+msgstr "เกณฑ์มาตรฐาน"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:205
+msgid "Results"
+msgstr "ผลลัพธ์"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:213
+#: .\pipeline\templates\pipeline\test_translation.html:19
+#: .\test_translation_live.py:36 .\test_translation_live.py:40
+msgid "Phase 0: System Preparation (เตรียมระบบ)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:215
+msgid "PART 1: ติดตั้ง WSL2 + Ubuntu 22.04"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:216
+msgid "เริ่มจากการเตรียม Environment บน Windows ก่อนเลย ทำทีละขั้นตอน"
+msgstr "เริ่มจากการเตรียม Environment บน Windows ก่อนเลย ทำทีละขั้นตอน"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:218
+msgid "STEP 1: เปิด PowerShell แบบ Administrator"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:220
+msgid "กด Windows Key แล้วพิมพ์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:221
+#, fuzzy
+#| msgid "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""
+msgid "คลิกขวาที่ Windows PowerShell → เลือก \\"
+msgstr "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:222
+msgid "ถ้ามี popup UAC ถามให้กด Yes"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:225
+msgid "STEP 2: ติดตั้ง WSL2 + Ubuntu 22.04"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:226
+msgid "พิมพ์คำสั่งนี้ใน PowerShell แล้วกด Enter"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:228
+msgid "รอจนติดตั้งเสร็จ (ใช้เวลาสักพักขึ้นอยู่กับ Internet) แล้ว"
+msgstr "รอจนติดตั้งเสร็จ (ใช้เวลาสักพักขึ้นอยู่กับ Internet) แล้ว"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:228
+msgid "Restart เครื่อง"
+msgstr "Restart เครื่อง"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:230
+msgid "STEP 3: ตั้งค่า Ubuntu ครั้งแรก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:231
+msgid ""
+"หลัง Restart เครื่อง Ubuntu จะเปิดขึ้นมาอัตโนมัติ (ถ้าไม่เปิด ให้หา Ubuntu 22.04 ใน Start "
+"Menu)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:232
+msgid "ระบบจะถามให้ตั้ง username และ password"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:234
+msgid "ใส่ชื่อที่ต้องการ (เช่น airflow หรือชื่อตัวเอง)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:235
+msgid "ตั้ง password (ตัวอักษรจะไม่แสดงตอนพิมพ์ เป็นเรื่องปกติ)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:236
+msgid "พิมพ์ซ้ำอีกครั้ง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:239
+msgid "จดจำ password นี้ไว้เพราะจะต้องใช้ทุกครั้งที่รันคำสั่ง"
+msgstr "จดจำ password นี้ไว้เพราะจะต้องใช้ทุกครั้งที่รันคำสั่ง"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:242
+msgid "STEP 4: อัปเดต Package ของ Ubuntu"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:243
+msgid "หลังตั้ง username เสร็จ พิมพ์คำสั่งนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:245
+msgid "ระบบจะถาม password → พิมพ์ password ที่ตั้งไว้แล้วรอจนเสร็จ (อาจใช้เวลา 2-5 นาที)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:247
+msgid "STEP 5: ตรวจสอบว่า WSL2 ถูกตั้งค่าถูกต้อง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:248
+msgid "เปิด PowerShell ใหม่ (ไม่ต้อง Administrator) แล้วพิมพ์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:250
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1065
+msgid "ผลที่ควรเห็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:253
+msgid "ตรงช่อง VERSION ต้องเป็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:253
+msgid "ถ้าเป็น 1 แจ้งมาได้เลย จะมีวิธีแก้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:255
+msgid "PART 2: ติดตั้ง Java 17 + Python 3.11 + ODBC Driver"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:256
+msgid ""
+"Part 2 นี้มีเป้าหมายเพื่อติดตั้ง dependencies พื้นฐานที่ระบบทั้งหมดต้องการก่อนที่จะติดตั้ง Airflow "
+"และ PySpark ได้ โดยแบ่งเป็น 3 ส่วนหลัก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:258
+msgid "ติดตั้งเพื่อรัน PySpark"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:259
+msgid "ใช้สำหรับเชื่อมต่อ SQL Server"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:260
+msgid "ตัวเชื่อมระหว่าง Python กับ SQL Server"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:263
+msgid "STEP 1: ติดตั้ง Java 17"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:264
+msgid "PySpark ต้องการ Java เสมอ ถ้าไม่มีจะ error ทันที"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:266
+msgid "ตรวจสอบว่าติดตั้งสำเร็จ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:268
+msgid "ต้องเห็น output ประมาณนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:271
+msgid "STEP 2: ติดตั้ง Python 3.11"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:274
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:290
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:315
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:340
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:366
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:386
+msgid "ตรวจสอบ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:276
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:292
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:306
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:325
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:342
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:351
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:363
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:368
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:389
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:448
+msgid "ต้องเห็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:278
+msgid "STEP 3: ติดตั้ง ODBC Driver 17 (สำหรับเชื่อม SQL Server)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:279
+msgid "รันทีละบรรทัด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:292
+msgid "ในรายการ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:295
+msgid ""
+"ตั้งแต่ Part 1 - Part 2 เป็นการติดตั้งระดับ system-level ทั้งหมด "
+"ใช้ครั้งเดียวและทุกโปรเจคบนเครื่องนี้ใช้ร่วมกันได้เลย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:298
+msgid "PART 3: สร้าง folder โปรเจค"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:299
+msgid "โปรเจคชื่อว่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:303
+msgid "PART 4: สร้าง Virtual Environment"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:306
+msgid "นำหน้า prompt"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:308
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:316
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:317
+msgid "ต้องแสดง"
+msgstr "ต้องแสดง"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:310
+msgid "PART 5: ตั้งค่า Environment Variables"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:319
+msgid "PART 6: ติดตั้ง Airflow 2.8.0"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:320
+msgid "ต้องแน่ใจว่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:320
+msgid "active อยู่ก่อนรัน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:327
+msgid "PART 7: ติดตั้ง Library ที่จำเป็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:332
+msgid "PART 8: สร้าง requirements.txt"
+msgstr "PART 8: สร้าง requirements.txt"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:335
+msgid "PART 9: สร้าง folder ที่จำเป็น"
+msgstr "PART 9: สร้าง folder ที่จำเป็น"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:344
+msgid "PART 10: airflow db init"
+msgstr "PART 10: airflow db init"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:345
+msgid "ตรวจสอบว่า activate อยู่ก่อน"
+msgstr "ตรวจสอบว่า activate อยู่ก่อน"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:348
+msgid "แล้วรัน"
+msgstr "แล้วรัน"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:354
+msgid "PART 11: สร้าง Admin User"
+msgstr "PART 11: สร้าง Admin User"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:370
+msgid "ถ้าไม่อยากให้มี Example DAGs ที่ Airflow สร้างมาให้ตอนติดตั้ง ให้แก้ config ตามนี้"
+msgstr "ถ้าไม่อยากให้มี Example DAGs ที่ Airflow สร้างมาให้ตอนติดตั้ง ให้แก้ config ตามนี้"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:372
+msgid "เปิดไฟล์ airflow.cfg ใน vc code ก็ได้"
+msgstr "เปิดไฟล์ airflow.cfg ใน vc code ก็ได้"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:374
+msgid "หาบรรทัด"
+msgstr "หาบรรทัด"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:377
+#: .\pipeline\templates\pipeline\ssis.html:173
+msgid "แก้เป็น"
+msgstr "แก้เป็น"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:380
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1050
+msgid "บันทึก"
+msgstr "บันทึก"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:382
+msgid "PART 12: ดาวน์โหลด MySQL JDBC Driver"
+msgstr "PART 12: ดาวน์โหลด MySQL JDBC Driver"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:403
+msgid "Phase 1 — หา Windows Host IP (สำหรับเชื่อม SQL Server + MySQL)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:405
+msgid "STEP 1 : ที่ Terminal WSL2 เพื่อหา Windows Host IP"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:407
+msgid "วิธีที่ 1 : จาก WSL2:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:410
+msgid "วิธีที่ 2 : จาก Windows PowerShell:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:413
+msgid "วิธีที่ 3 : จาก cmd:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:416
+msgid "ดูที่ IPv4 Address ที่ Ethernet adapter vEthernet (WSL (Hyper-V firewall))"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:418
+msgid "STEP 2 : ทดสอบต่อ SQL Server Port"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:419
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:422
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:457
+msgid "Windows Host IP_ที่ได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:421
+msgid "STEP 3 : ทดสอบต่อ MySQL Port"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:436
+msgid "Phase 2 — สร้าง Target Table ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:438
+msgid "STEP 1 : เพิ่มสิทธิ์ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:439
+msgid "เปิด MySQL Command Line Client หรือ MySQL Workbench บน Windows แล้วรัน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:440
+#, fuzzy
+#| msgid "-- นับแถวทั้งหมด"
+msgid "อนุญาต root จาก WSL2 subnet ทั้งหมด"
+msgstr "-- นับแถวทั้งหมด"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:444
+msgid "แทน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:444
+msgid "ด้วย password MySQL จริงของคุณครับ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:446
+#, fuzzy
+#| msgid "ตรวจสอบว่า activate อยู่ก่อน"
+msgid "STEP 2 : ตรวจสอบว่าเพิ่มสำเร็จ"
+msgstr "ตรวจสอบว่า activate อยู่ก่อน"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:448
+msgid "ในผลลัพธ์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:456
+msgid "STEP 3 : กลับมา WSL2 ทดสอบใหม่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:458
+msgid "เช่น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:460
+msgid "STEP 4 : สร้าง Target Table ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:461
+msgid "รัน SQL นี้ใน WSL2 MySQL prompt"
+msgstr "รัน SQL นี้ใน WSL2 MySQL prompt"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:490
+msgid "STEP 5 : สร้าง .env File (ซ่อน Credentials)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:492
+msgid "เปิด VS Code"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:493
+#: .\pipeline\templates\pipeline\ssis.html:432
+#: .\pipeline\templates\pipeline\ssis.html:454
+#: .\pipeline\templates\pipeline\ssis.html:468
+#: .\pipeline\templates\pipeline\ssis.html:469
+#: .\pipeline\templates\pipeline\ssis.html:538
+#: .\pipeline\templates\pipeline\ssis.html:648
+#: .\pipeline\templates\pipeline\ssis.html:669
+#: .\pipeline\templates\pipeline\ssis.html:729
+#: .\pipeline\templates\pipeline\ssis.html:760
+#: .\pipeline\templates\pipeline\ssis.html:772
+#: .\pipeline\templates\pipeline\ssis.html:803
+#: .\pipeline\templates\pipeline\ssis.html:835
+#: .\pipeline\templates\pipeline\ssis.html:911
+#: .\pipeline\templates\pipeline\ssis.html:933
+#: .\pipeline\templates\pipeline\ssis.html:989
+msgid "กด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:493
+msgid "สำหรับ Windows"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:494
+msgid "กด Connect to WSL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:495
+msgid "เลือก location ของโปรเจค"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:496
+msgid "สร้างไฟล์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:496
+msgid "ในโฟลเดอร์ dags"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:523
+msgid "Phase 3 — ตั้งค่า Airflow Connections ผ่าน Web UI"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:525
+msgid "STEP 1 : ติดตั้ง MSSQL Provider และ Mysql Provider"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:526
+msgid "รันใน WSL2 Terminal"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:531
+msgid "STEP 2 : เริ่ม Airflow Services"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:532
+msgid "เปิด 2 WSL2 Terminal แยกกัน"
+msgstr "เปิด 2 WSL2 Terminal แยกกัน"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:534
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:723
+msgid "Terminal 1:"
+msgstr "เทอร์มินัล 1:"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:538
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:727
+msgid "Terminal 2:"
+msgstr "เทอร์มินัล 2:"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:542
+msgid "เปิด Browser ไปที่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:542
+msgid "แล้ว Login ด้วย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:544
+msgid "STEP 3 : Airflow Connections"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:546
+msgid "เพิ่ม SQL Server Connection"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:548
+#: .\pipeline\templates\pipeline\knime.html:102
+#: .\pipeline\templates\pipeline\knime.html:126
+msgid "ไปที่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:549
+msgid "คลิก + (Add a new record)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:550
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:601
+msgid "กรอกข้อมูล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:558
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:609
+#: .\pipeline\templates\pipeline\knime.html:818
+#: .\pipeline\templates\pipeline\knime.html:871
+msgid "ค่า"
+msgstr "ค่า"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:584
+msgid "ใส่ password SQLServer จริง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:595
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:646
+msgid "คลิก Save"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:598
+msgid "เพิ่ม MySQL Connection"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:600
+#, fuzzy
+#| msgid "ทำซ้ำอีกครั้ง → Rename เป็น"
+msgid "คลิก + อีกครั้ง"
+msgstr "ทำซ้ำอีกครั้ง → Rename เป็น"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:649
+msgid "ทำไมต้องกรอกค่าเหล่านี้?"
+msgstr "ทำไมต้องกรอกค่าเหล่านี้?"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:650
+msgid ""
+"Airflow Connections คือการเก็บข้อมูลการเชื่อมต่อไว้ในที่เดียว แทนที่จะ hardcode ใน DAG "
+"code โดยตรง"
+msgstr ""
+"Airflow Connections คือการเก็บข้อมูลการเชื่อมต่อไว้ในที่เดียว แทนที่จะ hardcode ใน DAG "
+"code โดยตรง"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:652
+msgid "แต่ละ Field มีหน้าที่อะไร?"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:653
+msgid ""
+"ชื่อที่ใช้อ้างอิงใน DAG code เช่น mssql_frauddb เวลาเรียกใช้ใน Python จะเขียนว่า "
+"conn_id='mssql_frauddb' Airflow จะไปดึงค่าที่เหลือมาให้เองอัตโนมัติ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:655
+msgid ""
+"บอก Airflow ว่าเป็น database ประเภทไหน เพื่อใช้ driver ที่ถูกต้อง เช่น mssql ใช้ "
+"pymssql, mysql ใช้ mysqlclient"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:657
+msgid ""
+"IP address ของ server ที่ database รันอยู่ ในกรณีนี้คือ Windows Host IP 172.31.128.1 "
+"ที่ WSL2 มองเห็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:659
+msgid "ชื่อ database ที่ต้องการเชื่อมต่อ เช่น frauddb หรือ fraud_dl"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:661
+msgid "username และ password สำหรับ authenticate เข้า database"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:663
+msgid ""
+"port ที่ database รับการเชื่อมต่อ SQL Server ใช้ 57642 (dynamic port) และ MySQL ใช้ "
+"3306 (default port)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:665
+msgid "ภาพรวมการทำงาน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:668
+#, fuzzy
+#| msgid "ดึงค่าเวลาจาก XCom"
+msgid "ดึงค่าจาก"
+msgstr "ดึงค่าเวลาจาก XCom"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:670
+msgid "เชื่อมต่อ SQL Server จริง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:672
+msgid ""
+"พูดง่ายๆ คือแทนที่จะเขียน IP, password ใน code ตรงๆ เก็บไว้ใน Connections แทน "
+"ปลอดภัยกว่าและแก้ไขได้ง่ายโดยไม่ต้องแตะ code"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:686
+msgid "Phase 4 — Extract"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:688
+msgid "ภาพรวมของ Extract Task"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:689
+msgid ""
+"Extract คือการดึงข้อมูลจาก SQL Server แล้วบันทึกเป็น Parquet เพื่อส่งต่อให้ Transform"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:697
+msgid ""
+"อธิบายง่ายๆ คือ ดึงข้อมูลจาก SQL Server ด้วย pyodbc → บันทึกเป็น Parquet → Push timing "
+"ผ่าน XCom"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:700
+msgid "Parquet คืออะไร?"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:701
+msgid "Parquet คือรูปแบบไฟล์สำหรับเก็บข้อมูลตาราง เหมือน CSV แต่เก็บข้อมูลแบบ \\"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:702
+msgid "เก็บทีละแถว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:706
+msgid "เก็บทีละคอลัมน์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:712
+msgid "STEP 1 : สร้างโฟลเดอร์สำหรับเก็บ Parquet"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:714
+msgid "รันโค้ดบรรทัดนี้แล้วจะไม่เจออะไรเพราะโฟลเดอร์ว่างเปล่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:716
+msgid "STEP 2 : สร้างไฟล์ DAG (เฉพาะส่วน Extract ก่อน)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:717
+msgid "ในโฟลเดอร์ dags ที่โฟลเดอร์โปรเจค"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:719
+msgid "หรือรันโค้ดนี้ที่ WSL ก็ได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:722
+msgid ""
+"STEP 3 : เปิด Airflow Services (ถ้าทำต่อจาก Phase 3 หรือ เปิดไว้อยู่แล้ว ให้ข้ามไปที่ "
+"STEP 4 )"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:731
+msgid "STEP 4 : เขียนโค้ด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:732
+msgid "วางโค้ดนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:757
+#, fuzzy
+#| msgid "# โหลด .env"
+msgid "โหลด .env"
+msgstr "# โหลด .env"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:761
+msgid "Force JAVA_HOME สำหรับ PySpark ใน Airflow Task"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:798
+msgid "--- เริ่มจับเวลา ---"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:801
+msgid "เชื่อม SQL Server ด้วย pyodbc"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:805
+#, fuzzy
+#| msgid "ดึงค่าเวลาจาก XCom"
+msgid "ดึงข้อมูลจาก Table"
+msgstr "ดึงค่าเวลาจาก XCom"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:807
+msgid "ชื่อ Column"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:808
+#, fuzzy
+#| msgid "# Step 1: Hash ข้อมูลส่วนตัว"
+msgid "ข้อมูลทุกแถว"
+msgstr "# Step 1: Hash ข้อมูลส่วนตัว"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:811
+#, fuzzy
+#| msgid "แก้เป็น"
+msgid "แปลงเป็น dict"
+msgstr "แก้เป็น"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:817
+msgid "แปลงเป็น PyArrow Table แล้วบันทึกเป็น Parquet"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:820
+msgid "--- หยุดจับเวลา ---"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:823
+msgid "ส่งค่าผ่าน XCom ไปให้ Task ถัดไป"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:849
+msgid "กด Save ("
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:849
+msgid "หรือ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:851
+msgid "STEP 5 : ตรวจว่า Airflow เห็น DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:852
+msgid "ดูผ่าน Web UI โดยเปิดเบราว์เซอร์ไปที่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:852
+msgid "แล้วคลิก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:852
+msgid "จากนั้น Unpause DAG ขั้นตอนนี้อาจต้องรอสักครู่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:854
+msgid "STEP 6 : ตรวจสอบว่ามีโฟลเดอร์ /tmp/fraud_etl รึยัง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:856
+#, fuzzy
+#| msgid "จดจำ password นี้ไว้เพราะจะต้องใช้ทุกครั้งที่รันคำสั่ง"
+msgid "ถ้าไม่มีสร้างใหม่เพราะ /tmp จะถูกล้างทุกครั้งที่ restart WSL2"
+msgstr "จดจำ password นี้ไว้เพราะจะต้องใช้ทุกครั้งที่รันคำสั่ง"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:859
+msgid "STEP 7 : Trigger DAG และ ตรวจสอบผลลัพธ์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:860
+msgid "1. กด Trigger DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:861
+msgid "2. หลัง Trigger จะเห็น Task แต่ละอันเปลี่ยนสีตามสถานะ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:868
+msgid "STEP 8 : ตรวจสอบผลลัพธ์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:869
+msgid "ดูว่าไฟล์ Parquet ถูกสร้างหรือเปล่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:872
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:885
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1083
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1261
+msgid "ผลที่ควรได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:877
+msgid "ดูจำนวนแถวใน Parquet ว่าถูกต้องไหม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:890
+msgid "สรุปสิ่งที่ Extract ทำ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:895
+msgid "ขั้นตอน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:896
+#: .\pipeline\templates\pipeline\home.html:110
+msgid "รายละเอียด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:901
+msgid "เชื่อม SQL Server"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:902
+msgid "ผ่าน pyodbc + credentials จาก .env"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:905
+#, fuzzy
+#| msgid "-- ดูตัวอย่างข้อมูล"
+msgid "ดึงข้อมูล"
+msgstr "-- ดูตัวอย่างข้อมูล"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:909
+#, fuzzy
+#| msgid "แก้เป็น"
+msgid "แปลงเป็น Parquet"
+msgstr "แก้เป็น"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:910
+msgid "ผ่าน PyArrow บันทึกที่ /tmp/fraud_etl/"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:913
+msgid "จับเวลา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:914
+msgid "time.perf_counter() ตั้งแต่ connect จนบันทึกเสร็จ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:918
+msgid "ส่ง extract_sec และ path ของ Parquet ไปให้ Transform"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:936
+msgid "Phase 5 — TRANSFORM"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:938
+msgid "ภาพรวมของ Transform Task"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:940
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1141
+msgid "PySpark อ่าน Parquet"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:942
+#, fuzzy
+#| msgid "# Step 2: แปลง DateTime"
+msgid "แปลง DateTime + Rename Columns"
+msgstr "# Step 2: แปลง DateTime"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:947
+msgid "STEP 1 : เพิ่ม Transform function ใน DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:948
+msgid ""
+"หาบรรทัด <code># =====================</code> ของ DAG Definition แล้วเพิ่ม "
+"Transform function <strong>ก่อน</strong> DAG Definition:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:960
+#, fuzzy
+#| msgid "PART 8: สร้าง requirements.txt"
+msgid "# สร้าง SparkSession"
+msgstr "PART 8: สร้าง requirements.txt"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:966
+#, fuzzy
+#| msgid "PART 11: สร้าง Admin User"
+msgid "# สร้าง SHA-256 UDF"
+msgstr "PART 11: สร้าง Admin User"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:976
+#, fuzzy
+#| msgid "# Step 1: Hash ข้อมูลส่วนตัว"
+msgid "# Step 1: Hash ข้อมูลส่วนตัว + Rename Columns"
+msgstr "# Step 1: Hash ข้อมูลส่วนตัว"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:982
+#, fuzzy
+#| msgid "# Step 2: แปลง DateTime"
+msgid "# Step 2: แปลง DateTime + Rename Columns"
+msgstr "# Step 2: แปลง DateTime"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:987
+msgid "# Step 3: Filter amt ผิดปกติ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:991
+#, fuzzy
+#| msgid "# Step 4: Select เฉพาะ column ที่ต้องการ"
+msgid "# Step 4: Select เฉพาะ column ที่ต้องการ Load"
+msgstr "# Step 4: Select เฉพาะ column ที่ต้องการ"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1021
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1213
+msgid "Save"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1023
+msgid "STEP 2 : แก้ DAG Definition ให้รวม Transform"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1024
+msgid "หา DAG Definition แล้วแก้ for loop"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1052
+msgid "STEP 3 : Trigger DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1053
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1240
+msgid "เปิดเบราว์เซอร์ไปที่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1053
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1240
+msgid "แล้วคลิก Trigger DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1059
+msgid "รูป: Airflow DAG แสดง Extract และ Transform Tasks"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1061
+msgid "STEP 4 : ตรวจสอบผลลัพธ์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1074
+msgid "ตรวจ column ว่า Transform ถูกต้องไหม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1099
+msgid "สรุปสิ่งที่ทำใน TRANSFORM"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1101
+msgid "Input"
+msgstr "ข้อมูลนำเข้า"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1102
+msgid "รับ path ของ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1102
+msgid "มาจาก Extract ผ่าน XCom"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1104
+msgid "Step 1 — Hash ข้อมูลส่วนตัว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1105
+msgid "เข้ารหัส SHA-256 ทั้ง 4 column แล้วสร้าง column ใหม่แทน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1111
+msgid "Step 2 — แปลง DateTime"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1114
+msgid "Step 3 — Filter"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1115
+msgid "ตัดแถวที่ข้อมูลผิดปกติออก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1116
+msgid "amt เป็น NULL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1116
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1117
+msgid "ตัดออก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1119
+msgid "Step 4 — Select"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1120
+msgid "เลือกเฉพาะ 15 column ที่ตรงกับ Schema ของ MySQL โดยทิ้ง column เก่าอย่าง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1120
+msgid "ออก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1122
+msgid "Output"
+msgstr "ข้อมูลส่งออก"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1123
+msgid "บันทึกเป็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1123
+msgid "แล้วส่ง path และเวลาที่ใช้ผ่าน XCom ให้ Task Load ต่อไป"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1137
+msgid "Phase 6 — LOAD"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1139
+msgid "ภาพรวมของ Load Task"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1142
+msgid "PySpark JDBC เขียนเข้า MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1145
+msgid "STEP 1 : เพิ่ม Load function ใน DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1146
+msgid "เพิ่ม Load function <strong>ก่อน</strong> DAG Definition:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1182
+msgid "STEP 2 : แก้ DAG Definition ให้รวม Load"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1215
+msgid "STEP 3 : ตรวจสอบ MySQL ก่อน Trigger"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1216
+msgid "รันโค้ดนี้ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1235
+msgid "ผลที่ควรได้ (ยังว่างอยู่)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1239
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1360
+msgid "STEP 4 : Trigger DAG"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1246
+msgid "รูป: Airflow DAG แสดง Extract, Transform และ Load Tasks ทั้งหมด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1248
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1369
+msgid "STEP 5 : ตรวจสอบผลลัพธ์หลังรัน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1277
+msgid "Phase 7 — LOG TIMING"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1279
+msgid "ภาพรวมของ Log Timing Task"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1281
+msgid "ดึงค่าเวลาจาก XCom"
+msgstr "ดึงค่าเวลาจาก XCom"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1282
+msgid "บันทึกลง CSV"
+msgstr "บันทึกลง CSV"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1285
+msgid "STEP 1 : เพิ่ม Log Timing function"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1286
+msgid "เพิ่ม function ก่อน DAG Definition"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1294
+msgid "# รับค่าเวลาจาก XCom"
+msgstr "# รับค่าเวลาจาก XCom"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1299
+msgid "# เขียน CSV"
+msgstr "# เขียน CSV"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1318
+msgid "STEP 2 : แก้ DAG Definition ให้ครบทุก Task"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1355
+msgid "STEP 3 : ล้างข้อมูล MySQL ก่อน Trigger ใหม่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1356
+msgid "เพราะรันไปแล้ว 1,110,000 แถว ถ้า Trigger อีกครั้งจะรันซ้ำ"
+msgstr "เพราะรันไปแล้ว 1,110,000 แถว ถ้า Trigger อีกครั้งจะรันซ้ำ"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1367
+msgid "รูป: Airflow DAG แสดงทุก Task รวมถึง Log Timing"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1370
+msgid "รัน SQL ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1437
+msgid "STEP 6 : ตรวจสอบผลลัพธ์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1438
+msgid "ดู CSV หลังรันเสร็จ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1441
+msgid "ผลที่ได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1450
+msgid "สรุปและวิเคราะห์ผล Airflow + Pyspark ETL Benchmark"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1452
+#: .\pipeline\templates\pipeline\knime.html:1196
+#: .\pipeline\templates\pipeline\ssis.html:1174
+msgid "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้:"
+msgstr "จากการทดสอบและจับเวลาได้ไฟล์ที่สามารถสรุปเป็นตารางได้ดังนี้:"
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1453
+msgid ""
+"จากการทดสอบ ETL Pipeline ด้วย Apache Airflow 2.8.0 ร่วมกับ PySpark บน Dataset 3 "
+"ขนาด ได้ผลการจับเวลาดังตารางที่ 1 โดยแต่ละแถวแสดงเวลาที่ใช้ในแต่ละขั้นตอน ได้แก่ Extract, "
+"Transform และ Load หน่วยเป็นวินาที"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1488
+msgid "เพื่อให้เห็นภาพที่ชัดเจนขึ้น ข้อมูลจากตารางได้ถูกนำไปแสดงผลในรูปแบบกราฟ 3 แบบ ดังต่อไปนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1490
+msgid "1. Airflow + PySpark: การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1495
+msgid "Fig 1 : Airflow + PySpark - การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1497
+msgid ""
+"จากกราฟ พบว่าขั้นตอน Load ใช้เวลานานที่สุดในทุกขนาดข้อมูล โดยเมื่อข้อมูลมีขนาด 1 ล้านแถว "
+"ขั้นตอน Load ใช้เวลาถึง 955 วินาที ในขณะที่ Extract ใช้เพียง 19 วินาที และ Transform "
+"ใช้เพียง 39 วินาที"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1498
+msgid "สาเหตุที่ Load ใช้เวลามากที่สุดมาจาก:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1498
+msgid ""
+"เมื่อ Spark ส่งข้อมูลปริมาณมากไปยังฐานข้อมูลภายนอก ระบบจะใช้ช่องทางเดียวในการส่งข้อมูลทั้งหมด "
+"ทำให้ยิ่งข้อมูลมีปริมาณมากเท่าใด กระบวนการนี้ก็ใช้เวลานานมากขึ้นเท่านั้น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1500
+msgid "2. Airflow + PySpark: สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1505
+msgid "Fig 2 : Airflow + PySpark - สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1507
+#, python-format
+msgid ""
+"จากกราฟพบว่าขั้นตอน Load ครอบครองเวลารวมมากที่สุดในทุกขนาดข้อมูล และสัดส่วนเพิ่มขึ้นเรื่อยๆ "
+"ตามปริมาณข้อมูล โดยที่ข้อมูล 1,000,000 แถว ขั้นตอน Load ใช้เวลาถึง 94%% ของเวลารวมทั้งหมด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1508
+msgid "สาเหตุมาจาก:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1508
+msgid ""
+"PySpark JDBC Writer ในโค้ดไม่ได้ตั้งค่าการกระจายงาน ทำให้ข้อมูลทั้งหมดถูกส่งออกผ่าน JDBC "
+"เพียงช่องทางเดียว "
+"ซึ่งการส่งข้อมูลทั้งหมดผ่านกระบวนการเดียวจะใช้เวลานานมากเมื่อข้อมูลมีปริมาณมาก "
+"และทรัพยากรที่เหลืออยู่ในระบบก็ไม่ได้ถูกนำมาใช้งาน ยิ่งข้อมูลมีปริมาณมากขึ้นเท่าใด เวลาของขั้นตอน "
+"Load ก็เพิ่มขึ้นในอัตราที่สูงกว่าขั้นตอนอื่นอย่างชัดเจน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1510
+msgid "3. Airflow + PySpark: อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1515
+msgid "Fig 3 : Airflow + PySpark - อัตราการขยายตัวของแต่ละ Phase"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1517
+msgid "จากกราฟพบว่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1517
+msgid "ขั้นตอน Load มีเส้นชันที่สุด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1517
+msgid ""
+"โดยเพิ่มขึ้นประมาณ 30 เท่า (955 ÷ 32.2 = 29.6 เท่า ≈ 30 เท่า) เมื่อข้อมูลเพิ่มขึ้น 100 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1518
+msgid "สาเหตุที่ Load เพิ่มขึ้นเร็วที่สุดนั้น:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1518
+msgid ""
+"เมื่อเขียนข้อมูลไปยังฐานข้อมูลผ่าน JDBC นั้น PySpark ใช้จำนวน Partition "
+"ที่มีอยู่ในหน่วยความจำเพื่อควบคุมการทำงานพร้อมกัน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1518
+msgid "เมื่อไม่ได้ตั้งค่าการกระจายงาน ข้อมูลทั้งหมดจึงถูกส่งออกผ่านช่องทางเดียว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1520
+#: .\pipeline\templates\pipeline\knime.html:1318
+msgid "สรุป"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1521
+msgid "จากการทดสอบ Airflow + PySpark ETL Pipeline สรุปได้ว่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1523
+msgid "ใช้เวลามากที่สุดและมีอัตราการขยายตัวสูงที่สุด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1524
+#, python-format
+msgid "ที่ข้อมูล 1M แถว Load ใช้เวลา 94%% ของเวลารวม (955 วินาที จาก 1,014 วินาที)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1525
+msgid "สาเหตุหลักมาจากการส่งข้อมูลผ่าน JDBC เพียงช่องทางเดียว ไม่ได้ใช้การกระจายงาน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1526
+msgid "Extract และ Transform มีประสิทธิภาพดี เพิ่มขึ้นในอัตราที่สมเหตุสมผล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\airflow_pyspark.html:1529
+msgid "References"
+msgstr "เอกสารอ้างอิง"
+
+#: .\pipeline\templates\pipeline\analysis.html:5
+msgid "สรุปและวิเคราะห์ผล ETL Tool Comparison: 4 Tools"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:11
+msgid "สรุปและวิเคราะห์ผล ETL Tool Comparison: 4 Tools สรุปผลการทดสอบ ETL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:12
+msgid ""
+"โปรเจคนี้นำเครื่องมือ 4 อย่างมาทดสอบด้วยข้อมูลการตรวจจับการทุจริตบัตรเครดิต (Credit Card "
+"Transactions Fraud Detection) โดยแบ่งขนาดข้อมูลออกเป็นสามระดับ คือ 10,000 แถว "
+"100,000 แถว และ 1,000,000 แถว "
+"แล้วจับเวลาว่าแต่ละเครื่องมือใช้เวลานานแค่ไหนในแต่ละขั้นตอน "
+"เครื่องมือที่ใช้เวลาน้อยกว่าถือว่าดีกว่าในการทดสอบนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:17
+msgid "ภาพรวม: แต่ละเครื่องมือใช้เวลารวมเท่าไร"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:20
+msgid ""
+"กราฟนี้แสดงเวลารวมทั้งหมดของแต่ละเครื่องมือ แกนนอนคือขนาดข้อมูลแบ่งเป็นสามกลุ่ม "
+"แต่ละกลุ่มมีแท่งสี่แท่งเรียงกัน แท่งที่สูงกว่าหมายความว่าใช้เวลานานกว่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:27
+msgid "เวลารวมทั้งหมดของแต่ละเครื่องมือ แยกตามขนาดข้อมูล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:32
+msgid ""
+"จากตาราง Airflow+Pandas เร็วที่สุดในทุกขนาด โดยที่ข้อมูล 1 ล้านแถวก็ยังใช้เวลาเพียง 131 "
+"วินาทีขณะที่ SSIS ใช้ 459 วินาทีKNIME ใช้ 630 วินาทีและ Airflow+PySpark ช้าที่สุดด้วยเวลาถึง "
+"1,014 วินาทีหรือกว่า 16 นาทีสิ่งที่น่าสังเกตคือ Airflow+PySpark ช้าตั้งแต่ข้อมูลขนาดเล็กมาก "
+"แม้แต่ข้อมูล 10,000 แถว ก็ยังใช้เวลาถึง 53 วินาทีทั้งที่เครื่องมืออื่นทำเสร็จภายใน 23 "
+"วินาทีสาเหตุคือทุกครั้งที่รัน PySpark มันต้องเปิดระบบ Java ขึ้นมาก่อน ซึ่งกินเวลาประมาณ 20-30 "
+"วินาทีทุกครั้งโดยไม่ขึ้นกับว่ามีข้อมูลมากหรือน้อยแค่ไหน ทำให้ข้อมูลน้อยๆ เสียเปรียบอย่างชัดเจน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:38
+#: .\pipeline\templates\pipeline\analysis.html:48
+msgid "สัดส่วนของแต่ละ Phase ต่อเวลารวม - แสดงถึงเวลาหายไปอยู่ในขั้นตอนไหนมากที่สุด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:41
+msgid ""
+"กราฟนี้แบ่งแต่ละแท่งออกเป็นสามส่วนซ้อนกันตามสีสีน้ำเงินคือขั้นดึงข้อมูล(Extract) "
+"สีเขียวคือขั้นแปลงข้อมูล(Transform) สีแดงคือขั้นตอนบันทึกข้อมูล(load) "
+"ส่วนที่ใหญ่ที่สุดในแท่งคือขั้นตอนที่กินเวลามากที่สุดของเครื่องมือนั้น ซึ่งสามารถสรุปได้ดังนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:52
+msgid "SSIS : ขั้นตอน Transform กินเวลาไปเกือบทั้งหมด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:54
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว SSIS ใช้เวลาแปลงข้อมูล(Transform)ไปถึง 449 วินาทีจากเวลารวมทั้งหมด "
+"459 วินาทีสามารถคิดด้วยวิธีคิดนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:57
+#: .\pipeline\templates\pipeline\analysis.html:68
+#: .\pipeline\templates\pipeline\analysis.html:79
+#: .\pipeline\templates\pipeline\analysis.html:90
+msgid "วิธีคิด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:60
+#, python-format
+msgid ""
+"ดังนั้นคิดเป็น 97.8%% ของเวลาทั้งหมด ส่วนที่เหลืออีก 2.2%% เป็นการดึงและการโหลดข้อมูลรวมกัน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:63
+msgid "KNIME : ขั้นตอน Load ข้อมูลคือจุดที่ช้าที่สุด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:65
+#, python-format
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว KNIME ใช้เวลาบันทึกข้อมูลไป 470 วินาทีจากเวลารวม 630 วินาทีคิดเป็น 74.6%%"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:71
+msgid ""
+"สาเหตุคือ KNIME ในขั้นตอนโหลดข้อมูลมีการใช้ DB Writer Node ทำให้ข้อมูลถูกส่งทีละ 1 แถว "
+"MySQL ต้องบันทึกและยืนยันทุกคำสั่ง ทำให้เวลา Load พุ่งสูง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:74
+msgid "Airflow+PySpark : ขั้นตอน Load ข้อมูลคือจุดที่ช้าที่สุดในทุกเครื่องมือ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:76
+#, python-format
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว PySpark ใช้เวลาบันทึกข้อมูลไปถึง 955 วินาทีจากเวลารวม 1,014 วินาทีคิดเป็น "
+"94.2%%"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:82
+msgid ""
+"ปัญหาเดียวกับ KNIME คือส่งข้อมูลทีละแถวผ่านช่องทางเดียว "
+"แต่รุนแรงกว่าเพราะไม่ได้ตั้งค่าการกระจายงาน ทำให้ข้อมูลทั้งหมดถูกส่งออกผ่าน JDBC "
+"เพียงช่องทางเดียว ทำให้เวลาพุ่งสูงกว่าทุกเครื่องมือ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:85
+msgid "Airflow+Pandas : สัดส่วนทุกขั้นตอนพอสมดุล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:87
+#, python-format
+msgid ""
+"ที่ข้อมูล 1 ล้านแถว Pandas ใช้เวลาบันทึกข้อมูลไป 102 วินาทีจากเวลารวม 131 วินาทีคิดเป็น "
+"78.1%%"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:93
+msgid ""
+"Pandas ส่งข้อมูลเป็นกลุ่มใหญ่ทีเดียวแทนที่จะส่งทีละแถว "
+"ทำให้ขั้นบันทึกข้อมูลใช้เวลาน้อยกว่าเครื่องมืออื่นมาก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:105
+#: .\pipeline\templates\pipeline\analysis.html:111
+msgid "เมื่อข้อมูลโตขึ้น จะเวลามากขึ้นแค่ไหน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:116
+msgid ""
+"เส้นของ Airflow+PySpark ชันที่สุดอย่างเห็นได้ชัด จากจุดเริ่มต้นที่ 53 วินาทีที่ข้อมูล 10,000 แถว "
+"พุ่งขึ้นไปถึง 1,014 วินาทีที่ข้อมูล 1 ล้านแถว เพิ่มขึ้น 19 เท่า เส้นของ SSIS และ KNIME "
+"มีความชันใกล้เคียงกัน ทั้งคู่เริ่มต้นต่ำแต่เวลาก็โตเร็วเมื่อข้อมูลใหญ่ขึ้น เส้นของ Airflow+Pandas "
+"ราบเรียบที่สุด โตจาก 2.2 วินาทีเป็น 131 วินาทีคิดเป็น 60 เท่า "
+"ซึ่งน้อยที่สุดในบรรดาเครื่องมือที่เริ่มต้นด้วยเวลาต่ำ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:119
+msgid "ตารางเปรียบเทียบ Scalability"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:124
+msgid "ช่วงที่ข้อมูลโต"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:135
+#: .\pipeline\templates\pipeline\analysis.html:145
+msgid "ข้อมูลโต 10 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:137
+#: .\pipeline\templates\pipeline\analysis.html:138
+msgid "ใช้เวลาเพิ่มขึ้น 16 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:139
+msgid "ใช้เวลาเพิ่มขึ้น 2.5 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:140
+msgid "ใช้เวลาเพิ่มขึ้น 6 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:147
+#: .\pipeline\templates\pipeline\analysis.html:150
+msgid "ใช้เวลาเพิ่มขึ้น 10 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:148
+msgid "ใช้เวลาเพิ่มขึ้น 12 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:149
+msgid "ใช้เวลาเพิ่มขึ้น 7.5 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:155
+msgid "ข้อมูลโต 100 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:157
+msgid "ใช้เวลาเพิ่มขึ้น 172 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:158
+msgid "ใช้เวลาเพิ่มขึ้น 200 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:159
+msgid "ใช้เวลาเพิ่มขึ้น 19 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:160
+msgid "ใช้เวลาเพิ่มขึ้น 60 เท่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:167
+msgid ""
+"จากตารางในแถวที่ 10k → 1m เป็นข้อมูลโต 100 เท่าจะสังเกตได้ว่า PySpark ใช้เวลาเพิ่มขึ้น 19 "
+"เท่าซึ่งถ้าเทียบกับเครื่องมืออื่นๆ ถือว่าใช้เวลาน้อยที่สุดแต่ต้องคำนึงด้วยว่า PySpark จุดเริ่มต้น คือ 53 "
+"วินาทีหากเทียบกับเครื่องมืออื่นๆ ที่มีจุดเริ่มต้นน้อยกว่า เช่นหากเปรียบเทียบกับ Pandas เริ่มที่ 2.2 "
+"วินาทีดังนั้น PySpark จึงยังช้ากว่า Pandas ตลอดทุกขนาด แม้อัตราการโตจะดูดีกว่าก็ตาม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:179
+#: .\pipeline\templates\pipeline\analysis.html:189
+msgid "การเปรียบเทียบเวลาในการประมวลผล ETL ตามขนาดข้อมูลในสเกลลอการิทึม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:182
+msgid ""
+"ปัญหาของกราฟที่ 3 คือ เมื่อ PySpark สูงถึง 1,014 วินาทีเส้นของ Pandas ที่ 131 "
+"วินาทีจะแทบแนบติดกับแกนล่าง ทำให้มองไม่เห็นรายละเอียด กราฟที่ 4 แก้ปัญหานี้ด้วยการปรับแกน Y "
+"ให้แต่ละช่วงกระโดดขึ้น 10 เท่าแทนที่จะเพิ่มขึ้นทีละเท่ากัน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:194
+msgid ""
+"วิธีอ่านกราฟนี้ต่างจากกราฟที่ 3 ตรงที่ระยะห่างในแนวตั้งไม่ได้วัดว่าต่างกันกี่วินาทีแต่วัดว่าต่างกันกี่เท่า "
+"เส้นที่อยู่สูงกว่าในกราฟนี้ยังหมายถึงใช้เวลานานกว่าเสมอ "
+"และเส้นที่ชันกว่าหมายถึงโตเร็วกว่าเมื่อข้อมูลเพิ่มขึ้น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:198
+msgid ""
+"ผลที่เห็นได้ชัดจากกราฟนี้คือ เส้นของ Airflow+Pandas อยู่ต่ำสุดตลอดและความชันค่อนข้างคงที่ "
+"เส้นของ SSIS และ KNIME เกือบทับกันตลอด แสดงว่าพฤติกรรมการโตของเวลาคล้ายกันมาก "
+"และเส้นของ PySpark อยู่สูงสุดตลอดและยิ่งชันขึ้นในช่วง 100k ถึง 1m ซึ่งบอกว่ายิ่งข้อมูลมากขึ้น "
+"PySpark ยิ่งช้าขึ้นในอัตราที่เร็วขึ้นด้วย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:210
+msgid "บทสรุป"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:213
+msgid ""
+"จากการทดสอบทั้งหมด Airflow+Pandas ชนะในทุกขนาดข้อมูล "
+"เพราะใช้วิธีเรียบง่ายที่เหมาะกับการทำงานบนเครื่องเดียว "
+"คือส่งข้อมูลเป็นกลุ่มใหญ่และไม่ต้องเปิดระบบพิเศษก่อนทำงาน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:217
+msgid ""
+"SSIS เร็วในขั้นดึงและบันทึกข้อมูล(Load) แต่ช้าในขั้นแปลงข้อมูล(Transform) "
+"เพราะทำทีละแถวและไม่สามารถเขียนทับคอลัมน์เดิมได้โดยตรง ต่างจาก Python และ KNIME "
+"ที่มองข้อมูลเป็นตารางทั้งก้อน จึงแก้ไขค่าในคอลัมน์เดิมได้ทันทีในคำสั่งเดียว KNIME "
+"ดึงข้อมูลได้เร็วที่สุดในทุกขนาดแต่บันทึกข้อมูล(Load)ช้าเพราะส่งทีละแถวเช่นกัน "
+"ทั้งสองเครื่องมือนี้การใช้เวลาใช้การประมวลผลในแต่ละขั้นตอนที่คล้ายกัน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:221
+msgid ""
+"Airflow+PySpark ช้าที่สุด เพราะออกแบบมาสำหรับการทำงานบนหลายเครื่องพร้อมกัน "
+"เมื่อใช้บนเครื่องเดียวจึงยังไม่แสดงศักยภาพจริง การเปิดระบบ Java "
+"และการบันทึกข้อมูล(Load)ทีละแถวรวมกันทำให้ช้ากว่าทุกเครื่องมือในทุกขนาดที่ทดสอบ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:224
+msgid "สมมติฐานกับผลจริง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:225
+msgid "ผลที่ได้จากการทดสอบแตกต่างจากที่คาดไว้เกือบทุกแนวทาง กล่าวคือ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:228
+msgid "ที่คาดว่าจะเร็วที่สุด ผลจริงได้อันดับที่ 2 เพราะขั้นตอนแปลงข้อมูลใช้เวลานานกว่าที่คาด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:229
+msgid "ที่คาดว่าจะช้าที่สุด ผลจริงได้อันดับที่ 3 ไม่ใช่ช้าที่สุดอย่างที่คาด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:230
+msgid "Airflow ร่วมกับ PySpark"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:230
+msgid "ที่คาดว่าจะอยู่ในระดับกลาง ผลจริงกลับช้าที่สุดในทุกขนาดข้อมูล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:231
+msgid "Airflow ร่วมกับ pandas"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:231
+msgid "ที่คาดว่าจะใกล้เคียงกับ PySpark ผลจริงกลับเร็วที่สุดในทุกขนาดข้อมูล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:235
+msgid ""
+"จากผลที่ได้ทำให้กลุ่มนักศึกษาผู้จัดทำได้บทเรียนว่า "
+"เครื่องมือที่ดูซับซ้อนหรือทรงพลังที่สุดไม่ได้หมายความว่าจะเร็วที่สุดเสมอไป "
+"ขึ้นอยู่กับว่าใช้กับข้อมูลขนาดใดและในสภาพแวดล้อมแบบใดด้วย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:241
+msgid "ดูรายละเอียดแต่ละเครื่องมือ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\analysis.html:249
+msgid "กลับหน้าแรก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:5
+#: .\pipeline\templates\pipeline\test_translation.html:21 .\pipeline\views.py:7
+#: .\templates\base.html:46
+msgid "Home"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:11
+msgid ""
+"การเปรียบเทียบประสิทธิภาพ ETL Pipeline 4 แนวทาง ด้วย SSIS, KNIME, Airflow ร่วมกับ "
+"PySpark และ Airflow ร่วมกับ Pandas"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:16
+msgid "บทนำ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:18
+msgid ""
+"โครงการนี้เกิดขึ้นจากความต้องการจัดการข้อมูลปริมาณมากที่เกิดขึ้นภายในมหาวิทยาลัย "
+"โดยเป็นส่วนหนึ่งของ Senior Project อย่างไรก็ตาม การนำเสนอในครั้งนี้ไม่ได้ครอบคลุมทุกด้านของ "
+"Senior Project แต่มุ่งเน้นนำเสนอเฉพาะมุมมองด้าน Processing Performance "
+"เพียงด้านเดียวเท่านั้น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:21
+msgid ""
+"การเลือก 4 แนวทางในการทดสอบครั้งนี้มีที่มาจากบริบทการทำงานจริง โดย SSIS "
+"ถูกเลือกเนื่องจากมหาวิทยาลัยมี Microsoft License อยู่แล้ว KNIME ถูกเลือกเนื่องจากเป็น Low-"
+"code Tool ที่ไม่จำเป็นต้องอาศัยความเชี่ยวชาญด้านการเขียนโค้ด และ Airflow "
+"ถูกเลือกโดยกลุ่มนักศึกษาผู้จัดทำซึ่งมีความถนัดด้าน Python มากกว่า C# โดย Airflow "
+"ได้ทดสอบร่วมกับ 2 Processing Engine คือ PySpark และ pandas เพื่อเปรียบเทียบว่า Engine "
+"ที่ออกแบบมาสำหรับ Big Data โดยเฉพาะอย่าง PySpark จะให้ผลลัพธ์ที่ดีกว่า pandas หรือไม่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:24
+msgid ""
+"การทดสอบทั้งหมดดำเนินการบนเครื่องคอมพิวเตอร์ส่วนบุคคล โดยเครื่องมือทุกตัวได้รับการติดตั้งบน "
+"Server ของมหาวิทยาลัย ซึ่งกลุ่มนักศึกษาผู้จัดทำสามารถเข้าถึงและดำเนินการทดสอบได้จากระยะไกล "
+"ทำให้สามารถรันงานได้เสมือนการใช้งานจริงในสภาพแวดล้อมขององค์กร โดยใช้ชุดข้อมูล Credit "
+"Card Fraud Detection จาก Kaggle ทดสอบใน 3 ขนาด ได้แก่ 10,000 100,000 และ "
+"1,000,000 แถว วัดผลผ่านเวลาที่ใช้จริงในแต่ละขั้นตอน ได้แก่ Extract, Transform และ Load "
+"เพื่อให้ได้ข้อสรุปที่เป็นประโยชน์สำหรับการตัดสินใจเลือกใช้แนวทางที่เหมาะสมกับบริบทขององค์กร"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:30
+msgid "สถาปัตยกรรมระบบ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:32
+msgid ""
+"โครงการนี้มีสถาปัตยกรรม 2 รูปแบบ ได้แก่ สถาปัตยกรรมสำหรับการทดสอบที่ใช้จริงในโครงการนี้ "
+"และสถาปัตยกรรมระบบสำหรับการใช้งานจริงในมหาวิทยาลัยที่ออกแบบไว้เป็นเป้าหมายปลายทาง "
+"โดยผลที่ได้จากการทดสอบในโครงการนี้จะเป็นข้อมูลประกอบการตัดสินใจเลือก ETL Tool "
+"ที่เหมาะสมสำหรับนำไปใช้ในระบบจริงต่อไป"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:35
+msgid "1. สถาปัตยกรรมสำหรับการทดสอบ (Test Framework Architecture)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:43
+msgid "จากภาพสามารถอธิบายได้ดังนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:45
+#: .\pipeline\templates\pipeline\home.html:73
+msgid "1. Ingest :"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:45
+msgid ""
+"นำเข้าข้อมูลจากไฟล์ fraudTrain.csv เข้าสู่ SQL Server เพื่อใช้เป็น Staging Area "
+"โดยแบ่งข้อมูลออกเป็น 3 ขนาด ได้แก่ fraud_10k, fraud_100k และ fraud_1m"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:47
+#: .\pipeline\templates\pipeline\home.html:75
+msgid "2. Extract :"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:47
+msgid ""
+"ดึงข้อมูลจาก SQL Server (Staging Area) เพื่อนำไปประมวลผลในแต่ละ ETL Tool "
+"ในขั้นตอนถัดไป"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:49
+#: .\pipeline\templates\pipeline\home.html:77
+msgid "3. Transform :"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:49
+msgid ""
+"ประมวลผลข้อมูลด้วย 4 แนวทาง ได้แก่ SSIS, KNIME, Airflow ร่วมกับ PySpark และ Airflow "
+"ร่วมกับ pandas "
+"โดยการแปลงข้อมูลจะทำเหมือนกันทุกแนวทางเพื่อให้เกิดความเป็นมาตรฐานเดียวกันของข้อมูล ได้แก่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:51
+msgid "ทำการเข้ารหัสข้อมูลส่วนตัวด้วย SHA-256"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:52
+msgid "แปลง Data Type"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:53
+msgid "กรองข้อมูลที่ไม่สมบูรณ์ออก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:54
+msgid "เปลี่ยนชื่อคอลัมน์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:57
+#: .\pipeline\templates\pipeline\home.html:79
+msgid "4. Load :"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:57
+msgid ""
+"บันทึกข้อมูลที่ผ่านการ Transform แล้วลงใน MySQL "
+"พร้อมจับเวลาในทุกขั้นตอนเพื่อนำไปวิเคราะห์เปรียบเทียบด้วย MATLAB"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:59
+msgid "5. Matlab :"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:59
+msgid ""
+"นำผลเวลาที่จับได้จากทุกขั้นตอนของทั้ง 4 "
+"แนวทางมาวิเคราะห์และแสดงผลในรูปแบบกราฟเพื่อเปรียบเทียบประสิทธิภาพ ETL Pipeline"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:61
+msgid "2. สถาปัตยกรรมระบบสำหรับการใช้งานจริง (Production System Architecture)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:70
+msgid ""
+"จากภาพเป็นเพียงแนวคิดเท่านั้น "
+"ผลที่ได้จากการทดสอบในโครงการนี้จะเป็นข้อมูลประกอบการตัดสินใจเลือก ETL Tool "
+"ที่เหมาะสมสำหรับนำไปใช้ในระบบจริงต่อไป "
+"อย่างไรก็ตามการตัดสินใจดังกล่าวต้องอาศัยความเห็นจากบุคลากรหลายฝ่ายที่มีส่วนร่วมในการพัฒนาระบบประกอบด้วย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:73
+msgid ""
+"รับข้อมูลจากแหล่งข้อมูลหลากหลายรูปแบบที่เกิดขึ้นจริงในมหาวิทยาลัย ได้แก่ CSV, API, JSON และ "
+"XLS เข้าสู่ SQL Server เพื่อใช้เป็น Staging Area "
+"และได้มีการออกแบบเพื่อเตรียมการรับข้อมูลประเภทข้อมูลที่ไม่มีโครงสร้าง (unstructured data) "
+"ในอนาคตอีกด้วย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:75
+msgid ""
+"ใช้ ETL Tool ที่ได้รับการคัดเลือกจากผลการทดสอบ ดึงข้อมูลจาก Staging Area "
+"เพื่อนำไปประมวลผล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:77
+msgid ""
+"ประมวลผลและทำความสะอาดข้อมูลด้วย ETL Tool ที่คัดเลือกแล้ว ทั้งนี้ขั้นตอน Transform "
+"จะครอบคลุมการทำความสะอาดข้อมูล การเข้ารหัสข้อมูลส่วนตัว "
+"และการแปลงรูปแบบข้อมูลให้พร้อมใช้งาน โดย Tool "
+"ที่จะใช้ยังอยู่ระหว่างการพิจารณาจากผลการทดสอบของโครงการนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:79
+msgid ""
+"กระจายข้อมูลที่ผ่านการประมวลผลแล้วไปยัง MySQL ของแต่ละหน่วยงานในมหาวิทยาลัย "
+"และแสดงผลผ่าน Power BI เพื่อเป็นการประกอบการตัดสินใจของผู้บริหารและบุคลากรในมหาวิทยาลัย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:84
+msgid "สมมติฐาน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:86
+msgid ""
+"ก่อนเริ่มการทดสอบ กลุ่มนักศึกษาผู้จัดทำได้ตั้งสมมติฐานเกี่ยวกับประสิทธิภาพของแต่ละแนวทางไว้ดังนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:89
+msgid "1. SSIS :"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:89
+msgid ""
+"คาดว่าจะมีประสิทธิภาพสูงสุด เนื่องจาก SSIS ใช้ภาษา C# ในการประมวลผล "
+"ซึ่งอยู่ในตระกูลเดียวกับภาษา C++ ที่ขึ้นชื่อด้านความเร็วในการประมวลผล "
+"จึงคาดว่าจะได้เปรียบด้านความเร็วเหนือแนวทางอื่น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:91
+msgid "2. KNIME :"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:91
+msgid ""
+"คาดว่าจะมีประสิทธิภาพต่ำที่สุด เนื่องจากเป็น Low-code Tool "
+"ที่เน้นความง่ายในการใช้งานมากกว่าประสิทธิภาพ การทำงานผ่านแบบ Low-code "
+"อาจมีประสิทธิภาพต่ำกว่าการเขียนโค้ดโดยตรง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:93
+msgid "3. Airflow ร่วมกับ PySpark :"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:93
+msgid ""
+"คาดว่าจะมีประสิทธิภาพอยู่ในระดับปานกลาง เนื่องจาก PySpark ถูกออกแบบมาสำหรับข้อมูลระดับ "
+"Terabyte ขึ้นไป ในขณะที่ข้อมูลที่ใช้ทดสอบมีขนาดสูงสุดเพียง 1 ล้านแถว จึงคาดว่า PySpark "
+"จะไม่ได้แสดงศักยภาพเต็มที่ แต่ก็ไม่ช้าเกินไป"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:95
+msgid "4. Airflow ร่วมกับ pandas :"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:95
+msgid ""
+"คาดว่าจะมีประสิทธิภาพใกล้เคียงกับ Airflow ร่วมกับ PySpark เนื่องจากใช้ Orchestrator "
+"ตัวเดียวกัน แตกต่างกันเพียง Processing Engine เท่านั้น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:100
+msgid "สเปกคอมพิวเตอร์ในการทดสอบ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:102
+msgid "การทดสอบทั้งหมดในโครงการนี้ดำเนินการบนเครื่องคอมพิวเตอร์ที่มีสเปกดังนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:109
+msgid "รายการ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:123
+msgid "ระบบปฏิบัติการ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:131
+msgid ""
+"การทดลองในครั้งนี้ดำเนินการทดสอบทั้ง 4 แนวทางบนชุดข้อมูลและเงื่อนไขเดียวกันทุกประการ "
+"โดยแต่ละแนวทางจะถูกทดสอบกับข้อมูล 3 ขนาด ได้แก่ 10,000 100,000 และ 1,000,000 แถว "
+"พร้อมจับเวลาแยกในแต่ละขั้นตอน ได้แก่ Extract Transform และ Load "
+"เพื่อให้ผลการเปรียบเทียบมีความเที่ยงตรงและสามารถนำไปอ้างอิงได้โดยจะนำเสนอผลการทดลองของ "
+"SSIS, KNIME, Airflow ร่วมกับ PySpark และ Airflow ร่วมกับ pandas ตามลำดับ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:137
+msgid "เรียนรู้เพิ่มเติมเกี่ยวกับแต่ละเครื่องมือ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:138
+msgid "เลือกเครื่องมือเพื่อดูรายละเอียดการทดลองและผลการวิเคราะห์:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\home.html:167
+msgid "ดูการวิเคราะห์และสรุปผลโดยรวม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:90
+msgid "Phase 0 — เตรียมระบบ KNIME (Step-by-Step)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:92
+msgid "KNIME คืออะไร?"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:93
+msgid ""
+"KNIME คือโปรแกรมสำหรับจัดการและประมวลผลข้อมูล ทำงานด้วยการลากและวางลงบนพื้นที่ทำงาน "
+"แล้วลากเส้นเชื่อมเข้าหากัน แต่ละจุด(Node) ทำหน้าที่อย่างใดอย่างหนึ่ง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:100
+msgid "Step 1: ติดตั้ง KNIME Analytics Platform"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:103
+msgid "เลือก KNIME Analytics Platform (ฟรีไม่ต้องซื้อ)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:104
+msgid "เลือก OS ของเครื่องตัวเอง (Windows / Mac / Linux)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:105
+msgid "ดาวน์โหลดแล้ว Install ตามปกติ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:106
+msgid "เปิดโปรแกรมขึ้นมา จะเห็นหน้า Workbench"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:108
+msgid ""
+"<strong>หน้าตาที่จะเห็น:</strong> มีช่อง Node Repository ด้านซ้าย, พื้นที่ว่างกลางจอ "
+"(Workflow Editor), และ Node Description ด้านขวา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:110
+msgid "Step 2: ติดตั้ง Extension: KNIME Database"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:111
+msgid "KNIME ต้องติดตั้ง Extension เพิ่มก่อน ถึงจะใช้ DB Node ได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:113
+msgid "ที่ Menu Bar บนสุด → Install Extensions"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:114
+msgid "ในช่อง Search พิมพ์ว่า <code>SQL Server</code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:115
+msgid "ติ๊กถูกที่: <strong>KNIME Microsoft JDBC Driver For SQL Server</strong>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:116
+msgid "กด Install (หรือ Next)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:118
+msgid "รอติดตั้ง แล้ว Restart KNIME"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:121
+msgid "Step 3: ดาวน์โหลด JDBC Driver (สำคัญมาก)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:122
+msgid "KNIME ต้องการ JDBC Driver เพื่อเชื่อมต่อกับ Database ทั้งสอง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:124
+msgid "ดาวน์โหลด MySQL Connector/J"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:127
+msgid "ที่ช่อง Select Operating System เลือก <strong>Platform Independent</strong>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:128
+msgid "จะเห็นไฟล์ 2 แบบ ดาวน์โหลดแบบ <strong>ZIP Archive</strong>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:129
+msgid ""
+"กด Download → จะมีหน้าให้ Login → กด <strong>No thanks, just start my download</"
+"strong> ได้เลย ไม่ต้องสมัคร"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:130
+msgid "แตกไฟล์ ZIP ที่ดาวน์โหลดมา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:131
+msgid ""
+"ข้างในจะมีไฟล์ชื่อประมาณ <code>mysql-connector-j-9.x.x.jar</code> → "
+"เอาไฟล์นี้ไว้ที่ไหนก็ได้ที่จำได้ เช่น <code>C:\\jdbc\\mysql-connector-j-9.x.x.jar</code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:134
+msgid "Step 4: เพิ่ม JDBC Driver ใน KNIME"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:136
+msgid "เปิด KNIME ขึ้นมา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:137
+msgid "คลิก Preferences ⚙️ มุมขวาบน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:138
+msgid "ด้านซ้าย ขยาย KNIME → คลิก Databases"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:139
+msgid "กดปุ่ม Add ด้านขวา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:140
+msgid "กรอกข้อมูลทีละช่อง:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:144
+msgid ""
+"URL template: ลบของเดิมออก แล้วพิมพ์ <code>jdbc:mysql://"
+"&lt;host&gt;:&lt;port&gt;/&lt;database&gt;</code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:145
+msgid "Database type: ปล่อยเป็น default ไว้ก่อน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:148
+msgid "กด Add file"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:149
+msgid ""
+"ไปที่โฟลเดอร์ที่ดาวน์โหลด <code>mysql-connector-j-9.x.x.jar</code> มาจาก Step 3"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:150
+msgid "เลือกไฟล์ <code>mysql-connector-j-9.x.x.jar</code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:151
+msgid "กด Open"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:152
+msgid ""
+"กด Find driver classes → จะเด้งให้เลือก → เลือก <code>com.mysql.cj.jdbc.Driver</"
+"code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:155
+msgid "Step 5: สร้างตาราง fraud_clean_knime ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:156
+msgid "เปิด MySQL Workbench แล้วรัน SQL นี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:179
+msgid "ตรวจสอบว่าสร้างสำเร็จด้วย:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:182
+msgid "Step 6: สร้าง KNIME Workflow ใหม่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:184
+msgid "ใน KNIME คลิกขวาที่ LOCAL (Local Workspace) ด้านซ้าย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:185
+msgid "เลือก New KNIME Workflow..."
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:186
+msgid "ตั้งชื่อ เช่น <code>ETL_FraudDetection_KNIME</code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:187
+msgid "กด Finish → จะได้พื้นที่ว่างสำหรับสร้าง Workflow"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:191
+msgid "ก่อนไป Phase 1 ต้องผ่านทุกข้อนี้ก่อน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:196
+msgid "ข้อ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:197
+msgid "งาน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:203
+msgid "ติดตั้ง KNIME สำเร็จ เปิดได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:207
+msgid "ติดตั้ง KNIME Database Extension"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:211
+msgid "มีไฟล์ .jar ทั้ง SQL Server และ MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:215
+msgid "ลงทะเบียน JDBC Driver ใน KNIME Preferences"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:219
+msgid "สร้างตาราง fraud_clean_knime ใน MySQL สำเร็จ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:223
+msgid "สร้าง Workflow ใหม่ใน KNIME แล้ว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:241
+msgid "Phase 1 — Extract: ดึงข้อมูลจาก SQL Server + จับเวลา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:243
+msgid "วัตถุประสงค์ของ Phase 1"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:244
+msgid ""
+"ใน Phase 1 มีเป้าหมายเพื่อเชื่อมต่อกับ SQL Server (frauddb) และดึงข้อมูลจากตาราง "
+"fraud_10k, fraud_100k และ fraud_1m พร้อมเริ่มจับเวลา Extract โดยใช้ Java Snippet "
+"Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:246
+msgid "Phase 1 มี 3 Node หลัก ทำตามลำดับนี้ได้เลย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:249
+msgid ""
+"เราเริ่มต้นด้วยการสร้าง Connection ระหว่าง KNIME กับ Microsoft SQL Server โดยใช้ "
+"Node Microsoft SQL Server Connector สำหรับเชื่อมต่อระหว่าง KNIME กับ Microsoft SQL "
+"Server"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:251
+msgid "วิธีเพิ่ม Node:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:253
+msgid ""
+"ที่ช่อง Search Node (มุมซ้ายล่าง) พิมพ์ว่า <code>Microsoft SQL Server Connector</code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:254
+msgid "ลาก Node มาวางใน Workflow Editor"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:257
+msgid "วิธีตั้งค่า (คลิกขวาที่ Node กด configure):"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:263
+msgid "ค่าที่ใส่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:269
+msgid "localhost หรือ IP ของ SQL Server"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:285
+msgid "ชื่อ user SQL Server ของคุณ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:289
+#: .\pipeline\templates\pipeline\knime.html:840
+msgid "รหัสผ่าน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:295
+msgid ""
+"<strong>หมายเหตุ:</strong> ถ้ายังไม่ได้ติดตั้ง JDBC Driver ของ SQL Server ให้ไปที่ "
+"Preferences → Databases แล้วเพิ่ม .jar ไฟล์ของ Microsoft JDBC Driver ก่อน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:296
+msgid ""
+"กด OK แล้วกด Execute (คลิกขวา → Execute) เพื่อทดสอบ Connection ถ้าสำเร็จ Node "
+"จะเป็นสีเขียว ✅"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:299
+msgid ""
+"เนื่องจาก Node Microsoft SQL Server Connector (Node 1) ทำได้แค่ เปิด Connection "
+"เท่านั้น ยังไม่ได้ดึงข้อมูลออกมา เราจึงต้องมีNode ที่ทำหน้าที่ ดึงข้อมูลจาก Database มาเป็น Table "
+"ใน KNIME โดยรับจาก SQL Server Connector (Node 1) แล้วรัน SQL Query "
+"ที่กำหนดไว้ผลลัพธ์ที่ได้คือตารางข้อมูลที่พร้อมส่งต่อให้Node ถัดไป ถ้าไม่มี Node นี้ KNIME "
+"จะไม่รู้ว่าต้องการข้อมูลตารางไหน และจำนวนเท่าไหร่ นอกจากนี้ ยังได้เพิ่ม SYSDATETIME() "
+"เข้ามาด้วย เพื่อบันทึกเวลาที่ SQL Server เริ่มต้น Query ณ ขณะนั้น โดยเก็บไว้เป็น Column ชื่อ "
+"extract_start_time เพื่อที่จะได้นำไปคำนวณเวลาที่ใช้ในการ Extract ใน Node ถัดไป"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:301
+#: .\pipeline\templates\pipeline\knime.html:326
+#: .\pipeline\templates\pipeline\knime.html:447
+#: .\pipeline\templates\pipeline\knime.html:577
+#: .\pipeline\templates\pipeline\knime.html:607
+#: .\pipeline\templates\pipeline\knime.html:668
+#: .\pipeline\templates\pipeline\knime.html:686
+#: .\pipeline\templates\pipeline\knime.html:805
+#: .\pipeline\templates\pipeline\knime.html:852
+#: .\pipeline\templates\pipeline\knime.html:923
+#: .\pipeline\templates\pipeline\knime.html:1041
+#: .\pipeline\templates\pipeline\knime.html:1067
+#: .\pipeline\templates\pipeline\knime.html:1089
+msgid "ขั้นตอนที่ 1: เพิ่ม Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:303
+msgid "ไปที่ช่อง Search Node ด้านซ้าย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:304
+msgid "พิมพ์ <code>DB Query Reader</code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:305
+msgid "ลาก Node มาวาง ทางขวาของ Node 1"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:308
+#: .\pipeline\templates\pipeline\knime.html:332
+#: .\pipeline\templates\pipeline\knime.html:453
+#: .\pipeline\templates\pipeline\knime.html:583
+#: .\pipeline\templates\pipeline\knime.html:613
+#: .\pipeline\templates\pipeline\knime.html:674
+#: .\pipeline\templates\pipeline\knime.html:692
+#: .\pipeline\templates\pipeline\knime.html:858
+#: .\pipeline\templates\pipeline\knime.html:929
+#: .\pipeline\templates\pipeline\knime.html:1047
+#: .\pipeline\templates\pipeline\knime.html:1073
+#: .\pipeline\templates\pipeline\knime.html:1095
+msgid "ขั้นตอนที่ 2: ต่อสาย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:309
+msgid ""
+"ลากเส้นจาก Output Port ของ Node 1 (สี่เหลี่ยมเล็กด้านขวา) ไปที่ Input Port ของ Node 2 "
+"(ด้านซ้าย)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:312
+#: .\pipeline\templates\pipeline\knime.html:335
+#: .\pipeline\templates\pipeline\knime.html:586
+#: .\pipeline\templates\pipeline\knime.html:616
+#: .\pipeline\templates\pipeline\knime.html:677
+#: .\pipeline\templates\pipeline\knime.html:932
+#: .\pipeline\templates\pipeline\knime.html:1050
+#: .\pipeline\templates\pipeline\knime.html:1076
+#: .\pipeline\templates\pipeline\knime.html:1098
+msgid "ขั้นตอนที่ 3: ตั้งค่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:313
+msgid "คลิกขวาที่ Node กด configure แล้วใส่ SQL Query:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:315
+#: .\pipeline\templates\pipeline\knime.html:399
+#: .\pipeline\templates\pipeline\knime.html:599
+#: .\pipeline\templates\pipeline\knime.html:915
+#: .\pipeline\templates\pipeline\ssis.html:330
+#: .\pipeline\templates\pipeline\ssis.html:454
+#: .\pipeline\templates\pipeline\ssis.html:469
+#: .\pipeline\templates\pipeline\ssis.html:740
+msgid "กด OK"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:317
+#: .\pipeline\templates\pipeline\knime.html:401
+#: .\pipeline\templates\pipeline\knime.html:601
+#: .\pipeline\templates\pipeline\knime.html:629
+#: .\pipeline\templates\pipeline\knime.html:680
+#: .\pipeline\templates\pipeline\knime.html:917
+msgid "ขั้นตอนที่ 4: Execute"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:318
+msgid "คลิกขวา Node 2 → Execute"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:319
+msgid ""
+"ถ้าสำเร็จ Node จะเป็นสีเขียว ซึ่งจะมีข้อมูล 10,000 แถวและจะเห็น Column "
+"<code>extract_start_time</code> เพิ่มขึ้นมาในทุก Row โดยผลลัพธ์จะเห็นเป็นตัวเลขยาวๆ "
+"เช่น <code>2026-02-26T21:09:10.639728500</code> นั้นคือค่าปกติ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:322
+msgid ""
+"Node นี้ทำหน้าที่รับค่าจาก <code>extract_start_time</code> ที่ติดมากับข้อมูลจาก Node 2 "
+"ซึ่งเป็นเวลาที่ SQL Server บันทึกไว้ตอนเริ่มต้น Query จากนั้นนำมาคำนวณหาเวลาที่ใช้ในการ "
+"Extract โดยใช้คำสั่ง Java System.currentTimeMillis() ซึ่งจะคืนค่าเวลาปัจจุบันในหน่วย "
+"Milliseconds"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:324
+msgid ""
+"การใช้ Java Snippet Node เป็นการที่เปิดให้เรา เขียน Java Code เอง ได้โดยตรงภายใน "
+"KNIME ซึ่งส่วนใหญ่ใช้กับงานที่มีความต้องการเฉพาะเจาะจงที่ Node สำเร็จรูปทั่วไปไม่รองรับ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:328
+#: .\pipeline\templates\pipeline\knime.html:449
+#: .\pipeline\templates\pipeline\knime.html:688
+#: .\pipeline\templates\pipeline\knime.html:925
+msgid "พิมพ์ <code>Java Snippet</code> ใน Search Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:329
+msgid "ลาก Node มาวาง ทางขวาของ Node 2"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:336
+#: .\pipeline\templates\pipeline\knime.html:696
+#: .\pipeline\templates\pipeline\knime.html:933
+msgid "ส่วนที่ 1: เพิ่ม Input Column"
+msgstr "ส่วนที่ 1: เพิ่ม Input Column"
+
+#: .\pipeline\templates\pipeline\knime.html:337
+msgid "กดปุ่ม Add แล้วตั้งค่า:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:357
+msgid "ส่วนที่ 2: เพิ่ม Output Column"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:377
+msgid "ส่วนที่ 3: ใส่ Code"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:402
+msgid "คลิกขวา Node 3 → Execute"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:403
+msgid "ถ้าสำเร็จจะเห็น Column <code>extract_sec</code> เพิ่มขึ้นมาในทุก Row"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:405
+msgid "ภาพรวม Phase 1 ที่ได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:413
+msgid "Checklist ก่อนไป Phase 2"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:415
+msgid "Node 1 Execute แล้วเป็นสีเขียว (Connection สำเร็จ)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:416
+msgid "Node 2 Execute แล้วเห็นข้อมูล 10,000 แถว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:417
+msgid "Node 3 Execute แล้วเห็น Column <code>extract_start_time</code> เพิ่มขึ้นมา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:434
+msgid "วัตถุประสงค์ของ Phase 2"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:435
+msgid ""
+"ในเฟสนี้เราจะแปลงข้อมูลดิบจาก SQL Server ที่ Extract มาแล้วให้อยู่ในรูปแบบที่ถูกต้อง สะอาด "
+"และพร้อมสำหรับการ Load ลง MySQL ซึ่งในเฟสนี้มีการ:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:437
+msgid "Hash ข้อมูลส่วนตัว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:438
+msgid "แปลง Data Type ใน คอลัมน์ trans_date_trans_time"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:439
+msgid "กรองข้อมูลที่ amt <= 0 หรือ NULL ออก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:440
+msgid "Rename columns"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:443
+msgid "Phase นี้มี 5 Node (Node 4-8) ทำตามลำดับเลย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:450
+msgid "ลากมาวางต่อจาก Node 3"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:456
+msgid "ขั้นตอนที่ 3: ตั้งค่า Output Columns"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:457
+msgid "ส่วนที่ 1: เพิ่ม Output Column"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:458
+msgid "กดปุ่ม Add ในส่วน Output 4 ครั้ง สำหรับ column ที่ต้อง Hash:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:507
+msgid ""
+"<strong>สังเกต:</strong> ครั้งนี้เลือก Replace ไม่ใช่ Append เพราะต้องการทับค่าเดิมด้วยค่า "
+"Hash"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:509
+msgid "ส่วนที่ 2: เพิ่ม Input Column"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:510
+msgid "กดปุ่ม Add ในส่วน Input 4 ครั้ง:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:545
+msgid "ขั้นตอนที่ 5: ใส่ Code ใน Snippet"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:546
+#: .\pipeline\templates\pipeline\knime.html:739
+msgid "บรรทัด 13 (Your custom imports):"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:549
+msgid "บรรทัด 37 (Your custom variables):"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:561
+msgid "บรรทัด 42-45 (แทนที่ที่มีอยู่):"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:571
+#: .\pipeline\templates\pipeline\knime.html:776
+msgid "ขั้นตอนที่ 6: Execute"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:572
+msgid ""
+"คลิกขวา → Execute ถ้าสำเร็จแล้วเช็คว่า column cc_num, first, last, dob เปลี่ยนเป็น "
+"Hash แล้ว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:575
+msgid ""
+"Node นี้แปลง trans_date_trans_time จาก String เป็น DateTime จริงๆตอน Extract "
+"โปรแกรม Knime ได้แปลง datatype จากString เป็น DateTime ให้แล้วอัตโนมัติ "
+"แต่เพื่อให้มั่นใจว่า Format ถูกต้องตามที่ต้องการ และ ให้ขั้นตอนการ Transform "
+"มีความชัดเจนและสามารถตรวจสอบได้ในทุก Step จึงยังคงใส่ Node นี้ไว้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:579
+msgid "พิมพ์ <code>String to Date&Time</code> ใน Search Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:580
+msgid "ลากมาวางต่อจาก Node 4"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:587
+msgid "ส่วนที่ 1: เอา column ที่ไม่ต้องการออก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:588
+msgid "กดปุ่ม << เพื่อย้ายทุก column ไปฝั่ง Excludes ก่อน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:590
+msgid "ส่วนที่ 2: เลือกเฉพาะ trans_date_trans_time"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:591
+msgid "คลิกที่ trans_date_trans_time ในฝั่ง Excludes แล้วกด > เพื่อย้ายมาฝั่ง Includes"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:593
+msgid "ส่วนที่ 3: เลื่อนลงไปดู Input format"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:595
+msgid "คลิกที่ Date & time"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:596
+msgid "Input format จะเปลี่ยนเป็น: <code>yyyy-MM-dd\\'T\\'HH:mm[:ss[.SSS]]</code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:597
+msgid ""
+"Output columns เลือก Replace ได้เลย เพราะเราต้องการแทนที่ trans_date_trans_time "
+"ด้วย DateTime"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:602
+msgid "คลิกขวา → Execute แล้วเช็ค column trans_date_trans_time"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:605
+msgid "Node นี้กรองทิ้ง Row ที่ amt <= 0 หรือ amt เป็น NULL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:609
+msgid "พิมพ์ <code>Rule-based Row Filter</code> ใน Search Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:610
+msgid "ลากมาวางต่อจาก Node 5"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:617
+msgid "คลิกขวา Node 6 กด configure แล้วใส่ Rule ในช่อง:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:622
+msgid "อธิบาย:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:624
+msgid "<code>$amt$ <= 0 => FALSE</code> = ถ้า amt น้อยกว่าหรือเท่ากับ 0 → ลบทิ้ง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:625
+msgid "<code>MISSING $amt$ => FALSE</code> = ถ้า amt เป็น NULL → ลบทิ้ง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:626
+msgid "<code>TRUE => TRUE</code> = นอกนั้นเก็บไว้ทั้งหมด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:630
+msgid "คลิกขวา → Execute แล้วเช็คจำนวน Row ที่เหลือ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:633
+msgid "Node นี้เราจะเปลี่ยนชื่อคอลัมน์ 5 คอลัมน์:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:639
+msgid "ชื่อเดิม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:640
+msgid "ชื่อใหม่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:670
+msgid "พิมพ์ <code>Column Rename</code> ใน Search Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:671
+msgid "ลากมาวางต่อจาก Node 6"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:678
+msgid "ดับเบิลคลิก แล้วเปลี่ยนชื่อดังนี้ (ตามตารางข้างบน)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:681
+msgid "คลิกขวา → Execute แล้วเช็คคอลัมน์ว่าเปลี่ยนชื่อตามที่ตั้งไว้หรือไม่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:684
+msgid "Node นี้คำนวณเวลาที่ใช้ใน Transform Phase ทั้งหมด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:689
+msgid "ลากมาวางต่อจาก Node 7"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:695
+msgid "ขั้นตอนที่ 3: ตั้งค่า Input Columns"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:697
+msgid "กด Add ในส่วน Input 1 ครั้ง:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:717
+#: .\pipeline\templates\pipeline\knime.html:959
+msgid "ส่วนที่ 2: เพิ่ม Output Columns"
+msgstr "ส่วนที่ 2: เพิ่ม Output Columns"
+
+#: .\pipeline\templates\pipeline\knime.html:718
+#: .\pipeline\templates\pipeline\knime.html:960
+msgid "กด Add ในส่วน Output 1 ครั้ง:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:738
+msgid "ขั้นตอนที่ 5: ใส่ Code"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:742
+msgid "บรรทัด 34-45 (แทนที่ที่มีอยู่):"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:777
+msgid "คลิกขวา → Execute แล้วเช็คว่า column transform_sec มีค่าเป็นวินาที"
+msgstr "คลิกขวา → Execute แล้วเช็คว่า column transform_sec มีค่าเป็นวินาที"
+
+#: .\pipeline\templates\pipeline\knime.html:793
+msgid "วัตถุประสงค์ของ Phase 3"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:794
+msgid "Phase 3 มีวัตถุประสงค์หลัก 2 ประการ คือ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:796
+msgid "เพื่อโหลดข้อมูลที่ผ่านการ Transform แล้วเข้าสู่ตาราง fraud_clean_knime บน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:797
+msgid "เพื่อจับเวลาขั้นตอน Load แยกตามขนาด 10K, 100K และ 1M แถว และบันทึกผล"
+msgstr "เพื่อจับเวลาขั้นตอน Load แยกตามขนาด 10K, 100K และ 1M แถว และบันทึกผล"
+
+#: .\pipeline\templates\pipeline\knime.html:800
+msgid "Phase นี้มี 6 Node (Node 9-14) ทำตามลำดับเลย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:803
+msgid ""
+"MySQL Connector Node ทำหน้าที่เป็น ตัวสร้างการเชื่อมต่อ (Connection Object) ระหว่าง "
+"KNIME กับ MySQL Database โดยเฉพาะ โดยตัว Node เองไม่ได้ดึงหรือเขียนข้อมูลใดๆ "
+"เพียงแค่ทำหน้าที่การเชื่อมต่อ เท่านั้น ซึ่ง MySQL Connector Node จะส่งการเชื่อมต่อไปให้Node "
+"ถัดไปใช้งาน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:807
+msgid "พิมพ์ <code>MySQL Connector</code> ใน Search Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:808
+msgid "ลากมาวางใต้ Workflow (แยกออกมา ยังไม่ต้องต่อสาย)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:811
+msgid "ขั้นตอนที่ 2: ตั้งค่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:812
+#: .\pipeline\templates\pipeline\knime.html:865
+msgid "คลิกขวากด configure แล้วตั้งค่า:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:836
+msgid "ชื่อ user MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:846
+msgid "ขั้นตอนที่ 3: Execute ก่อนยังไม่ต้องต่อสาย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:847
+#: .\pipeline\templates\pipeline\knime.html:918
+msgid "คลิกขวา → Execute ถ้าสำเร็จ Node จะเป็นสีเขียว ✅"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:850
+msgid ""
+"DB Writer Node ทำหน้าที่ เขียนข้อมูลจาก KNIME ลงสู่ตารางใน Database โดยรับข้อมูลที่ผ่านการ "
+"Transform มาแล้วจาก Node ก่อนหน้า และรับการเชื่อมต่อจาก MySQL Connector "
+"เพื่อรู้ว่าต้องเขียนลง Database ไหน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:854
+msgid "พิมพ์ <code>DB Writer</code> ใน Search Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:855
+msgid "ลากมาวางต่อจาก Node 8"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:864
+msgid "ขั้นตอนที่ 3: ตั้งค่า DB Writer"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:887
+msgid "<strong>If table exists:</strong> เลือก Append rows"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:890
+msgid "ต้องย้าย column ที่ไม่มีใน MySQL ออกไปฝั่ง Excludes:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:905
+msgid "เลื่อนดู Includes ทั้งหมดแล้วเทียบกับ Schema MySQL ที่สร้างไว้:"
+msgstr "เลื่อนดู Includes ทั้งหมดแล้วเทียบกับ Schema MySQL ที่สร้างไว้:"
+
+#: .\pipeline\templates\pipeline\knime.html:910
+msgid "<strong>ส่วน Output: เอาติ๊ก ✅ ออก</strong>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:912
+msgid "ติ๊ก ✅ Append status column ออก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:913
+msgid "ติ๊ก ✅ Append error column ออก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:921
+msgid ""
+"Node นี้ทำหน้าที่ หยุดจับเวลาของ Phase Load และคำนวณเวลาที่ใช้ในแต่ละ Phase ทั้งหมด "
+"เพื่อเตรียมบันทึกลง CSV"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:926
+msgid "ลากมาวางต่อจาก Node 10 (DB Writer)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:934
+msgid "กด Add ในส่วน Input 2 ครั้ง:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:985
+msgid "ขั้นตอนที่ 4: ใส่ Code"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1034
+msgid "ขั้นตอนที่ 5: Execute"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1035
+#: .\pipeline\templates\pipeline\knime.html:1172
+msgid "กด Reset all → Execute all"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1036
+msgid ""
+"คลิกขวา → Execute แล้วเช็คว่ามี column load_sec มีค่าเป็นวินาทีและ column dataset "
+"ปรากฏขึ้นมา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1039
+msgid ""
+"Node นี้ทำหน้าที่แปลงข้อมูลในแถวแรกของ Table ให้กลายเป็น Flow Variable (ตัวแปรที่อยู่นอก "
+"Table) สรุปง่ายๆคือ ทำให้ข้อมุลแถวแรกในตารางกลายเป็นตัวแปรที่อยู่นอกตารางเพื่อให้Node "
+"ที่อยู่ถัดไปในทุกจุดของ Workflow สามารถดึงตัวแปรนั้นไปใช้ได้เลย ในโปรเจคนี้แปลงค่า "
+"extract_sec, transform_sec, load_sec และ dataset จาก Row แรกเป็น Flow Variable"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1043
+msgid "พิมพ์ <code>Table Row to Variable</code> ใน Search Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1044
+msgid "ลากมาวางต่อจาก Load Timer Stop"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1052
+msgid "ย้ายไปฝั่ง Excludes ให้เหลือแค่ 4 ตัวใน Includes"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1053
+msgid "กดปุ่ม << เพื่อย้ายทุกอย่างไป Excludes ก่อน แล้วค่อยย้ายกลับมาแค่ 4 ตัวนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1061
+#: .\pipeline\templates\pipeline\knime.html:1084
+#: .\pipeline\templates\pipeline\knime.html:1104
+msgid "กด Apply หรือ Apply and Execute"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1065
+msgid ""
+"Node นี้ทำหน้าที่ ตรงข้ามกับ Table Row to Variable เลยคือแปลง Flow Variable "
+"ที่ลอยอยู่นอก Table ให้กลับมาเป็น แถวข้อมูลใน Table แทนในโปรเจคนี้ Node นี้จะรับค่า "
+"extract_sec, transform_sec, load_sec และ dataset จาก Node 12 : Table Row to "
+"Variable กลับมาเป็นแถวข้อมูลในตารางอีกครั้ง ทั้งหมดนี้เพื่อให้CSV Writer ที่รับได้แค่ Table "
+"ธรรมดาสามารถบันทึกค่า Timing ทั้ง 3 Phase ลงไฟล์ได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1069
+msgid "พิมพ์ <code>Variable to Table Row</code> ใน Search Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1070
+msgid "ลากมาวางต่อจาก Table Row to Variable"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1077
+msgid "ย้าย 4 ตัวนี้จาก Excludes → Includes:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1087
+msgid "CSV Writer Node ทำหน้าที่ เขียนข้อมูลจาก Table ออกมาเป็นไฟล์ .csv บนเครื่องของเรา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1091
+msgid "พิมพ์ <code>CSV Writer</code> ใน Search Node"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1092
+msgid "ลากมาวางต่อจาก Variable to Table Row"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1100
+msgid "เลือก location ที่อยากให้ไฟล์ csv แสดง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1101
+msgid "ใส่ชื่อไฟล์ในช่อง Name: <code>knime_10k_timing_log.csv</code>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1102
+msgid "กด Choose file"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1107
+msgid "ตรวจสอบผลใน MySQL Workbench:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1108
+msgid "รันโค้ดนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1163
+msgid ""
+"และเปิด timing_log_knime.csv ในโฟลเดอร์ที่กำหนด location "
+"ในโปรเจคนี้กำหนดไว้ที่โฟลเดอร์ data"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1165
+msgid "ก่อนรัน 100K หรือ 1M:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1167
+msgid "ใน MySQL รัน TRUNCATE TABLE ก่อน โดยรันโค้ดนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1171
+msgid "เปลี่ยน Node 2, Node 11 และ Node 14 เป็น \"100k\" หรือ \"1m\""
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1177
+msgid "ภาพประกอบการทดสอบ ETL Pipeline ด้วย KNIME"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1193
+msgid "สรุปและวิเคราะห์ผล KNIME ETL Benchmark"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1195
+msgid "ผลการทดสอบ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1240
+msgid "1. KNIME: การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1263
+msgid "2. KNIME: สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\knime.html:1295
+msgid "3. KNIME: อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:53
+msgid "การทดสอบ ETL Pipeline ด้วย SSIS"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:59
+msgid "ภาพรวม ETL Pipeline"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:61
+msgid ""
+"การทดสอบ ETL Pipeline ด้วย SSIS แบ่งออกเป็น 3 Phase หลัก คือ Extract, Transform "
+"และ Load โดยใช้ Visual Studio สร้าง SSIS Package ที่ดึงข้อมูลจาก SQL Server, ทำการ "
+"Transform ด้วย Script Component (SHA256 Hashing) และโหลดเข้า MySQL Database"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:95
+msgid "Prerequisites (สิ่งที่ต้องติดตั้งก่อนเริ่ม)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:97
+msgid "SSIS คืออะไร? (What is SSIS?)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:98
+msgid ""
+"SQL Server Integration Services (SSIS) คือ platform สำหรับสร้าง data "
+"integration และ ETL (Extract, Transform, Load) workflow ของ Microsoft "
+"มันเป็นส่วนหนึ่งของ SQL Server และทำงานผ่าน Visual Studio โดยใช้วิธีการลาก-วาง "
+"ก่อนที่จะเริ่มการทดลองได้ต้องติดตั้ง Software ที่ใช้ก่อน ดังหัวข้อถัดไป"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:100
+msgid "รายการ Software ที่ต้องติดตั้ง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:101
+msgid ""
+"ทั้งหมดนี้เป็นรายการที่ต้องติดตั้งและตั้งค่าก่อนเริ่มต้นทำโปรเจคนี้โดยใช้ SSIS "
+"ซึ่งสามารถหาวิธีการติดตั้งได้ตามอินเทอร์เน็ตหรือแหล่งความรู้ทั่วไป "
+"ถ้าหากมีการติดตั้งและตั้งค่าแล้วสามารถข้ามไปทำ Phase 1 การเตรียม Dataset และ SQL Server "
+"ได้เลย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:126
+msgid "Phase 1: การเตรียม Dataset และ SQL Server"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:128
+msgid "STEP 1: Download Dataset จาก Kaggle"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:130
+msgid "ไปที่ kaggle.com → สมัครสมาชิกถ้ายังไม่มีบัญชี"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:131
+#: .\pipeline\templates\pipeline\ssis.html:362
+msgid "ค้นหา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:131
+msgid "หรือเข้าลิงก์นี้เลย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:134
+msgid "กด Download → ได้ไฟล์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:135
+#: .\pipeline\templates\pipeline\ssis.html:988
+msgid "สร้างโฟลเดอร์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:135
+msgid "แล้ววางไฟล์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:135
+msgid "ไว้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:138
+msgid "STEP 2: สร้าง Database ใน SQL Server"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:140
+msgid ""
+"เปิด SSMS (SQL Server Management Studio) ในโปรเจคนี้ใช้ SQL Server Authentication"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:146
+msgid "Database frauddb ถูกสร้างสำเร็จ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:151
+msgid "เชื่อมต่อ SQL Server → กด New Query"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:152
+msgid "วาง SQL นี้แล้วกด Execute (F5)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:159
+#: .\pipeline\templates\pipeline\ssis.html:298
+msgid "ผลลัพธ์:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:161
+msgid "STEP 3: วิธี Import CSV ด้วย SSMS Import Flat File Wizard"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:163
+msgid ""
+"ใน SSMS → Object Explorer → คลิกขวาที่ FraudDB → Tasks → Import Flat File..."
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:164
+msgid "กด Next → Browse เลือกไฟล์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:164
+msgid "ตั้งชื่อตารางเป็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:164
+msgid "กด Next"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:165
+msgid "หน้า Preview Data → กด Next"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:166
+msgid "หน้า Modify Columns → แก้ Data Type ดังนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:185
+msgid ""
+"ติ๊ก Allow Nulls ทุก column เพราะข้อมูลจริงอาจมีบาง column ที่ว่างเปล่า ถ้าไม่ติ๊กไว้จะ "
+"Error ตอน Import → กด Next → Finish"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:188
+msgid "ข้อดีของวิธีนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:188
+msgid ""
+"คือ Wizard จัดการ quoted fields เช่น \"fraud_Rippin, Kub and Mann\" "
+"ให้อัตโนมัติไม่ต้องแก้ไขอะไรเพิ่ม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:190
+msgid "ขั้นตอนต่อไปคือตรวจนับแถวใน SSMS ก่อน รันได้เลย:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:198
+msgid "การ Import CSV ด้วย SSMS Import Flat File Wizard"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:202
+#: .\pipeline\templates\pipeline\ssis.html:223
+msgid "ผลลัพธ์ที่ได้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:204
+msgid "STEP 4: สร้างตาราง 3 ขนาดสำหรับ Benchmark"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:205
+#: .\pipeline\templates\pipeline\ssis.html:243
+msgid "รัน SQL นี้ใน SSMS ได้เลย:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:218
+msgid "Count all tables"
+msgstr "ตรวจนับทุกตาราง"
+
+#: .\pipeline\templates\pipeline\ssis.html:227
+msgid "สร้างตาราง 3 ขนาดสำหรับ Benchmark สำเร็จ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:231
+msgid "STEP 5: ดูว่ามีคอลัมน์อะไรบ้างใน dataset"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:232
+msgid "รัน SQL นี้ใน SSMS:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:235
+msgid "View all columns of fraud_staging"
+msgstr "ดู column ทั้งหมดของ fraud_staging"
+
+#: .\pipeline\templates\pipeline\ssis.html:241
+msgid "STEP 6: เปลี่ยนชื่อคอลัมน์ long เป็น long_col"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:242
+msgid "เพราะ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:242
+msgid "เป็น keyword ของ C# ทำให้ BufferWrapper.cs Build ไม่ผ่าน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:251
+msgid "Phase 1 เสร็จสมบูรณ์แล้ว! 🎊"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:265
+msgid "Phase 2: สร้าง Target Database ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:267
+msgid "STEP 1: สร้าง Database และ Table ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:268
+msgid "เปิด MySQL Workbench → เชื่อมต่อ → เปิด New Query แล้วรัน SQL นี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:302
+msgid "สร้าง Database และ Table ใน MySQL สำเร็จ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:306
+msgid "STEP 2: ตั้งค่า MySQL ODBC DSN"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:308
+#, fuzzy
+#| msgid "กด Windows Search → พิมพ์ \"ODBC\" → เลือก ODBC Data Sources (64-bit)"
+msgid "กด Windows Search → พิมพ์ \\"
+msgstr "กด Windows Search → พิมพ์ \"ODBC\" → เลือก ODBC Data Sources (64-bit)"
+
+#: .\pipeline\templates\pipeline\ssis.html:309
+msgid "ไปที่ tab System DSN (ไม่ใช่ User DSN!)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:310
+msgid "กด Add → เลือก MySQL ODBC 9.6 Unicode Driver → กด Finish"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:311
+msgid "กรอกข้อมูลดังนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:318
+#: .\pipeline\templates\pipeline\ssis.html:441
+#: .\pipeline\templates\pipeline\ssis.html:629
+#: .\pipeline\templates\pipeline\ssis.html:858
+msgid "ค่าที่กรอก"
+msgstr "ค่าที่กรอก"
+
+#: .\pipeline\templates\pipeline\ssis.html:325
+msgid "ตามที่ตั้งตอนติดตั้ง MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:326
+msgid "password ที่ตั้งตอนติดตั้ง MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:330
+msgid "กด Test → ต้องได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:332
+msgid "วิธีเช็ค MySQL User"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:333
+msgid "วิธีที่ 1 — ดูใน MySQL Workbench"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:334
+msgid ""
+"เปิด MySQL Workbench → ดูที่หน้า Home จะเห็น Connection ที่มีอยู่ ใต้ชื่อ Connection จะเห็น "
+"username เช่น root หรือชื่ออื่น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:336
+msgid "วิธีที่ 2 — รัน SQL ใน MySQL Workbench"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:338
+msgid "จะแสดง User ที่ Login อยู่ตอนนี้เลย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:340
+msgid "ส่วนใหญ่ถ้าติดตั้ง MySQL แบบ Default จะใช้ User root และ Password ที่ตั้งตอนติดตั้ง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:342
+msgid "Phase 2 เสร็จสมบูรณ์แล้ว! 🎊"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:356
+msgid "Phase 3: สร้าง SSIS Project ใน Visual Studio"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:358
+msgid "STEP 1: สร้าง Project ใหม่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:360
+msgid "เปิด Visual Studio"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:361
+msgid "กด Create a new project"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:362
+msgid "ในช่อง Search"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:363
+msgid "เลือก Integration Services Project → กด Next"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:364
+msgid "ตั้งชื่อ Project:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:365
+msgid "เลือก Location ที่ต้องการเก็บไฟล์ เช่น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:366
+msgid "กด Create"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:369
+msgid "ผลที่ควรได้คือเห็นไฟล์"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:369
+msgid "ถูกสร้างอัตโนมัติใน Solution Explorer ✅"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:371
+msgid "STEP 2: Rename Package และสร้าง Package เพิ่ม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:373
+msgid "ใน Solution Explorer → คลิกขวาที่"
+msgstr "ใน Solution Explorer → คลิกขวาที่"
+
+#: .\pipeline\templates\pipeline\ssis.html:373
+msgid "→ Rename → เปลี่ยนเป็น"
+msgstr "→ Rename → เปลี่ยนเป็น"
+
+#: .\pipeline\templates\pipeline\ssis.html:374
+msgid "คลิกขวาที่โฟลเดอร์ SSIS Packages → New SSIS Package → Rename เป็น"
+msgstr "คลิกขวาที่โฟลเดอร์ SSIS Packages → New SSIS Package → Rename เป็น"
+
+#: .\pipeline\templates\pipeline\ssis.html:375
+msgid "ทำซ้ำอีกครั้ง → Rename เป็น"
+msgstr "ทำซ้ำอีกครั้ง → Rename เป็น"
+
+#: .\pipeline\templates\pipeline\ssis.html:378
+msgid "ผลที่ควรได้คือเห็น 3 Package ใน Solution Explorer ✅"
+msgstr "ผลที่ควรได้คือเห็น 3 Package ใน Solution Explorer ✅"
+
+#: .\pipeline\templates\pipeline\ssis.html:386
+msgid ""
+"<strong>Package.dtsx</strong> คือไฟล์ที่เก็บขั้นตอนการทำงานทั้งหมด "
+"ก็คือเอกสารที่ข้างในบอกว่าต้องทำอะไรบ้าง เรียงลำดับยังไง SSIS "
+"จะอ่านไฟล์นี้แล้วทำงานตามที่กำหนดไว้ เหตุที่ต้องสร้างแยกเป็น 3 "
+"ไฟล์เพราะแต่ละไฟล์จะทำงานกับข้อมูลคนละขนาดกัน การแยกไฟล์ทำให้ไม่ต้องกลับมาแก้ค่าทุกครั้งที่รัน "
+"และลดโอกาสรันผิดขนาดโดยไม่รู้ตัว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:389
+msgid "STEP 3: สร้าง Variables สำหรับ Timing"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:390
+msgid "เริ่มที่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:390
+msgid "ก่อน → Double-click เพื่อเปิด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:391
+msgid ""
+"แล้วไปที่ <strong>Control Flow</strong> (พื้นที่ว่างๆ) → คลิกขวา → <strong>Variables</"
+"strong> จะเห็นหน้าต่าง Variables ขึ้นมา → กด <strong>+</strong> เพิ่ม Variables ดังนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:394
+msgid ""
+"เราต้องสร้าง Variables ไว้ก่อนเสมอ เพราะถ้า Task พยายามเรียกใช้ Variable ที่ยังไม่มี "
+"SSIS จะ Error ทันที Type ของ Variable ต้องเลือกให้ตรงกับชนิดของข้อมูลที่จะเก็บ เช่น "
+"เวลาใช้ DateTime วินาทีที่มีทศนิยมใช้ Double และข้อความใช้ String"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:403
+msgid "หมายเหตุ (Value)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:413
+msgid "10k หรือ 100k หรือ 1m"
+msgstr "10k หรือ 100k หรือ 1m"
+
+#: .\pipeline\templates\pipeline\ssis.html:422
+msgid "STEP 4: สร้าง Connection Manager"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:425
+msgid ""
+"Connection Manager คือการบอก SSIS ว่าจะเชื่อมต่อ Database ไหนบ้าง ต้องสร้าง 2 อัน คือ "
+"SQL Server และ MySQL ที่ต้องสร้าง 2 อัน เพราะข้อมูลในโปรเจคนี้ต้องวิ่งข้ามฐานข้อมูล 2 "
+"ตัวที่ต่างกัน คือ SQL Server (ต้นทาง) และ MySQL (ปลายทาง) SSIS "
+"จึงต้องรู้จักทั้งสองก่อนถึงจะส่งข้อมูลจากที่หนึ่งไปอีกที่หนึ่งได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:428
+msgid "STEP 4.1: Connection ที่ 1 (SQL Server)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:430
+#: .\pipeline\templates\pipeline\ssis.html:466
+msgid ""
+"ใน Solution Explorer → คลิกขวาที่ Connection Managers → New Connection Managers"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:431
+#: .\pipeline\templates\pipeline\ssis.html:467
+msgid "เลือก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:432
+msgid "ไปที่ Providers เลือก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:433
+msgid "กรอกข้อมูล Server ที่ต้องการเชื่อมต่อ:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:448
+msgid "รหัสผ่านของ sk"
+msgstr "รหัสผ่านของ sk"
+
+#: .\pipeline\templates\pipeline\ssis.html:454
+#: .\pipeline\templates\pipeline\ssis.html:469
+msgid "ต้องได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:457
+msgid ""
+"<strong>ADO.NET</strong> คือชุดเครื่องมือที่ใช้สำหรับเชื่อมต่อฐานข้อมูลใน .NET ส่วน "
+"<strong>SqlClient Data Provider</strong> คือตัวที่ ADO.NET ใช้คุยกับ SQL Server "
+"โดยเฉพาะ เปรียบได้ว่า ADO.NET คือช่องทางเชื่อมต่อฐานข้อมูลทั่วไป และ SqlClient "
+"คือปลั๊กที่เสียบเข้ากับ SQL Server โดยเฉพาะ"
+msgstr ""
+"<strong>ADO.NET</strong> คือชุดเครื่องมือที่ใช้สำหรับเชื่อมต่อฐานข้อมูลใน .NET ส่วน "
+"<strong>SqlClient Data Provider</strong> คือตัวที่ ADO.NET ใช้คุยกับ SQL Server "
+"โดยเฉพาะ เปรียบได้ว่า ADO.NET คือช่องทางเชื่อมต่อฐานข้อมูลทั่วไป และ SqlClient "
+"คือปลั๊กที่เสียบเข้ากับ SQL Server โดยเฉพาะ"
+
+#: .\pipeline\templates\pipeline\ssis.html:464
+msgid "STEP 4.2: Connection ที่ 2 (MySQL)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:468
+msgid "เลือก DSN ="
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:468
+msgid "จากที่เราได้ตั้งค่า MySQL ODBC DSN มาแล้ว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:473
+msgid ""
+"MySQL เป็นฐานข้อมูลของบริษัทอื่นที่ไม่ใช่ Microsoft ADO.NET "
+"ถูกออกแบบมาให้ทำงานกับฐานข้อมูลของ Microsoft ได้ดีที่สุด ส่วน ODBC "
+"คือมาตรฐานกลางที่ใช้เชื่อมต่อฐานข้อมูลได้หลายยี่ห้อรวมถึง MySQL ด้วย นั่นคือเหตุผลที่ใน "
+"Prerequisites ต้องติดตั้ง MySQL ODBC Driver ก่อน เพราะถ้าไม่มี Driver นี้ SSIS "
+"จะมองไม่เห็น MySQL เลย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:476
+msgid "Phase 3 เสร็จสมบูรณ์แล้ว! 🎊"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:490
+msgid "Phase 4: สร้าง SSIS Control Flow"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:491
+msgid "Phase นี้เป็นหัวใจหลักของโปรเจคเลย เราจะเริ่มที่ ETL_10k.dtsx ก่อน"
+msgstr "Phase นี้เป็นหัวใจหลักของโปรเจคเลย เราจะเริ่มที่ ETL_10k.dtsx ก่อน"
+
+#: .\pipeline\templates\pipeline\ssis.html:493
+msgid "ภาพรวม Task ทั้งหมดที่จะสร้าง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:508
+msgid "Task 1: Script Task: Start Timer"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:511
+msgid ""
+"Script Task คือ Task ที่เปิดให้เราเขียนโค้ด C# เองได้ ใช้ในกรณีที่สิ่งที่เราต้องการทำไม่มี Task "
+"สำเร็จรูปใน SSIS รองรับ เช่น การจับเวลา การคำนวณ หรือการเขียนไฟล์ CSV ซึ่งทั้งหมดนี้ SSIS "
+"ไม่มี Task สำเร็จรูปให้ใช้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:515
+msgid ""
+"ในโปรเจคนี้ใช้ Script Task ทั้งหมด 4 จุด คือ Task 1 บันทึกเวลาเริ่มต้น Task 3 "
+"คำนวณเวลาที่ใช้ใน Extract Task 5 คำนวณเวลาที่ใช้ใน Transform และ Task 7 "
+"คำนวณเวลาที่ใช้ใน Load แล้วเขียนผลทั้งหมดลงไฟล์ CSV"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:518
+msgid "เริ่มจาก Task แรกก่อนเลย:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:520
+msgid "เพื่อเปิด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:521
+msgid "ดูที่ SSIS Toolbox ด้านซ้าย → หา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:522
+msgid "ลาก Script Task ลงมาวางใน Control Flow Design Surface"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:523
+msgid "คลิกขวาที่ Script Task → เปลี่ยนชื่อเป็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:524
+msgid "Double-click แล้วตั้งค่าดังนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:533
+msgid ""
+"<strong>User::</strong> คือ prefix ที่ SSIS ใส่ให้อัตโนมัติเพื่อบอกว่า Variable "
+"ตัวนี้เป็นตัวที่เราสร้างเองใน STEP 3 ไม่ใช่ Variable ที่ SSIS สร้างไว้ให้ในระบบ การใส่ "
+"User:: ไว้ข้างหน้าทำให้ SSIS รู้ว่าต้องไปหา Variable ตัวนี้จากที่ที่เราสร้างไว้"
+msgstr ""
+"<strong>User::</strong> คือ prefix ที่ SSIS ใส่ให้อัตโนมัติเพื่อบอกว่า Variable "
+"ตัวนี้เป็นตัวที่เราสร้างเองใน STEP 3 ไม่ใช่ Variable ที่ SSIS สร้างไว้ให้ในระบบ การใส่ "
+"User:: ไว้ข้างหน้าทำให้ SSIS รู้ว่าต้องไปหา Variable ตัวนี้จากที่ที่เราสร้างไว้"
+
+#: .\pipeline\templates\pipeline\ssis.html:534
+msgid ""
+"<strong>ReadWriteVariables</strong> คือการบอก Script Task ว่าจะขอสิทธิ์เข้าถึง "
+"Variable ตัวไหนบ้าง SSIS บังคับให้ต้องระบุไว้ก่อนเสมอ ถ้าไม่ระบุแล้ว Script "
+"พยายามเขียนค่าลง Variable ตัวนั้น SSIS จะ Error ทันที"
+msgstr ""
+"<strong>ReadWriteVariables</strong> คือการบอก Script Task ว่าจะขอสิทธิ์เข้าถึง "
+"Variable ตัวไหนบ้าง SSIS บังคับให้ต้องระบุไว้ก่อนเสมอ ถ้าไม่ระบุแล้ว Script "
+"พยายามเขียนค่าลง Variable ตัวนั้น SSIS จะ Error ทันที"
+
+#: .\pipeline\templates\pipeline\ssis.html:538
+msgid "หาโค้ด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:541
+msgid "วางโค้ดนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:596
+#: .\pipeline\templates\pipeline\ssis.html:714
+#: .\pipeline\templates\pipeline\ssis.html:804
+#: .\pipeline\templates\pipeline\ssis.html:947
+#: .\pipeline\templates\pipeline\ssis.html:1082
+msgid "ปิด Script Editor → กด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:599
+msgid "Task 2: Data Flow Task - Extract (Extract from SQL Server)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:602
+msgid ""
+"Data Flow Task คือ Task ที่ใช้สำหรับเคลื่อนย้ายข้อมูล "
+"ข้างในจะมีพื้นที่แยกสำหรับกำหนดว่าข้อมูลจะไหลจากที่ไหน ผ่านอะไรบ้าง และไปลงที่ไหน ต่างจาก "
+"Script Task ตรงที่ Script Task ใช้เขียนโค้ดเพื่อทำงานทั่วไป แต่ Data Flow Task "
+"ออกแบบมาเพื่อจัดการข้อมูลโดยเฉพาะ"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:606
+msgid ""
+"ในโปรเจคนี้ต้องการจับเวลาแยกกันเป็น 3 Phase ดังนั้นเราต้องแยกเป็น Task ละ Phase "
+"ทำให้จับเวลาได้ว่า Extract ใช้เวลากี่วินาทีTransform ใช้เวลากี่วินาทีและ Load ใช้เวลากี่วินาที"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:610
+#: .\pipeline\templates\pipeline\ssis.html:614
+#: .\pipeline\templates\pipeline\ssis.html:654
+#: .\pipeline\templates\pipeline\ssis.html:724
+#: .\pipeline\templates\pipeline\ssis.html:728
+#: .\pipeline\templates\pipeline\ssis.html:740
+#: .\pipeline\templates\pipeline\ssis.html:819
+#: .\pipeline\templates\pipeline\ssis.html:849
+#: .\pipeline\templates\pipeline\ssis.html:918
+#: .\pipeline\templates\pipeline\ssis.html:956
+#: .\pipeline\templates\pipeline\ssis.html:970
+msgid "ลาก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:610
+msgid "จาก SSIS Toolbox ลงใน Control Flow"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:611
+#: .\pipeline\templates\pipeline\ssis.html:655
+#: .\pipeline\templates\pipeline\ssis.html:725
+#: .\pipeline\templates\pipeline\ssis.html:919
+#: .\pipeline\templates\pipeline\ssis.html:957
+#: .\pipeline\templates\pipeline\ssis.html:971
+msgid "เปลี่ยนชื่อเป็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:612
+msgid ""
+"เชื่อมลูกศร (Precedence Constraint) โดยคลิกที่ Start Timer แล้วลากลูกศรไปที่ Extract "
+"from SQL Server"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:613
+#: .\pipeline\templates\pipeline\ssis.html:727
+msgid "Double-click เข้าไปข้างใน Data Flow Task"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:614
+msgid "จาก SSIS Toolbox ตรง other sources ลงมาใน Data Flow"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:618
+msgid ""
+"ADO NET Source คือ Component ที่ทำหน้าที่ดึงข้อมูลจากฐานข้อมูลเข้ามาใน Data Flow ที่ใช้ ADO "
+"NET Source เพราะเราสร้าง Connection Manager ของ SQL Server ไว้แบบ ADO.NET ใน "
+"STEP 4.1 ใน phase 3 แล้ว ADO NET Source จึงสามารถใช้ Connection Manager "
+"ตัวนั้นเชื่อมต่อและดึงข้อมูลจากตาราง fraud_10k ได้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:622
+msgid "ที่ ADO NET Source → ตั้งค่า:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:648
+msgid "เพื่อตรวจสอบว่าดึงข้อมูลได้ → กด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:650
+msgid "Task 3: Script Task - Log Extract Time"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:653
+msgid "คลิก tab Control Flow ด้านบน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:654
+msgid "ลงมาใน Control Flow"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:656
+msgid "เชื่อมลูกศรจาก Extract from SQL Server → Log Extract Time"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:657
+#: .\pipeline\templates\pipeline\ssis.html:828
+#: .\pipeline\templates\pipeline\ssis.html:921
+msgid "ตั้งค่า:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:665
+msgid ""
+"Task 3 ต้องทำงาน 3 อย่างพร้อมกัน คือ อ่านค่าจาก ExtractStart เพื่อรู้ว่า Extract "
+"เริ่มเมื่อกี่โมง เขียนผลลัพธ์ที่คำนวณได้ลง ExtractSec ว่าใช้เวลากี่วินาทีและเริ่มจับเวลา "
+"Transform ทันทีโดยบันทึกเวลาปัจจุบันลง TransformStart"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:669
+msgid "วางโค้ดนี้ที่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:718
+msgid ""
+"💡 Task นี้คำนวณว่า Extract ใช้เวลากี่วินาทีแล้วเริ่มจับเวลา Transform ต่อทันที ถ้ารอบันทึกใน "
+"Task 4 เวลาที่ได้จะไม่แม่นยำ Task 3 และ Task 4 SSIS ต้องใช้เวลาเตรียมตัวก่อนที่ Data "
+"Flow Task จะเริ่มทำงานจริง ถ้าบันทึกเวลาไว้ตรงท้าย Task 3 พอดีก่อนที่จะส่งต่อให้ Task 4 "
+"เวลาที่จับได้จะแม่นยำกว่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:721
+msgid "Task 4: Data Flow Task: Transform"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:724
+#: .\pipeline\templates\pipeline\ssis.html:918
+#: .\pipeline\templates\pipeline\ssis.html:956
+#: .\pipeline\templates\pipeline\ssis.html:970
+msgid "ลงใน Control Flow"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:726
+msgid "เชื่อมลูกศรจาก Log Extract Time → Transform"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:728
+msgid ""
+"ลงมา → Double-click → ตั้งค่าเลือก Table = fraud_10k, fraud_100k, เหมือน Task 2"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:733
+msgid ""
+"ทำไม Task 4 ต้องดึงข้อมูลจาก SQL Server อีกครั้ง ทั้งที่ Task 2 ก็ดึงมาแล้ว? "
+"เพราะข้อมูลที่ดึงมาใน Task 2 ลอยอยู่ใน Memory ชั่วคราวและหายไปแล้วตั้งแต่ Task 2 จบลง "
+"แต่ละ Data Flow Task จะดึงข้อมูลของตัวเองขึ้นมาใหม่ทุกครั้ง Task 2 ดึงมาเพื่อนับเวลา "
+"Extract อย่างเดียว ส่วน Task 4 ดึงมาเพื่อ Transform และ Load เข้า MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:736
+msgid "Task 4.1: ตั้งค่า Script Component (เพิ่ม Script Component (Transformation))"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:738
+msgid "ยังอยู่ใน Data Flow ของ Transform:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:740
+msgid "ลงมาต่อ → เลือก Type ="
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:741
+msgid ""
+"เชื่อมลูกศรจาก ADO NET Source → จะเห็นลูกศรสีน้ำเงินโผล่ออกมา → ลากลูกศรไปวางที่ Script "
+"Component"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:744
+msgid "Task 4.2: ตั้งค่า Script Component"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:746
+msgid ""
+"Double-click ที่ Script Component จะเห็นหน้าต่าง Script Transformation Editor"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:747
+msgid "การตั้งค่า Script Component จะมีอยู่ 3 ขั้นตอนหลัก ดังนี้:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:749
+msgid "Task 4.2.1: ตั้งค่า Tab Input Columns (ซ้ายมือ)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:751
+msgid ""
+"ติ๊กถูกทุก column ที่ต้องการ <strong>ยกเว้น column1</strong> เพราะ column1 คือ "
+"Unnamed: 0 จาก CSV ซึ่งเป็นแค่ index ลำดับแถว ไม่มีความหมายทางธุรกิจเลย "
+"เราไม่ต้องการนำไปใช้ใน Transform หรือเก็บลง MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:753
+msgid ""
+"Task 4.2.2: เพิ่ม Output Columns ใน Script Component ไปที่ Tab Inputs and "
+"Outputs (ซ้ายมือ)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:756
+msgid ""
+"Output Columns คือ Column ใหม่ที่ Script Component สร้างขึ้นมาเพื่อเก็บผลลัพธ์หลังจาก "
+"Transform แล้ว SSIS จะไม่ยอมให้เขียนทับ Column ที่รับมาจาก Input "
+"โดยตรงดังนั้นเราจึงต้องสร้าง Column ใหม่ขึ้นมา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:760
+msgid "ขยาย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:760
+msgid "คลิก"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:761
+#: .\pipeline\templates\pipeline\ssis.html:762
+#: .\pipeline\templates\pipeline\ssis.html:763
+#: .\pipeline\templates\pipeline\ssis.html:764
+#: .\pipeline\templates\pipeline\ssis.html:765
+msgid "กด Add Column → แก้ชื่อเป็น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:765
+msgid "Length ไม่ต้องใส่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:769
+msgid "Task 4.2.3: Edit Script ใน Script Component ใน Tab Scripts (ซ้ายมือ)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:772
+#: .\pipeline\templates\pipeline\ssis.html:878
+msgid "คลิก Tab"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:773
+msgid "วางโค้ดนี้ข้างบน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:786
+#: .\pipeline\templates\pipeline\ssis.html:933
+#: .\pipeline\templates\pipeline\ssis.html:989
+msgid "วางโค้ดนี้ใน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:796
+msgid "เพิ่ม using ด้านบนที่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:808
+msgid "ถ้า Build ไม่สำเร็จ ลองเปลี่ยนตามวิธีนี้ดู:"
+msgstr "ถ้า Build ไม่สำเร็จ ลองเปลี่ยนตามวิธีนี้ดู:"
+
+#: .\pipeline\templates\pipeline\ssis.html:809
+msgid ""
+"1. ไปที่ Build → Configuration Manager → ไปที่ Active solution platform → New → "
+"เปลี่ยน Platform เป็น x64 → OK → Close"
+msgstr ""
+"1. ไปที่ Build → Configuration Manager → ไปที่ Active solution platform → New → "
+"เปลี่ยน Platform เป็น x64 → OK → Close"
+
+#: .\pipeline\templates\pipeline\ssis.html:810
+msgid ""
+"2. ไปที่ Solution Explorer ด้านขวา → จะเห็นตัวหนาที่แสดง Assembly name → คลิกขวา → "
+"Properties"
+msgstr ""
+"2. ไปที่ Solution Explorer ด้านขวา → จะเห็นตัวหนาที่แสดง Assembly name → คลิกขวา → "
+"Properties"
+
+#: .\pipeline\templates\pipeline\ssis.html:811
+msgid "3. เปลี่ยน Target Framework เป็น .NET Framework 4.7.2"
+msgstr "3. เปลี่ยน Target Framework เป็น .NET Framework 4.7.2"
+
+#: .\pipeline\templates\pipeline\ssis.html:812
+msgid "4. กด Build ใหม่อีกครั้ง → Build SC_..."
+msgstr "4. กด Build ใหม่อีกครั้ง → Build SC_..."
+
+#: .\pipeline\templates\pipeline\ssis.html:813
+msgid "5. ปิด Script Editor → กด OK"
+msgstr "5. ปิด Script Editor → กด OK"
+
+#: .\pipeline\templates\pipeline\ssis.html:816
+msgid "Task 4.3: เพิ่ม Conditional Split (กรอง amt <= 0)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:819
+msgid "ลงใน Data Flow"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:823
+msgid ""
+"Conditional Split คือ Component ที่ทำหน้าที่แยกแถวข้อมูลออกเป็น 2 ทางตามเงื่อนไขที่กำหนด "
+"ในโปรเจคนี้กำหนดเงื่อนไขว่าถ้า amt <= 0 หรือ amt เป็น NULL ให้แยกออกไปเป็น Invalid "
+"เนื่องจากธุรกรรมที่มียอดเงิน 0 หรือติดลบไม่มีความหมายในเชิงการวิเคราะห์การฉ้อโกง "
+"เพราะการฉ้อโกงจะต้องมีการใช้เงินจริงๆ "
+"ถ้าเอาแถวพวกนี้เข้าไปด้วยจะทำให้ผลการวิเคราะห์คลาดเคลื่อน ส่วนแถวที่ผ่านเงื่อนไขจะไหลต่อไปเป็น "
+"Valid"
+msgstr ""
+"Conditional Split คือ Component ที่ทำหน้าที่แยกแถวข้อมูลออกเป็น 2 ทางตามเงื่อนไขที่กำหนด "
+"ในโปรเจคนี้กำหนดเงื่อนไขว่าถ้า amt <= 0 หรือ amt เป็น NULL ให้แยกออกไปเป็น Invalid "
+"เนื่องจากธุรกรรมที่มียอดเงิน 0 หรือติดลบไม่มีความหมายในเชิงการวิเคราะห์การฉ้อโกง "
+"เพราะการฉ้อโกงจะต้องมีการใช้เงินจริงๆ "
+"ถ้าเอาแถวพวกนี้เข้าไปด้วยจะทำให้ผลการวิเคราะห์คลาดเคลื่อน ส่วนแถวที่ผ่านเงื่อนไขจะไหลต่อไปเป็น "
+"Valid"
+
+#: .\pipeline\templates\pipeline\ssis.html:827
+msgid "เชื่อมลูกศรจาก Script Component → Conditional Split"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:839
+msgid ""
+"💡 Conditional Split ทำหน้าที่เหมือน if-else คือแถวที่ amt <= 0 จะถูกแยกออกไปเป็น "
+"Invalid ส่วนแถวปกติจะผ่านไปเป็น Valid"
+msgstr ""
+"💡 Conditional Split ทำหน้าที่เหมือน if-else คือแถวที่ amt <= 0 จะถูกแยกออกไปเป็น "
+"Invalid ส่วนแถวปกติจะผ่านไปเป็น Valid"
+
+#: .\pipeline\templates\pipeline\ssis.html:842
+msgid "Task 4.4: เพิ่ม ODBC Destination (Load เข้า MySQL)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:845
+msgid ""
+"ODBC Destination คือ Component ที่ทำหน้าที่รับข้อมูลปลายทางและส่งเข้าฐานข้อมูล "
+"ในที่นี้ใช้ส่งข้อมูลเข้า MySQL โดยใช้ Connection Manager ที่สร้างไว้ใน STEP 4.2 ของ Phase "
+"3 ที่ต้องเชื่อมจาก Valid เพราะเราต้องการเฉพาะแถวที่ผ่านการกรองแล้วเท่านั้น ส่วน Invalid "
+"คือแถวที่ถูกคัดออกซึ่งไม่ต้องการเก็บไว้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:849
+msgid "จาก Toolbox ลงใน Data Flow"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:850
+msgid "เชื่อมลูกศรจาก Conditional Split → ODBC Destination โดยเลือก Output ="
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:851
+msgid "ที่ ODBC Destination → ตั้งค่า:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:878
+msgid "Map column ให้ตรงกัน:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:882
+msgid ""
+"Mapping คือการบอก SSIS ว่า Column ที่ไหลมาจาก Data Flow ตัวไหนควรเอาไปเก็บใน "
+"Column ไหนของตาราง MySQL ต้องทำเพราะชื่อ Column ใน Data Flow กับชื่อ Column ใน "
+"MySQL อาจไม่ตรงกันทุกตัว เช่น trans_dt_clean ใน Data Flow ต้องจับคู่กับ trans_datetime "
+"ใน MySQL ถ้าไม่ทำ Mapping SSIS จะไม่รู้ว่าต้องเอาข้อมูลไปใส่ Column ไหน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:913
+msgid "Task 5: Script Task: Log Transform Time"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:920
+msgid "เชื่อมลูกศรจาก Transform → Log Transform Time"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:929
+msgid "อ่านค่าจาก TransformStart แล้วเขียนผลลงใน TransformSec และเริ่มจับเวลา Load"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:950
+msgid ""
+"Task 5 ทำงานเหมือน Task 3 ทุกอย่างแต่เปลี่ยนจากการคำนวณเวลา Extract "
+"มาเป็นการคำนวณเวลา Transform แทน และบันทึกเวลาเริ่ม Load ไว้ทันทีก่อนส่งต่อให้ Task 6 "
+"เพื่อให้เวลาที่จับได้แม่นยำที่สุด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:953
+msgid "Task 6: Data Flow Task: Load เข้า MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:958
+msgid "เชื่อมลูกศรจาก Log Transform Time → Load to MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:962
+msgid ""
+"💡 <strong>สังเกต:</strong> Task 6 นี้ไม่ต้องทำอะไรเพิ่มแล้ว เพราะเราได้ Load ข้อมูลเข้า "
+"MySQL ไปแล้วใน Task 4 (ODBC Destination) ดังนั้น Task 6 "
+"เราจะทำแค่นี้ในโปรเจคนี้จะข้ามไปทำ Task 7 — Log Load + Write CSV เลย"
+msgstr ""
+"💡 <strong>สังเกต:</strong> Task 6 นี้ไม่ต้องทำอะไรเพิ่มแล้ว เพราะเราได้ Load ข้อมูลเข้า "
+"MySQL ไปแล้วใน Task 4 (ODBC Destination) ดังนั้น Task 6 "
+"เราจะทำแค่นี้ในโปรเจคนี้จะข้ามไปทำ Task 7 — Log Load + Write CSV เลย"
+
+#: .\pipeline\templates\pipeline\ssis.html:963
+msgid "<strong>ถ้าไม่ต้องทำอะไร แล้วทำไมต้องสร้าง Task นี้ขึ้นมาด้วย?</strong>"
+msgstr "<strong>ถ้าไม่ต้องทำอะไร แล้วทำไมต้องสร้าง Task นี้ขึ้นมาด้วย?</strong>"
+
+#: .\pipeline\templates\pipeline\ssis.html:964
+msgid ""
+"เพราะเราต้องการวัดเวลาครบทั้ง 3 Phase คือ Extract Transform และ Load ถ้าไม่มี Task 6 "
+"Task 5 จะบันทึกเวลาเริ่ม Load ลง LoadStart แต่ไม่มี Task ที่เป็นจุดสิ้นสุดของ Load ให้ Task "
+"7 ใช้คำนวณว่า Load ใช้เวลากี่วินาที การแยก Task 6 "
+"ออกมาจึงเป็นแค่การสร้างจุดสิ้นสุดให้ครบโครงสร้างมากกว่า"
+msgstr ""
+"เพราะเราต้องการวัดเวลาครบทั้ง 3 Phase คือ Extract Transform และ Load ถ้าไม่มี Task 6 "
+"Task 5 จะบันทึกเวลาเริ่ม Load ลง LoadStart แต่ไม่มี Task ที่เป็นจุดสิ้นสุดของ Load ให้ Task "
+"7 ใช้คำนวณว่า Load ใช้เวลากี่วินาที การแยก Task 6 "
+"ออกมาจึงเป็นแค่การสร้างจุดสิ้นสุดให้ครบโครงสร้างมากกว่า"
+
+#: .\pipeline\templates\pipeline\ssis.html:967
+msgid "Task 7: Script Task: Log Load + Write CSV"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:972
+msgid "เชื่อมลูกศรจาก Load to MySQL → Log Load + Write CSV"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:973
+msgid "ที่ Log Load + Write CSV"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:974
+msgid "ตั้งค่า"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:980
+msgid ""
+"เพราะ Task 7 ต้องทำงาน 2 อย่างพร้อมกัน อย่างแรกคือคำนวณเวลา Load เหมือนที่ Task 3 และ "
+"Task 5 ทำ จึงต้องการ LoadStart และ LoadSec อย่างที่สองคือเขียนผลรวมทั้งหมดลงไฟล์ CSV "
+"จึงต้องดึง ExtractSec และ TransformSec ที่คำนวณไว้แล้วตั้งแต่ Task 3 และ Task 5 "
+"มาใช้ด้วย ส่วน DatasetSize ใช้เพื่อบอกว่าแถวที่กำลังเขียนลง CSV นี้เป็นผลของการรันขนาดไหน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:988
+msgid "ใน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1085
+msgid "🎉🎉🎉 ETL_10k สำเร็จ! ไปต่อที่ Phase 5 เลย"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1100
+msgid "Phase 5: รัน Package"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1102
+msgid "การรัน ETL_10k.dtsx"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1104
+msgid "เปิด Package ETL_10k.dtsx"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1105
+msgid "กด Start (หรือกด F5)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1108
+msgid "ผลการรัน Package:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1112
+msgid "Package ทำงานสำเร็จ - ทุก Task เป็นสีเขียว"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1117
+msgid "รอ Task ทุกอันเปลี่ยนเป็นสีเขียว (หมายถึงสำเร็จ)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1118
+#: .\pipeline\templates\pipeline\ssis.html:1122
+msgid "ตรวจสอบผลใน MySQL Workbench"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1119
+msgid "เปิดไฟล์ timing_log.csv เพื่อดูผลการจับเวลา"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1125
+msgid "Check row count (should be 10000)"
+msgstr "ตรวจจำนวนแถว (ต้องได้ 10000)"
+
+#: .\pipeline\templates\pipeline\ssis.html:1128
+msgid "Check hash"
+msgstr "ตรวจ hash"
+
+#: .\pipeline\templates\pipeline\ssis.html:1136
+msgid "Check no negative amt"
+msgstr "ตรวจไม่มี amt ติดลบ"
+
+#: .\pipeline\templates\pipeline\ssis.html:1139
+msgid "การรัน ETL_100k.dtsx และ ETL_1m.dtsx"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1141
+msgid "รัน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1141
+msgid "ใน MySQL"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1148
+#, fuzzy
+#| msgid "เปลี่ยน Variable DatasetSize เป็น \"100k\" หรือ \"1m\""
+msgid "เปลี่ยน Variable DatasetSize เป็น \\"
+msgstr "เปลี่ยน Variable DatasetSize เป็น \"100k\" หรือ \"1m\""
+
+#: .\pipeline\templates\pipeline\ssis.html:1149
+msgid "เปลี่ยน Table ใน ADO NET Source เป็น fraud_100k หรือ fraud_1m"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1150
+msgid "กด Start"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1153
+msgid "เนื้อหาสำคัญ:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1155
+msgid "ต้อง TRUNCATE TABLE ก่อนรัน Package ใหม่"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1156
+msgid "ตรวจสอบผลใน MySQL ว่าข้อมูลถูกต้อง"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1157
+msgid "ไฟล์ timing_log.csv จะมีผลการจับเวลาทั้ง 3 ขนาด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1172
+msgid "สรุปและวิเคราะห์ผล SSIS ETL Benchmark"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1209
+msgid ""
+"เมื่อนำข้อมูลดังกล่าวมาวิเคราะห์และสร้างภาพด้วย MATLAB เพื่อให้เห็นภาพได้ชัดเจน ได้นำเสนอกราฟ "
+"3 รูปแบบ ได้แก่ Grouped Bar Chart, Stacked Bar Chart และ Line Chart ตามลำดับ "
+"ดังแสดงในรูปที่ 1-3"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1211
+msgid "1. การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล (Grouped Bar Chart)"
+msgstr "1. การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล (Grouped Bar Chart)"
+
+#: .\pipeline\templates\pipeline\ssis.html:1215
+msgid "การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1217
+msgid "Fig 1 : การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1221
+msgid ""
+"จากภาพ Fig 1 : การเปรียบเทียบเวลาแต่ละ Phase แยกตามขนาดข้อมูล "
+"เป็นภาพที่แสดงการเปรียบเทียบเวลาแต่ละ Phase (Extract / Transform / Load) แยกตาม "
+"Dataset Size จากกราฟพบว่า Transform Phase ใช้เวลามากที่สุดในทุก Dataset Size "
+"อย่างเห็นได้ชัด โดย Extract และ Load แทบมองไม่เห็นในสเกลเดียวกับ Transform "
+"เมื่อข้อมูลขนาดใหญ่ขึ้น สังเกตได้ว่า Transform ที่ 1m rows ใช้เวลา 449.14 วินาทีในขณะที่ "
+"Extract และ Load รวมกันใช้เพียง 10.02 วินาทีเท่านั้น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1223
+msgid ""
+"จากการวิเคราะห์ใน Transform Phase สาเหตุมาจากการใช้ Script Component เป็นการรันแบบ "
+"Synchronous (ต้องรอคำสั่งก่อนหน้าทำงานเสร็จก่อนถึงจะรันคำสั่งต่อไปได้) ในเอกสารของ "
+"Microsoft ระบุว่า <code>ProcessInputRow()</code> ถูกเรียกหนึ่งครั้งต่อหนึ่ง row "
+"<sup>[1]</sup> ทำให้การ Hash จำนวน 4 columns สำหรับ 1m rows คือการคำนวณ hash "
+"รวม <strong>4,000,000 ครั้ง</strong> ด้วยสาเหตุใน Transform Phase จึงใช้เวลานานกว่า "
+"Extract และ Load ดังนั้น"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1225
+msgid "2. สัดส่วนของแต่ละ Phase ต่อเวลารวม (Stacked Bar Chart)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1229
+msgid "สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1231
+msgid "Fig 2 : สัดส่วนของแต่ละ Phase ต่อเวลารวม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1235
+msgid ""
+"จากภาพ Fig 2 สะท้อนให้เห็นว่า Transform Phase เป็น Bottleneck(คอขวด หรือ ข้อจำกัด) "
+"แม้ใน Dataset Size ที่ 10k จะไม่แสดงใน bar เพราะ bar "
+"เล็กเกินไปแต่เราสามารถคำนวณได้โดยใช้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1237
+msgid "วิธีคิด:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1242
+msgid "ทำให้เมื่อคำนวณสำหรับ Transform Phase สามารถคำนวณได้ดังนี้"
+msgstr "ทำให้เมื่อคำนวณสำหรับ Transform Phase สามารถคำนวณได้ดังนี้"
+
+#: .\pipeline\templates\pipeline\ssis.html:1244
+msgid "10k rows"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1256
+msgid "1m rows"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1262
+#, python-format
+msgid ""
+"จากการคำนวณเห็นได้ว่า 97.8%%%% ของเวลาทั้งหมดหายไปกับ Transform Phase เพียง Phase "
+"เดียว โดยที่ Dataset Size ที่ 10k ใช้เวลา Transform ไปถึง 93%%%% ของเวลา , 100k "
+"ใช้เวลา Transform ไปถึง 98.2%%%% ของเวลา และที่ 1m ใช้เวลา Transform ไปถึง 97.8%%"
+"%% ของเวลา จึงสรุปได้ว่า Transform Phase เป็น "
+"<strong>ขั้นตอนที่ใช้เวลามากที่สุดและส่งผลโดยตรงต่อเวลารวมทั้งหมด</strong>"
+msgstr ""
+"จากการคำนวณเห็นได้ว่า 97.8%%%% ของเวลาทั้งหมดหายไปกับ Transform Phase เพียง Phase "
+"เดียว โดยที่ Dataset Size ที่ 10k ใช้เวลา Transform ไปถึง 93%%%% ของเวลา , 100k "
+"ใช้เวลา Transform ไปถึง 98.2%%%% ของเวลา และที่ 1m ใช้เวลา Transform ไปถึง 97.8%%"
+"%% ของเวลา จึงสรุปได้ว่า Transform Phase เป็น "
+"<strong>ขั้นตอนที่ใช้เวลามากที่สุดและส่งผลโดยตรงต่อเวลารวมทั้งหมด</strong>"
+
+#: .\pipeline\templates\pipeline\ssis.html:1264
+msgid "3. อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1268
+msgid "อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1270
+msgid "Fig 3 : อัตราการขยายตัวของแต่ละ Phase (Scalability)"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1274
+msgid "จากรูปที่ 3 คำนวณ Scaling Ratio (อัตราส่วนการปรับขนาด) ด้วยสูตร"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1285
+msgid "ได้ผลดังนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1287
+msgid "Extract Scaling:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1300
+msgid "Transform Scaling:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1316
+msgid "Load Scaling:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1332
+msgid "Total Scaling:"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1336
+msgid "จากตัวเลขข้างต้น สามารถอธิบายแต่ละขั้นตอนได้ดังนี้"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1338
+msgid ""
+"<strong>ขั้นตอนดึงข้อมูล (Extract)</strong> ช่วง 10k→100k ใช้เวลาเพิ่มขึ้น 4.34 เท่า ช่วง "
+"100k→1m เวลาเพิ่มขึ้นถึง 14.13 เท่า ซึ่ง Microsoft ระบุว่า disk "
+"เป็นการดำเนินการที่ใช้ทรัพยากรมากและใช้เวลานานกว่าการอ่านจาก Memory <sup>[2]</sup> "
+"ดังนั้นเมื่อข้อมูลมีขนาดใหญ่ขึ้นมาก การอ่านข้อมูลจาก Disk จึงส่งผลให้เวลา Extract "
+"เพิ่มขึ้นอย่างชัดเจน"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1340
+msgid ""
+"<strong>ขั้นตอนแปลงข้อมูล (Transform)</strong> ช่วง 10k→100k เวลาเพิ่มขึ้นถึง 17.40 "
+"เท่า เนื่องจากการเรียกใช้ SHA256 CryptoService ใน .NET ครั้งแรก ต้องใช้เวลาในการโหลด "
+"Library เข้าสู่หน่วยความจำก่อน แต่ช่วง 100k→1m ลดลงเหลือ 10.39 เท่า เพราะระบบโหลด "
+"Library เสร็จแล้ว การ Hash จึงทำงานได้สม่ำเสมอมากขึ้น ซึ่งสอดคล้องกับการทำงานของ "
+"Synchronous Script Component ที่เรียก ProcessInputRow() ทีละหนึ่งแถวอย่างต่อเนื่อง "
+"<sup>[1]</sup>"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1342
+msgid ""
+"<strong>ขั้นตอนโหลดข้อมูล (Load)</strong> ช่วง 10k→100k เวลาเพิ่มขึ้น 5.92 เท่า แต่ช่วง "
+"100k→1m เวลากลับลดลงเหลือเพียง 0.38 เท่า กล่าวคือที่ 1 ล้านแถวใช้เวลาน้อยกว่า 100,000 "
+"แถว จากการวิเคราะห์พบว่าอาจมีสาเหตุมาจากการตั้งค่า Batch Size = 5,000 แถวใน ODBC "
+"Destination ทำให้ส่งผลให้การโหลดข้อมูลขนาดใหญ่มีประสิทธิภาพสูงกว่าขนาดเล็ก "
+"อย่างไรก็ตามการระบุสาเหตุที่แน่ชัดต้องการการทดสอบและข้อมูลรองรับเพิ่มเติม"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1344
+msgid ""
+"<strong>ภาพรวม (Total)</strong> เวลารวมเพิ่มขึ้น 16.54 เท่าในช่วงแรก และลดลงเหลือ "
+"10.44 เท่าในช่วงหลัง ซึ่งสอดคล้องกับพฤติกรรมของ Transform เพราะ Transform "
+"เป็นขั้นตอนที่กำหนดเวลารวมทั้งหมด ดังที่เห็นในรูปที่ 3 ว่าเส้น Transform และเส้น Total "
+"แทบทับกันตลอด"
+msgstr ""
+
+#: .\pipeline\templates\pipeline\ssis.html:1367
+msgid "ดูวิธีการทดสอบและผลการเปรียบเทียบกับเครื่องมือ ETL อื่นๆ"
+msgstr ""
+
+#: .\pipeline\views.py:53
+msgid "Analysis and Conclusion"
+msgstr ""
+
+#: .\templates\base.html:8
+msgid "ETL Pipeline Comparison"
+msgstr ""
+
+#: .\templates\base.html:61
+msgid "Analysis"
+msgstr ""
+
+#: .\templates\base.html:104
+msgid "All rights reserved."
+msgstr ""

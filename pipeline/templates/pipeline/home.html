@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Home" %} - ETL Pipeline Comparison{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>{% trans "การเปรียบเทียบประสิทธิภาพ ETL Pipeline 4 แนวทาง ด้วย SSIS, KNIME, Airflow ร่วมกับ PySpark และ Airflow ร่วมกับ Pandas" %}</h1>
+    </section>
+
+    <!-- บทนำ -->
+    <div class="card">
+        <h2>{% trans "บทนำ" %}</h2>
+        <p>
+            {% trans "โครงการนี้เกิดขึ้นจากความต้องการจัดการข้อมูลปริมาณมากที่เกิดขึ้นภายในมหาวิทยาลัย โดยเป็นส่วนหนึ่งของ Senior Project อย่างไรก็ตาม การนำเสนอในครั้งนี้ไม่ได้ครอบคลุมทุกด้านของ Senior Project แต่มุ่งเน้นนำเสนอเฉพาะมุมมองด้าน Processing Performance เพียงด้านเดียวเท่านั้น" %}
+        </p>
+        <p>
+            {% trans "การเลือก 4 แนวทางในการทดสอบครั้งนี้มีที่มาจากบริบทการทำงานจริง โดย SSIS ถูกเลือกเนื่องจากมหาวิทยาลัยมี Microsoft License อยู่แล้ว KNIME ถูกเลือกเนื่องจากเป็น Low-code Tool ที่ไม่จำเป็นต้องอาศัยความเชี่ยวชาญด้านการเขียนโค้ด และ Airflow ถูกเลือกโดยกลุ่มนักศึกษาผู้จัดทำซึ่งมีความถนัดด้าน Python มากกว่า C# โดย Airflow ได้ทดสอบร่วมกับ 2 Processing Engine คือ PySpark และ pandas เพื่อเปรียบเทียบว่า Engine ที่ออกแบบมาสำหรับ Big Data โดยเฉพาะอย่าง PySpark จะให้ผลลัพธ์ที่ดีกว่า pandas หรือไม่" %}
+        </p>
+        <p>
+            {% trans "การทดสอบทั้งหมดดำเนินการบนเครื่องคอมพิวเตอร์ส่วนบุคคล โดยเครื่องมือทุกตัวได้รับการติดตั้งบน Server ของมหาวิทยาลัย ซึ่งกลุ่มนักศึกษาผู้จัดทำสามารถเข้าถึงและดำเนินการทดสอบได้จากระยะไกล ทำให้สามารถรันงานได้เสมือนการใช้งานจริงในสภาพแวดล้อมขององค์กร โดยใช้ชุดข้อมูล Credit Card Fraud Detection จาก Kaggle ทดสอบใน 3 ขนาด ได้แก่ 10,000 100,000 และ 1,000,000 แถว วัดผลผ่านเวลาที่ใช้จริงในแต่ละขั้นตอน ได้แก่ Extract, Transform และ Load เพื่อให้ได้ข้อสรุปที่เป็นประโยชน์สำหรับการตัดสินใจเลือกใช้แนวทางที่เหมาะสมกับบริบทขององค์กร" %}
+        </p>
+    </div>
+
+    <!-- สถาปัตยกรรมระบบ -->
+    <div class="card">
+        <h2>{% trans "สถาปัตยกรรมระบบ" %}</h2>
+        <p>
+            {% blocktrans %}โครงการนี้มีสถาปัตยกรรม 2 รูปแบบ ได้แก่ สถาปัตยกรรมสำหรับการทดสอบที่ใช้จริงในโครงการนี้ และสถาปัตยกรรมระบบสำหรับการใช้งานจริงในมหาวิทยาลัยที่ออกแบบไว้เป็นเป้าหมายปลายทาง โดยผลที่ได้จากการทดสอบในโครงการนี้จะเป็นข้อมูลประกอบการตัดสินใจเลือก ETL Tool ที่เหมาะสมสำหรับนำไปใช้ในระบบจริงต่อไป{% endblocktrans %}
+        </p>
+
+        <h3>{% trans "1. สถาปัตยกรรมสำหรับการทดสอบ (Test Framework Architecture)" %}</h3>
+
+        <div class="img-container">
+            <img src="{% static 'images/home/Home-Test Framework Architecture.svg' %}"
+                 alt="Test Framework Architecture"
+                 loading="lazy">
+        </div>
+
+        <p>{% trans "จากภาพสามารถอธิบายได้ดังนี้" %}</p>
+
+        <p><strong>{% trans "1. Ingest :" %}</strong> {% blocktrans %}นำเข้าข้อมูลจากไฟล์ fraudTrain.csv เข้าสู่ SQL Server เพื่อใช้เป็น Staging Area โดยแบ่งข้อมูลออกเป็น 3 ขนาด ได้แก่ fraud_10k, fraud_100k และ fraud_1m{% endblocktrans %}</p>
+
+        <p><strong>{% trans "2. Extract :" %}</strong> {% blocktrans %}ดึงข้อมูลจาก SQL Server (Staging Area) เพื่อนำไปประมวลผลในแต่ละ ETL Tool ในขั้นตอนถัดไป{% endblocktrans %}</p>
+
+        <p><strong>{% trans "3. Transform :" %}</strong> {% blocktrans %}ประมวลผลข้อมูลด้วย 4 แนวทาง ได้แก่ SSIS, KNIME, Airflow ร่วมกับ PySpark และ Airflow ร่วมกับ pandas โดยการแปลงข้อมูลจะทำเหมือนกันทุกแนวทางเพื่อให้เกิดความเป็นมาตรฐานเดียวกันของข้อมูล ได้แก่{% endblocktrans %}</p>
+        <ul>
+            <li>{% trans "ทำการเข้ารหัสข้อมูลส่วนตัวด้วย SHA-256" %}</li>
+            <li>{% trans "แปลง Data Type" %}</li>
+            <li>{% trans "กรองข้อมูลที่ไม่สมบูรณ์ออก" %}</li>
+            <li>{% trans "เปลี่ยนชื่อคอลัมน์" %}</li>
+        </ul>
+
+        <p><strong>{% trans "4. Load :" %}</strong> {% blocktrans %}บันทึกข้อมูลที่ผ่านการ Transform แล้วลงใน MySQL พร้อมจับเวลาในทุกขั้นตอนเพื่อนำไปวิเคราะห์เปรียบเทียบด้วย MATLAB{% endblocktrans %}</p>
+
+        <p><strong>{% trans "5. Matlab :" %}</strong> {% blocktrans %}นำผลเวลาที่จับได้จากทุกขั้นตอนของทั้ง 4 แนวทางมาวิเคราะห์และแสดงผลในรูปแบบกราฟเพื่อเปรียบเทียบประสิทธิภาพ ETL Pipeline{% endblocktrans %}</p>
+
+        <h3>{% trans "2. สถาปัตยกรรมระบบสำหรับการใช้งานจริง (Production System Architecture)" %}</h3>
+
+        <div class="img-container">
+            <img src="{% static 'images/home/Home-Production System Architecture.svg' %}"
+                 alt="Production System Architecture"
+                 loading="lazy">
+        </div>
+
+        <p>
+            {% blocktrans %}จากภาพเป็นเพียงแนวคิดเท่านั้น ผลที่ได้จากการทดสอบในโครงการนี้จะเป็นข้อมูลประกอบการตัดสินใจเลือก ETL Tool ที่เหมาะสมสำหรับนำไปใช้ในระบบจริงต่อไป อย่างไรก็ตามการตัดสินใจดังกล่าวต้องอาศัยความเห็นจากบุคลากรหลายฝ่ายที่มีส่วนร่วมในการพัฒนาระบบประกอบด้วย{% endblocktrans %}
+        </p>
+
+        <p><strong>{% trans "1. Ingest :" %}</strong> {% blocktrans %}รับข้อมูลจากแหล่งข้อมูลหลากหลายรูปแบบที่เกิดขึ้นจริงในมหาวิทยาลัย ได้แก่ CSV, API, JSON และ XLS เข้าสู่ SQL Server เพื่อใช้เป็น Staging Area และได้มีการออกแบบเพื่อเตรียมการรับข้อมูลประเภทข้อมูลที่ไม่มีโครงสร้าง (unstructured data) ในอนาคตอีกด้วย{% endblocktrans %}</p>
+
+        <p><strong>{% trans "2. Extract :" %}</strong> {% blocktrans %}ใช้ ETL Tool ที่ได้รับการคัดเลือกจากผลการทดสอบ ดึงข้อมูลจาก Staging Area เพื่อนำไปประมวลผล{% endblocktrans %}</p>
+
+        <p><strong>{% trans "3. Transform :" %}</strong> {% blocktrans %}ประมวลผลและทำความสะอาดข้อมูลด้วย ETL Tool ที่คัดเลือกแล้ว ทั้งนี้ขั้นตอน Transform จะครอบคลุมการทำความสะอาดข้อมูล การเข้ารหัสข้อมูลส่วนตัว และการแปลงรูปแบบข้อมูลให้พร้อมใช้งาน โดย Tool ที่จะใช้ยังอยู่ระหว่างการพิจารณาจากผลการทดสอบของโครงการนี้{% endblocktrans %}</p>
+
+        <p><strong>{% trans "4. Load :" %}</strong> {% blocktrans %}กระจายข้อมูลที่ผ่านการประมวลผลแล้วไปยัง MySQL ของแต่ละหน่วยงานในมหาวิทยาลัย และแสดงผลผ่าน Power BI เพื่อเป็นการประกอบการตัดสินใจของผู้บริหารและบุคลากรในมหาวิทยาลัย{% endblocktrans %}</p>
+    </div>
+
+    <!-- สมมติฐาน -->
+    <div class="card">
+        <h2>{% trans "สมมติฐาน" %}</h2>
+        <p>
+            {% blocktrans %}ก่อนเริ่มการทดสอบ กลุ่มนักศึกษาผู้จัดทำได้ตั้งสมมติฐานเกี่ยวกับประสิทธิภาพของแต่ละแนวทางไว้ดังนี้{% endblocktrans %}
+        </p>
+
+        <p><strong>{% trans "1. SSIS :" %}</strong> {% blocktrans %}คาดว่าจะมีประสิทธิภาพสูงสุด เนื่องจาก SSIS ใช้ภาษา C# ในการประมวลผล ซึ่งอยู่ในตระกูลเดียวกับภาษา C++ ที่ขึ้นชื่อด้านความเร็วในการประมวลผล จึงคาดว่าจะได้เปรียบด้านความเร็วเหนือแนวทางอื่น{% endblocktrans %}</p>
+
+        <p><strong>{% trans "2. KNIME :" %}</strong> {% blocktrans %}คาดว่าจะมีประสิทธิภาพต่ำที่สุด เนื่องจากเป็น Low-code Tool ที่เน้นความง่ายในการใช้งานมากกว่าประสิทธิภาพ การทำงานผ่านแบบ Low-code อาจมีประสิทธิภาพต่ำกว่าการเขียนโค้ดโดยตรง{% endblocktrans %}</p>
+
+        <p><strong>{% trans "3. Airflow ร่วมกับ PySpark :" %}</strong> {% blocktrans %}คาดว่าจะมีประสิทธิภาพอยู่ในระดับปานกลาง เนื่องจาก PySpark ถูกออกแบบมาสำหรับข้อมูลระดับ Terabyte ขึ้นไป ในขณะที่ข้อมูลที่ใช้ทดสอบมีขนาดสูงสุดเพียง 1 ล้านแถว จึงคาดว่า PySpark จะไม่ได้แสดงศักยภาพเต็มที่ แต่ก็ไม่ช้าเกินไป{% endblocktrans %}</p>
+
+        <p><strong>{% trans "4. Airflow ร่วมกับ pandas :" %}</strong> {% blocktrans %}คาดว่าจะมีประสิทธิภาพใกล้เคียงกับ Airflow ร่วมกับ PySpark เนื่องจากใช้ Orchestrator ตัวเดียวกัน แตกต่างกันเพียง Processing Engine เท่านั้น{% endblocktrans %}</p>
+    </div>
+
+    <!-- สเปกคอมพิวเตอร์ -->
+    <div class="card">
+        <h2>{% trans "สเปกคอมพิวเตอร์ในการทดสอบ" %}</h2>
+        <p>
+            {% blocktrans %}การทดสอบทั้งหมดในโครงการนี้ดำเนินการบนเครื่องคอมพิวเตอร์ที่มีสเปกดังนี้{% endblocktrans %}
+        </p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{% trans "รายการ" %}</th>
+                        <th>{% trans "รายละเอียด" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Processor</td>
+                        <td>Intel Core i5-1135G7 Gen 11 @ 2.40GHz</td>
+                    </tr>
+                    <tr>
+                        <td>RAM</td>
+                        <td>32.0 GB</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans "ระบบปฏิบัติการ" %}</td>
+                        <td>Windows 11 Home 64-bit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            {% blocktrans %}การทดลองในครั้งนี้ดำเนินการทดสอบทั้ง 4 แนวทางบนชุดข้อมูลและเงื่อนไขเดียวกันทุกประการ โดยแต่ละแนวทางจะถูกทดสอบกับข้อมูล 3 ขนาด ได้แก่ 10,000 100,000 และ 1,000,000 แถว พร้อมจับเวลาแยกในแต่ละขั้นตอน ได้แก่ Extract Transform และ Load เพื่อให้ผลการเปรียบเทียบมีความเที่ยงตรงและสามารถนำไปอ้างอิงได้โดยจะนำเสนอผลการทดลองของ SSIS, KNIME, Airflow ร่วมกับ PySpark และ Airflow ร่วมกับ pandas ตามลำดับ{% endblocktrans %}
+        </p>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div class="card">
+        <h2>{% trans "เรียนรู้เพิ่มเติมเกี่ยวกับแต่ละเครื่องมือ" %}</h2>
+        <p>{% trans "เลือกเครื่องมือเพื่อดูรายละเอียดการทดลองและผลการวิเคราะห์:" %}</p>
+
+        <div class="grid-2">
+            <a href="{% url 'pipeline:ssis' %}" class="card" style="text-decoration: none;">
+                <img src="{% static 'images/logos/ssis.svg' %}" alt="SSIS Logo" style="width: 140px; height: 140px; margin: 0 auto;">
+                <h3>SSIS</h3>
+                <p>Microsoft SQL Server Integration Services</p>
+            </a>
+
+            <a href="{% url 'pipeline:knime' %}" class="card" style="text-decoration: none;">
+                <img src="{% static 'images/logos/knime.svg' %}" alt="KNIME Logo" style="width: 140px; height: 140px; margin: 0 auto;">
+                <h3>KNIME</h3>
+                <p>Open-source Analytics Platform</p>
+            </a>
+
+            <a href="{% url 'pipeline:airflow_pyspark' %}" class="card" style="text-decoration: none;">
+                <img src="{% static 'images/logos/spark.svg' %}" alt="PySpark Logo" style="width: 140px; height: 140px; margin: 0 auto;">
+                <h3>Airflow + PySpark</h3>
+                <p>Distributed Processing with Spark</p>
+            </a>
+
+            <a href="{% url 'pipeline:airflow_pandas' %}" class="card" style="text-decoration: none;">
+                <img src="{% static 'images/logos/pandas.svg' %}" alt="Pandas Logo" style="width: 140px; height: 140px; margin: 0 auto;">
+                <h3>Airflow + Pandas</h3>
+                <p>Lightweight Python Processing</p>
+            </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="{% url 'pipeline:analysis' %}" class="btn" style="color: #1e293b !important; font-weight: 700 !important; text-decoration: none !important;">{% trans "ดูการวิเคราะห์และสรุปผลโดยรวม" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
