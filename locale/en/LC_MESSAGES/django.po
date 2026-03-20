@@ -369,11 +369,9 @@ msgid "STEP 1: เปิด PowerShell แบบ Administrator"
 msgstr "STEP 1: Open PowerShell as Administrator"
 
 msgid "กด Windows Key แล้วพิมพ์"
-msgstr "Click the Add button and configure:"
+msgstr "Press Windows Key and type"
 
-#, fuzzy
-#| msgid "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""
-msgid "คลิกขวาที่ Windows PowerShell → เลือก \\"
+msgid "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""
 msgstr "Right-click on Windows PowerShell → Select \"Run as administrator\""
 
 msgid "ถ้ามี popup UAC ถามให้กด Yes"

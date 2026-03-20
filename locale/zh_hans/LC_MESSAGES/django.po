@@ -530,7 +530,7 @@ msgstr "步骤 1：以管理员身份打开 PowerShell"
 
 #: .\pipeline\templates\pipeline\airflow_pyspark.html:220
 msgid "กด Windows Key แล้วพิมพ์"
-msgstr "点击添加按钮并配置："
+msgstr "按 Windows 键然后输入"
 
 #: .\pipeline\templates\pipeline\airflow_pyspark.html:221
 msgid "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""

@@ -475,17 +475,15 @@ msgstr ""
 
 #: .\pipeline\templates\pipeline\airflow_pyspark.html:220
 msgid "กด Windows Key แล้วพิมพ์"
-msgstr ""
+msgstr "กด Windows Key แล้วพิมพ์"
 
 #: .\pipeline\templates\pipeline\airflow_pyspark.html:221
-#, fuzzy
-#| msgid "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""
-msgid "คลิกขวาที่ Windows PowerShell → เลือก \\"
+msgid "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""
 msgstr "คลิกขวาที่ Windows PowerShell → เลือก \"Run as administrator\""
 
 #: .\pipeline\templates\pipeline\airflow_pyspark.html:222
 msgid "ถ้ามี popup UAC ถามให้กด Yes"
-msgstr ""
+msgstr "ถ้ามี popup UAC ถามให้กด Yes"
 
 #: .\pipeline\templates\pipeline\airflow_pyspark.html:225
 msgid "STEP 2: ติดตั้ง WSL2 + Ubuntu 22.04"
