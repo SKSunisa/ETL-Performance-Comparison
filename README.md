@@ -1,176 +1,273 @@
-# ETL Pipeline Comparison Website
+# 🚀 ETL Pipeline Performance Comparison
 
-A modern, multilingual Django website comparing 4 ETL pipeline approaches with impressive 3D design.
+## การเปรียบเทียบประสิทธิภาพ ETL Pipeline 4 แนวทาง
 
-## Project Overview
+> A comprehensive comparison of 4 ETL pipeline approaches: SSIS, KNIME, Apache Airflow + PySpark, and Apache Airflow + Pandas
 
-This website showcases a comprehensive comparison of four ETL (Extract, Transform, Load) pipeline implementations:
-1. **SSIS** - SQL Server Integration Services
-2. **KNIME** - Open-source Analytics Platform
-3. **Airflow + PySpark** - Distributed processing with Apache Spark
-4. **Airflow + Pandas** - Lightweight Python processing
-
-## Features
-
-- **Multilingual Support**: Thai (ไทย), English, and Chinese (中文)
-- **Modern 3D UI**: Impressive dimensional design with animations
-- **Responsive Design**: Works on desktop, tablet, and mobile
-- **Interactive Elements**: 3D card effects, parallax backgrounds
-- **Comprehensive Content**: Methodology, analysis, and benchmarks for each tool
-
-## Project Structure
-
-```
-seniorproject/
-├── etl_comparison/          # Django project settings
-├── pipeline/                # Main Django app
-│   ├── templates/          # HTML templates
-│   └── views.py            # View functions
-├── static/                 # Static files
-│   ├── css/               # Stylesheets
-│   ├── js/                # JavaScript
-│   └── images/            # Images from documents
-├── document/              # Source documents
-└── manage.py              # Django management script
-```
-
-## Installation & Setup
-
-### Prerequisites
-- Python 3.13+
-- Django 4.2+
-
-### Quick Start
-
-1. **Navigate to project directory**:
-   ```bash
-   cd D:\seniorproject
-   ```
-
-2. **Run database migrations** (if not done):
-   ```bash
-   python manage.py migrate
-   ```
-
-3. **Start development server**:
-   ```bash
-   python manage.py runserver
-   ```
-
-4. **Access the website**:
-   Open your browser and go to: `http://127.0.0.1:8000`
-
-## Usage
-
-### Changing Language
-
-Click the language switcher button in the top-right corner to switch between:
-- 🇹🇭 ไทย (Thai)
-- 🇬🇧 English
-- 🇨🇳 中文 (Chinese)
-
-### Navigation
-
-Use the top navigation bar to explore different sections:
-- **Home**: Project overview and system architecture
-- **SSIS**: Microsoft's ETL platform details
-- **KNIME**: Open-source visual ETL tool
-- **Airflow + PySpark**: Distributed big data processing
-- **Airflow + Pandas**: Lightweight Python ETL
-- **Analysis**: Comprehensive comparison and recommendations
-
-## Pages
-
-### 1. Home Page
-- Project introduction
-- System architecture diagrams
-- Quick navigation to all tools
-
-### 2. Tool-Specific Pages (SSIS, KNIME, Airflow+PySpark, Airflow+Pandas)
-Each tool page includes:
-- Implementation methodology
-- Step-by-step setup guide
-- Performance benchmarks
-- Strengths and limitations
-- Visual charts and diagrams
-
-### 3. Analysis Page
-- Overall performance comparison
-- Feature comparison matrix
-- Tool selection recommendations
-- Comprehensive conclusion
-
-## Design Features
-
-### 3D Effects
-- Animated background cubes and spheres
-- Interactive card tilt on hover
-- Parallax mouse movement effects
-- Smooth transitions and animations
-
-### Layout
-- Text content: **Left-aligned** for readability
-- Images: **Centered** with proper sizing
-- Tables: **Centered** with modern styling
-- Responsive grid layouts
-
-## Technologies Used
-
-- **Backend**: Django 4.2
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Styling**: Custom CSS with 3D transforms
-- **Fonts**: Kanit (Thai), Poppins (Latin)
-- **Icons**: Font Awesome 6.4
-
-## Content Source
-
-All content and images are extracted from the original research documents located in `D:\seniorproject\document/`:
-- Home: System architecture and overview
-- SSIS: 16 files (PDFs, images, charts)
-- KNIME: 10 files (PDFs, images, charts)
-- Airflow + PySpark: 18 files (PDFs, images, charts)
-- Airflow + Pandas: 4 files (PDFs, comparison charts)
-- Timing Benchmark Results: 5 files (comparison visualizations)
-
-## Development Notes
-
-### Adding New Content
-1. Place images in appropriate `static/images/` subdirectory
-2. Update corresponding template in `pipeline/templates/pipeline/`
-3. Add translations if needed
-
-### Customizing Styles
-- Main stylesheet: `static/css/style.css`
-- JavaScript interactions: `static/js/main.js`
-
-### Database
-- Uses SQLite by default (db.sqlite3)
-- No custom models required for current implementation
-
-## Browser Support
-
-- Chrome/Edge (recommended)
-- Firefox
-- Safari
-- Modern mobile browsers
-
-## Performance
-
-The website features:
-- Lazy loading for images
-- Optimized CSS animations
-- Smooth scrolling
-- Responsive image sizing
-
-## License
-
-This is a senior project for academic purposes.
-
-## Credits
-
-Developed as part of a comprehensive ETL pipeline comparison research project.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-5.1.4-green.svg)](https://www.djangoproject.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-**Note**: Make sure to run the development server with `python manage.py runserver` before accessing the website.
-"# ETL-Performance-Comparison" 
+## 📋 Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [ETL Tools Compared](#etl-tools-compared)
+- [Key Findings](#key-findings)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Languages](#languages)
+- [Author](#author)
+
+---
+
+## 🎯 Overview
+
+This project presents a comprehensive performance comparison of **4 different ETL pipeline approaches** using a Credit Card Fraud Detection dataset. The comparison evaluates execution time, scalability, and efficiency across different data sizes (10k, 100k, and 1 million rows).
+
+The results are presented through an **interactive, multilingual Django website** with modern 3D design and data visualizations.
+
+---
+
+## ✨ Features
+
+- 🌐 **Multilingual Support**: Thai (ไทย), English, Chinese (中文)
+- 📊 **Interactive Visualizations**: Charts and graphs comparing ETL performance
+- 🎨 **Modern 3D Design**: Impressive UI with smooth animations
+- 📱 **Responsive Layout**: Works on desktop, tablet, and mobile
+- 🔍 **Detailed Analysis**: Step-by-step methodology and results for each tool
+- 📈 **Performance Metrics**: Extract, Transform, Load time comparisons
+- 🎯 **Real-world Dataset**: Credit Card Fraud Detection (10k, 100k, 1M rows)
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Django 5.1.4** - Python web framework
+- **Python 3.8+** - Core programming language
+
+### Frontend
+- **HTML5** - Structure
+- **CSS3** - Modern 3D styling with animations
+- **JavaScript** - Interactive components
+
+### Internationalization
+- **Django i18n** - Translation framework
+- **gettext** - Message catalog management
+
+### ETL Tools Tested
+- **Microsoft SSIS** - SQL Server Integration Services
+- **KNIME** - Open-source data analytics platform
+- **Apache Airflow 2.8.0 + PySpark** - Distributed data processing
+- **Apache Airflow 2.8.0 + Pandas** - Single-node data processing
+
+---
+
+## 🔧 ETL Tools Compared
+
+### 1. **Microsoft SSIS**
+Traditional ETL tool with visual workflow designer, integrated with SQL Server ecosystem.
+
+### 2. **KNIME**
+Open-source platform for data analytics, reporting, and integration with visual workflow.
+
+### 3. **Apache Airflow + PySpark**
+Modern workflow orchestration with distributed computing capabilities using Apache Spark.
+
+### 4. **Apache Airflow + Pandas**
+Workflow orchestration with lightweight, single-node data processing using Pandas.
+
+---
+
+## 📊 Key Findings
+
+### Performance Summary (1 Million Rows)
+
+| Tool | Total Time | Extract | Transform | Load |
+|------|-----------|---------|-----------|------|
+| **Pandas** | 130.68s | 19.04s | 9.53s | 102.11s |
+| **KNIME** | 220.67s | 31.17s | 78.53s | 110.97s |
+| **SSIS** | 318.29s | 25.39s | 202.53s | 90.37s |
+| **PySpark** | 1,013.70s | 19.36s | 38.97s | 955.37s |
+
+### Key Insights
+
+- ✅ **Pandas** is fastest for small to medium datasets (10k-1M rows)
+- ✅ **PySpark** overhead makes it slower for smaller datasets but scales better theoretically
+- ✅ **KNIME** offers good balance between performance and ease of use
+- ✅ **SSIS** shows consistent performance but slower for complex transformations
+
+---
+
+## 🚀 Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- pip package manager
+
+### Steps
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/SKSunisa/ETL-Performance-Comparison.git
+cd ETL-Performance-Comparison
+```
+
+2. **Create virtual environment** (optional but recommended)
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. **Install dependencies**
+```bash
+pip install django
+```
+
+4. **Compile translation messages**
+```bash
+python manage.py compilemessages
+```
+
+5. **Run migrations**
+```bash
+python manage.py migrate
+```
+
+---
+
+## 💻 Usage
+
+### Start the development server
+```bash
+python manage.py runserver
+```
+
+### Access the website
+Open your browser and navigate to:
+```
+http://localhost:8000
+```
+
+### Change language
+Click the language selector in the navigation bar to switch between:
+- 🇹🇭 Thai (ไทย)
+- 🇬🇧 English
+- 🇨🇳 Chinese (中文)
+
+---
+
+## 📁 Project Structure
+
+```
+ETL-Performance-Comparison/
+├── etl_comparison/          # Django project settings
+│   ├── settings.py          # Main configuration
+│   ├── urls.py              # URL routing
+│   └── wsgi.py              # WSGI configuration
+├── pipeline/                # Main Django app
+│   ├── templates/           # HTML templates
+│   │   └── pipeline/        # App-specific templates
+│   ├── views.py             # View logic
+│   └── urls.py              # App URL patterns
+├── static/                  # Static files
+│   ├── css/                 # Stylesheets
+│   ├── js/                  # JavaScript files
+│   └── images/              # Charts and visualizations
+├── locale/                  # Translation files
+│   ├── en/                  # English translations
+│   ├── th/                  # Thai translations
+│   └── zh_hans/             # Chinese translations
+├── templates/               # Global templates
+│   └── base.html            # Base template
+├── manage.py                # Django management script
+└── README.md                # This file
+```
+
+---
+
+## 🌍 Languages
+
+This website supports 3 languages:
+
+- **Thai (ไทย)** - Default language
+- **English** - Full translation
+- **Chinese (中文)** - Full translation
+
+Translation is handled using Django's built-in i18n framework with gettext.
+
+---
+
+## 🎓 Research Context
+
+This project was developed as part of a senior project research comparing ETL pipeline performance using real-world fraud detection data. The study evaluates:
+
+- **Execution Time**: How fast each tool processes data
+- **Scalability**: How performance changes with data volume
+- **Resource Usage**: Memory and CPU utilization
+- **Ease of Use**: Development and maintenance complexity
+
+---
+
+## 📸 Website Pages
+
+### Home Page
+- Project overview and introduction
+- System architecture diagrams
+- Quick navigation to all ETL tools
+
+### Tool-Specific Pages
+Each ETL tool has a dedicated page with:
+- **Implementation Tab**: Step-by-step methodology and setup
+- **Analysis Tab**: Performance results and benchmarks
+- Interactive charts and visualizations
+
+### Overall Analysis Page
+- Comprehensive comparison of all 4 tools
+- Performance comparison charts
+- Recommendations based on use case
+
+---
+
+## 👩‍💻 Author
+
+**SKSunisa**
+- GitHub: [@SKSunisa](https://github.com/SKSunisa)
+- Repository: [ETL-Performance-Comparison](https://github.com/SKSunisa/ETL-Performance-Comparison)
+
+---
+
+## 📝 License
+
+This project is open source and available for educational purposes.
+
+---
+
+## 🙏 Acknowledgments
+
+- Credit Card Fraud Detection Dataset
+- Django Community
+- Open-source ETL tool communities (KNIME, Apache Airflow, PySpark, Pandas)
+
+---
+
+## 🔗 Links
+
+- **GitHub Repository**: https://github.com/SKSunisa/ETL-Performance-Comparison
+- **Django Documentation**: https://docs.djangoproject.com/
+- **i18n Documentation**: https://docs.djangoproject.com/en/stable/topics/i18n/
+
+---
+
+<div align="center">
+
+**⭐ If you find this project useful, please consider giving it a star! ⭐**
+
+Made with ❤️ for ETL performance research
+
+</div>
