@@ -8,6 +8,8 @@
 [![Django](https://img.shields.io/badge/Django-5.1.4-green.svg)](https://www.djangoproject.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+### 🌐 [**Live Demo**](https://etl-comparison.onrender.com) | [GitHub Repository](https://github.com/SKSunisa/ETL-Performance-Comparison)
+
 ---
 
 ## 📋 Table of Contents
@@ -258,9 +260,10 @@ This project is open source and available for educational purposes.
 
 ## 🔗 Links
 
-- **GitHub Repository**: https://github.com/SKSunisa/ETL-Performance-Comparison
-- **Django Documentation**: https://docs.djangoproject.com/
-- **i18n Documentation**: https://docs.djangoproject.com/en/stable/topics/i18n/
+- **🌐 Live Demo**: https://etl-comparison.onrender.com
+- **📁 GitHub Repository**: https://github.com/SKSunisa/ETL-Performance-Comparison
+- **📚 Django Documentation**: https://docs.djangoproject.com/
+- **🌍 i18n Documentation**: https://docs.djangoproject.com/en/stable/topics/i18n/
 
 ---
 
