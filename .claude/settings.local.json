@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(git -C \"D:\\\\seniorproject\" status)",
-      "Bash(git -C \"D:\\\\seniorproject\" check-ignore -v claude.md CLAUDE.md)",
-      "Bash(git -C \"D:\\\\seniorproject\" add .)"
-    ]
-  }
-}

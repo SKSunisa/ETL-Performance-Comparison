@@ -1,6 +1,7 @@
-# Claude AI instruction files
+# Claude AI instruction files and settings
 CLAUDE.md
 claude.md
+.claude/
 
 # Python
 __pycache__/
