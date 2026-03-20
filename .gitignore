@@ -3,6 +3,9 @@ CLAUDE.md
 claude.md
 .claude/
 
+# Project documents (keep local only)
+document/
+
 # Python
 __pycache__/
 *.py[cod]
